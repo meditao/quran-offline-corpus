@@ -13,3 +13,5 @@ Acceptance statement received in ChatGPT on 2026-09-14:
 > “Tanzil, QAC ve Açık Kuran şartlarını kabul ediyorum.”
 
 This marker exists solely to authorize the repository's bootstrap workflow to retrieve, validate, and store the permitted source data according to the source-specific terms recorded in `SOURCES.md`.
+
+Bootstrap note: workflow re-triggered after correcting the QAC v0.4 validator to accept the official lowercase version header and legitimate zero-form suffix segments.
