@@ -38,13 +38,14 @@ def main() -> None:
     ayat: set[tuple[int, int]] = set()
     surahs: set[int] = set()
     bad_rows: list[tuple[int, str]] = []
+    empty_forms = 0
     copyright_seen = False
     version_seen = False
 
     with QAC.open("r", encoding="utf-8-sig", errors="strict") as f:
         for line_no, raw in enumerate(f, 1):
             line = raw.rstrip("\n\r")
-            if "Quranic Arabic Corpus (Version 0.4)" in line:
+            if "Quranic Arabic Corpus" in line and "version 0.4" in line.lower():
                 version_seen = True
             if "Copyright (C) 2011 Kais Dukes" in line:
                 copyright_seen = True
@@ -69,7 +70,12 @@ def main() -> None:
             ayat.add((surah, ayah))
             words.add((surah, ayah, word))
 
-            if not form or not tag or not features:
+            # QAC v0.4 contains legitimate zero-form suffix segments, especially
+            # first-person singular pronoun suffix annotations. Therefore an empty
+            # FORM field is counted for audit purposes but is not malformed by itself.
+            if not form:
+                empty_forms += 1
+            if not tag or not features:
                 bad_rows.append((line_no, line[:160]))
 
     checks = {
@@ -79,7 +85,7 @@ def main() -> None:
         "words_77429": len(words) == EXPECTED_WORDS,
         "surahs_114": len(surahs) == EXPECTED_SURAHS,
         "ayat_6236": len(ayat) == EXPECTED_AYAT,
-        "no_bad_rows": not bad_rows,
+        "no_structurally_bad_rows": not bad_rows,
     }
 
     print(f"File: {QAC.relative_to(ROOT)}")
@@ -88,12 +94,13 @@ def main() -> None:
     print(f"Unique word positions: {len(words):,}")
     print(f"Ayat: {len(ayat):,}")
     print(f"Surahs: {len(surahs):,}")
+    print(f"Zero-form annotated segments: {empty_forms:,}")
     print("\nChecks:")
     for name, ok in checks.items():
         print(f"  {'PASS' if ok else 'FAIL'}  {name}")
 
     if bad_rows:
-        print("\nFirst malformed rows:")
+        print("\nFirst structurally malformed rows:")
         for row in bad_rows[:10]:
             print(f"  line {row[0]}: {row[1]}")
 
