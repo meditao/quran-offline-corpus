@@ -1,0 +1,36 @@
+name: Core corpus integrity
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate pinned Tanzil sources
+        run: python 08_scripts/validate_tanzil.py
+      - name: Validate pinned QAC source
+        run: python 08_scripts/validate_qac.py
+      - name: Rebuild QAC indices
+        run: python 08_scripts/build_qac_indices.py
+      - name: Rebuild Tanzil-QAC alignment audit
+        run: python 08_scripts/build_tanzil_qac_alignment.py
+      - name: Require byte-identical generated core outputs
+        run: |
+          git diff --exit-code -- \
+            03_indices/generated/qac_word_annotations.csv \
+            03_indices/generated/root_index.csv \
+            03_indices/generated/lemma_index.csv \
+            03_indices/generated/pos_index.csv \
+            03_indices/generated/tanzil_qac_alignment.csv \
+            03_indices/audits/tanzil_qac_alignment.md
