@@ -7,6 +7,7 @@ on:
       - '08_scripts/analyze_amn_verb_syntax.py'
       - '08_scripts/analyze_amn_bi_targets.py'
       - '08_scripts/analyze_iman_noun.py'
+      - '08_scripts/analyze_mumin_profile.py'
       - '.github/workflows/build-amn-syntax.yml'
 
 permissions:
@@ -28,6 +29,8 @@ jobs:
         run: python 08_scripts/analyze_amn_bi_targets.py
       - name: Build iman noun audit
         run: python 08_scripts/analyze_iman_noun.py
+      - name: Build mumin profile audit
+        run: python 08_scripts/analyze_mumin_profile.py
       - name: Commit generated audits
         run: |
           git config user.name "quran-offline-corpus-bot"
@@ -35,9 +38,10 @@ jobs:
           git add 07_analyses/generated/root_profiles/Amn/verb_syntax
           git add 07_analyses/generated/root_profiles/Amn/bi_targets
           git add 07_analyses/generated/root_profiles/Amn/iman_noun
+          git add 07_analyses/generated/root_profiles/Amn/mumin
           if git diff --cached --quiet; then
             echo "No Amn-audit changes."
             exit 0
           fi
-          git commit -m "Build Amn syntax, bi-target, and iman noun audits"
+          git commit -m "Build Amn syntax, bi-target, iman noun, and mumin audits"
           git push
