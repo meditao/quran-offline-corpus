@@ -1,16 +1,17 @@
-name: Validate Semitic cognate schema
+name: Validate Semitic cognate evidence
 
 on:
   workflow_dispatch:
   push:
     paths:
       - '04_lexicons/semitic/cognates.tsv'
+      - '04_lexicons/semitic/reviews/**'
       - '03_indices/generated/root_index.csv'
       - '08_scripts/validate_cognates.py'
       - '.github/workflows/validate-semitic-layer.yml'
 
 jobs:
-  validate-schema:
+  validate-evidence:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -19,7 +20,5 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Validate cognate schema against QAC root registry
-        run: python 08_scripts/validate_cognates.py --allow-empty
-      - name: Explain current maturity
-        run: echo "Schema/infrastructure validation only; zero cognate rows does not mean cognate evidence has been validated."
+      - name: Validate populated cognate evidence against QAC root registry
+        run: python 08_scripts/validate_cognates.py
