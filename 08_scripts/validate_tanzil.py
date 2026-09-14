@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""Tanzil ham dosyalarının temel yapısal doğrulamasını yapar.
+"""Tanzil ham dosyalarının yapı ve sabit kaynak hash doğrulamasını yapar.
 
 Beklenen kanonik yapı:
 - 114 sûre
 - 6236 numaralı ayet
 - her ayet için benzersiz sûre:ayet anahtarı
 
-Script Arapça metni değiştirmez; yalnızca okur ve rapor üretir.
+Ham Arapça metin değiştirilmez; yalnız okunur ve doğrulanır.
 """
 
 from __future__ import annotations
@@ -20,6 +20,11 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "01_raw" / "tanzil"
 EXPECTED_SURAH_COUNT = 114
 EXPECTED_VERSE_COUNT = 6236
+EXPECTED_SHA256 = {
+    "quran-uthmani.txt": "bf4f57b968d03f4131c070b1e285da9be0e0a108a21c910e872801ca273312c8",
+    "quran-simple-clean.txt": "228df2a717671aeb9d2ff573002bd28d6b3f973f4bc7153554e3a81663d67610",
+    "quran-data.xml": "8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a",
+}
 
 
 def sha256(path: Path) -> str:
@@ -39,7 +44,6 @@ def parse_txt2(path: Path) -> list[tuple[int, int, str]]:
                 continue
             parts = line.split("|", 2)
             if len(parts) != 3:
-                # Tanzil dosyasının sonundaki lisans/yorum bloklarını yok say.
                 continue
             s, a, text = parts
             try:
@@ -59,8 +63,12 @@ def validate_one(path: Path) -> dict[str, object]:
     key_counts = Counter(keys)
     duplicates = [f"{s}:{a}" for (s, a), n in key_counts.items() if n > 1]
     surahs = sorted({s for s, _, _ in verses})
+    actual_sha = sha256(path)
+    expected_sha = EXPECTED_SHA256[path.name]
 
     errors: list[str] = []
+    if actual_sha != expected_sha:
+        errors.append(f"sha256={actual_sha} expected={expected_sha}")
     if len(verses) != EXPECTED_VERSE_COUNT:
         errors.append(f"verse_count={len(verses)} expected={EXPECTED_VERSE_COUNT}")
     if len(surahs) != EXPECTED_SURAH_COUNT:
@@ -72,7 +80,9 @@ def validate_one(path: Path) -> dict[str, object]:
 
     return {
         "file": str(path.relative_to(ROOT)),
-        "sha256": sha256(path),
+        "sha256": actual_sha,
+        "expected_sha256": expected_sha,
+        "hash_match": actual_sha == expected_sha,
         "verse_count": len(verses),
         "surah_count": len(surahs),
         "first_key": f"{keys[0][0]}:{keys[0][1]}" if keys else None,
@@ -84,20 +94,29 @@ def validate_one(path: Path) -> dict[str, object]:
 
 
 def main() -> None:
-    targets = [RAW_DIR / "quran-uthmani.txt", RAW_DIR / "quran-simple-clean.txt"]
-    missing = [str(p.relative_to(ROOT)) for p in targets if not p.exists()]
+    text_targets = [RAW_DIR / "quran-uthmani.txt", RAW_DIR / "quran-simple-clean.txt"]
+    all_targets = text_targets + [RAW_DIR / "quran-data.xml"]
+    missing = [str(p.relative_to(ROOT)) for p in all_targets if not p.exists()]
     if missing:
-        raise SystemExit(
-            "Eksik ham kaynak: " + ", ".join(missing) +
-            ". Önce fetch_tanzil.py çalıştırılmalı."
-        )
+        raise SystemExit("Eksik ham kaynak: " + ", ".join(missing))
+
+    files = [validate_one(path) for path in text_targets]
+    metadata = RAW_DIR / "quran-data.xml"
+    metadata_sha = sha256(metadata)
+    metadata_ok = metadata_sha == EXPECTED_SHA256[metadata.name]
 
     report = {
         "expected_surah_count": EXPECTED_SURAH_COUNT,
         "expected_verse_count": EXPECTED_VERSE_COUNT,
-        "files": [validate_one(path) for path in targets],
+        "files": files,
+        "metadata": {
+            "file": str(metadata.relative_to(ROOT)),
+            "sha256": metadata_sha,
+            "expected_sha256": EXPECTED_SHA256[metadata.name],
+            "hash_match": metadata_ok,
+        },
     }
-    report["valid"] = all(item["valid"] for item in report["files"])
+    report["valid"] = all(item["valid"] for item in files) and metadata_ok
 
     out = RAW_DIR / "validation.local.json"
     out.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
