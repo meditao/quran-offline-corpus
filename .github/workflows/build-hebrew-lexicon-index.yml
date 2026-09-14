@@ -6,6 +6,7 @@ on:
     paths:
       - '08_scripts/build_hebrew_lexicon_index.py'
       - '04_lexicons/semitic/VENDOR_LOCK.json'
+      - '04_lexicons/generated/README.md'
       - '.github/workflows/build-hebrew-lexicon-index.yml'
 
 permissions:
