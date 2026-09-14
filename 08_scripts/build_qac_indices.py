@@ -11,13 +11,18 @@ Girdi:
     03_indices/generated/root_index.csv
     03_indices/generated/lemma_index.csv
     03_indices/generated/pos_index.csv
+
+Kök/lemma indekslerinde üç ayrı dağılım sayısı tutulur:
+    word_occurrences  = kaç kelime konumu
+    ayah_count        = kaç farklı ayet
+    surah_count       = kaç farklı sûre
 """
 
 from __future__ import annotations
 
 import csv
 import re
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -54,16 +59,36 @@ def feature_map(features: str) -> dict[str, list[str]]:
     return dict(out)
 
 
-def write_counter(path: Path, key_name: str, counter: Counter[str], arabic=True) -> None:
+def new_stat() -> dict[str, object]:
+    return {"words": 0, "ayat": set(), "surahs": set()}
+
+
+def add_stat(stats: dict[str, dict[str, object]], key: str, surah: int, ayah: int) -> None:
+    rec = stats.setdefault(key, new_stat())
+    rec["words"] += 1
+    rec["ayat"].add((surah, ayah))
+    rec["surahs"].add(surah)
+
+
+def write_index(path: Path, key_name: str, stats: dict[str, dict[str, object]], arabic=True) -> None:
     with path.open("w", encoding="utf-8", newline="") as f:
         fields = [key_name]
         if arabic:
             fields.append(f"{key_name}_arabic")
-        fields.append("word_occurrences")
+        fields += ["word_occurrences", "ayah_count", "surah_count"]
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
-        for key, count in sorted(counter.items(), key=lambda x: (-x[1], x[0])):
-            row = {key_name: key, "word_occurrences": count}
+        ordered = sorted(
+            stats.items(),
+            key=lambda x: (-int(x[1]["words"]), x[0]),
+        )
+        for key, rec in ordered:
+            row = {
+                key_name: key,
+                "word_occurrences": rec["words"],
+                "ayah_count": len(rec["ayat"]),
+                "surah_count": len(rec["surahs"]),
+            }
             if arabic:
                 row[f"{key_name}_arabic"] = bw_to_arabic(key)
             w.writerow(row)
@@ -104,9 +129,9 @@ def main() -> None:
             for pos in fm.get("POS", []):
                 if pos:
                     rec["pos"].add(pos)
-            # Bazı satırlarda POS sadece TAG alanında taşınabilir. Prefix/suffix etiketleri
-            # kök/lemma indeksine girmese de kelime POS görünümünde kayıtlı kalsın.
-            if tag:
+            # Prefix/suffix TAG'lerini kelime POS'u gibi saymıyoruz. POS alanı yoksa
+            # yalnız STEM segmentinde TAG'i yedek olarak kullanıyoruz.
+            if not fm.get("POS") and "STEM" in fm and tag:
                 rec["pos"].add(tag)
 
     if len(words) != 77_429:
@@ -114,9 +139,9 @@ def main() -> None:
 
     OUT.mkdir(parents=True, exist_ok=True)
 
-    root_counter: Counter[str] = Counter()
-    lemma_counter: Counter[str] = Counter()
-    pos_counter: Counter[str] = Counter()
+    root_stats: dict[str, dict[str, object]] = {}
+    lemma_stats: dict[str, dict[str, object]] = {}
+    pos_stats: dict[str, dict[str, object]] = {}
 
     word_path = OUT / "qac_word_annotations.csv"
     with word_path.open("w", encoding="utf-8", newline="") as f:
@@ -132,12 +157,12 @@ def main() -> None:
             roots = sorted(rec["roots"])
             lemmas = sorted(rec["lemmas"])
             poses = sorted(rec["pos"])
-            for value in set(roots):
-                root_counter[value] += 1
-            for value in set(lemmas):
-                lemma_counter[value] += 1
-            for value in set(poses):
-                pos_counter[value] += 1
+            for value in roots:
+                add_stat(root_stats, value, surah, ayah)
+            for value in lemmas:
+                add_stat(lemma_stats, value, surah, ayah)
+            for value in poses:
+                add_stat(pos_stats, value, surah, ayah)
             w.writerow({
                 "surah": surah,
                 "ayah": ayah,
@@ -152,13 +177,13 @@ def main() -> None:
                 "pos": ";".join(poses),
             })
 
-    write_counter(OUT / "root_index.csv", "root_bw", root_counter)
-    write_counter(OUT / "lemma_index.csv", "lemma_bw", lemma_counter)
-    write_counter(OUT / "pos_index.csv", "pos", pos_counter, arabic=False)
+    write_index(OUT / "root_index.csv", "root_bw", root_stats)
+    write_index(OUT / "lemma_index.csv", "lemma_bw", lemma_stats)
+    write_index(OUT / "pos_index.csv", "pos", pos_stats, arabic=False)
 
     print(f"Words: {len(words):,}")
-    print(f"Distinct roots: {len(root_counter):,}")
-    print(f"Distinct lemmas: {len(lemma_counter):,}")
+    print(f"Distinct roots: {len(root_stats):,}")
+    print(f"Distinct lemmas: {len(lemma_stats):,}")
     print(f"Output: {OUT.relative_to(ROOT)}")
 
 
