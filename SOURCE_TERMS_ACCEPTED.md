@@ -12,8 +12,10 @@ Acceptance statement received in ChatGPT on 2026-09-14:
 
 > “Tanzil, QAC ve Açık Kuran şartlarını kabul ediyorum.”
 
-This marker exists solely to authorize the repository's bootstrap workflow to retrieve, validate, and store the permitted source data according to the source-specific terms recorded in `SOURCES.md`.
+This marker exists solely to authorize the repository's bootstrap workflow to retrieve, validate, and store the permitted source data according to the source-specific terms recorded in `SOURCES.md` and `LICENSES.md`.
 
 Bootstrap notes:
-- QAC v0.4 validator was corrected to accept the official lowercase version header and legitimate zero-form suffix segments.
-- The retired `api.acikkuran.com` REST endpoint was decoupled from the core bootstrap; Açık Kuran remains an auxiliary root-by-root cross-check source via the live website.
+- QAC v0.4 validator accepts legitimate zero-form suffix segments and pins the verified source SHA-256.
+- Tanzil v1.1 source hashes are pinned by the validator.
+- The retired `api.acikkuran.com` REST endpoint is decoupled from the core bootstrap; Açık Kuran remains an optional auxiliary cross-check source.
+- Core refresh now rebuilds the QAC indices and the Tanzil↔QAC alignment audit.
