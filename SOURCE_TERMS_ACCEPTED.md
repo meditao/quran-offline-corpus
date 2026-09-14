@@ -18,4 +18,4 @@ Bootstrap notes:
 - QAC v0.4 validator accepts legitimate zero-form suffix segments and pins the verified source SHA-256.
 - Tanzil v1.1 source hashes are pinned by the validator.
 - The retired `api.acikkuran.com` REST endpoint is decoupled from the core bootstrap; Açık Kuran remains an optional auxiliary cross-check source.
-- Core refresh now rebuilds the QAC indices and the Tanzil↔QAC alignment audit.
+- Core refresh rebuilds the QAC indices and the Tanzil Uthmani v1.1 ↔ QAC v0.4 alignment audit.
