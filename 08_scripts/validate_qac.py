@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Quranic Arabic Corpus v0.4 morphology dosyasını temel yapısal olarak doğrular.
-
-Ham dosyayı değiştirmez. Beklenen yol:
-    02_morphology/qac/quranic-corpus-morphology-0.4.txt
-"""
+"""Quranic Arabic Corpus v0.4 morphology dosyasını yapı ve hash düzeyinde doğrular."""
 
 from __future__ import annotations
 
@@ -15,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 QAC = ROOT / "02_morphology" / "qac" / "quranic-corpus-morphology-0.4.txt"
 LOCATION_RE = re.compile(r"^\((\d+):(\d+):(\d+):(\d+)\)$")
 
+EXPECTED_SHA256 = "a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46"
 EXPECTED_SEGMENTS = 128_219
 EXPECTED_WORDS = 77_429
 EXPECTED_SURAHS = 114
@@ -33,6 +30,7 @@ def main() -> None:
     if not QAC.exists():
         raise SystemExit(f"Dosya bulunamadı: {QAC}")
 
+    actual_sha = sha256(QAC)
     segments = 0
     words: set[tuple[int, int, int]] = set()
     ayat: set[tuple[int, int]] = set()
@@ -49,36 +47,29 @@ def main() -> None:
                 version_seen = True
             if "Copyright (C) 2011 Kais Dukes" in line:
                 copyright_seen = True
-
             if not line.startswith("("):
                 continue
-
             parts = line.split("\t")
             if len(parts) != 4:
                 bad_rows.append((line_no, line[:160]))
                 continue
-
             location, form, tag, features = parts
             m = LOCATION_RE.match(location)
             if not m:
                 bad_rows.append((line_no, line[:160]))
                 continue
-
             surah, ayah, word, segment = map(int, m.groups())
             segments += 1
             surahs.add(surah)
             ayat.add((surah, ayah))
             words.add((surah, ayah, word))
-
-            # QAC v0.4 contains legitimate zero-form suffix segments, especially
-            # first-person singular pronoun suffix annotations. Therefore an empty
-            # FORM field is counted for audit purposes but is not malformed by itself.
             if not form:
                 empty_forms += 1
             if not tag or not features:
                 bad_rows.append((line_no, line[:160]))
 
     checks = {
+        "sha256_pinned": actual_sha == EXPECTED_SHA256,
         "version_header": version_seen,
         "copyright_header": copyright_seen,
         "segments_128219": segments == EXPECTED_SEGMENTS,
@@ -89,7 +80,8 @@ def main() -> None:
     }
 
     print(f"File: {QAC.relative_to(ROOT)}")
-    print(f"SHA-256: {sha256(QAC)}")
+    print(f"SHA-256: {actual_sha}")
+    print(f"Expected SHA-256: {EXPECTED_SHA256}")
     print(f"Segments: {segments:,}")
     print(f"Unique word positions: {len(words):,}")
     print(f"Ayat: {len(ayat):,}")
