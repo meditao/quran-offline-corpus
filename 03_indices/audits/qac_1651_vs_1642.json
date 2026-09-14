@@ -1,0 +1,24 @@
+{
+  "old_source": {
+    "repository": "abdulbaqi/quranic_roots",
+    "commit": "86611929fd5a35220bc46e1944acc69c619aa57b",
+    "path": "quran-morphology-final.csv",
+    "url": "https://raw.githubusercontent.com/abdulbaqi/quranic_roots/86611929fd5a35220bc46e1944acc69c619aa57b/quran-morphology-final.csv",
+    "sha256": "f11f8c38e116b9ebeab6d71b7ba2f7eec4b4fe3e203d7f19d22981aa89f91983"
+  },
+  "current_source": {
+    "path": "03_indices/generated/root_index.csv",
+    "provenance": "QAC v0.4 pinned public copy; see SOURCES.md and qac/source_manifest.json"
+  },
+  "counts": {
+    "old_distinct_roots": 1642,
+    "current_distinct_roots": 1642,
+    "common_roots": 1642,
+    "old_only_count": 0,
+    "current_only_count": 0,
+    "roots_with_frequency_change": 0
+  },
+  "old_only": [],
+  "current_only": [],
+  "frequency_changes": []
+}
