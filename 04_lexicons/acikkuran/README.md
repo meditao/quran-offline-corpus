@@ -1,45 +1,37 @@
 # Açık Kuran yardımcı kök katmanı
 
-Bu klasör Açık Kuran'ın kök metadata'sını **ikincil çapraz kontrol** olarak offline saklamak için ayrılmıştır.
+Bu klasör Açık Kuran'ı **ikincil çapraz kontrol** kaynağı olarak kullanmak için ayrılmıştır.
 
-Kaynak:
+Kaynaklar:
 - https://acikkuran.com
-- https://api.acikkuran.com
 - https://github.com/acik-kuran/acikkuran-api
 
 API projesi CC BY-NC-SA 4.0 lisans bildirimi taşır.
 
-## Neyi saklıyoruz?
+## Güncel erişim durumu
 
-İlk aşamada yalnız kök metadata'sı:
+Eski `https://api.acikkuran.com` REST API alan adı artık çözülmüyor. Bu nedenle eski `/rootchars`, `/rootchar/{id}` ve `/root/latin/{latin}` API endpointlerine dayanan toplu snapshot akışı çekirdek bootstrap'tan çıkarılmıştır.
 
-- kök id
-- Latin/Buckwalter-benzeri anahtar
-- Arapça kök
-- transkripsiyon
-- `mean` / `mean_en`
-- kök varyantları (`diffs`) ve onların sayımları
+Açık Kuran'ın web sitesi ve kök sayfaları çalışmaya devam ediyor. Örnek:
 
-QAC zaten kök occurrence konumlarını verdiği için bütün Açık Kuran meal/ayet verisini çoğaltmıyoruz.
+- `https://acikkuran.com/root/Slw`
+- `https://acikkuran.com/root/wqy`
+- `https://acikkuran.com/root/Amn`
 
-## Neden yardımcı katman?
+Bu sayfalar kökün Arapça/Latin anahtarını ve Türkçe anlam alanını gösterir. Site şu aşamada kök-bazlı filolojik çapraz kontrol için kullanılacaktır.
 
-Açık Kuran kök sayfaları araştırmada kullanışlıdır; ancak `mean` alanının lexikografik kaynak zinciri her kök için açıkça belirtilmiş olmayabilir. Bu yüzden burada yer alan anlamlar:
+## Metodolojik rol
 
-- hipotez üretmek,
-- QAC kök ailesini ikinci kez kontrol etmek,
-- varyant/sayım farklarını fark etmek
+QAC kök occurrence konumlarını zaten verdiği için Açık Kuran'dan bütün ayet/meal verisini çoğaltmaya ihtiyacımız yoktur. Açık Kuran özellikle:
 
-için kullanılacaktır. Tek başına nihai etimolojik/semantik kanıt sayılmaz.
+- kök anlam alanı için ikinci görüş,
+- kritik köklerde anlam hipotezi üretme,
+- QAC atamalarını insan-okunur bir kaynakla çapraz kontrol etme
 
-## Snapshot
+için kullanılır.
 
-```bash
-python 08_scripts/fetch_acikkuran_roots.py --i-accept-acikkuran-license
-```
+Açık Kuran'daki kök anlamı tek başına nihai etimolojik veya semantik kanıt sayılmaz. Kaynak zinciri açık olmayan bir anlam, Kur'an içi dağılım ve karşılaştırmalı Sami verisinin önüne geçirilmez.
 
-Çıktı:
+## Offline snapshot politikası
 
-`04_lexicons/acikkuran/roots.jsonl`
-
-Script kaynak endpointlerini ve SHA-256 değerini ayrıca manifest dosyasına kaydeder.
+Yeni site veri yolu güvenilir ve lisansa uygun biçimde doğrulanana kadar toplu Açık Kuran snapshot'ı üretilmeyecektir. Kritik kökler gerektiğinde tek tek kayda alınabilir; her kayıtta kaynak URL'si ve erişim tarihi tutulur.
