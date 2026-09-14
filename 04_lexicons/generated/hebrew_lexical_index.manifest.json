@@ -6,7 +6,7 @@
   "source_url": "https://raw.githubusercontent.com/openscriptures/HebrewLexicon/21c9add13bc727d3a951361778e97e3ff7afd1ce/LexicalIndex.xml",
   "source_sha256": "8f7a605c58899d2f44430149c143c00903976e1e91232476677972a69e5bc85f",
   "license": "CC BY 4.0",
-  "generated_at_utc": "2026-09-14T15:46:07.496620+00:00",
+  "generated_at_utc": "2026-09-14T15:46:41.654324+00:00",
   "record_count": 10221,
   "records_with_etym_root": 2459,
   "output": "04_lexicons/generated/hebrew_lexical_index.tsv",
