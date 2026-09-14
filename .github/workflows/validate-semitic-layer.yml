@@ -1,0 +1,23 @@
+name: Validate Semitic cognate layer
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '04_lexicons/semitic/cognates.tsv'
+      - '03_indices/generated/root_index.csv'
+      - '08_scripts/validate_cognates.py'
+      - '.github/workflows/validate-semitic-layer.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate cognate table against QAC root registry
+        run: python 08_scripts/validate_cognates.py
