@@ -1,0 +1,12 @@
+location	surface	status	role	target_type	note
+2:85:23	أتؤمنون ببعض	true_complement	target	revelation_content	Partitive target: some of the Book; contrasted with kafara bi-ba'd.
+2:137:2	آمنوا بمثل	true_complement	target	composite_revelation_content	bi-mithli ma amantum bihi; target is a comparison to the composite content accepted in 2:136.
+4:51:9	يؤمنون بالجبت	true_complement	target	false_authority	Jibt is the explicit bi-target, coordinated with taghut.
+4:150:13	نؤمن ببعض	true_complement	target	partial_composite	Partitive 'some' within the Allah/messengers separation discourse.
+5:41:12	آمنا بأفواههم	adjunct_not_target	manner_instrument	mouths	bi-afwahihim marks manner/instrument ('with their mouths'), explicitly contrasted with hearts not having amana.
+14:27:4	آمنوا بالقول الثابت	true_complement	target	statement_content	The firm saying/word is the bi-target.
+16:72:17	يؤمنون وبنعمت الله	false_adjacency	next_clause	divine_favor	wa-bi-ni'mat Allah belongs to the following hum yakfurun, not to yu'minun.
+18:6:8	يؤمنوا بهذا الحديث	true_complement	target	revelation_content	This hadith/discourse is the explicit target.
+29:52:13	آمنوا بالباطل	true_complement	target	falsehood	Falsehood itself is the explicit bi-target, contrasted with kafaru bi-llah.
+29:67:12	يؤمنون وبنعمة الله	false_adjacency	next_clause	divine_favor	wa-bi-ni'mat Allah belongs to yakfurun, not to yu'minun.
+34:31:5	نؤمن بهذا القرآن	true_complement	target	revelation_content	This Qur'an is the explicit target; coordinated with what is before it.
