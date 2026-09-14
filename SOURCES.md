@@ -36,11 +36,14 @@ Her kaynak için aşağıdaki alanlar mümkün olduğunca doldurulur:
 - Sağlayıcı / proje: Quranic Arabic Corpus / Kais Dukes
 - Sürüm: 0.4
 - Orijinal URL: https://corpus.quran.com/download/
-- Lisans / kullanım şartları: Resmî dosya GNU lisans bildirimi ve kaynak gösterme şartı taşır; dağıtılan annotation dosyasının değiştirilmemesi istenir.
+- Lisans / kullanım şartları: Resmî dosya GNU lisans bildirimi ve kaynak gösterme şartı taşır; dağıtılan annotation dosyasının değiştirilmemesi istenir. Dosya içindeki şartlar verbatim kopyaların dağıtılmasına izin verir.
 - Kullanım rolü: **Birincil morfoloji, lemma, kök ve segment katmanı**
 - Beklenen yapı: 128.219 segment / 77.429 benzersiz kelime konumu / 6.236 ayet / 114 sûre.
-- Durum: Kaynak doğrulandı; resmî indirme e-posta + şart kabulü gerektirdiği için ham dosya otomatik alınmayacak. `08_scripts/validate_qac.py` hazırdır.
 - Repo hedefi: `02_morphology/qac/quranic-corpus-morphology-0.4.txt`
+- Durum: Kaynak doğrulandı. Resmî indirme sayfası e-posta adımı içerdiği için hash-pinned verbatim kamu kopyası için `08_scripts/fetch_qac.py` hazırlandı.
+- Mirror doğrulaması: `bnjasim/quranic-corpus` ve `taziksh/quran-frequencies` içindeki v0.4 dosyaları aynı Git blob SHA-1 değerini taşır: `b91cec6e95d5e0306550b4aedacc7380dc71152a`.
+- Güvenlik: `fetch_qac.py` indirilen baytların Git blob SHA'sını ve telif/sürüm bloğunu doğrular; içerik değişmişse dosyayı kabul etmez.
+- Sonraki doğrulama: `08_scripts/validate_qac.py`.
 - Notlar: Kritik kök/lemma sonuçları bağımsız kaynaklarla ayrıca sınanacaktır.
 
 ## Aday 3 — Açık Kuran
@@ -61,11 +64,14 @@ Her kaynak için aşağıdaki alanlar mümkün olduğunca doldurulur:
 - Kaynak adı: QuranMorph: Morphologically Annotated Quranic Corpus
 - Sağlayıcı / proje: SinaLab / Birzeit University
 - Yayın: 2025
-- Kaynak: https://sina.birzeit.edu/quran
-- Lisans: CC BY 4.0 olarak yayımlanmış.
+- Kaynak: https://sina.birzeit.edu/quran/
+- Makale: https://arxiv.org/abs/2506.18148
 - Kapsam: 77.429 kelime; lemma ve POS annotationları üç uzman dilbilimci tarafından manuel olarak hazırlanmış.
 - Kullanım rolü: **QAC lemma/POS atamalarını bağımsız çapraz doğrulama**
-- Durum: Offline katmana eklenmesi planlandı.
+- Erişim notu: Resmî indirme formu, Free Edition erişimini tanınan şirket/üniversite/kurum bağlantısı olan kullanıcılarla sınırlandırdığını ve kurumsal e-posta istediğini bildiriyor. Bu koşul aşılmayacaktır; otomatik indirme yapılmayacaktır.
+- Lisans notu: Dağıtılmış kopyalarda CC BY 4.0 lisans belgesi raporlanmıştır; ancak erişim koşulları lisans metninden ayrı bir dağıtım kısıtı olarak ele alınacaktır.
+- Ayet sayısı karantinası: Makale metni 6.235 ayet yazar; buna karşılık QAC/Tanzil 6.236 ayet kullanır. Kamuya açık bir bağımsız doğrulama QuranMorph dağıtımındaki 77.429 kelime konumunun 6.236 ayette QAC ile hizalandığını göstermektedir. Bu nedenle gerçek dosya geldiğinde `validate_quranmorph.py` ile anahtar kümesi bizzat hesaplanacaktır.
+- Durum: Parser/validator hazır; veri dosyası erişim koşulları nedeniyle repoya otomatik çekilmiyor.
 - Notlar: QAC'ın yerine geçmez; annotation uyuşmazlıklarını ortaya çıkarmak için ikinci korpus olarak kullanılır.
 
 # Karşılaştırmalı Sami dil kaynakları
@@ -77,14 +83,14 @@ Her kaynak için aşağıdaki alanlar mümkün olduğunca doldurulur:
 - Lisans: CC BY 4.0
 - Veri: BDB, Strong ve lexical index XML katmanları.
 - Kullanım rolü: **İbranice kognat/anlam alanı kontrolü**
-- Durum: Offline kullanıma uygun aday.
+- Durum: Offline kullanıma uygun aday; commit pinleme kaydı tutulur.
 
 ## Aday 6 — Open Scriptures Hebrew Bible (morphhb)
 
 - Repo: https://github.com/openscriptures/morphhb
 - Lisans: lemma/morfoloji CC BY 4.0; proje WLC metnini public domain olarak belirtir.
 - Kullanım rolü: **İbranice kognatların gerçek metin içi dağılımı ve morfolojisi**
-- Durum: Offline kullanıma uygun aday.
+- Durum: Offline kullanıma uygun aday; commit pinleme kaydı tutulur.
 
 ## Aday 7 — ETCBC BHSA
 
@@ -122,4 +128,4 @@ Sami kognat verisi Kur'an içi bağlamın önüne geçirilmez. Benzer biçimler 
 
 ## Durum
 
-Kanonik metin, Kur'an morfolojisi ve Sami karşılaştırma mimarisi belirlendi. QAC ham dosyası resmî insan-onaylı indirme adımını bekliyor; bu arada offline İbranice kaynakların sürüm pinleme/indirme altyapısı kurulabilir.
+Kanonik metin, QAC morfoloji, bağımsız QuranMorph kontrolü ve Sami karşılaştırma mimarisi belirlendi. QAC için hash-pinned indirme + doğrulama + indeks üretim zinciri hazırdır; QuranMorph için erişim koşulları aşılmadan doğrulama ve çapraz-korpus araçları hazır tutulmaktadır.
