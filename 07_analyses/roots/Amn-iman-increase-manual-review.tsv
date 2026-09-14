@@ -1,0 +1,9 @@
+verse	construction	status	trigger_or_context	semantic_note
+3:90	izdadu kufran	false_for_iman_increase	kufr after prior iman	The increasing object is kufr, not iman; excluded from iman-increase count.
+3:173	fa-zadahum imanan	true_imān_increase	enemy threat report; response hasbuna Allah wa-ni'ma al-wakil	Threat does not reduce commitment; it strengthens trust/commitment in Allah.
+8:2	zadat-hum imanan	true_imān_increase	recitation of Allah's ayat	Revelatory signs strengthen iman; verse also links this with heart response and tawakkul.
+9:124a	ayyukum zadat-hu hadhihi imanan	true_imān_increase	descent of a surah	Question explicitly treats newly revealed surah as capable of increasing iman.
+9:124b	fa-zadat-hum imanan	true_imān_increase	descent of a surah	For those who already amanu, the new surah increases iman and they rejoice.
+33:22	ma zadahum illa imanan wa-taslima	true_imān_increase	seeing the confederates confirms prior promise of Allah and messenger	Fulfilment/confirmation of a trusted promise increases iman together with submission.
+48:4	li-yazdadu imanan ma'a imanihim	true_imān_increase	sakinah sent into believers' hearts	Internal stabilization/calm is explicitly causal context for increase of iman upon existing iman.
+74:31	wa-yazdada alladhina amanu imanan	true_imān_increase	the sign/test concerning the number of guardians; paired with certainty and removal of doubt	Additional sign/information increases believers' iman while the verse contrasts this with doubt.
