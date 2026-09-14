@@ -39,15 +39,11 @@ jobs:
           python 08_scripts/validate_qac.py
           python 08_scripts/build_qac_indices.py
 
-      - name: Snapshot Açık Kuran root metadata
-        run: |
-          python 08_scripts/fetch_acikkuran_roots.py --i-accept-acikkuran-license --delay 0.25
-
-      - name: Commit verified data and generated indices
+      - name: Commit verified core data and generated indices
         run: |
           git config user.name "quran-offline-corpus-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add 01_raw/tanzil 02_morphology/qac 03_indices/generated 04_lexicons/acikkuran
+          git add 01_raw/tanzil 02_morphology/qac 03_indices/generated
           if git diff --cached --quiet; then
             echo "No data changes to commit."
             exit 0
