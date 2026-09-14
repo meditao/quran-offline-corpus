@@ -7,6 +7,7 @@ Outputs per root:
 - POS distribution
 - surface-form distribution
 - neighboring-word context windows (QAC token positions only)
+- deterministic context examples per lemma
 
 This script does not assign semantics. It produces evidence for later analysis.
 """
@@ -35,6 +36,7 @@ def main() -> None:
     p = argparse.ArgumentParser()
     p.add_argument("--root", required=True, help="QAC Buckwalter root, e.g. Amn")
     p.add_argument("--window", type=int, default=2, help="neighbor word window")
+    p.add_argument("--examples-per-lemma", type=int, default=8)
     args = p.parse_args()
 
     rows = load_words()
@@ -54,12 +56,15 @@ def main() -> None:
     forms_bw = Counter()
     surahs: set[int] = set()
     ayat: set[tuple[int, int]] = set()
+    lemma_examples: dict[str, list[dict[str, str | int]]] = defaultdict(list)
 
     out_rows: list[dict[str, str | int]] = []
     for hit in hits:
         s, a, w = int(hit["surah"]), int(hit["ayah"]), int(hit["word"])
         surahs.add(s); ayat.add((s, a))
-        for x in values(hit["lemmas_bw"]): lemmas[x] += 1
+        hit_lemmas = sorted(values(hit["lemmas_bw"]))
+        for x in hit_lemmas:
+            lemmas[x] += 1
         for x in values(hit["pos"]): poses[x] += 1
         forms_ar[hit["form_arabic"]] += 1
         forms_bw[hit["form_bw"]] += 1
@@ -68,14 +73,18 @@ def main() -> None:
         idx = next(i for i, r in enumerate(verse_words) if int(r["word"]) == w)
         lo = max(0, idx - args.window); hi = min(len(verse_words), idx + args.window + 1)
         context = verse_words[lo:hi]
-        out_rows.append({
+        record = {
             "surah": s, "ayah": a, "word": w, "location": hit["location"],
             "form_arabic": hit["form_arabic"], "form_bw": hit["form_bw"],
             "lemmas_bw": hit["lemmas_bw"], "lemmas_arabic": hit["lemmas_arabic"],
             "pos": hit["pos"],
             "context_arabic": " ".join(r["form_arabic"] for r in context),
             "context_locations": " ".join(r["location"] for r in context),
-        })
+        }
+        out_rows.append(record)
+        for lemma in hit_lemmas:
+            if len(lemma_examples[lemma]) < args.examples_per_lemma:
+                lemma_examples[lemma].append(record)
 
     out_dir = OUT_BASE / args.root
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -109,6 +118,18 @@ def main() -> None:
     md += ["", "## Most frequent surface forms", "", "| Arabic form | count |", "|---|---:|"]
     md += [f"| {k} | {v} |" for k, v in forms_ar.most_common(40)]
     (out_dir / "profile.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+
+    ex = [
+        f"# Lemma context examples: {args.root}", "",
+        f"Deterministic first {args.examples_per_lemma} occurrences per lemma in Qur'an order; context window = ±{args.window} QAC word positions.",
+        "These are evidence excerpts, not semantic labels.", "",
+    ]
+    for lemma, count in sorted(lemmas.items(), key=lambda x: (-x[1], x[0])):
+        ex += [f"## `{lemma}` — {count}", ""]
+        for r in lemma_examples[lemma]:
+            ex.append(f"- **{r['location']}** `{r['form_arabic']}` — {r['context_arabic']}")
+        ex.append("")
+    (out_dir / "lemma_examples.md").write_text("\n".join(ex) + "\n", encoding="utf-8")
 
     print(f"Root: {args.root}")
     print(f"Occurrences: {len(hits):,}; ayat: {len(ayat):,}; surahs: {len(surahs):,}")
