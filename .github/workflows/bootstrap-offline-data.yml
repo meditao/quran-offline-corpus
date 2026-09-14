@@ -1,0 +1,56 @@
+name: Bootstrap verified offline Quran data
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - SOURCE_TERMS_ACCEPTED.md
+
+permissions:
+  contents: write
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Verify explicit source-term acceptance marker
+        run: |
+          test -f SOURCE_TERMS_ACCEPTED.md
+          grep -q "Tanzil" SOURCE_TERMS_ACCEPTED.md
+          grep -q "QAC" SOURCE_TERMS_ACCEPTED.md
+          grep -q "Açık Kuran" SOURCE_TERMS_ACCEPTED.md
+
+      - name: Fetch and validate Tanzil
+        run: |
+          python 08_scripts/fetch_tanzil.py --i-agree-to-tanzil-terms
+          python 08_scripts/validate_tanzil.py
+
+      - name: Fetch and validate Quranic Arabic Corpus
+        run: |
+          python 08_scripts/fetch_qac.py --i-accept-qac-terms
+          python 08_scripts/validate_qac.py
+          python 08_scripts/build_qac_indices.py
+
+      - name: Snapshot Açık Kuran root metadata
+        run: |
+          python 08_scripts/fetch_acikkuran_roots.py --i-accept-acikkuran-license --delay 0.25
+
+      - name: Commit verified data and generated indices
+        run: |
+          git config user.name "quran-offline-corpus-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 01_raw/tanzil 02_morphology/qac 03_indices/generated 04_lexicons/acikkuran
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          git commit -m "Bootstrap verified offline Quran data"
+          git push
