@@ -1,0 +1,29 @@
+{
+  "expected_surah_count": 114,
+  "expected_verse_count": 6236,
+  "files": [
+    {
+      "file": "01_raw/tanzil/quran-uthmani.txt",
+      "sha256": "bf4f57b968d03f4131c070b1e285da9be0e0a108a21c910e872801ca273312c8",
+      "verse_count": 6236,
+      "surah_count": 114,
+      "first_key": "1:1",
+      "last_key": "114:6",
+      "duplicate_key_count": 0,
+      "valid": true,
+      "errors": []
+    },
+    {
+      "file": "01_raw/tanzil/quran-simple-clean.txt",
+      "sha256": "228df2a717671aeb9d2ff573002bd28d6b3f973f4bc7153554e3a81663d67610",
+      "verse_count": 6236,
+      "surah_count": 114,
+      "first_key": "1:1",
+      "last_key": "114:6",
+      "duplicate_key_count": 0,
+      "valid": true,
+      "errors": []
+    }
+  ],
+  "valid": true
+}
