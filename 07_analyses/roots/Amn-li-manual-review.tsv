@@ -1,0 +1,19 @@
+location	surface	status	target_type	note
+2:55:5	نؤمن لك	true_complement	person	Addressed to Moses; li-marked person target.
+2:75:3	يؤمنوا لكم	true_complement	person	Second-person plural target; believing/trusting you.
+2:213:36	آمنوا لما	false_adjacency	other	li-ma belongs to h-d-y clause (guided concerning/to that in which they differed), not to amana.
+3:183:8	نؤمن لرسول	true_complement	person	Messenger as li-marked target.
+7:134:17	لنؤمنن لك	true_complement	person	Addressed to Moses after removal of affliction.
+9:61:14	ويؤمن للمؤمنين	true_complement	person	Key contrast: same verse also has yu'minu bi-llah.
+9:94:10	لن نؤمن لكم	true_complement	person	Second-person plural target.
+10:83:2	آمن لموسى	true_complement	person	Moses as li-marked target.
+17:90:3	نؤمن لك	true_complement	person	Addressed to the messenger.
+17:93:12	نؤمن لرقيك	true_complement	event_nominal	li-marked nominal 'your ascent'; not a person target.
+20:71:2	آمنتم له	true_complement	person	Pronoun refers to the addressed/accused human mediator in Pharaoh discourse.
+23:47:2	أنؤمن لبشرين	true_complement	person	Two human beings explicitly marked with li.
+24:19:9	آمنوا لهم	false_adjacency	other	lahum begins the predicate 'for them is a painful punishment'; not complement of amana.
+26:49:2	آمنتم له	true_complement	person	Human/pronominal li target in Pharaoh discourse.
+26:111:2	أنؤمن لك	true_complement	person	Addressed to Noah; li-marked person target.
+29:26:1	فآمن له لوط	true_complement	person	Lot as subject; Abraham as pronominal li target.
+44:21:3	تؤمنوا لي	true_complement	person	First-person human speaker as li target.
+61:2:3	آمنوا لم	false_adjacency	other	li-ma = 'why'; interrogative expression, not complement of amana.
