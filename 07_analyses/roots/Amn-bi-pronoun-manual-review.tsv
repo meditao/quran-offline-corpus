@@ -1,0 +1,38 @@
+location	surface	status	antecedent_class	antecedent	confidence	note
+2:121:8	يؤمنون به	resolved	revelation_content	الكتاب	high	The verse explicitly begins with those given the Book and continues with reading it; bihi returns to the Book/revelation.
+2:137:5	آمنتم به	resolved	revelation_content	ما آمنتم به / the composite faith-content of 2:136	high	The relative ma plus bihi points to the previously enumerated objects/content of trust.
+2:186:14	وليؤمنوا بي	resolved	divine	Allah / first-person speaker	high	First-person pronoun in direct divine speech.
+3:7:36	آمنا به	resolved	revelation_content	الكتاب / the revealed whole under discussion	medium	Local discourse is the Book and its muhkam/mutashabih verses; singular bihi is best read as the revealed whole, but the precise scope is discourse-sensitive.
+3:81:17	لتؤمنن به	resolved	messenger_person	رسول مصدق	high	Immediate antecedent is a confirming messenger; followed by wa-la-tansurunnahu.
+4:55:3	آمن به	ambiguous	ambiguous	person or revealed grant/message	low	Local discourse permits more than one antecedent candidate; do not use for decisive semantic counting.
+4:159:6	ليؤمنن به	resolved	messenger_person	Jesus	high	The surrounding 4:157-159 discourse is about Jesus; he is also the witness mentioned at verse end.
+5:111:6	آمنوا بي	resolved	divine	Allah / first-person speaker	high	Direct divine speech; immediately coordinated with bi-rasuli.
+6:25:19	لا يؤمنوا بها	resolved	ayah_sign	كل آية / a sign	high	The same clause says even if they see every sign, they do not amana biha.
+6:92:17	يؤمنون به	resolved	revelation_content	هذا كتاب	high	The verse opens with 'this is a blessed Book' and later returns to bihi.
+6:109:8	ليؤمنن بها	resolved	ayah_sign	آية	high	Explicit oath: if a sign came to them, they would amana biha.
+6:110:6	لم يؤمنوا به	resolved	revelation_content	message/revelation previously rejected	medium	Masculine bihi does not grammatically return to the feminine ayah of 6:109; broader message/revelation is safer than forcing 'sign'.
+7:76:6	آمنتم به	resolved	revelation_content	الذي آمنتم به	high	Relative construction explicitly denotes the content/object accepted by the believers.
+7:86:11	من آمن به	resolved	divine	Allah	high	The phrase immediately follows 'the path of Allah' and refers to those who amana bihi.
+7:123:3	آمنتم به	ambiguous	ambiguous	local grammar favors the Lord; parallel narratives permit a human-mediator reading	medium	Do not force the referent; 7:121-122 names the Lord, while 20:71 and 26:49 use amantum lahu in the parallel Pharaoh scene.
+7:146:15	لا يؤمنوا بها	resolved	ayah_sign	كل آية	high	Explicit 'every sign' antecedent.
+7:157:32	آمنوا به	resolved	messenger_person	الرسول النبي الأمي	high	Same referent continues through azzaruhu, nasaruhu and the following relative description.
+10:40:3	يؤمن به	resolved	revelation_content	Qur'an/message discussed in 10:37-39	high	Immediate preceding discourse denies fabrication and describes the Qur'an/message.
+10:40:8	لا يؤمن به	resolved	revelation_content	Qur'an/message discussed in 10:37-39	high	Same referent as the first bihi in the verse.
+10:51:5	آمنتم به	resolved	event_judgment	punishment/event when it occurs	high	The verse asks whether they will amana bihi after it has occurred, then notes they had sought to hasten it.
+10:90:21	آمنت به	resolved	divine	the deity whom the Children of Israel trusted	high	Explicit relative: la ilaha illa alladhi amanat bihi Banu Isra'il.
+11:17:17	يؤمنون به	resolved	revelation_content	the truth/revelation from the Lord	medium	The same pronoun continues in yakfur bihi and minhu; verse concludes innahu al-haqqu min rabbik.
+15:13:2	لا يؤمنون به	resolved	revelation_content	dhikr/Qur'anic message	high	The masculine pronoun continues the discourse of the dhikr/message introduced in the passage.
+17:107:2	آمنوا به	resolved	revelation_content	Qur'an	high	It is explicitly recited later in the same verse and the surrounding passage concerns the Qur'an.
+20:16:6	لا يؤمن بها	resolved	event_judgment	the Hour	high	20:15 introduces al-sa'ah; feminine biha returns to it.
+22:54:9	فيؤمنوا به	resolved	revelation_content	the truth from your Lord / revelation	high	The same clause says those given knowledge know annahu al-haqqu min rabbik, then fa-yu'minu bihi.
+26:201:2	لا يؤمنون به	resolved	revelation_content	Qur'anic message	high	The preceding passage identifies the revelation and says it is inserted into the hearts of the criminals.
+28:53:5	آمنا به	resolved	revelation_content	what is recited / the truth from our Lord	high	When it is recited to them they say amanna bihi, innahu al-haqqu min rabbina.
+29:47:8	يؤمنون به	resolved	revelation_content	الكتاب sent down to you	high	The verse explicitly opens with 'We sent down to you the Book'.
+29:47:13	يؤمن به	resolved	revelation_content	الكتاب sent down to you	high	Same Book referent as the earlier bihi in the verse.
+34:52:2	آمنا به	resolved	revelation_content	the previously rejected truth/message	medium	34:52-53 use amanna bihi / kafaru bihi without a local nominal antecedent; broader truth/message is safer than a narrower forced referent.
+40:7:9	ويؤمنون به	resolved	divine	their Lord	high	Same clause: yusabbihuna bi-hamdi rabbihim wa-yu'minuna bihi.
+42:18:5	لا يؤمنون بها	resolved	event_judgment	the Hour	high	The verse ends by explicitly naming al-sa'ah and uses feminine pronouns throughout.
+46:31:5	وآمنوا به	resolved	messenger_person	داعي الله / the caller of Allah	high	Immediate antecedent is da'i Allah; command is ajibu ... wa-aminu bihi.
+67:29:4	آمنا به	resolved	divine	الرحمن	high	Explicit: huwa al-Rahman amanna bihi wa-alayhi tawakkalna.
+72:2:4	فآمنا به	resolved	revelation_content	قرآنا عجبا	high	The jinn say they heard a wondrous Qur'an, then fa-amanna bihi.
+72:13:5	آمنا به	resolved	revelation_content	الهدى heard by the jinn	high	Explicit: lamma sami'na al-huda amanna bihi.
