@@ -8,17 +8,89 @@
   },
   "current_source": {
     "path": "03_indices/generated/root_index.csv",
-    "provenance": "QAC v0.4 pinned public copy; see SOURCES.md and qac/source_manifest.json"
+    "raw_qac_path": "02_morphology/qac/quranic-corpus-morphology-0.4.txt",
+    "raw_qac_sha256": "a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46"
   },
   "counts": {
-    "old_distinct_roots": 1642,
-    "current_distinct_roots": 1642,
+    "old_derived_csv_distinct_roots": 1642,
+    "current_robust_distinct_roots": 1642,
     "common_roots": 1642,
     "old_only_count": 0,
     "current_only_count": 0,
-    "roots_with_frequency_change": 0
+    "roots_with_frequency_change": 0,
+    "legacy_shell_distinct_raw_byte_values": 1651,
+    "legacy_shell_distinct_after_cr_strip": 1641,
+    "legacy_shell_cr_suffixed_variants": 10
   },
   "old_only": [],
   "current_only": [],
-  "frequency_changes": []
+  "frequency_changes": [],
+  "legacy_shell": {
+    "cr_suffixed_variants": [
+      {
+        "raw_repr": "b'Any\\r'",
+        "cleaned_root": "Any",
+        "count": 27,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'End\\r'",
+        "cleaned_root": "End",
+        "count": 6,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'Hyn\\r'",
+        "cleaned_root": "Hyn",
+        "count": 1,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'Hyv\\r'",
+        "cleaned_root": "Hyv",
+        "count": 15,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'bEd\\r'",
+        "cleaned_root": "bEd",
+        "count": 7,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'byn\\r'",
+        "cleaned_root": "byn",
+        "count": 9,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'kll\\r'",
+        "cleaned_root": "kll",
+        "count": 14,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'kyf\\r'",
+        "cleaned_root": "kyf",
+        "count": 80,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'mss\\r'",
+        "cleaned_root": "mss",
+        "count": 1,
+        "also_exists_without_cr": true
+      },
+      {
+        "raw_repr": "b'qbl\\r'",
+        "cleaned_root": "qbl",
+        "count": 1,
+        "also_exists_without_cr": true
+      }
+    ],
+    "missing_vs_current_after_cr_strip": [
+      "wAd"
+    ],
+    "extra_vs_current_after_cr_strip": []
+  }
 }
