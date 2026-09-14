@@ -3,6 +3,10 @@
 
 Varsayılan davranışta sıfır veri satırı FAIL'dir. Yalnız altyapı/şema testi yapmak
 isteyen CI veya geliştirici açıkça `--allow-empty` vermelidir.
+
+Dolu her kayıt yalnızca bir kök adını değil, denetlenebilir filolojik kanıtı da
+taşımak zorundadır: kaynak/locator/URL, lexical root, gloss, fonolojik ve semantik
+uygunluk, güven derecesi, analize etkisi ve inceleme tarihi.
 """
 from __future__ import annotations
 
@@ -22,6 +26,11 @@ EXPECTED_COLUMNS = [
 ]
 ALLOWED_CONFIDENCE = {"güçlü", "orta", "zayıf", "strong", "medium", "weak"}
 ALLOWED_EFFECT = {"destekliyor", "nötr", "zorlaştırıyor", "supports", "neutral", "challenges"}
+REQUIRED_EVIDENCE_FIELDS = [
+    "language", "dialect_period", "cognate_script", "cognate_translit", "lexical_root",
+    "gloss", "source_name", "source_locator", "source_url", "phonological_fit",
+    "semantic_fit", "confidence", "effect_on_quran_analysis", "reviewed_date",
+]
 
 
 def load_roots() -> dict[str, dict[str, str]]:
@@ -46,6 +55,8 @@ def main() -> None:
     errors: list[str] = []
     rows = 0
     represented_roots: set[str] = set()
+    seen_evidence_keys: set[tuple[str, str, str, str, str]] = set()
+
     with COGNATES.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f, delimiter="\t")
         if reader.fieldnames != EXPECTED_COLUMNS:
@@ -64,18 +75,32 @@ def main() -> None:
                 expected_ar = roots[bw]["root_bw_arabic"].strip()
                 if ar and ar != expected_ar:
                     errors.append(f"line {line_no}: Arabic root {ar!r} != generated QAC mapping {expected_ar!r} for {bw}")
-                if not (row["language"] or "").strip():
-                    errors.append(f"line {line_no}: language is required")
-                if not (row["cognate_script"] or "").strip():
-                    errors.append(f"line {line_no}: cognate_script is required")
-                if not (row["source_name"] or "").strip():
-                    errors.append(f"line {line_no}: source_name is required")
+
+                for field in REQUIRED_EVIDENCE_FIELDS:
+                    if not (row[field] or "").strip():
+                        errors.append(f"line {line_no}: {field} is required for a populated cognate record")
+
                 confidence = (row["confidence"] or "").strip().lower()
                 if confidence and confidence not in ALLOWED_CONFIDENCE:
                     errors.append(f"line {line_no}: unsupported confidence {confidence!r}")
                 effect = (row["effect_on_quran_analysis"] or "").strip().lower()
                 if effect and effect not in ALLOWED_EFFECT:
                     errors.append(f"line {line_no}: unsupported analysis effect {effect!r}")
+
+                source_url = (row["source_url"] or "").strip()
+                if source_url and not source_url.startswith(("https://", "http://")):
+                    errors.append(f"line {line_no}: source_url must be an absolute http(s) URL")
+
+                evidence_key = (
+                    bw,
+                    (row["language"] or "").strip(),
+                    (row["cognate_script"] or "").strip(),
+                    (row["source_name"] or "").strip(),
+                    (row["source_locator"] or "").strip(),
+                )
+                if evidence_key in seen_evidence_keys:
+                    errors.append(f"line {line_no}: duplicate evidence key {evidence_key!r}")
+                seen_evidence_keys.add(evidence_key)
 
     print(f"QAC root registry: {len(roots):,}")
     print(f"Cognate records: {rows:,}")
@@ -93,7 +118,7 @@ def main() -> None:
     if rows == 0:
         print("Validation: SCHEMA-ONLY PASS (--allow-empty); no cognate evidence validated")
     else:
-        print("Validation: PASS")
+        print("Validation: PASS (root registry + evidence fields + controlled vocab + duplicate checks)")
 
 
 if __name__ == "__main__":
