@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Sami kognat tablosunu sabit QAC kök evrenine karşı doğrular.
 
-Bir kognat kaydı ancak quran_root_bw değeri mevcut 1,642-köklük root_index.csv içinde
-varsa kabul edilir. Böylece karşılaştırmalı Sami katmanı ayrı bir kök yazım sistemi
-oluşturamaz; QAC kök kimliğine bağlanmak zorundadır.
+Varsayılan davranışta sıfır veri satırı FAIL'dir. Yalnız altyapı/şema testi yapmak
+isteyen CI veya geliştirici açıkça `--allow-empty` vermelidir.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 from pathlib import Path
 
@@ -20,7 +20,6 @@ EXPECTED_COLUMNS = [
     "source_locator", "source_url", "phonological_fit", "semantic_fit", "confidence",
     "effect_on_quran_analysis", "notes", "reviewed_date",
 ]
-
 ALLOWED_CONFIDENCE = {"güçlü", "orta", "zayıf", "strong", "medium", "weak"}
 ALLOWED_EFFECT = {"destekliyor", "nötr", "zorlaştırıyor", "supports", "neutral", "challenges"}
 
@@ -31,6 +30,10 @@ def load_roots() -> dict[str, dict[str, str]]:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--allow-empty", action="store_true", help="Only validate schema/infrastructure when the cognate table has no data rows")
+    args = parser.parse_args()
+
     if not ROOT_INDEX.exists():
         raise SystemExit(f"Root index missing: {ROOT_INDEX}")
     if not COGNATES.exists():
@@ -43,14 +46,12 @@ def main() -> None:
     errors: list[str] = []
     rows = 0
     represented_roots: set[str] = set()
-
     with COGNATES.open("r", encoding="utf-8-sig", newline="") as f:
         reader = csv.DictReader(f, delimiter="\t")
         if reader.fieldnames != EXPECTED_COLUMNS:
             errors.append(f"Header mismatch: {reader.fieldnames!r}")
         else:
             for line_no, row in enumerate(reader, 2):
-                # Fully blank lines are ignored.
                 if not any((v or "").strip() for v in row.values()):
                     continue
                 rows += 1
@@ -62,9 +63,7 @@ def main() -> None:
                 represented_roots.add(bw)
                 expected_ar = roots[bw]["root_bw_arabic"].strip()
                 if ar and ar != expected_ar:
-                    errors.append(
-                        f"line {line_no}: Arabic root {ar!r} != generated QAC mapping {expected_ar!r} for {bw}"
-                    )
+                    errors.append(f"line {line_no}: Arabic root {ar!r} != generated QAC mapping {expected_ar!r} for {bw}")
                 if not (row["language"] or "").strip():
                     errors.append(f"line {line_no}: language is required")
                 if not (row["cognate_script"] or "").strip():
@@ -82,13 +81,19 @@ def main() -> None:
     print(f"Cognate records: {rows:,}")
     print(f"QAC roots represented in cognate table: {len(represented_roots):,}")
 
+    if rows == 0 and not args.allow_empty:
+        errors.append("cognates.tsv has zero data rows; semantic cognate layer is not populated")
+
     if errors:
         print("\nErrors:")
         for error in errors:
             print("-", error)
         raise SystemExit(1)
 
-    print("Validation: PASS")
+    if rows == 0:
+        print("Validation: SCHEMA-ONLY PASS (--allow-empty); no cognate evidence validated")
+    else:
+        print("Validation: PASS")
 
 
 if __name__ == "__main__":
