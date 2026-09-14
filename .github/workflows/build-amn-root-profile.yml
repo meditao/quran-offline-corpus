@@ -1,0 +1,35 @@
+name: Build Amn root profile
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '08_scripts/build_root_profile.py'
+      - '.github/workflows/build-amn-root-profile.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build Amn Quran-internal profile
+        run: python 08_scripts/build_root_profile.py --root Amn --window 2
+      - name: Commit generated profile
+        run: |
+          git config user.name "quran-offline-corpus-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add 07_analyses/generated/root_profiles/Amn
+          if git diff --cached --quiet; then
+            echo "No profile changes."
+            exit 0
+          fi
+          git commit -m "Build Amn Quran-internal root profile"
+          git push
