@@ -1,5 +1,5 @@
 # 05_translations
 
-Lisansı uygun Kur'an çevirileri veya karşılaştırma amaçlı metin katmanları burada tutulur.
+**Durum: EMPTY / PLANNED.** Bu klasörde şu anda yeniden dağıtılabilir bir çeviri veri seti yoktur.
 
-Çeviriler ham Arapça korpusun yerine geçmez; yalnızca yardımcı referans katmanıdır. Her çevirinin kaynağı ve lisansı ayrı kaydedilir.
+İleride lisansı açıkça uygun Kur'an çevirileri veya karşılaştırma amaçlı metin katmanları burada tutulabilir. Çeviriler ham Arapça korpusun yerine geçmez; yalnız yardımcı referans katmanıdır. Her çevirinin kaynağı ve lisansı ayrı kaydedilmelidir.
