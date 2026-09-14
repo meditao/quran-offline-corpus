@@ -8,6 +8,7 @@ Amaç yalnız veri depolamak değildir. Bir kavram hakkında ulaşılan sonucun 
 
 Klasör listelerine erişemeyen tarayıcılar ve yapay zekâ araçları için önemli dosyalara doğrudan bağlantılar:
 
+- [İman — ayrıntılı, aşamalı ana analiz](07_analyses/roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](07_analyses/roots/Amn-concept-card.md)
 - [Mümin — kısa kavram kartı](07_analyses/roots/Mumin-concept-card.md)
 - [Amn / أ م ن — Aşama 1: kök ve ilk Kur'an içi profil](07_analyses/roots/Amn-quran-internal-stage1.md)
@@ -42,7 +43,7 @@ Ara veri, otomatik sayımlar ve TSV/CSV denetimleri araştırmanın kanıt katma
 
 Çekirdek veri katmanı hazırdır: Tanzil Uthmani v1.1, QAC v0.4 ve yeniden üretilebilir kök/lemma/POS indeksleri.
 
-Analiz katmanı artık aktiftir. İlk ayrıntılı çalışma أ م ن / Amn kök ailesi üzerinde yürütülmekte; iman ve mümin için kavram kartları ile aşamalı Kur'an içi analizler bulunmaktadır.
+Analiz katmanı artık aktiftir. İlk ayrıntılı kamuya açık ana analiz İman kavramı için hazırlanmıştır. Amn kök ailesinin teknik aşamaları ve Mümin kavram kartı da bağlantılı kanıt katmanında tutulmaktadır.
 
 İbranice lexical index mevcuttur. İncelenmiş Arapça↔Sami kognat eşlemeleri aşamalı olarak eklenmektedir. QuranMorph ve çeviri katmanları henüz tamamlanmış veri setleri değildir.
 
