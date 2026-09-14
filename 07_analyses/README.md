@@ -4,10 +4,11 @@ Bu klasör artık aktiftir. Burada ham korpus değil; kök, kavram, ayet ve pasa
 
 Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonuca hangi verilerle ve hangi ayetlerle ulaşıldığını adım adım görebilmesidir.
 
-## Şu anda aktif çalışma
+## Şu anda aktif çalışmalar
 
-- [İman — kavram kartı](roots/Amn-concept-card.md)
-- [Mümin — kavram kartı](roots/Mumin-concept-card.md)
+- [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
+- [İman — kısa kavram kartı](roots/Amn-concept-card.md)
+- [Mümin — kısa kavram kartı](roots/Mumin-concept-card.md)
 - [Amn — Aşama 1](roots/Amn-quran-internal-stage1.md)
 - [Amn — Aşama 2: sentaks](roots/Amn-quran-internal-stage2-syntax.md)
 - [Amn — Aşama 3: bi- kullanımları](roots/Amn-quran-internal-stage3-bi.md)
