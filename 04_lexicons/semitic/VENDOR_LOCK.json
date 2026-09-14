@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "name": "Open Scriptures Hebrew Lexicon",
+      "repo": "https://github.com/openscriptures/HebrewLexicon.git",
+      "ref": "21c9add13bc727d3a951361778e97e3ff7afd1ce",
+      "license": "CC BY 4.0",
+      "target": "04_lexicons/vendor/HebrewLexicon"
+    },
+    {
+      "name": "Open Scriptures Hebrew Bible",
+      "repo": "https://github.com/openscriptures/morphhb.git",
+      "ref": "3d15126fb1ef74867fc1434be1942e837932691f",
+      "license": "CC BY 4.0 for lemma/morphology; WLC text public domain per project",
+      "target": "04_lexicons/vendor/morphhb"
+    }
+  ]
+}
