@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tanzil v1.1 Simple Clean ile QAC kelime konumlarını ayet düzeyinde hizalar.
+"""Tanzil Uthmani v1.1 ile QAC kelime konumlarını ayet düzeyinde hizalar.
 
 Amaç: `(sûre,ayet,kelime)` anahtarının iki kaynak arasında otomatik olarak aynı
 olduğu varsayımını engellemek. QAC kelime indeksleri QAC içinde güvenlidir; Tanzil
@@ -12,7 +12,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-TANZIL = ROOT / "01_raw" / "tanzil" / "quran-simple-clean.txt"
+TANZIL = ROOT / "01_raw" / "tanzil" / "quran-uthmani.txt"
 QAC_WORDS = ROOT / "03_indices" / "generated" / "qac_word_annotations.csv"
 OUT = ROOT / "03_indices" / "generated" / "tanzil_qac_alignment.csv"
 AUDIT = ROOT / "03_indices" / "audits" / "tanzil_qac_alignment.md"
@@ -50,8 +50,8 @@ def load_qac() -> dict[tuple[int, int], list[tuple[int, str]]]:
 def classify(s: int, a: int, t_count: int, q_count: int) -> tuple[str, str]:
     delta = t_count - q_count
     # Tanzil txt-2 includes the opening basmala in the first numbered verse of
-    # surahs other than 1 and 9; QAC word positions do not treat those openings
-    # as part of verse 1. In those cases QAC word n maps to Tanzil word n+4.
+    # most surahs; QAC does not place those four words in the same verse-word
+    # sequence. In those cases QAC word n maps to Tanzil word n+4.
     if a == 1 and s not in {1, 9} and delta == 4:
         return "basmala_offset", "4"
     if delta == 0:
@@ -100,11 +100,11 @@ def main() -> None:
     token_diffs = [r for r in rows if r["status"] == "tokenization_difference"]
 
     lines = [
-        "# Tanzil v1.1 ↔ QAC v0.4 alignment audit",
+        "# Tanzil Uthmani v1.1 ↔ QAC v0.4 alignment audit",
         "",
         "Bu rapor otomatik üretilir. `(sûre,ayet)` anahtarı ortaktır; `(sûre,ayet,kelime)` doğrudan ortak anahtar kabul edilmez.",
         "",
-        f"- Tanzil Simple Clean whitespace-token total: **{t_total:,}**",
+        f"- Tanzil Uthmani whitespace-token total: **{t_total:,}**",
         f"- QAC orthographic word-position total: **{q_total:,}**",
         f"- Difference: **{t_total - q_total:+,}**",
         f"- Exact count-match ayat: **{status_counts['count_match']:,}**",
