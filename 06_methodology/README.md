@@ -2,6 +2,10 @@
 
 Kur'an içi semantik analiz metodolojisi, veri kullanım kuralları, doğrulama ilkeleri ve falsifikasyon ölçütleri burada tutulur.
 
+## Ana protokol
+
+- [`analiz_protokolu.md`](./analiz_protokolu.md) — kavram, kök, ayet, pasaj ve tez analizlerinde kullanılacak ana çalışma protokolü.
+
 ## Temel ayrım
 
 - `01_raw/` ve `02_morphology/`: kaynak/veri katmanı
