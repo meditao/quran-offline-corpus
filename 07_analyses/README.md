@@ -6,6 +6,8 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 
 ## Şu anda aktif çalışmalar
 
+### Kök ve kavram analizleri
+
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
 - [Mümin — kısa kavram kartı](roots/Mumin-concept-card.md)
@@ -14,6 +16,10 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [Amn — Aşama 3: bi- kullanımları](roots/Amn-quran-internal-stage3-bi.md)
 - [Amn — Aşama 4: īmān isim kullanımı](roots/Amn-quran-internal-stage4-iman-noun.md)
 - [Amn — Aşama 5: muʾmin profili](roots/Amn-quran-internal-stage5-mumin-profile.md)
+
+### Sûre ve pasaj analizleri
+
+- [Âsr Suresi (103) — Kur'an içi analiz ve tefsirli meal](surahs/Asr-103-analysis.md)
 
 Aynı klasördeki TSV/CSV türü dosyalar manuel kontrol, sınıflandırma ve falsifikasyon kayıtlarıdır. Bunlar teknik kanıt katmanıdır; nihai okuyucu metninin yerine geçmez.
 
