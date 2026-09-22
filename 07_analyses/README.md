@@ -20,6 +20,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 ### Sûre ve pasaj analizleri
 
 - [Âsr Suresi (103) — Kur'an içi analiz ve tefsirli meal](surahs/Asr-103-analysis.md)
+- [Bakara 2:2–2:62 — çeviri ve tefsir derlemesi](surahs/Bakara-002-062-meal-tefsir.md) — ayet bazında son çeviri ve tefsir sonuçlarını içerir; kavram çalışmalarında ikincil referans olarak kullanılabilir, fakat ham korpus/morfoloji verisinin yerine geçmez.
 
 Aynı klasördeki TSV/CSV türü dosyalar manuel kontrol, sınıflandırma ve falsifikasyon kayıtlarıdır. Bunlar teknik kanıt katmanıdır; nihai okuyucu metninin yerine geçmez.
 
