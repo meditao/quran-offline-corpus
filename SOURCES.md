@@ -52,6 +52,15 @@ Bu dosya repoda gerçekten bulunan kaynaklarla yalnız aday/yardımcı kaynaklar
 - Durum: asıl veri tabanı bu repoda yoktur; eski `api.acikkuran.com` REST endpoint'i çekirdek workflow'dan çıkarılmıştır.
 - İlke: erişilebilir olduğunda yardımcı kontrol sağlar; çekirdek analiz için zorunlu değildir.
 
+## 6a — mustafa0x/quran-morphology — LOCAL ONLY (yerel/)
+
+- Kaynak: https://github.com/mustafa0x/quran-morphology, commit `8f38b39016824284f9ed16ae15069ff9102c4acf` (2018-06-19)
+- Dosya: `quran-morphology.txt`, sha256 `742bfac59941b2cb09736d5b7aae694af50792261fb8450cbf6afafcc340645f`, LF satır sonu
+- Niteliği: QAC v0.4 çatalı (Arapça harf, düzeltilmiş kök/lemma, farklı segmentasyon). 77.429 kelime konumu, 130.030 segment, 1.651 kök.
+- Lisans: depoda lisans dosyası yok; QAC v0.4 kullanım şartı değiştirilmiş kopyayı yasaklar. Bu yüzden veri depoya işlenmez; `09_calisma_masasi/yerel/quran-morphology/` altına `python -m tezgah kur quran-morphology` ile kurulur (commit ve sha256 sabit).
+- Rol: ikinci annotation katmanı — çapraz kontrol, delil değil. Rapor: `03_indices/audits/qac_quranmorphology.md`.
+- SinaLab QuranMorph (§6) ile karıştırılmamalıdır.
+
 ## 6 — QuranMorph — INFRASTRUCTURE ONLY
 
 - Proje: SinaLab / Birzeit University

@@ -1,0 +1,255 @@
+{
+  "qm_depo": "mustafa0x/quran-morphology",
+  "qm_commit": "8f38b39016824284f9ed16ae15069ff9102c4acf",
+  "qm_sha256": "742bfac59941b2cb09736d5b7aae694af50792261fb8450cbf6afafcc340645f",
+  "qac_sha256": "a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46",
+  "olcum": {
+    "kelime_konumu_qac": 77429,
+    "kelime_konumu_qm": 77429,
+    "segment_qm": 130030,
+    "segment_qac": 128219,
+    "kok_qm": 1651,
+    "kok_qac": 1642,
+    "notr_ortak": 1638,
+    "notr_yalniz_qm": 13,
+    "notr_yalniz_qac": 4
+  },
+  "ek": {
+    "konum_kumeleri_ayni": true,
+    "notr_carpisma_qac": 0,
+    "notr_carpisma_qm": 0,
+    "qac_crlf_satir": 128276,
+    "qac_toplam_satir": 128276,
+    "qac_kok_satir_sonu_soyulmadan": 1652,
+    "qac_kok_soyulunca": 1642,
+    "qm_cr": 0
+  },
+  "beklenen_denetimi": {
+    "kelime_konumu_qac": {
+      "beklenen": 77429,
+      "bulunan": 77429,
+      "tuttu": true
+    },
+    "kelime_konumu_qm": {
+      "beklenen": 77429,
+      "bulunan": 77429,
+      "tuttu": true
+    },
+    "segment_qm": {
+      "beklenen": 130030,
+      "bulunan": 130030,
+      "tuttu": true
+    },
+    "segment_qac": {
+      "beklenen": 128219,
+      "bulunan": 128219,
+      "tuttu": true
+    },
+    "kok_qm": {
+      "beklenen": 1651,
+      "bulunan": 1651,
+      "tuttu": true
+    },
+    "kok_qac": {
+      "beklenen": 1642,
+      "bulunan": 1642,
+      "tuttu": true
+    },
+    "notr_ortak": {
+      "beklenen": 1638,
+      "bulunan": 1638,
+      "tuttu": true
+    },
+    "notr_yalniz_qm": {
+      "beklenen": 13,
+      "bulunan": 13,
+      "tuttu": true
+    },
+    "notr_yalniz_qac": {
+      "beklenen": 4,
+      "bulunan": 4,
+      "tuttu": true
+    }
+  },
+  "kok_atamasi": {
+    "aynı": 76672,
+    "farklı kök": 310,
+    "yalnız quran-morphology kök atıyor": 374,
+    "yalnız QAC kök atıyor": 73
+  },
+  "segment_farki_dagilimi": {
+    "-1": 12,
+    "0": 76126,
+    "1": 759,
+    "2": 532
+  },
+  "yalniz_qm_kokler": [
+    "b-r-z-ḫ",
+    "h-l-m",
+    "h-ʾ-ʾ",
+    "m-r-v",
+    "n-d-y",
+    "n-m-r-q",
+    "q-r-ş",
+    "r-m-ż",
+    "s-b-ʾ",
+    "z-r-b",
+    "ʾ-d-m",
+    "ʾ-v-n",
+    "ṭ-m-ʾ-n"
+  ],
+  "yalniz_qac_kokler": [
+    "Tmn (ṭ-m-n)",
+    "mEn (m-ʿ-n)",
+    "ndw (n-d-v)",
+    "nws (n-v-s)"
+  ],
+  "en_sik_farkli_atama": [
+    {
+      "qac": "nws",
+      "qm": "أنس",
+      "kelime_konumu": 241
+    },
+    {
+      "qac": "—",
+      "qm": "أيي",
+      "kelime_konumu": 215
+    },
+    {
+      "qac": "—",
+      "qm": "يوم",
+      "kelime_konumu": 70
+    },
+    {
+      "qac": "ndw",
+      "qm": "ندي",
+      "kelime_konumu": 53
+    },
+    {
+      "qac": "Awl",
+      "qm": "—",
+      "kelime_konumu": 45
+    },
+    {
+      "qac": "Any",
+      "qm": "—",
+      "kelime_konumu": 28
+    },
+    {
+      "qac": "—",
+      "qm": "أدم",
+      "kelime_konumu": 25
+    },
+    {
+      "qac": "Tmn",
+      "qm": "طمأن",
+      "kelime_konumu": 13
+    },
+    {
+      "qac": "—",
+      "qm": "مسح",
+      "kelime_konumu": 11
+    },
+    {
+      "qac": "—",
+      "qm": "مدن",
+      "kelime_konumu": 10
+    },
+    {
+      "qac": "—",
+      "qm": "هود",
+      "kelime_konumu": 9
+    },
+    {
+      "qac": "—",
+      "qm": "أون",
+      "kelime_konumu": 8
+    },
+    {
+      "qac": "—",
+      "qm": "حيي",
+      "kelime_konumu": 5
+    },
+    {
+      "qac": "—",
+      "qm": "حمد",
+      "kelime_konumu": 5
+    },
+    {
+      "qac": "—",
+      "qm": "برزخ",
+      "kelime_konumu": 3
+    },
+    {
+      "qac": "lmm",
+      "qm": "هلم",
+      "kelime_konumu": 2
+    },
+    {
+      "qac": "—",
+      "qm": "سبأ",
+      "kelime_konumu": 2
+    },
+    {
+      "qac": "—",
+      "qm": "مرو",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "رمض",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "عرف",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "جود",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "عزز",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "مني",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "برق",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "هاء",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "نمرق",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "زرب",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "—",
+      "qm": "قرش",
+      "kelime_konumu": 1
+    },
+    {
+      "qac": "mEn",
+      "qm": "عون",
+      "kelime_konumu": 1
+    }
+  ],
+  "sayisi_farkli_kok": 34
+}

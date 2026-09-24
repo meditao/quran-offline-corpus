@@ -13,7 +13,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from . import kavram, okuma, okunus, tara, tez, veri
+from . import kavram, okuma, okunus, qm, tara, tez, veri
 from .kayit import CALISTIRILMADI, Kayit, komut_metni
 
 TESTLER = Path(__file__).resolve().parents[1] / "testler"
@@ -41,6 +41,20 @@ def _test(_kor, ns) -> tara.Sonuc:
     return tara.Sonuc(satirlar, [], basarili=sonuc.wasSuccessful())
 
 
+def _capraz_ekle(kor, ns, sonuc: tara.Sonuc) -> tara.Sonuc:
+    """--capraz: QAC sonucunun altına quran-morphology sonucunu ayrı tablolarla ekler."""
+    if not getattr(ns, "capraz", False):
+        return sonuc
+    if "kok" not in sonuc.veri:
+        raise tara.GirdiHatasi("--capraz yalnız kök sorgusuyla kullanılır (kok X / sayim --kok X).")
+    satirlar, veri_ = qm.capraz(kor, sonuc.veri["kok"])
+    sonuc.satirlar += satirlar
+    sonuc.veri["capraz"] = veri_
+    sonuc.kaynak = f"{veri.KAYNAK_ADI} | + {qm.KAYNAK_ADI}"
+    sonuc.veri_izi = f"{kor.veri_izi} | {qm.korpus().veri_izi}"
+    return sonuc
+
+
 def _secici_ekle(p: argparse.ArgumentParser) -> None:
     g = p.add_mutually_exclusive_group(required=True)
     g.add_argument("--kok", help="Kök: Arapça harf veya Buckwalter (ör. Slw). Latin okunuş reddedilir.")
@@ -66,7 +80,8 @@ def parser_kur() -> argparse.ArgumentParser:
     s = alt.add_parser("kok", help="bir kökün geçişleri (kelime konumu)")
     s.add_argument("kok", help="Arapça harf veya Buckwalter (ör. Slw)")
     s.add_argument("--limit", type=int, default=50, help="gösterilecek geçiş; 0 = tümü")
-    s.set_defaults(islev=lambda k, n: tara.kok(k, n.kok, n.limit))
+    s.add_argument("--capraz", action="store_true", help="quran-morphology sonucunu ayrı tabloda yan yana göster")
+    s.set_defaults(islev=lambda k, n: _capraz_ekle(k, n, tara.kok(k, n.kok, n.limit)))
 
     s = alt.add_parser("lemma", help="bir lemmanın geçişleri (kelime konumu)")
     s.add_argument("lemma")
@@ -79,7 +94,8 @@ def parser_kur() -> argparse.ArgumentParser:
     g.add_argument("--lemma")
     g.add_argument("--etiket", nargs="+", help="tam eşleşme; birden fazlası aynı segmentte aranır")
     s.add_argument("--alt-dize", action="store_true", help="etiketi alt-dize olarak eşle (uyarı basılır)")
-    s.set_defaults(islev=lambda k, n: tara.sayim(k, n.kok, n.lemma, n.etiket, n.alt_dize))
+    s.add_argument("--capraz", action="store_true", help="--kok ile: quran-morphology sonucunu ayrı tabloda göster")
+    s.set_defaults(islev=lambda k, n: _capraz_ekle(k, n, tara.sayim(k, n.kok, n.lemma, n.etiket, n.alt_dize)))
 
     s = alt.add_parser("dagilim", help="dağılım: tür / lemma / bab / iyelik / sûre")
     _secici_ekle(s)
@@ -128,8 +144,8 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("metin", nargs="?", help="verilirse yeni sürüm olarak eklenir")
     s.set_defaults(islev=lambda k, n: okuma.ceviri_komutu(n.ayet, n.metin), korpus_gerekmez=True)
 
-    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal)")
-    s.add_argument("ne", choices=["meal"])
+    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal, quran-morphology)")
+    s.add_argument("ne", choices=["meal", "quran-morphology"])
     s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne), korpus_gerekmez=True)
 
     kavram.parser_ekle(alt)

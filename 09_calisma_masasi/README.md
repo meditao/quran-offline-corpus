@@ -3,7 +3,7 @@
 Talimat ve ilkeler: depo kökündeki [`CLAUDE.md`](../CLAUDE.md). Kanonik korpus **QAC v0.4**.
 Bu katman `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` klasörlerinden yalnız okur.
 
-Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri), **Aşama 2a** (`harf.py`, `okunus.py`) **Aşama 2b** (`okuma.py`, `kavram.py`) ve **Aşama 3** (`tez.py`). Python 3.10+; dış bağımlılık yok.
+Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri), **Aşama 2a** (`harf.py`, `okunus.py`) **Aşama 2b** (`okuma.py`, `kavram.py`) **Aşama 3** (`tez.py`) ve **Aşama 4** (`qm.py`, `--capraz`). Python 3.10+; dış bağımlılık yok.
 
 ## Çalıştırma
 
@@ -30,7 +30,8 @@ Depo kökünden: `PYTHONPATH=09_calisma_masasi python -m tezgah ...`
 | `okunus` | `okunus 2:3 30:30` · `okunus 1:1 --arapca` · `okunus --mukattaa` · `okunus 2:3 --durak` | — (Tanzil Uthmani v1.1; aktarım, delil değil); `--mukattaa`: ayet / sûre |
 | `ayet` | `ayet 2:3` · `ayet 2:3 --meal` | kelime konumu (okunuş + QAC çözümlemesi + çalışma çevirisi; meal isteğe bağlı) |
 | `ceviri` | `ceviri 2:3 "..."` · `ceviri 2:3` | — (kullanıcının yorumu) |
-| `kur` | `kur meal` | — (yerel/, depoya işlenmez) |
+| `kur` | `kur meal` · `kur quran-morphology` | — (yerel/, depoya işlenmez) |
+| `--capraz` | `kok Slw --capraz` · `sayim --kok nws --capraz` | kelime konumu / ayet / sûre; QAC ve quran-morphology ayrı tablolar + kök ataması farklı konumlar |
 | `kavram` | `kavram ac salat --soru "..." --kok Slw` · `kavram sorgu salat --bolum asama2 -- kalip "ROOT:Slw&POS:V"` · `kavram ayet salat 2:3` · `kavram oneri salat ...` · `kavram yenile salat` · `kavram denetle salat` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
 | `tez` | `tez ac t --tez "..." --tanim "terim=tanım" --eksen kip=tanımlayıcı --eksen düzlem=oluşum --karsi "kalip ROOT:Slw&POS:V"` · `tez tara t` · `tez bulgu t --eksen ... --raf ... --aciklama ... -- kalip "..."` · `tez sonuc t ...` · `tez yeni-surum t --gerekce ...` · `tez goster t` · `tez denetle t` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
 
@@ -58,5 +59,5 @@ Her çıktı §8 kayıt bloğuyla biter (kaynak, sayım birimi, tam komut, veri 
 - `tezgah/` — Python paketi
 - `testler/` — sağlama testleri (`unittest`; CI'da `core-integrity.yml` içinde de çalışır)
 - `kavramlar/` — çalışma çevirisi ve kavram dosyaları
-- `yerel/` — depoya işlenmeyen yerel veri (`.gitignore`): meal
+- `yerel/` — depoya işlenmeyen yerel veri (`.gitignore`): meal, quran-morphology
 - `okunus_kurallari.md` — okunuş ve kök gösteriminin ortak harf tablosu ve kuralları
