@@ -40,12 +40,14 @@ jobs:
         run: python -m tezgah denetim
       - name: Dosyaya yönlendirilen çıktı UTF-8 olmalı
         run: |
-          python -m tezgah kok Slw --limit 3 > kok.txt 2> kok_hata.txt; kod=$?
+          kod=0; python -m tezgah kok Slw --limit 3 > kok.txt 2> kok_hata.txt || kod=$?
           cat kok_hata.txt
           test $kod -eq 0
-          python -c "import pathlib; t = pathlib.Path('kok.txt').read_bytes().decode('utf-8'); assert 'ṣ-l-v' in t, t; print(t)"
+          cat kok.txt
+          # denetleyici yalnız ASCII yazar: kendisi UTF-8 ayarlı değil, cp1252 konsola ṣ basamaz
+          python -c "import pathlib; t = pathlib.Path('kok.txt').read_bytes().decode('utf-8'); assert chr(0x1e63) + '-l-v' in t; print('kok.txt: gecerli UTF-8, s-l-v (U+1E63) bulundu')"
       - name: Sağlama testleri (çıktı dosyaya yönlendirilmiş)
         run: |
-          python -m tezgah test > test.txt 2>&1; kod=$?
+          kod=0; python -m tezgah test > test.txt 2>&1 || kod=$?  # bash -e: çıktı yine de basılsın
           cat test.txt
           exit $kod
