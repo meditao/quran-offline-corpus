@@ -23,6 +23,7 @@ from .veri import (
     ARAPCA_BW, KOK_HEMZE, KOK_LATIN, Korpus, Kelime, Segment, binlik, kok_latin,
 )
 
+ISARETSIZ = "işaretsiz"
 BABLAR = ("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII")
 LATIN_ISARETI = "Latin okunuş girişi kabul edilmez"
 
@@ -37,6 +38,8 @@ class Sonuc:
     birimler: list[str]
     veri: dict = field(default_factory=dict)
     basarili: bool = True
+    kaynak: str | None = None      # kayıt satırı için; None = QAC v0.4
+    veri_izi: str | None = None    # None = QAC dosyasının izi
 
 
 # ---------------------------------------------------------------- yardımcılar
@@ -50,15 +53,17 @@ def _sade_latin(metin: str) -> str:
     ayrik = unicodedata.normalize("NFD", metin.lower())
     return "".join(
         ch for ch in ayrik
-        if not unicodedata.combining(ch) and ch.isalpha() and ch != "ʿ"
+        if not unicodedata.combining(ch) and ch.isalpha() and ch not in "ʿʾ"
     )
 
 
 def _latin_adaylari(kor: Korpus, girdi: str) -> list[str]:
-    anahtar = _sade_latin(girdi)
-    if not anahtar:
-        return []
-    return sorted(k for k in kor.kok_kelimeleri if _sade_latin(kok_latin(k)) == anahtar)
+    # Hemze ve ayn anahtardan düşer; eski "e-m-n" yazımı için baştaki "e" hemze sayılır.
+    anahtarlar = {_sade_latin(girdi)}
+    if girdi[:1].lower() == "e":
+        anahtarlar.add(_sade_latin(girdi[1:]))
+    anahtarlar.discard("")
+    return sorted(k for k in kor.kok_kelimeleri if _sade_latin(kok_latin(k)) in anahtarlar)
 
 
 def _aday_metni(adaylar: list[str]) -> str:
@@ -77,20 +82,26 @@ def _ozet_satiri(o: dict[str, int]) -> str:
     return " | ".join(f"{ad}: {binlik(n)}" for ad, n in o.items())
 
 
+def _gen(metin: str) -> int:
+    """Ekran genişliği: birleşik işaretler (s̱, Arapça harekeler) yer kaplamaz."""
+    return sum(1 for ch in metin if not unicodedata.combining(ch))
+
+
 def _tablo(basliklar: list[str], satirlar: list[list[object]], sag: set[int] | None = None) -> list[str]:
     """Basit hizalı metin tablosu. sag: sağa yaslanacak sütun indeksleri."""
     sag = sag or set()
     metin = [[str(x) for x in s] for s in satirlar]
-    genislik = [len(b) for b in basliklar]
+    genislik = [_gen(b) for b in basliklar]
     for s in metin:
         for i, h in enumerate(s):
-            genislik[i] = max(genislik[i], len(h))
+            genislik[i] = max(genislik[i], _gen(h))
 
     def bicimle(hucreler: list[str]) -> str:
-        return "  ".join(
-            h.rjust(genislik[i]) if i in sag else h.ljust(genislik[i])
-            for i, h in enumerate(hucreler)
-        ).rstrip()
+        parca = []
+        for i, h in enumerate(hucreler):
+            bosluk = " " * (genislik[i] - _gen(h))
+            parca.append(bosluk + h if i in sag else h + bosluk)
+        return "  ".join(parca).rstrip()
 
     return [bicimle(basliklar), bicimle(["-" * g for g in genislik]), *map(bicimle, metin)]
 
@@ -293,7 +304,7 @@ def _gecis_listesi(kelimeler: list[Kelime], kimlik: dict, limit: int) -> list[st
             k.bicim,
             ";".join(sorted({g.lemma or "-" for g in govdeler})),
             ";".join(sorted({tur_etiketi(g) for g in govdeler})),
-            ";".join(sorted({g.bab or ("I" if g.pos == "V" else "-") for g in govdeler})),
+            ";".join(sorted({g.bab or ("I" if g.pos == "V" else ISARETSIZ) for g in govdeler})),
         ])
     satirlar += _tablo(["konum", "biçim (Buckwalter)", "lemma", "tür", "bab"], tablo)
     return satirlar
@@ -420,6 +431,9 @@ def dagilim(kor: Korpus, gore: str, kok: str | None = None, lemma: str | None = 
         return Sonuc(satirlar, ["kelime konumu"], {**kimlik, **o, "dagilim": dict(sayac_c)})
 
     if gore == "bab":
+        # Fiil: QAC I. babı işaretlemez; işaretsiz fiil gövdesi I. bab olarak raporlanır.
+        # İsim: işaretsiz isim gövdesi "işaretsiz" kalır (I. bab türevi mi, türemiş
+        # olmayan isim mi ayrımı bu veriden yapılmaz).
         fiil: Counter = Counter()
         isim: Counter = Counter()
         for k in kelimeler:
@@ -427,19 +441,19 @@ def dagilim(kor: Korpus, gore: str, kok: str | None = None, lemma: str | None = 
                 if g.pos == "V":
                     fiil[g.bab or "I"] += 1
                 else:
-                    isim[g.bab or "I"] += 1
+                    isim[g.bab or ISARETSIZ] += 1
         tablo = []
-        for b in BABLAR:
+        for b in (*BABLAR, ISARETSIZ):
             if fiil[b] or isim[b]:
-                ad = "I / işaretsiz" if b == "I" else b
-                tablo.append([ad, binlik(fiil[b]), binlik(isim[b])])
+                tablo.append([b, binlik(fiil[b]) if b != ISARETSIZ else "—",
+                              binlik(isim[b]) if b != "I" else "—"])
         tablo.append(["toplam", binlik(sum(fiil.values())), binlik(sum(isim.values()))])
         satirlar += [
             "Bab dağılımı (segment: hedefi taşıyan gövde segmenti):",
             *_tablo(["bab", "fiil", "isim"], tablo, sag={1, 2}),
-            "Not: QAC I. babı işaretlemez. 'fiil' sütununda işaretsiz = I. bab; 'isim' sütununda",
-            "     işaretsiz = bab işareti taşımayan isim (I. bab türevi mi, türemiş olmayan isim mi",
-            "     ayrımı bu veriden yapılmaz).",
+            "Not: QAC I. babı işaretlemez. Fiilde işaretsiz gövde I. bab olarak raporlandı.",
+            "     İsimde işaretsiz gövde 'işaretsiz' satırındadır; I. bab türevi mi, türemiş",
+            "     olmayan isim mi ayrımı bu veriden yapılmaz.",
         ]
         return Sonuc(satirlar, ["segment"], {**kimlik, **o, "fiil": dict(fiil), "isim": dict(isim)})
 

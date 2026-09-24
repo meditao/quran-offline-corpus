@@ -37,7 +37,7 @@ Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. �
    - Delil derecesi: Sağlam · Muhtemel · Spekülatif
    "Yalnız uyumlu" asla "destekleniyor" diye yazılmaz.
 7. **Kur'an dışı sınıflandırmalar varsayılan değildir.** Mekkî/Medenî ve nüzul sırası geleneksel veridir; kullanılırsa ayrı, etiketli filtre olarak.
-8. **Sunum:** Arapça harf değil, Latin harfli okunuş + Türkçe anlam. Kök ayrık Latin yazılır (`s-l-v`). Komut satırında kök Arapça veya Buckwalter girilir; araç Latin girişi reddeder, boş sonuç üretmez.
+8. **Sunum:** Arapça harf değil, Latin harfli okunuş + Türkçe anlam. Kök ayrık ve **kayıpsız** Latin yazılır: `Slw → ṣ-l-v`, `fTr → f-ṭ-r`, `rwH → r-v-ḥ`, `Amn → ʾ-m-n`. Kök gösterimi ve okunuş tek bir harf tablosunu paylaşır (`09_calisma_masasi/tezgah/harf.py`, belgesi `09_calisma_masasi/okunus_kurallari.md`). İki farklı harf aynı Latin karşılığa gitmez; noktalı harfler ص/س, ط/ت, ح/ه/خ, ث/س, ذ/ز/ض/ظ ayrımını korur. Bu ayrım envanterde gerçek bir fark yaratır: `Slw` (ṣ-l-v) ile `slw` (s-l-v), `fTr` (f-ṭ-r) ile `ftr` (f-t-r) ayrı köklerdir. Hemze `ʾ`, ayn `ʿ` ile yazılır. Komut satırında kök Arapça veya Buckwalter girilir. Buckwalter büyük/küçük harf duyarlıdır; ikizi olan kök sorgulanınca uyarı basılır. Araç Latin girişi reddeder, boş sonuç üretmez.
 
 ## 3. Veri katmanları ve statüleri
 
@@ -63,8 +63,8 @@ Kanonik korpus: **QAC v0.4** (depodaki denetimli veri).
 - Segment düzeyi sorgular (ön ek, iyelik eki, bab etiketi) ayrıca desteklenir ve çıktıda "segment" diye işaretlenir.
 - Tanzil ile QAC arasında kelime düzeyinde doğrudan eşleştirme yapılmaz; `tanzil_qac_alignment.csv` kullanılır.
 - İyelik eki ayrı segmenttir. İsmin etiketlerinde zamir aranmaz, sonraki segmente bakılır.
-- `--etiket` tam eşleşmedir. Alt-dize eşleşmesi (`VF:1` → `VF:10`, `DEF` → `INDEF` sızıntısı) yalnız açık bayrakla yapılır ve çıktıda uyarı basılır.
-- Bab etiketi hem fiile hem türemiş isme yapışır; bab tablosunda "fiil" ve "isim" ayrı sütunlardır.
+- `--etiket` tam eşleşmedir; QAC FEATURES belirteçleri olduğu gibi yazılır (`(IV)`, `PRON:3MP`, `ROOT:Amn`, `INDEF`); TAG sütunu `TAG:V` biçiminde sorgulanır. Alt-dize eşleşmesi (`(V)` → `(VI)`/`(VII)`/`(VIII)`, `DEF` → `INDEF` sızıntısı) yalnız açık bayrakla (`--alt-dize`) yapılır ve çıktıda uyarı basılır. (`VF:1` → `VF:10` biçimi QAC'ın değil quran-morphology'nin etiketidir; §5.)
+- Bab etiketi QAC'ta `(II)` … `(XII)` biçimindedir; **I. bab işaretlenmez**. Bab etiketi hem fiile hem türemiş isme yapışır; bab tablosunda "fiil" ve "isim" ayrı sütunlardır. Fiilde işaretsiz gövde **I. bab** olarak raporlanır. İsimde işaretsiz gövde **"işaretsiz"** kalır: I. bab türevi mi, türemiş olmayan isim mi ayrımı bu veriden yapılmaz.
 
 ## 5. İkinci annotation katmanı (quran-morphology)
 
@@ -85,12 +85,12 @@ QAC v0.4 (depodan ölçüldü, 24.09.2026):
 | QAC dosyası sha256 | `a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46` |
 | ayet / kelime konumu / segment | 6.236 / 77.429 / 128.219 |
 | benzersiz kök | 1.642 |
-| `Slw` (s-l-v) | 99 kelime konumu / 90 ayet / 37 sûre |
-| `fTr` (f-t-r) | 20 / 19 / 17 |
-| `rwH` (r-v-h) | 57 / 52 / 40 |
+| `Slw` (ṣ-l-v) | 99 kelime konumu / 90 ayet / 37 sûre |
+| `fTr` (f-ṭ-r) | 20 / 19 / 17 |
+| `rwH` (r-v-ḥ) | 57 / 52 / 40 |
 | `qdr` (q-d-r) | 132 / 121 / 58 |
 | `gfr` (g-f-r) | 234 / 202 / 56 |
-| `Amn` (e-m-n) | 879 / 723 / 77 |
+| `Amn` (ʾ-m-n) | 879 / 723 / 77 |
 
 Ayrıca: araç, `root_index.csv` ile kendi hesabının bütün kökler için aynı çıktığını doğrular.
 
@@ -136,8 +136,9 @@ Durum       : çalıştırıldı | çalıştırılmadı
 | aşama | içerik | durum |
 |---|---|---|
 | 0 | depo incelemesi, bu dosya | tamam |
-| 1 | `veri.py` + `tara.py` + `kayit.py` + sağlama testleri | uygulandı — onay bekliyor |
-| 2 | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur) — **açık konu:** okunuş fawazahmed0 yerine Tanzil Arapçasından Türkçe transliterasyon kurallarıyla üretilecek (İngilizce tarzı yazım "alssalata" gibi harf ayrımlarını kaybediyor; kendi kuralımız denetlenebilir ve lisans sorunu taşımaz). Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | |
+| 1 | `veri.py` + `tara.py` + `kayit.py` + sağlama testleri | tamam |
+| 2a | `okunus.py`: okunuş Tanzil Arapçasından, kök gösterimiyle aynı harf tablosuyla üretilir (fawazahmed0 kullanılmaz). Kurallar: `09_calisma_masasi/okunus_kurallari.md`. Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | uygulandı — onay bekliyor |
+| 2b | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur) | |
 | 3 | `tez.py` | |
 | 4 | ikinci annotation katmanı ve çapraz denetim raporu | |
 | 5 | `ikincil/` (Lane, Sâmî) | |

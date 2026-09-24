@@ -1,5 +1,6 @@
 """Komutlar arası iç tutarlılık: aynı soru farklı yoldan aynı sayıyı vermeli."""
 
+import re
 import unittest
 
 import _ortak  # noqa: F401
@@ -40,6 +41,22 @@ class TutarlilikTesti(unittest.TestCase):
                 govde = sum(len([s for s in k.segmentler if s.kok == kok])
                             for k in self.kor.kok_kelimeleri[kok])
                 self.assertEqual(sum(d.veri["fiil"].values()) + sum(d.veri["isim"].values()), govde)
+
+    def test_bab_fiilde_isaretsiz_I_isimde_isaretsiz(self):
+        """Ham dosyadan (ayrıştırıcıdan bağımsız) sayılan değerlerle karşılaştırılır."""
+        bab_re = re.compile(r"\|\((?:II|III|IV|V|VI|VII|VIII|IX|X|XI|XII)\)(?:\||$)")
+        with veri.QAC_YOLU.open(encoding="utf-8-sig", newline="") as f:
+            satirlar = [s.rstrip("\r\n").split("\t") for s in f if s.startswith("(")]
+        for kok in KOKLER:
+            with self.subTest(kok=kok):
+                hedef = [s[3] for s in satirlar if f"|ROOT:{kok}|" in s[3] + "|"]
+                fiil = [o for o in hedef if "|POS:V|" in o + "|"]
+                isim = [o for o in hedef if "|POS:V|" not in o + "|"]
+                d = tara.dagilim(self.kor, "bab", kok=kok).veri
+                self.assertEqual(d["fiil"].get("I", 0), sum(1 for o in fiil if not bab_re.search(o)))
+                self.assertEqual(d["isim"].get(tara.ISARETSIZ, 0), sum(1 for o in isim if not bab_re.search(o)))
+                self.assertNotIn("I", d["isim"], "isimde işaretsiz gövde I. bab diye raporlanmamalı")
+                self.assertNotIn(tara.ISARETSIZ, d["fiil"])
 
     def test_birlikte_kendisiyle(self):
         for kok in KOKLER:

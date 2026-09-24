@@ -13,7 +13,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from . import tara, veri
+from . import okunus, tara, veri
 from .kayit import CALISTIRILMADI, Kayit, komut_metni
 
 TESTLER = Path(__file__).resolve().parents[1] / "testler"
@@ -106,6 +106,12 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("--alt-dize", action="store_true")
     s.add_argument("--limit", type=int, default=50)
     s.set_defaults(islev=lambda k, n: tara.kalip(k, n.desen, n.kelime_ici, n.alt_dize, n.limit))
+
+    s = alt.add_parser("okunus", help="ayet okunuşu (Tanzil Uthmani'den kurallı Latin aktarım)")
+    s.add_argument("ayetler", nargs="+", help="sûre:ayet, ör. 2:3 30:30")
+    s.add_argument("--arapca", action="store_true", help="denetim için Tanzil kelimesini yanında göster")
+    s.set_defaults(islev=lambda k, n: okunus.okunus_komutu(n.ayetler, n.arapca),
+                   korpus_gerekmez=True, veri_kaynagi="tanzil")
     return p
 
 
@@ -120,17 +126,23 @@ def main(argv: list[str] | None = None) -> int:
             kor = veri.korpus()
             veri_izi = kor.veri_izi
         sonuc = ns.islev(kor, ns)
-    except (tara.GirdiHatasi, veri.VeriHatasi) as hata:
-        if veri_izi == "—" and veri.QAC_YOLU.exists():
-            veri_izi = veri.sha256(veri.QAC_YOLU)[:12]
+    except (tara.GirdiHatasi, veri.VeriHatasi, okunus.BilinmeyenKarakter) as hata:
+        tanzil_mi = getattr(ns, "veri_kaynagi", "") == "tanzil"
+        yol = okunus.TANZIL_YOLU if tanzil_mi else veri.QAC_YOLU
+        if veri_izi == "—" and yol.exists():
+            veri_izi = veri.sha256(yol)[:12]
         sebep = "girdi hatası" if isinstance(hata, tara.GirdiHatasi) else "veri hatası"
+        kaynaklar = [okunus.KAYNAK_ADI if tanzil_mi else veri.KAYNAK_ADI]
         print(f"HATA: {hata}")
-        print(Kayit(sorgu, veri_izi=veri_izi, durum=CALISTIRILMADI, sebep=sebep).metin())
+        print(Kayit(sorgu, kaynaklar=kaynaklar, veri_izi=veri_izi, durum=CALISTIRILMADI, sebep=sebep).metin())
         return 2
-    if kor is None:
+    if sonuc.veri_izi is not None:
+        veri_izi = sonuc.veri_izi
+    elif kor is None:
         veri_izi = veri.sha256(veri.QAC_YOLU)[:12] if veri.QAC_YOLU.exists() else "—"
     print("\n".join(sonuc.satirlar))
-    print(Kayit(sorgu, birimler=sonuc.birimler, veri_izi=veri_izi).metin())
+    print(Kayit(sorgu, birimler=sonuc.birimler, kaynaklar=[sonuc.kaynak or veri.KAYNAK_ADI],
+                veri_izi=veri_izi).metin())
     return 0 if sonuc.basarili else 1
 
 

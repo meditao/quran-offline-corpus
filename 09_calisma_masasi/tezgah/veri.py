@@ -17,6 +17,8 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 
+from .harf import HARF_LATIN
+
 DEPO = Path(__file__).resolve().parents[2]
 QAC_YOLU = DEPO / "02_morphology" / "qac" / "quranic-corpus-morphology-0.4.txt"
 ROOT_INDEX_YOLU = DEPO / "03_indices" / "generated" / "root_index.csv"
@@ -55,14 +57,12 @@ ARAPCA_BW = {v: k for k, v in BW_ARAPCA.items()}
 # bütün hemze taşıyıcıları bu harfe indirgenir.
 KOK_HEMZE = {"ء", "أ", "إ", "آ", "ؤ", "ئ", "ا", "ٱ"}
 
-# Kök harflerinin ayrık Latin gösterimi. Eşleme kayıpsızdır: her Buckwalter
-# kök harfi tek bir Latin karşılığa gider, iki harf aynı karşılığı paylaşmaz.
-# (ص/س, ط/ت, ح/ه/خ, ث/س, ذ/ز/ض/ظ ayrımı korunur.)
+# Kök harflerinin ayrık Latin gösterimi, okunuşla ortak harf tablosundan
+# (harf.py) türetilir. QAC kök alanındaki "A" hemzedir (ء -> ʾ).
+# Eşleme kayıpsızdır: ص/س, ط/ت, ح/ه/خ, ث/س, ذ/ز/ض/ظ ayrımı korunur.
+KOK_BW_HARFLERI = "AbtvjHxd*rzs$SDTZEgfqklmnhwy"
 KOK_LATIN = {
-    "A": "e", "b": "b", "t": "t", "v": "s̱", "j": "c", "H": "ḥ", "x": "ḫ",
-    "d": "d", "*": "ẕ", "r": "r", "z": "z", "s": "s", "$": "ş", "S": "ṣ",
-    "D": "ż", "T": "ṭ", "Z": "ẓ", "E": "ʿ", "g": "g", "f": "f", "q": "q",
-    "k": "k", "l": "l", "m": "m", "n": "n", "h": "h", "w": "v", "y": "y",
+    bw: HARF_LATIN["ء" if bw == "A" else BW_ARAPCA[bw]] for bw in KOK_BW_HARFLERI
 }
 
 
