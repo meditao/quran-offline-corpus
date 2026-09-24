@@ -1,0 +1,51 @@
+name: Çalışma masası — işletim sistemi / Python matrisi
+
+# Sağlama testleri Linux ve Windows'ta, en eski desteklenen ve en yeni Python ile çalışır.
+# PYTHONUTF8 / -X utf8 BİLEREK verilmez: program yerel kod sayfasında (Windows: cp1252/cp1254)
+# kendi başına UTF-8 yazabilmelidir. Çıktı dosyaya yönlendirilir (konsol dışı akış).
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  testler:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python: ["3.10", "3.12", "3.14"]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash
+        working-directory: 09_calisma_masasi
+    steps:
+      - name: Depoyu al (Windows'ta git varsayılan satır sonu ayarlarıyla)
+        uses: actions/checkout@v4
+      - name: Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          allow-prereleases: true
+      - name: Ortam
+        run: |
+          python -c "import sys, locale; print(sys.version); print('yerel kodlama:', locale.getpreferredencoding(False)); print('utf8_mode:', sys.flags.utf8_mode)"
+          git config --show-origin --get core.autocrlf || echo "core.autocrlf ayarsız"
+      - name: Kurulum denetimi
+        run: python -m tezgah denetim
+      - name: Dosyaya yönlendirilen çıktı UTF-8 olmalı
+        run: |
+          python -m tezgah kok Slw --limit 3 > kok.txt 2> kok_hata.txt; kod=$?
+          cat kok_hata.txt
+          test $kod -eq 0
+          python -c "import pathlib; t = pathlib.Path('kok.txt').read_bytes().decode('utf-8'); assert 'ṣ-l-v' in t, t; print(t)"
+      - name: Sağlama testleri (çıktı dosyaya yönlendirilmiş)
+        run: |
+          python -m tezgah test > test.txt 2>&1; kod=$?
+          cat test.txt
+          exit $kod
