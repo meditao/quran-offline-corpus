@@ -1,0 +1,162 @@
+# Kur'an Çalışma Masası — Claude Code talimatı
+
+Bu dosya `quran-offline-corpus` deposunun kökünde durur. Claude Code her oturumda önce bunu okur.
+
+## 1. Amaç
+
+Kavramları Kur'an'ın kendi verisinden tanımlamak için tek bir çalışma ortamı: tarama, okuma, kavram dosyası ve tez sınama. Hedef doğruyu bulmaktır. Geleneksel okumayı doğrulamak da çürütmek de hedef değildir; bulgular "lehine/aleyhine" diye çerçevelenmez.
+
+Çalışma masası depoya **yeni bir katman** olarak eklenir, mevcut katmanlara dokunmaz:
+
+```
+09_calisma_masasi/
+  tezgah/            Python paketi (tek giriş noktası: python -m tezgah)
+    veri.py          yükleme, dizinler, kurulum denetimi
+    tara.py          kök / lemma / etiket / kalıp sorguları, sayım, dağılım
+    okuma.py         ayet görünümü (okunuş + kelime çözümlemesi + çalışma çevirisi)
+    kavram.py        kavram dosyası işlemleri
+    tez.py           tez sınama kaydı
+    kayit.py         her sorgunun kaynak / birim / komut kaydı
+    arayuz.py        yerel web arayüzü (python -m tezgah arayuz; yalnız standart kütüphane, kendi mantığı yok)
+    ikincil/         lane.py, sami.py — yalnız hipotez katmanı
+  testler/           sağlama testleri (§6) — her değişiklikten sonra çalışır
+  kavramlar/         ara çalışma dosyaları (olgunlaşınca 07_analyses'e taşınır); tezler/ alt klasörü tez kayıtları
+  yerel/             .gitignore — lisansı doğrulanmamış veya dağıtılamaz veri
+```
+
+Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. Çalışma masası bunlardan okur, bunlara yazmaz. Yeni türetilmiş veri gerekiyorsa `08_scripts` altında ayrı bir betikle üretilir.
+
+## 2. Değişmez ilkeler
+
+1. **Yalnız Kur'an verisi delildir.** Hadis, tefsir, meal, Lane ve Sâmî katmanı delil değildir; anılırlarsa ekranda ve raporda "hipotez / ikincil" etiketi taşırlar. Zincir tek yönlüdür: dış katman hipotez üretir, korpus sınar, sonuç korpus bulgusuyla yazılır.
+2. **Hafızadan sayı ve ayet yazılmaz.** Her sayı ve her ayet referansı bir sorgunun çıktısıdır. Sorgu çalışmadıysa rapor bunu söyler.
+3. **Her sayının birimi yazılır:** ayet / sûre / kelime konumu / segment. Farklı birimler ve farklı korpusların sayıları aynı tabloda toplanmaz.
+4. **Boş çıktı yokluk delili değildir.** "Kur'an'da X yok" için eşanlamlı kökler ve kavramı kelimesiz kuran ayetler de taranmış olmalıdır; aksi hâlde "şu sorguyla bulunmadı" yazılır.
+5. **Kavram daraltma yasağı.** İman, salât, zekât gibi kavramlar pasif zihinsel kabule veya ritüele otomatik indirgenmez. Önce kalıp çıkarılır, sonra anlam tartışılır. Meal karşılığı veri değildir.
+6. **Sonuç iki eksende yazılır** (tez.py ve kavram.py bunu zorunlu alan yapar):
+   - Mantıksal durum: Destekleniyor · Yalnız uyumlu · Destek gösterilemedi · Belirsiz · Çelişiyor
+   - Delil derecesi: Sağlam · Muhtemel · Spekülatif
+   "Yalnız uyumlu" asla "destekleniyor" diye yazılmaz.
+7. **Kur'an dışı sınıflandırmalar varsayılan değildir.** Mekkî/Medenî ve nüzul sırası geleneksel veridir; kullanılırsa ayrı, etiketli filtre olarak.
+8. **Sunum:** Arapça harf değil, Latin harfli okunuş + Türkçe anlam. Kök ayrık ve **kayıpsız** Latin yazılır: `Slw → ṣ-l-v`, `fTr → f-ṭ-r`, `rwH → r-v-ḥ`, `Amn → ʾ-m-n`. Kök gösterimi ve okunuş tek bir harf tablosunu paylaşır (`09_calisma_masasi/tezgah/harf.py`, belgesi `09_calisma_masasi/okunus_kurallari.md`). İki farklı harf aynı Latin karşılığa gitmez; noktalı harfler ص/س, ط/ت, ح/ه/خ, ث/س, ذ/ز/ض/ظ ayrımını korur. Bu ayrım envanterde gerçek bir fark yaratır: `Slw` (ṣ-l-v) ile `slw` (s-l-v), `fTr` (f-ṭ-r) ile `ftr` (f-t-r) ayrı köklerdir. Hemze `ʾ`, ayn `ʿ` ile yazılır. Komut satırında kök Arapça veya Buckwalter girilir. Buckwalter büyük/küçük harf duyarlıdır; ikizi olan kök sorgulanınca uyarı basılır. Araç Latin girişi reddeder, boş sonuç üretmez.
+
+## 3. Veri katmanları ve statüleri
+
+| katman | kaynak | depoda | statü |
+|---|---|---|---|
+| Arapça metin | Tanzil Uthmani v1.1 | `01_raw/tanzil` | metin |
+| morfoloji (**kanonik**) | QAC v0.4 | `02_morphology/qac`, `03_indices` | delil |
+| morfoloji (ikinci annotation) | mustafa0x/quran-morphology, commit `8f38b39` (`python -m tezgah kur quran-morphology`) | `yerel/quran-morphology/` (lisans dosyası yok; QAC çatalı → depoya işlenmez) | çapraz kontrol |
+| okunuş | Tanzil'den kurallı aktarım (`okunus.py`, `okunus_kurallari.md`) | üretilir | aktarım, delil değil |
+| durak işaretleri | Tanzil Uthmani v1.1 `marks=true` (`08_scripts/fetch_tanzil_marks.py`) | `01_raw/tanzil/quran-uthmani-durak.txt` | okunuşta yalnız sekte; diğerleri "geleneksel — yorum içerebilir" |
+| kurumsal meal | fawazahmed0/quran-api `tur-diyanetisleri` (`python -m tezgah kur meal`) | `yerel/meal/` (depoya işlenmez) | sınanan okuma, delil değil |
+| çalışma çevirisi | kullanıcı | `kavramlar/` | kullanıcının yorumu |
+| Lane | LexiconDatabase v1.0.9, commit `b371ab1` (`python -m tezgah kur lane`) | `yerel/lane/` (265 MB; depoya işlenmez) | hipotez |
+| İbranice | Open Scriptures Hebrew Lexicon dizini (BDB atıflı) | `04_lexicons/generated` (yerinde okunur; incelenmiş kayıtlar `04_lexicons/semitic/cognates.tsv`) | hipotez |
+| Süryanice | SEDRA 3, sedrajs commit `ba6684a` (`python -m tezgah kur sedra`) | `yerel/sedra/` (değiştirilmemiş; dağıtılamaz) | hipotez |
+
+**Meal görünümü:** Varsayılan kapalıdır. Açıldığında "kurumsal okuma — sınanan, delil değil" etiketiyle, çalışma çevirisinin **altında** gösterilir.
+
+## 4. Kanonik korpus kararı
+
+Kanonik korpus: **QAC v0.4** (depodaki denetimli veri).
+
+- Kök/lemma sıklığında varsayılan birim **kelime konumu**dur (`06_methodology/counting_units.md`). Aynı kelimede tekrar eden kök bir kez sayılır.
+- Segment düzeyi sorgular (ön ek, iyelik eki, bab etiketi) ayrıca desteklenir ve çıktıda "segment" diye işaretlenir.
+- Tanzil ile QAC arasında kelime düzeyinde doğrudan eşleştirme yapılmaz; `tanzil_qac_alignment.csv` kullanılır.
+- İyelik eki ayrı segmenttir. İsmin etiketlerinde zamir aranmaz, sonraki segmente bakılır.
+- `--etiket` tam eşleşmedir; QAC FEATURES belirteçleri olduğu gibi yazılır (`(IV)`, `PRON:3MP`, `ROOT:Amn`, `INDEF`); TAG sütunu `TAG:V` biçiminde sorgulanır. Alt-dize eşleşmesi (`(V)` → `(VI)`/`(VII)`/`(VIII)`, `DEF` → `INDEF` sızıntısı) yalnız açık bayrakla (`--alt-dize`) yapılır ve çıktıda uyarı basılır. (`VF:1` → `VF:10` biçimi QAC'ın değil quran-morphology'nin etiketidir; §5.)
+- Bab etiketi QAC'ta `(II)` … `(XII)` biçimindedir; **I. bab işaretlenmez**. Bab etiketi hem fiile hem türemiş isme yapışır; bab tablosunda "fiil" ve "isim" ayrı sütunlardır. Fiilde işaretsiz gövde **I. bab** olarak raporlanır. İsimde işaretsiz gövde **"işaretsiz"** kalır: I. bab türevi mi, türemiş olmayan isim mi ayrımı bu veriden yapılmaz.
+
+## 5. İkinci annotation katmanı (quran-morphology)
+
+`counting_units.md` §6'daki açık konu (130.030 birim ↔ 128.219 segment) bu katmanla kapatılır:
+
+- İki korpus kelime konumunda birebir aynıdır (77.429); segmentasyon ve kök envanteri farklıdır (1.651 ↔ 1.642).
+- `08_scripts/crosscheck_qac_quranmorphology.py` konum bazında karşılaştırır ve `03_indices/audits/` altına rapor yazar.
+- Rapor: `03_indices/audits/qac_quranmorphology.md` (+ `.json`, kök farkları ve kök sayıları TSV). Kök karşılaştırması hemze yazımı nötrlenerek yapılır. Her iki dosya da satır sonu `\r\n` soyularak okunur: QAC dosyası CRLF'dir; soyulmazsa QAC'ta 1.652 "kök" çıkar. Eski denetimle tutarlılık: kabuk boru hattı 1.651 / 1.641 ↔ sağlam ayrıştırıcı 1.652 / 1.642 (CR soyulmadan / soyulunca); iki yöntemde de CR'nin eklediği 10 sahte değer aynıdır, kabuk tarafındaki 1 eksik virgül ayırıcısında düşen `wAd`'dır. quran-morphology'nin 1.651'i ile kabuğun 1.651'i ayrı sebeplerden çıkan aynı sayıdır.
+- Sayısı iki korpusta farklı çıkan 34 kökten biri (QAC'ta sorgulanabilen 21'i) sorgulandığında `--capraz` verilmese de çıktının başına çapraz kontrol uyarısı basılır; QAC'ta hiç olmayan 13 kök için hata mesajına not eklenir.
+- Ayrım: depodaki `02_morphology/quranmorph` ve `crosscheck_qac_quranmorph.py`, SinaLab'ın **QuranMorph** korpusu içindir; bu katmanla ilgisi yoktur.
+- Çalışma masasında `--capraz` bayrağı bir kökün iki korpustaki sonucunu **yan yana**, ayrı tablolarda gösterir. İki sayının aynı çıkması doğrulama sayılmaz; kök atamasının farklı çıktığı yerler ayrıca listelenir.
+
+## 6. Sağlama testleri
+
+`testler/` altında. Kurulumdan ve her kod değişikliğinden sonra çalışır. Tutmazsa iş durur, rapor verilir.
+
+QAC v0.4 (depodan ölçüldü, 24.09.2026):
+
+| sorgu | beklenen |
+|---|---|
+| QAC dosyası sha256 | `a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46` |
+| ayet / kelime konumu / segment | 6.236 / 77.429 / 128.219 |
+| benzersiz kök | 1.642 |
+| `Slw` (ṣ-l-v) | 99 kelime konumu / 90 ayet / 37 sûre |
+| `fTr` (f-ṭ-r) | 20 / 19 / 17 |
+| `rwH` (r-v-ḥ) | 57 / 52 / 40 |
+| `qdr` (q-d-r) | 132 / 121 / 58 |
+| `gfr` (g-f-r) | 234 / 202 / 56 |
+| `Amn` (ʾ-m-n) | 879 / 723 / 77 |
+
+Ayrıca: araç, `root_index.csv` ile kendi hesabının bütün kökler için aynı çıktığını doğrular.
+
+Platform: testler CI'da Linux ve Windows × Python 3.10 / 3.12 / 3.14 matrisinde, `PYTHONUTF8` verilmeden ve çıktı dosyaya yönlendirilerek çalışır (`.github/workflows/calisma-masasi-testleri.yml`). Kod kuralı (`testler/test_platform.py` denetler): metin kipinde her zaman `encoding="utf-8"`; metin yazımında `newline="\n"`; hash'lenen dosya ikili kipte yazılır, sha diskteki baytlardan alınır; alt süreçlere ortam açıkça geçirilir. `.gitattributes` satır sonu çevirisini kapatır.
+
+## 7. Modüller ve kabul ölçütleri
+
+**tara.py** — `sayim`, `dagilim` (tür / lemma / bab / iyelik / sûre), `kok`, `lemma`, `etiket`, `birlikte` (ortak geçiş), `kalip` (ardışık segment deseni), `kokler`. Kabul: §6 testleri geçer; her çıktının sonunda kayıt satırı (§8) vardır. Listelerde biçim sütunu kelimenin ayet içindeki okunuşu (okunuş motoru + Tanzil↔QAC hizalaması; hizalaması farklı kelimede not), lemma sütunu lemmanın tek başına okunuşudur (`okunus_kurallari.md` §6); Buckwalter yalnız `--bw` ile ek sütundur. Okunuş kullanan listenin kaydı Tanzil'i de yazar.
+
+**okuma.py** — `ayet 2:3`: okunuş, kelime kelime kök/lemma/biçim, çalışma çevirisi, isteğe bağlı meal. Kabul: ayet referansı QAC ve Tanzil'de aynı ayete düşer.
+
+**kavram.py** — bir kavram için dosya açar ve `07_analyses/README.md`'deki standart düzeni izler: araştırma sorusu → Aşama 1 kök/morfoloji → Aşama 2 sentaks → Aşama 3 bağlam ağı → kritik ayetler → karşı örnekler/falsifikasyon → Sâmî (isteğe bağlı) → sentez → kavram kartı. Sayım bölümleri elle yazılmaz; sorgudan üretilir ve kaydıyla birlikte gömülür. Ayet başına çalışma çevirisi alanı vardır.
+
+Anlam önerisi kaydedilirken şu alanlar boş bırakılamaz:
+- iç-tanım var mı (metin terimi kendi içinde açıyor mu)
+- falsifikasyon: "bu öneri doğru olsaydı hangi ayet onu çürütürdü" ve fiilen bulunan ayetler
+- muhalif okumanın en güçlü hâli
+- dışarıda bırakılan örneklem: öneri hangi kullanımlardan kuruldu, hangilerine sonradan uygulandı
+
+**tez.py** — tez tek cümleyle dondurulur; tanımlar ve karşı örnek havuzu **taramadan önce** kaydedilir ve sonradan değiştirilemez (değişirse yeni sürüm açılır, eskisi silinmez). Her bulgu eksen etiketi taşır (tanımlayıcı/normatif, oluşum/sorumluluk vb.); farklı eksendeki bulgu "çelişen" rafına konamaz. Kullanıcının tez ifadesi kendiliğinden güçlendirilmez.
+
+**ikincil/** — Lane ve Sâmî çıktıları her satırda "hipotez" etiketi taşır. Tek dilde kognat vuruşu tek başına raporlanmaz. Lane'in ك harfinden sonraki bölgesinde "Lane'de yok" argümanı üretilmez. Ölçümler (Lane eşleşmesi, bölge yoğunluğu, Sâmî gürültü tabanı) QAC köklerine göre yapılır: `03_indices/audits/ikincil_katmanlar.md` (`08_scripts/measure_secondary_layers.py`). Sâmî son-harf-zayıf kuralı (İbranice ה / Süryanice Alef) gerçek/rastgele oranını düşürdüğü için varsayılan kapalıdır; `sami kok --zayif-son` ile açılır. Lane kısaltma kategorileri ve dayanakları `09_calisma_masasi/lane_kisaltmalari.tsv` dosyasındadır; `lane sigla` kategori dayanağını her çalıştırmada ölçer.
+
+## 8. Kayıt satırı
+
+Her sorgu çıktısının ve her kavram dosyası bölümünün sonunda:
+
+```
+Kaynak      : QAC v0.4 | + quran-morphology | + Lane | + Sâmî
+Sayım birimi: kelime konumu | segment | ayet | sûre | kök (yalnız envanter ölçümlerinde) | atıf geçişi (yalnız Lane kısaltma ölçümünde)
+Sorgu       : çalıştırılan tam komut
+Veri izi    : kaynak dosyanın sha256'sının ilk 12 hanesi
+Durum       : çalıştırıldı | çalıştırılmadı
+```
+
+## 9. Lisans kuralları
+
+- Tanzil metni değiştirilmez; normalizasyon ayrı türetilmiş çıktıdır.
+- QAC telif bloğu korunur.
+- Okunuş ve meal katmanlarının lisansı doğrulanana kadar `yerel/` altında kalır ve depoya işlenmez. Depo herkese açıktır.
+- SEDRA: değiştirilmiş dosya dağıtılmaz. Sonuç yayımlanırsa atıf eklenir.
+
+## 10. Aşamalar
+
+| aşama | içerik | durum |
+|---|---|---|
+| 0 | depo incelemesi, bu dosya | tamam |
+| 1 | `veri.py` + `tara.py` + `kayit.py` + sağlama testleri | tamam |
+| 2a | `okunus.py`: okunuş Tanzil Arapçasından, kök gösterimiyle aynı harf tablosuyla üretilir (fawazahmed0 kullanılmaz). Kurallar: `09_calisma_masasi/okunus_kurallari.md`. Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | tamam (durak işaretli dosya kullanıcı yüklemesiyle kuruldu; sekte beş yerde) |
+| 2b | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur; parmak izi denetimli) | tamam |
+| 3 | `tez.py` (kayıtlar `kavramlar/tezler/<ad>/`: salt okunur sürüm dosyaları + zincirli defter + üretilen rapor; farklı eksen gerekçesi, yeniden değerlendirme, destek kapsamı) | tamam |
+| 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`); sayısı farklı kökte otomatik uyarı | tamam |
+| 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`; Sâmî son-harf-zayıf kuralı varsayılan kapalı; Lane kısaltmaları `lane_kisaltmalari.tsv`) | tamam |
+| 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı; "tümünü göster"; hemze/ayn hücre işaretlemesi) | uygulandı — onay bekliyor |
+
+Her aşama sonunda: testler çalışır, sonuç kullanıcıya sayılarla raporlanır, bir sonraki aşama için onay alınır.
+
+## 11. Claude Code çalışma kuralları
+
+- Ham veri katmanlarına yazma. Silme gerekiyorsa önce kapsamı sor.
+- Bir sayı raporlamadan önce onu üreten komutu çalıştır; önceki çıktıyı hatırlamak doğrulama değildir.
+- Test kırılırsa testi değiştirerek geçirme. Önce sebebi bul ve raporla.
+- Bulgu kullanıcının beklentisiyle çelişiyorsa yumuşatmadan yaz.
+- Kod yorumları ve çıktılar Türkçe.

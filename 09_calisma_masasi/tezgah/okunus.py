@@ -1,0 +1,712 @@
+"""Tanzil Uthmani metninden Latin harfli okunuş (Aşama 2a).
+
+Ünsüzler kök gösterimiyle aynı tablodan gelir (harf.py). Kurallar ve
+uygulanmayan kurallar: 09_calisma_masasi/okunus_kurallari.md
+
+Okunuş bir aktarımdır, delil değildir. Kelime sınırları Tanzil'in boşluk
+tokenlarıdır; QAC kelime konumlarıyla doğrudan eşlenmez
+(03_indices/generated/tanzil_qac_alignment.csv).
+
+Bilinmeyen karakter sessizce atlanmaz: BilinmeyenKarakter fırlatılır.
+Kuralın öngörmediği bir dizilim "belirsiz" listesine yazılır ve çıktıda görünür.
+"""
+
+from __future__ import annotations
+
+import json
+import re
+from dataclasses import dataclass, field
+from functools import lru_cache
+from pathlib import Path
+
+from .harf import HARF_LATIN, UNLU_LATIN, UZUN
+from .veri import VeriHatasi, sha256
+
+DEPO = Path(__file__).resolve().parents[2]
+TANZIL_YOLU = DEPO / "01_raw" / "tanzil" / "quran-uthmani.txt"
+TANZIL_SHA256 = "bf4f57b968d03f4131c070b1e285da9be0e0a108a21c910e872801ca273312c8"
+KAYNAK_ADI = "Tanzil Uthmani v1.1"
+
+# Durak işaretli sürüm: ayrı ham dosya (08_scripts/fetch_tanzil_marks.py). Okunuşta yalnız
+# sekte için kullanılır; diğer durak işaretleri yalnız istenirse ve etiketle gösterilir.
+DURAK_YOLU = DEPO / "01_raw" / "tanzil" / "quran-uthmani-durak.txt"
+MANIFEST_YOLU = DEPO / "01_raw" / "tanzil" / "manifest.local.json"
+DURAK_KAYNAK_ADI = "Tanzil Uthmani v1.1 durak işaretli"
+DURAK_ETIKETI = "geleneksel — yorum içerebilir"
+SEKTE = "\u06DC"
+DURAK_ADLARI = {
+    "\u06D6": "ṣlâ (vasl evlâ)",
+    "\u06D7": "qlâ (vakf evlâ)",
+    "\u06D8": "mîm (vakf lâzım)",
+    "\u06D9": "lâ (vakf yok)",
+    "\u06DA": "cîm (vakf câiz)",
+    "\u06DB": "muʿânaqa",
+    SEKTE: "sekte",
+}
+DURAK_KARAKTERLERI = set(DURAK_ADLARI)
+DURAK_ISARETLERI = DURAK_KARAKTERLERI - {SEKTE}                 # U+06D6–06DB
+# Durak işaretli sürümün eklediği, okunuşta kullanılmayan işaretler (parametreler kapatmıyor).
+EK_ISARETLER = {"\u06DE": "rubʿ", "\u06E9": "secde"}
+TEK_BASINA_ISARETLER = DURAK_KARAKTERLERI | set(EK_ISARETLER)     # tek başına token olabilenler
+KARSILASTIRMADA_CIKAN = DURAK_ISARETLERI | set(EK_ISARETLER) | {"\u0640"}
+
+# --- karakter sınıfları ---------------------------------------------------
+FETHA, KESRE, DAMME = "َ", "ِ", "ُ"
+TENVINLER = {"ً", "ٌ", "ٍ"}
+KISA_UNLULER = {FETHA, KESRE, DAMME} | TENVINLER
+SEDDE = "ّ"
+SUKUN = "ْ"
+MEDDE = "ٓ"              # uzatma işareti; okunuşta ayrıca gösterilmez
+HEMZE_UST = "ٔ"          # tatvil üzerinde hemze
+UST_ELIF = "ٰ"           # hançerî elif -> â
+VASL_ELIF = "ٱ"
+TATVIL = "ـ"
+SESSIZ_ISARETLER = {"۟", "۠"}  # ۟ daima okunmaz, ۠ vaslda okunmaz
+IKLAB = {"ۢ", "ۭ"}             # ۢ ۭ küçük mim: n -> m
+KUCUK_SIN_UST = "ۜ"                 # ۜ ص sin okunur
+KUCUK_SIN_ALT = "ۣ"                 # ۣ ص okunur (sin ikinci vecih); gösterilmez
+KUCUK_YA_UST = "ۧ"                  # ۧ -> î
+KUCUK_NUN_UST = "ۨ"                 # ۨ -> n
+IMALE = "۪"                         # ۪ sonraki â -> ê
+ISMAM = "۫"                         # ۫ işmam; duyulmaz, gösterilmez
+TESHIL = "۬"                        # ۬ teshil hemzesi
+KUCUK_VAV, KUCUK_YA = "ۥ", "ۦ"  # ۥ ۦ sıla: û / î
+
+ISARETLER = (
+    KISA_UNLULER | {SEDDE, SUKUN, MEDDE, HEMZE_UST, UST_ELIF, KUCUK_SIN_UST, KUCUK_SIN_ALT,
+                    KUCUK_YA_UST, KUCUK_NUN_UST, IMALE, ISMAM, TESHIL}
+    | SESSIZ_ISARETLER | IKLAB
+)
+HAREKELER = KISA_UNLULER | {SEDDE, SUKUN, UST_ELIF}
+UZATMA_HARFLERI = {"ا", "و", "ي", "ى"}
+TABAN = set(HARF_LATIN) | {"ا", "ى", "ة", VASL_ELIF, TATVIL, KUCUK_VAV, KUCUK_YA}
+
+# Hurûf-ı mukattaa: (harf, Latin harf adı). Belgedeki tablo testle bununla eşitlenir.
+# Adların ilk ünsüzü ortak harf tablosundan gelir (elif adı hemzeyle başlar).
+MUKATTAA_TABLOSU: tuple[tuple[str, str], ...] = (
+    ("ا", "ʾalif"),
+    ("ل", "lâm"),
+    ("م", "mîm"),
+    ("ص", "ṣâd"),
+    ("ر", "râ"),
+    ("ك", "kâf"),
+    ("ه", "hâ"),
+    ("ي", "yâ"),
+    ("ع", "ʿayn"),
+    ("ط", "ṭâ"),
+    ("س", "sîn"),
+    ("ح", "ḥâ"),
+    ("ق", "qâf"),
+    ("ن", "nûn"),
+)
+MUKATTAA_ADLARI = dict(MUKATTAA_TABLOSU)
+
+# Vasl elifli isimler: ibtidâda her zaman "i". İskelet ٱ'dan sonraki ünsüzlerin başıdır:
+#   سم  ٱسْم        بن  ٱبْن, ٱبْنَة, ٱبْنَم
+#   مر  ٱمْرُؤ, ٱمْرَأَة   ثن  ٱثْنَان, ٱثْنَتَان (ٱثْنَتَا, ٱثْنَتَيْن)
+# "3. harf dammeli -> u" kuralı yalnız fiiller içindir; bu isimlerde 3. harfteki
+# damme i'rab ünlüsüdür. Tanzil'de sözcük türü olmadığından iskeletle tanınır.
+# ("ست" bilinçli olarak yok: X. bab fiillerini de yakalar, ör. edilgen ٱسْتُهْزِئَ -> u.)
+VASL_ISIM_ISKELETLERI = ("سم", "بن", "مر", "ثن")
+
+
+# Lafzatullah: Tanzil Uthmani "ٱللَّه" adında hançerî elifi yazmaz; okunuştaki
+# uzun â yazıdan çıkmaz. Sözlüksel istisnalardan biridir (diğeri vasl elifli isimler). Desen: iki lam (ikincisi
+# şeddeli-fethalı) + he + son hareke (+ ٱللَّهُمَّ). ٱللَّهْو, ٱللَّهَب, لَّهُم eşleşmez.
+ALLAH_RE = re.compile("ل[\u0651\u0650]*ل\u0651\u064E\u0647[\u064E\u064F\u0650](?:\u0645\u0651\u064E)?$")
+
+
+class BilinmeyenKarakter(Exception):
+    pass
+
+
+@dataclass
+class Birim:
+    """Bir taban harf ve işaretleri; okunuşta (ünsüz, ünlü) çiftine dönüşür."""
+    taban: str
+    isaretler: list[str] = field(default_factory=list)
+    unsuz: str = ""
+    unlu: str = ""
+    sila: bool = False       # ۥ/ۦ kaynaklı uzun ünlü (vakfta düşer)
+    marbuta: bool = False
+    acik: bool = False       # harekesiz ve sükûnsuz ünsüz (idgam/ihfa adayı)
+    vakfta_uzun: bool = False  # sonraki elif ۠ ile işaretli: vakfta okunur (أَنَا۠)
+
+    def sedde(self) -> bool:
+        return SEDDE in self.isaretler
+
+
+@dataclass
+class KelimeOkunus:
+    arapca: str
+    latin: str
+    belirsiz: list[str] = field(default_factory=list)
+    sekte: bool = False                                  # durak işaretli sürümden
+    duraklar: list[str] = field(default_factory=list)    # sekte dışı durak adları (geleneksel)
+
+
+@dataclass
+class AyetOkunus:
+    sure: int
+    ayet: int
+    kelimeler: list[KelimeOkunus]
+    besmele: list[KelimeOkunus] = field(default_factory=list)
+
+    @property
+    def latin(self) -> str:
+        return " ".join(k.latin for k in self.kelimeler)
+
+    @property
+    def latin_isaretli(self) -> str:
+        """Sekte, kelimeden sonra [sekte] olarak gösterilir."""
+        return " ".join(k.latin + (" [sekte]" if k.sekte else "") for k in self.kelimeler)
+
+    @property
+    def belirsiz(self) -> list[str]:
+        return [b for k in self.besmele + self.kelimeler for b in k.belirsiz]
+
+
+# --- ayrıştırma -------------------------------------------------------------
+
+def _birimlere_ayir(kelime: str) -> list[Birim]:
+    birimler: list[Birim] = []
+    for ch in kelime:
+        if ch in TABAN:
+            birimler.append(Birim(ch))
+        elif ch in ISARETLER:
+            if not birimler:
+                raise BilinmeyenKarakter(f"işaret tabansız: U+{ord(ch):04X} {kelime!r}")
+            birimler[-1].isaretler.append(ch)
+        else:
+            raise BilinmeyenKarakter(f"U+{ord(ch):04X} {ch!r} ({kelime!r})")
+    return birimler
+
+
+def _mukattaa_mi(kelime: str) -> bool:
+    return not any(ch in HAREKELER for ch in kelime)
+
+
+def _mukattaa(kelime: str) -> str:
+    adlar = []
+    for ch in kelime:
+        if ch == MEDDE:
+            continue
+        if ch not in MUKATTAA_ADLARI:
+            raise BilinmeyenKarakter(f"mukattaa harfi tabloda yok: {ch!r} ({kelime!r})")
+        adlar.append(MUKATTAA_ADLARI[ch])
+    return " ".join(adlar)
+
+
+def _unlu(b: Birim) -> str:
+    for i in b.isaretler:
+        if i in UNLU_LATIN:
+            u = UNLU_LATIN[i]
+            if UST_ELIF in b.isaretler and u == "a":
+                return "â"
+            return u
+    if UST_ELIF in b.isaretler:
+        return "â"
+    return ""
+
+
+def _onceki_sesli(birimler: list[Birim], i: int) -> Birim | None:
+    for j in range(i - 1, -1, -1):
+        if birimler[j].unsuz or birimler[j].unlu:
+            return birimler[j]
+    return None
+
+
+def _uzat(onceki: Birim | None, kisa: str, belirsiz: list[str], baglam: str) -> None:
+    """Uzatma harfi/işareti: önceki kısa ünlüyü uzun yapar."""
+    if onceki is None:
+        belirsiz.append(f"uzatma harfinden önce harf yok: {baglam}")
+        return
+    if onceki.unlu in {kisa, ""}:
+        onceki.unlu, onceki.acik = UZUN[kisa], False
+    elif onceki.unlu != UZUN[kisa]:
+        belirsiz.append(f"uzatma '{UZUN[kisa]}' ama önceki ünlü '{onceki.unlu}': {baglam}")
+
+
+def kelime_oku(kelime: str, ayet_basi: bool) -> tuple[list[Birim], list[str]]:
+    """Kelimeyi birimlere çözer ve her birime ünsüz/ünlü atar (vasl ve vakf hariç)."""
+    birimler = _birimlere_ayir(kelime)
+    belirsiz: list[str] = []
+    imale = False
+    allah_lami = None
+    if ALLAH_RE.search(kelime):
+        he = max(i for i, b in enumerate(birimler) if b.taban == "ه")
+        allah_lami = he - 1
+    for i, b in enumerate(birimler):
+        sonraki = birimler[i + 1] if i + 1 < len(birimler) else None
+        onceki = _onceki_sesli(birimler, i)
+        t, isr = b.taban, b.isaretler
+
+        if any(s in isr for s in SESSIZ_ISARETLER):
+            if "\u06E0" in isr and onceki is not None:
+                onceki.vakfta_uzun = True
+            continue                                            # okunmayan harf
+
+        if t == VASL_ELIF:
+            if i == 0 and ayet_basi:                            # ibtidâ
+                if sonraki is not None and sonraki.taban == "ل":
+                    b.unlu = "a"
+                else:
+                    iskelet = "".join(x.taban for x in birimler[1:] if x.taban in HARF_LATIN)
+                    ucuncu = birimler[2] if len(birimler) > 2 else None
+                    if iskelet.startswith(VASL_ISIM_ISKELETLERI):
+                        b.unlu = "i"
+                    else:
+                        b.unlu = "u" if ucuncu is not None and DAMME in ucuncu.isaretler else "i"
+            continue                                            # vaslda okunmaz
+
+        if t == "ا":
+            if TESHIL in isr:
+                b.unsuz, b.unlu = HARF_LATIN["ء"], "a"
+            elif onceki is not None and onceki.unlu in {"an", "am"}:
+                pass                                            # tenvin elifi
+            else:
+                _uzat(onceki, "a", belirsiz, kelime)
+            continue
+
+        if t in {KUCUK_VAV, KUCUK_YA}:
+            _uzat(onceki, "u" if t == KUCUK_VAV else "i", belirsiz, kelime)
+            if onceki is not None:
+                onceki.sila = True
+            continue
+
+        if t == TATVIL:
+            if HEMZE_UST in isr:
+                b.unsuz, b.unlu = HARF_LATIN["ء"], _unlu(b)
+            elif KUCUK_NUN_UST in isr:
+                b.unsuz, b.unlu = "n", _unlu(b)
+            elif KUCUK_YA_UST in isr:
+                _uzat(onceki, "i", belirsiz, kelime)
+            elif UST_ELIF in isr:
+                _uzat(onceki, "a", belirsiz, kelime)
+            continue
+
+        harekeli = any(x in isr for x in KISA_UNLULER | {SUKUN, SEDDE})
+        if t in {"و", "ي", "ى"} and not harekeli:
+            if UST_ELIF in isr:                                 # صَلَوٰة, عَلَىٰ
+                _uzat(onceki, "a", belirsiz, kelime)
+                if imale and onceki is not None and onceki.unlu == "â":
+                    onceki.unlu, imale = "ê", False
+            elif t in {"و", "ي"} and onceki is not None and onceki.unlu == "a":
+                b.unsuz, b.acik = HARF_LATIN[t], True             # عَصَوا۟ وَّ: diftong, idgam adayı
+            elif t == "و":
+                _uzat(onceki, "u", belirsiz, kelime)
+            elif onceki is not None and onceki.unlu in {"a", "an"} and t == "ى":
+                if onceki.unlu == "a":
+                    onceki.unlu = "â"                           # هُدًى: tenvin, ى okunmaz
+            else:
+                _uzat(onceki, "i", belirsiz, kelime)
+            continue
+
+        # ünsüz
+        unsuz = HARF_LATIN.get(t)
+        if unsuz is None:
+            raise BilinmeyenKarakter(f"harf tabloda yok: {t!r} ({kelime!r})")
+        if t == "ص" and KUCUK_SIN_UST in isr:
+            unsuz = HARF_LATIN["س"]
+        b.marbuta = t == "ة"
+        b.unsuz = unsuz * 2 if SEDDE in isr else unsuz
+        b.unlu = _unlu(b)
+        if i == allah_lami:
+            b.unlu = "â"
+        if IMALE in isr:
+            imale = True
+        if any(x in isr for x in IKLAB):
+            if b.unlu.endswith("n"):
+                b.unlu = b.unlu[:-1] + "m"                      # tenvin iklabı
+            elif t == "ن" and not b.unlu:
+                b.unsuz = "m"
+        if not b.unlu and SUKUN not in isr and not any(x in isr for x in IKLAB):
+            if sonraki is not None and sonraki.sedde() and sonraki.taban in HARF_LATIN:
+                b.unsuz = ""                                    # kelime içi idgam: ٱلرَّ, دتّ
+            else:
+                b.acik = True
+    return birimler, belirsiz
+
+
+def _metin(birimler: list[Birim]) -> str:
+    return "".join(b.unsuz + b.unlu for b in birimler)
+
+
+def _vakf(birimler: list[Birim]) -> None:
+    """Ayet sonu durak: son kısa ünlü ve tenvin düşer, fetha tenvini â olur, ة -> h."""
+    for b in reversed(birimler):
+        if not (b.unsuz or b.unlu):
+            continue
+        if b.sila:
+            b.unlu = ""
+        if b.vakfta_uzun and b.unlu in UZUN:
+            b.unlu = UZUN[b.unlu]
+            return
+        if b.marbuta:
+            b.unsuz, b.unlu = "h" * len(b.unsuz), ""
+        elif b.unlu in {"a", "i", "u", "un", "in", "um", "im"}:
+            b.unlu = ""
+        elif b.unlu in {"an", "am"}:
+            b.unlu = "â"
+        return
+
+
+def ayet_oku(sure: int, ayet: int, metin: str,
+             duraklar: dict[int, list[str]] | None = None) -> AyetOkunus:
+    """duraklar: Tanzil token sırası (0'dan, besmele öneki dahil) -> durak işaretleri."""
+    kelimeler = metin.split(" ")
+    duraklar = duraklar or {}
+    onek = 0
+    besmele: list[KelimeOkunus] = []
+    if ayet == 1 and sure not in (1, 9):
+        # Sûre başı besmelesi Tanzil'de ilk ayete önek olarak yazılır; QAC'ta yoktur.
+        # 95:1 ve 97:1'de önekin ilk harfi şeddelidir (بِّسْمِ); karşılaştırmada şedde yok sayılır.
+        bsm = besmele_metni().split(" ")
+        aday = kelimeler[:len(bsm)]
+        if aday and [aday[0].replace(SEDDE, "", 1), *aday[1:]] == bsm:
+            besmele = ayet_oku(1, 1, besmele_metni()).kelimeler
+            kelimeler = kelimeler[len(bsm):]
+            onek = len(bsm)
+    kelime_duraklari = {i - onek: d for i, d in duraklar.items() if i >= onek}
+    sekteli = {i for i, d in kelime_duraklari.items() if SEKTE in d}
+
+    cozulen: list[tuple[str, list[Birim] | None, str, list[str]]] = []
+    for i, k in enumerate(kelimeler):
+        if _mukattaa_mi(k):
+            cozulen.append((k, None, _mukattaa(k), []))
+        else:
+            birimler, belirsiz = kelime_oku(k, ayet_basi=(i == 0))
+            cozulen.append((k, birimler, "", belirsiz))
+
+    # Ayet başında kelime sedde'li harfle başlıyorsa (önceki ayetle vasl yazımı) tek yazılır.
+    if cozulen and cozulen[0][1]:
+        ilk = cozulen[0][1][0]
+        if ilk.unsuz and ilk.sedde():
+            ilk.unsuz = ilk.unsuz[: len(ilk.unsuz) // 2]
+
+    # Kelimeler arası idgam: kelime sedde'li harfle başlıyorsa, önceki kelimenin
+    # sonundaki açık ünsüz ya da tenvin n'si bu harfe dönüşür; baştaki harf tek yazılır.
+    for i in range(1, len(cozulen)):
+        _, birimler, _, belirsiz = cozulen[i]
+        _, onceki, _, onceki_belirsiz = cozulen[i - 1]
+        if birimler is None or onceki is None:
+            continue
+        ilk = birimler[0]
+        if not (ilk.unsuz and ilk.sedde()) or (i - 1) in sekteli:
+            continue
+        tek = ilk.unsuz[: len(ilk.unsuz) // 2]
+        son = next((b for b in reversed(onceki) if b.unsuz or b.unlu), None)
+        if son is not None and son.unlu.endswith(("n", "m")) and son.unlu[:-1] in {"a", "i", "u"}:
+            son.unlu = son.unlu[:-1] + tek
+        elif son is not None and son.acik:
+            son.unsuz = tek
+        else:
+            belirsiz.append(f"kelime başı sedde, önceki kelime açık ünsüzle bitmiyor: {kelimeler[i]}")
+            continue
+        ilk.unsuz = tek
+
+    son_i = len(cozulen) - 1
+    for i, (_, b, _, _) in enumerate(cozulen):
+        if b is not None and (i == son_i or i in sekteli):   # sekte: nefessiz kısa durak
+            _vakf(b)
+
+    sonuc = [
+        KelimeOkunus(
+            k, muk if b is None else _metin(b), bel,
+            sekte=i in sekteli,
+            duraklar=[DURAK_ADLARI[c] for c in kelime_duraklari.get(i, []) if c != SEKTE],
+        )
+        for i, (k, b, muk, bel) in enumerate(cozulen)
+    ]
+    return AyetOkunus(sure, ayet, sonuc, besmele)
+
+
+# --- Tanzil -----------------------------------------------------------------
+
+@lru_cache(maxsize=1)
+def tanzil() -> dict[tuple[int, int], str]:
+    """Tanzil Uthmani v1.1 ayetleri. Sabitlenmiş sha256 tutmazsa VeriHatasi."""
+    if not TANZIL_YOLU.exists():
+        raise VeriHatasi(f"Tanzil dosyası bulunamadı: {TANZIL_YOLU}")
+    gercek = sha256(TANZIL_YOLU)
+    if gercek != TANZIL_SHA256:
+        raise VeriHatasi(f"Tanzil sha256 uyuşmuyor.\n  beklenen: {TANZIL_SHA256}\n  bulunan : {gercek}")
+    ayetler: dict[tuple[int, int], str] = {}
+    with TANZIL_YOLU.open("r", encoding="utf-8-sig", newline="") as f:
+        for ham in f:
+            satir = ham.rstrip("\r\n")
+            if not satir or satir.startswith("#"):
+                continue
+            s, a, metin = satir.split("|", 2)
+            ayetler[(int(s), int(a))] = metin
+    return ayetler
+
+
+def _isaret_tokeni(tok: str) -> bool:
+    return all(c in TEK_BASINA_ISARETLER for c in tok)
+
+
+def denklik_tokenlari(metin: str) -> list[str]:
+    """Durak işaretli sürüm ↔ taban metin karşılaştırma biçimi.
+
+    Tek başına duran işaret tokenları (U+06D6–06DC, U+06DE, U+06E9) düşer; kalan tokenlardan
+    U+06D6–06DB, U+06DE, U+06E9 ve tatvil U+0640 çıkarılır. Kelimeye bitişik U+06DC korunur
+    (2:245 ve 7:69'da ص üzerindeki "sin okunur" işareti tabanda da vardır).
+    """
+    sonuc = []
+    for tok in metin.split():
+        if _isaret_tokeni(tok):
+            continue
+        t = "".join(c for c in tok if c not in KARSILASTIRMADA_CIKAN)
+        if t:
+            sonuc.append(t)
+    return sonuc
+
+
+def durak_yukle(yol: Path, manifest_yolu: Path, taban: dict[tuple[int, int], str]):
+    """Durak işaretli dosyayı okur ve taban metne göre token sırasına bağlar.
+
+    Denetimler: sha256 manifest kaydıyla aynı; denklik_tokenlari() biçiminde her ayet taban
+    metinle birebir aynı. Tutmazsa VeriHatasi. Dönüş: (sûre, ayet) -> {token sırası: [işaretler]}.
+    Sekte yalnız tek başına duran U+06DC'dir. Durak işareti (U+06D6–06DB) kelimeye bitişikse o
+    kelimeye, ayrı tokensa önceki kelimeye bağlanır. Rubʿ (U+06DE) ve secde (U+06E9) kullanılmaz.
+    """
+    kayit = None
+    if manifest_yolu.exists():
+        manifest = json.loads(manifest_yolu.read_text(encoding="utf-8"))
+        ad = yol.name
+        kayit = next((f for f in manifest.get("files", []) if Path(f["file"]).name == ad), None)
+    if kayit is None:
+        raise VeriHatasi(f"{yol.name} manifest'te kayıtlı değil: {manifest_yolu}")
+    gercek = sha256(yol)
+    if gercek != kayit["sha256"]:
+        raise VeriHatasi(f"{yol.name} sha256 manifest ile uyuşmuyor.\n  manifest: {kayit['sha256']}\n  bulunan : {gercek}")
+
+    sonuc: dict[tuple[int, int], dict[int, list[str]]] = {}
+    gorulen = set()
+    with yol.open("r", encoding="utf-8-sig", newline="") as f:
+        for ham in f:
+            satir = ham.rstrip("\r\n")
+            if not satir or satir.startswith("#"):
+                continue
+            s_, a_, metin = satir.split("|", 2)
+            anahtar = (int(s_), int(a_))
+            gorulen.add(anahtar)
+            if denklik_tokenlari(metin) != denklik_tokenlari(taban.get(anahtar, "")):
+                raise VeriHatasi(f"{yol.name}: {anahtar[0]}:{anahtar[1]} işaretler ve tatvil çıkarılınca "
+                                 f"taban metinle aynı değil")
+            isaretler: dict[int, list[str]] = {}
+            j = -1
+            for tok in metin.split():
+                if _isaret_tokeni(tok):
+                    # tek başına duran durak/sekte önceki kelimeye bağlanır; rubʿ ve secde kullanılmaz
+                    if j >= 0:
+                        isaretler.setdefault(j, []).extend(c for c in tok if c in DURAK_KARAKTERLERI)
+                    continue
+                j += 1
+                bitisik = [c for c in tok if c in DURAK_ISARETLERI]   # bitişik U+06DC durak değildir
+                if bitisik:
+                    isaretler.setdefault(j, []).extend(bitisik)
+            isaretler = {k: v for k, v in isaretler.items() if v}
+            if isaretler:
+                sonuc[anahtar] = isaretler
+    if gorulen != set(taban):
+        raise VeriHatasi(f"{yol.name}: ayet kümesi taban metinle aynı değil ({len(gorulen)} ↔ {len(taban)})")
+    return sonuc
+
+
+@lru_cache(maxsize=1)
+def durak_isaretleri():
+    """Kuruluysa durak işaretleri; kurulu değilse None."""
+    if not DURAK_YOLU.exists():
+        return None
+    return durak_yukle(DURAK_YOLU, MANIFEST_YOLU, tanzil())
+
+
+def besmele_metni() -> str:
+    return tanzil()[(1, 1)]
+
+
+def oku(sure: int, ayet: int) -> AyetOkunus:
+    metin = tanzil().get((sure, ayet))
+    if metin is None:
+        raise KeyError(f"Tanzil'de ayet yok: {sure}:{ayet}")
+    dur = durak_isaretleri()
+    return ayet_oku(sure, ayet, metin, dur.get((sure, ayet)) if dur else None)
+
+
+# --- komut ------------------------------------------------------------------
+
+# --- lemma okunuşu (bağlamsız; kurallar: okunus_kurallari.md §6) ---------------
+
+# QAC genişletilmiş Buckwalter'ının lemma alanında geçen, veri.BW_ARAPCA'da olmayan işaretleri.
+# Karşılıklar Tanzil'in aynı işaretleridir; okunuş motoru onları zaten tanır (§5).
+QAC_EK_ISARETLER = {
+    "^": "\u0653",   # medde
+    "#": "\u0654",   # üst hemze (tatvil üstünde: _#)
+    "[": "\u06E2",   # küçük üst mim (iklab)
+    ",": "\u06E5",   # küçük vav (sıla)
+    ".": "\u06E6",   # küçük ye (sıla)
+    "@": "\u06DF",   # yuvarlak sıfır (okunmayan harf)
+}
+LEMMA_NO_RE = re.compile(r"(\d+)$")   # QAC eşsesli lemma ayırıcısı: EaSaA / EaSaA2
+# Lafzatullah (§4 kural 5'in lemma karşılığı): QAC lemması harekesiz yazılır (ٱللّه), motorun ALLAH_RE
+# deseni ayet metnindeki harekeli yazımı arar; lemmada uzun â doğrudan verilir.
+LEMMA_LAFZATULLAH = {"{ll~ah": "allâh", "{ll~ahum~a": "allâhumma"}
+
+
+@dataclass
+class LemmaOkunus:
+    bw: str
+    latin: str
+    no: str = ""                 # eşsesli lemma numarası (QAC: EaSaA2 -> "2")
+    belirsiz: tuple[str, ...] = ()
+
+    @property
+    def gosterim(self) -> str:
+        return self.latin + (f" ({self.no})" if self.no else "")
+
+
+def _lemma_tenvini(birimler: list[Birim]) -> None:
+    """Lemmadaki tenvin durum ekidir (QAC lemmaların çoğunda yoktur; 24'ünde vardır), sözlük başlığında düşer:
+    zamme/kesre tenvini düşer (ʾabun → ʾab); ى üzerindeki fetha tenvini vakftaki gibi â olur (hudan → hudâ);
+    ـًا sözcükseldir ve kalır (ʾiẕan, ʾabadan)."""
+    anlamli = [i for i, b in enumerate(birimler) if b.unsuz or b.unlu]
+    if not anlamli:
+        return
+    i = anlamli[-1]
+    son = birimler[i]
+    if son.unlu in {"un", "in", "um", "im"}:
+        son.unlu = ""
+    elif son.unlu in {"an", "am"} and i + 1 < len(birimler) and birimler[i + 1].taban == "ى":
+        son.unlu = "â"
+
+
+@lru_cache(maxsize=None)
+def lemma_okunusu(bw: str) -> LemmaOkunus:
+    """QAC lemmasının tek başına okunuşu: bağlamsız (ibtidâ), vakf uygulanmaz, yazıldığı harekelerle.
+
+    Ayet içindeki biçimden farkı (okunus_kurallari.md §6): komşu kelime yok (vasl, kelimeler arası idgam yok); vasl elifi
+    ibtidâ ünlüsüyle okunur; lemma QAC'ta durum eki taşımadığı için son ünlü eklenmez; ة `t` kalır
+    (vakf biçimi `h` kullanılmaz: ṣalât, ṣalâh değil).
+    """
+    from .veri import BW_ARAPCA
+    m = LEMMA_NO_RE.search(bw)
+    govde = bw[: m.start()] if m else bw
+    if govde in LEMMA_LAFZATULLAH:
+        return LemmaOkunus(bw, LEMMA_LAFZATULLAH[govde], m.group(1) if m else "")
+    if govde.endswith("["):
+        # Sondaki iklab işareti bağlamsız okumada anlamsızdır (sonraki kelime yok): nasofaEF[.
+        govde = govde[:-1]
+    if govde.startswith("A^"):
+        # QAC kelime başı آ'yı "elif + medde" yazar; Tanzil (ve motor) aynı sesi ءَا ile yazar: ʾâ.
+        govde = "'aA" + govde[2:]
+    arapca = []
+    for ch in govde:
+        karsilik = QAC_EK_ISARETLER.get(ch) or BW_ARAPCA.get(ch)
+        if karsilik is None:
+            raise BilinmeyenKarakter(f"lemma {bw!r}: bilinmeyen Buckwalter karakteri {ch!r}")
+        arapca.append(karsilik)
+    birimler, belirsiz = kelime_oku("".join(arapca), ayet_basi=True)
+    if birimler and birimler[0].unsuz and birimler[0].sedde():
+        # Şeddeli harfle başlayan lemma (QAC, önceki kelimeyle idgamlı biçimi yazar: m~ula`quwA):
+        # ayet başındaki gibi tek yazılır (ayet_oku ile aynı kural).
+        birimler[0].unsuz = birimler[0].unsuz[: len(birimler[0].unsuz) // 2]
+    _lemma_tenvini(birimler)
+    return LemmaOkunus(bw, _metin(birimler), m.group(1) if m else "", tuple(belirsiz))
+
+
+def _ayet_ayristir(ref: str) -> tuple[int, int]:
+    from .tara import GirdiHatasi
+    parca = ref.split(":")
+    if len(parca) != 2 or not all(p.isdigit() for p in parca):
+        raise GirdiHatasi(f"Ayet referansı sûre:ayet biçiminde olmalı: {ref!r}")
+    anahtar = (int(parca[0]), int(parca[1]))
+    if anahtar not in tanzil():
+        raise GirdiHatasi(f"Tanzil'de böyle bir ayet yok: {ref}")
+    return anahtar
+
+
+def mukattaa_taramasi() -> list[tuple[int, int, int, str, str]]:
+    """Tüm korpusta harekesiz (mukattaa) Tanzil tokenları: (sûre, ayet, token no, harfler, okunuş).
+
+    Token no, sûre başı besmele öneki çıkarıldıktan sonraki sıradır (1'den).
+    """
+    sonuc = []
+    for (s, a), metin in tanzil().items():
+        o = ayet_oku(s, a, metin)
+        for i, k in enumerate(o.kelimeler, 1):
+            if _mukattaa_mi(k.arapca):
+                sonuc.append((s, a, i, k.arapca.replace(MEDDE, ""), k.latin))
+    return sonuc
+
+
+def mukattaa_komutu():
+    from .tara import Sonuc, _tablo
+    liste = mukattaa_taramasi()
+    ayetler = {(s, a) for s, a, *_ in liste}
+    sureler = {s for s, *_ in liste}
+    harfler = sorted({h for *_, hf, _ in liste for h in hf})
+    satirlar = [
+        "Hurûf-ı mukattaa taraması — Tanzil Uthmani (harekesiz token)",
+        f"token: {len(liste)} | ayet: {len(ayetler)} | sûre: {len(sureler)} | farklı harf: {len(harfler)}",
+        "",
+        *_tablo(["ayet", "token no", "harf sayısı", "okunuş"],
+                [[f"{s}:{a}", i, len(hf), lt] for s, a, i, hf, lt in liste], sag={1, 2}),
+    ]
+    veri = {"token": len(liste), "ayet": len(ayetler), "sure": len(sureler), "harf": len(harfler)}
+    return Sonuc(satirlar, ["ayet", "sûre"], veri, kaynak=KAYNAK_ADI, veri_izi=TANZIL_SHA256[:12])
+
+
+def okunus_komutu(refler: list[str], arapca: bool = False, durak: bool = False):
+    from .tara import GirdiHatasi, Sonuc, _tablo
+    if not refler:
+        raise GirdiHatasi("En az bir ayet referansı (ör. 2:3) ya da --mukattaa verilmeli.")
+    anahtarlar = [_ayet_ayristir(r) for r in refler]
+    dur = durak_isaretleri()
+    satirlar = ["Okunuş — Tanzil Uthmani metninden kurallı aktarım (delil değil; kurallar: okunus_kurallari.md)"]
+    if dur is None:
+        satirlar.append("Not: durak işaretli Tanzil sürümü kurulu değil; sekte gösterilemiyor "
+                        "(kurulum: python 08_scripts/fetch_tanzil_marks.py).")
+        if durak:
+            raise GirdiHatasi("--durak için durak işaretli Tanzil sürümü kurulu olmalı.")
+    else:
+        satirlar.append("Sekte: Tanzil durak işaretli sürümünden; kelimeden sonra [sekte] olarak gösterilir.")
+    if durak:
+        satirlar.append(f"Durak işaretleri gösteriliyor — {DURAK_ETIKETI}.")
+    veri = {}
+    for s, a in anahtarlar:
+        o = oku(s, a)
+        veri[f"{s}:{a}"] = o.latin
+        satirlar += ["", f"Ayet {s}:{a}"]
+        if o.besmele:
+            satirlar.append("  [sûre başı besmelesi — Tanzil öneki, QAC'ta bu ayete dahil değil] "
+                            + " ".join(k.latin for k in o.besmele))
+        satirlar.append("  " + o.latin_isaretli)
+        sekte_var = any(k.sekte for k in o.kelimeler)
+        basliklar = ["no", "okunuş"]
+        if sekte_var:
+            basliklar.append("sekte")
+        if durak:
+            basliklar.append(f"durak ({DURAK_ETIKETI})")
+        if arapca:
+            basliklar.append("Tanzil (denetim için)")
+        tablo = []
+        for i, k in enumerate(o.kelimeler, 1):
+            satir = [i, k.latin]
+            if sekte_var:
+                satir.append("sekte" if k.sekte else "")
+            if durak:
+                satir.append(", ".join(k.duraklar))
+            if arapca:
+                satir.append(k.arapca)
+            tablo.append(satir)
+        satirlar += ["", "  Kelime kelime (Tanzil boşluk tokenı; QAC kelime konumu değildir):"]
+        satirlar += ["  " + x for x in _tablo(basliklar, tablo, sag={0})]
+        for b in o.belirsiz:
+            satirlar.append(f"  BELİRSİZ: {b}")
+    kaynak, iz = KAYNAK_ADI, TANZIL_SHA256[:12]
+    if dur is not None:
+        kaynak += f" | + {DURAK_KAYNAK_ADI}"
+        iz += f" | {sha256(DURAK_YOLU)[:12]}"
+    return Sonuc(satirlar, [], veri, kaynak=kaynak, veri_izi=iz)

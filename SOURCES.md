@@ -12,6 +12,7 @@ Bu dosya repoda gerçekten bulunan kaynaklarla yalnız aday/yardımcı kaynaklar
 - Lisans bildirimi: CC BY 3.0 + Tanzil'in ek verbatim/değiştirmeme kullanım şartı
 - Durum: ham dosyalar mevcut; SHA-256 değerleri validator içinde sabitlenmiş ve her push/PR'da doğrulanır.
 - Uyarı: Tanzil Uthmani v1.1 kelime tokenizasyonu QAC v0.4 ile birebir aynı değildir. `tanzil_qac_alignment.csv` kullanılmalıdır.
+- Durak işaretli sürüm (`01_raw/tanzil/quran-uthmani-durak.txt`, `marks=true`): ayrı ham dosya, `08_scripts/fetch_tanzil_marks.py` ile indirilir ve kaynak adresi + sha256 `manifest.local.json`'a işlenir. Çalışma masasında yalnız sekte için kullanılır; diğer durak işaretleri geleneksel — yorum içerebilir. Durum: kurulu (sha256 `7f30c647331a…`); oturumdan tanzil.net 403 döndüğü için kullanıcı yükledi, `--dosyadan` denetimleriyle kabul edildi (manifest `edinim` alanı).
 
 ## 2 — Quranic Arabic Corpus v0.4 — PRESENT
 
@@ -51,6 +52,15 @@ Bu dosya repoda gerçekten bulunan kaynaklarla yalnız aday/yardımcı kaynaklar
 - Durum: asıl veri tabanı bu repoda yoktur; eski `api.acikkuran.com` REST endpoint'i çekirdek workflow'dan çıkarılmıştır.
 - İlke: erişilebilir olduğunda yardımcı kontrol sağlar; çekirdek analiz için zorunlu değildir.
 
+## 6a — mustafa0x/quran-morphology — LOCAL ONLY (yerel/)
+
+- Kaynak: https://github.com/mustafa0x/quran-morphology, commit `8f38b39016824284f9ed16ae15069ff9102c4acf` (2018-06-19)
+- Dosya: `quran-morphology.txt`, sha256 `742bfac59941b2cb09736d5b7aae694af50792261fb8450cbf6afafcc340645f`, LF satır sonu
+- Niteliği: QAC v0.4 çatalı (Arapça harf, düzeltilmiş kök/lemma, farklı segmentasyon). 77.429 kelime konumu, 130.030 segment, 1.651 kök.
+- Lisans: depoda lisans dosyası yok; QAC v0.4 kullanım şartı değiştirilmiş kopyayı yasaklar. Bu yüzden veri depoya işlenmez; `09_calisma_masasi/yerel/quran-morphology/` altına `python -m tezgah kur quran-morphology` ile kurulur (commit ve sha256 sabit).
+- Rol: ikinci annotation katmanı — çapraz kontrol, delil değil. Rapor: `03_indices/audits/qac_quranmorphology.md`.
+- SinaLab QuranMorph (§6) ile karıştırılmamalıdır.
+
 ## 6 — QuranMorph — INFRASTRUCTURE ONLY
 
 - Proje: SinaLab / Birzeit University
@@ -64,6 +74,18 @@ Bu dosya repoda gerçekten bulunan kaynaklarla yalnız aday/yardımcı kaynaklar
 - Site: https://cal.huc.edu/
 - Rol: Aramice tarihsel kognat kontrolü
 - Durum: toplu offline snapshot yok; yeniden dağıtım koşulları teyit edilmeden veri kopyalanmaz.
+
+## 7a — Lane, An Arabic-English Lexicon (LexiconDatabase v1.0.9) — LOCAL ONLY (yerel/)
+
+- Kaynak: https://github.com/laneslexicon/LexiconDatabase, commit `b371ab16b963def3085674a516e5f45d9c787b1d` (etiket v1.0.9)
+- `lexicon.sqlite.zip` sha256 `eff9e0528572a1d2d4bc7097da78d938d6db444b0e99e8f1ef4f010c8ab15463`; `lexicon.sqlite` sha256 `a16651d5381bbeccf5e26a58a3be77f36e5225374404117835abef90b791ef49`
+- Lisans: veritabanı GPLv3; Lane metni (1863-93) kamu malı. Boyut (265 MB) nedeniyle depoya işlenmez; `python -m tezgah kur lane`.
+- Rol: hipotez kaynağı, delil değil (dairesellik; ك sonrası seyrelme). Ölçüm: `03_indices/audits/ikincil_katmanlar.md`.
+
+## 8a — SEDRA 3 (sedrajs deposundaki değiştirilmemiş dosyalar) — LOCAL ONLY (yerel/)
+
+- Kaynak: https://github.com/peshitta/sedrajs, commit `ba6684a97e80cde14cc2b51903d8f802a1a19ab1`, `sedra/ROOTS.TXT`, `LEXEMES.TXT`, `ENGLISH.TXT`, `SEDRA3.DOC` (sha256'lar `tezgah/ikincil/sami.py` içinde sabit; CRLF)
+- Lisans: kişisel/akademik kullanım; değiştirilmiş dosya dağıtılamaz, ticari kullanılamaz; yayında atıf zorunlu (`python -m tezgah sami atif`). Depoya işlenmez; `python -m tezgah kur sedra`.
 
 ## 8 — SEDRA / Beth Mardutho — ONLINE REFERENCE
 

@@ -1,0 +1,4 @@
+# Satır sonu çevirisi kapalı. Veri dosyaları sha256 ile doğrulanır; Windows'ta git'in varsayılanı
+# (core.autocrlf=true) LF dosyaları CRLF'ye çevirip sha'yı değiştirir (ör. 01_raw/tanzil/quran-uthmani.txt).
+# Dosyalar depodaki baytlarıyla alınır ve işlenir; QAC gibi CRLF dosyalar da olduğu gibi kalır.
+* -text

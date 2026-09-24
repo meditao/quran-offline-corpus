@@ -1,0 +1,34 @@
+# Lane kaynak kısaltmaları — kategori ve dayanak tablosu (tezgah/ikincil/lane.py bu dosyayı okur).
+# Lane hipotez kaynağıdır, delil değildir; bu tablo yalnız Lane maddelerindeki atıfları işaretlemek içindir.
+#
+# Sütunlar:
+#   kisaltma           Lane maddelerinde parantez içinde geçen biçim (büyük/küçük harf duyarlı).
+#   kategori           sözlük | tefsir | hadis | dil bilgisi. tefsir ve hadis kategorileri `lane kok` çıktısında işaretlenir.
+#   kaynak             kısaltmanın karşılığı olan eser (yazar).
+#   kimlik_dayanagi    kısaltma → eser eşlemesinin dayanağı:
+#                        onsoz-dogrulanmadi : Lane'in önsözündeki kısaltma listesi. LexiconDatabase'de önsöz
+#                                             yok; eşleme bu depoda veriyle doğrulanmadı (genel bilgi, elle atandı).
+#   veri_deseni        eşlemeyi dolaylı destekleyen, Lane maddelerinde aranabilecek düzenli ifade (yoksa "-").
+#                      `lane sigla` eşleşen madde sayısını her çalıştırmada yeniden sayar; sayı buraya yazılmaz.
+#   kategori_dayanagi  kategorinin dayanağı:
+#                        olcum:kur   atfın ±300 karakterinde "Kur" (Kur'an atfı) geçme oranı, sözlük kategorisi
+#                                    ortancasının en az 3 katı olmalı. `lane sigla` her çalıştırmada ölçer.
+#                        olcum:trad  aynı ölçüm "trad." / "trads." (hadis) için.
+#                        elle        veriden ayırt edici bir işaret ölçülmedi; kategori elle atandı.
+kisaltma	kategori	kaynak	kimlik_dayanagi	veri_deseni	kategori_dayanagi
+S	sözlük	eṣ-Ṣiḥāḥ (Cevherî)	onsoz-dogrulanmadi	-	elle
+K	sözlük	el-Ḳāmūsu'l-muḥīṭ (Fîrûzâbâdî)	onsoz-dogrulanmadi	\bKámoos\b	elle
+TA	sözlük	Tâcü'l-ʿarûs (Murtażâ ez-Zebîdî)	onsoz-dogrulanmadi	-	elle
+M	sözlük	el-Muḥkem (İbn Sîde)	onsoz-dogrulanmadi	\bMohkam\b	elle
+Msb	sözlük	el-Miṣbāḥu'l-münîr (Feyyûmî)	onsoz-dogrulanmadi	-	elle
+T	sözlük	Tehẕîbü'l-luġa (Ezherî)	onsoz-dogrulanmadi	-	elle
+A	sözlük	Esâsü'l-belâġa (Zemahşerî)	onsoz-dogrulanmadi	\bAsás\b	elle
+Mgh	sözlük	el-Muġrib (Muṭarrizî)	onsoz-dogrulanmadi	-	elle
+O	sözlük	el-ʿUbâb (Ṣaġânî)	onsoz-dogrulanmadi	-	elle
+L	sözlük	Lisânü'l-ʿArab (İbn Manẓûr)	onsoz-dogrulanmadi	-	elle
+Bd	tefsir	Envârü't-tenzîl (Beyżâvî)	onsoz-dogrulanmadi	\bBeyd\b	olcum:kur
+Jel	tefsir	Tefsîrü'l-Celâleyn	onsoz-dogrulanmadi	Jeláleyn	olcum:kur
+Ksh	tefsir	el-Keşşâf (Zemahşerî)	onsoz-dogrulanmadi	Keshsháf	olcum:kur
+IAth	hadis	en-Nihâye fî ġarîbi'l-ḥadîs (İbnü'l-Esîr)	onsoz-dogrulanmadi	-	olcum:trad
+Nh	hadis	en-Nihâye fî ġarîbi'l-ḥadîs (İbnü'l-Esîr)	onsoz-dogrulanmadi	-	olcum:trad
+Mughnee	dil bilgisi	Muġni'l-lebîb (İbn Hişâm)	onsoz-dogrulanmadi	\bthe Mughnee\b	elle

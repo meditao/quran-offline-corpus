@@ -11,6 +11,7 @@ ayrıca teyit edilmeden yalnız online referans olarak kullanılır.
 from __future__ import annotations
 
 import json
+import os
 import shutil
 import subprocess
 from pathlib import Path
@@ -19,9 +20,13 @@ ROOT = Path(__file__).resolve().parents[1]
 LOCK = ROOT / "04_lexicons" / "semitic" / "VENDOR_LOCK.json"
 
 
+# Alt süreçlere UTF-8 ortamı geçirilir (Windows yerel kod sayfasından bağımsız).
+UTF8_ORTAM = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
+
+
 def run(*args: str, cwd: Path | None = None) -> None:
     print("+", " ".join(args))
-    subprocess.run(args, cwd=cwd, check=True)
+    subprocess.run(args, cwd=cwd, check=True, env=UTF8_ORTAM)
 
 
 def main() -> None:
@@ -37,7 +42,7 @@ def main() -> None:
         run("git", "checkout", "--detach", source["ref"], cwd=target)
 
         actual = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=target, text=True
+            ["git", "rev-parse", "HEAD"], cwd=target, env=UTF8_ORTAM, encoding="utf-8"
         ).strip()
         if actual != source["ref"]:
             raise SystemExit(
