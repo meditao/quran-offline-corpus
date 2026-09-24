@@ -13,7 +13,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from . import okunus, tara, veri
+from . import kavram, okuma, okunus, tara, veri
 from .kayit import CALISTIRILMADI, Kayit, komut_metni
 
 TESTLER = Path(__file__).resolve().parents[1] / "testler"
@@ -116,6 +116,23 @@ def parser_kur() -> argparse.ArgumentParser:
     s.set_defaults(islev=lambda k, n: okunus.mukattaa_komutu() if n.mukattaa
                    else okunus.okunus_komutu(n.ayetler, n.arapca, n.durak),
                    korpus_gerekmez=True, veri_kaynagi="tanzil")
+
+    s = alt.add_parser("ayet", help="ayet görünümü: okunuş + kelime çözümlemesi + çalışma çevirisi (+ meal)")
+    s.add_argument("ayet", help="sûre:ayet, ör. 2:3")
+    s.add_argument("--meal", action="store_true", help="meal (kurumsal okuma — sınanan, delil değil)")
+    s.add_argument("--arapca", action="store_true", help="denetim için Tanzil kelimesini yanında göster")
+    s.set_defaults(islev=lambda k, n: okuma.ayet_komutu(n.ayet, n.meal, n.arapca))
+
+    s = alt.add_parser("ceviri", help="çalışma çevirisi ekle/göster (kullanıcının yorumu)")
+    s.add_argument("ayet")
+    s.add_argument("metin", nargs="?", help="verilirse yeni sürüm olarak eklenir")
+    s.set_defaults(islev=lambda k, n: okuma.ceviri_komutu(n.ayet, n.metin), korpus_gerekmez=True)
+
+    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal)")
+    s.add_argument("ne", choices=["meal"])
+    s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne), korpus_gerekmez=True)
+
+    kavram.parser_ekle(alt)
     return p
 
 

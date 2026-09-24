@@ -3,7 +3,7 @@
 Talimat ve ilkeler: depo kökündeki [`CLAUDE.md`](../CLAUDE.md). Kanonik korpus **QAC v0.4**.
 Bu katman `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` klasörlerinden yalnız okur.
 
-Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri) ve **Aşama 2a** (`harf.py`, `okunus.py`). Python 3.10+; dış bağımlılık yok.
+Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri), **Aşama 2a** (`harf.py`, `okunus.py`) ve **Aşama 2b** (`okuma.py`, `kavram.py`). Python 3.10+; dış bağımlılık yok.
 
 ## Çalıştırma
 
@@ -27,7 +27,11 @@ Depo kökünden: `PYTHONPATH=09_calisma_masasi python -m tezgah ...`
 | `etiket` | `etiket PRON:3MP "(X)"` | segment |
 | `birlikte` | `birlikte Amn Eml --pencere 3` | ayet (pencerede ayrıca kelime konumu çifti) |
 | `kalip` | `kalip "ROOT:Amn&POS:V PRON:3MP bi+"` | segment dizisi |
-| `okunus` | `okunus 2:3 30:30` · `okunus 1:1 --arapca` · `okunus --mukattaa` | — (Tanzil Uthmani v1.1; aktarım, delil değil); `--mukattaa`: ayet / sûre |
+| `okunus` | `okunus 2:3 30:30` · `okunus 1:1 --arapca` · `okunus --mukattaa` · `okunus 2:3 --durak` | — (Tanzil Uthmani v1.1; aktarım, delil değil); `--mukattaa`: ayet / sûre |
+| `ayet` | `ayet 2:3` · `ayet 2:3 --meal` | kelime konumu (okunuş + QAC çözümlemesi + çalışma çevirisi; meal isteğe bağlı) |
+| `ceviri` | `ceviri 2:3 "..."` · `ceviri 2:3` | — (kullanıcının yorumu) |
+| `kur` | `kur meal` | — (yerel/, depoya işlenmez) |
+| `kavram` | `kavram ac salat --soru "..." --kok Slw` · `kavram sorgu salat --bolum asama2 -- kalip "ROOT:Slw&POS:V"` · `kavram ayet salat 2:3` · `kavram oneri salat ...` · `kavram yenile salat` · `kavram denetle salat` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
 
 Kurallar:
 
@@ -52,5 +56,6 @@ Her çıktı §8 kayıt bloğuyla biter (kaynak, sayım birimi, tam komut, veri 
 
 - `tezgah/` — Python paketi
 - `testler/` — sağlama testleri (`unittest`; CI'da `core-integrity.yml` içinde de çalışır)
-- `yerel/` — depoya işlenmeyen yerel veri (`.gitignore`)
+- `kavramlar/` — çalışma çevirisi ve kavram dosyaları
+- `yerel/` — depoya işlenmeyen yerel veri (`.gitignore`): meal
 - `okunus_kurallari.md` — okunuş ve kök gösteriminin ortak harf tablosu ve kuralları
