@@ -105,6 +105,8 @@ def main() -> None:
         "isaret_sayilari": {f"U+{ord(c):04X}": n for c, n in sorted(sayim.items())},
         "eklenen_tatvil": tatvil_farki,
         "tek_basina_sekte": [f"{s}:{a}" for s, a in sekte],
+        **({"edinim": "kullanıcı tarafından yüklendi (--dosyadan); source_url kullanıcı beyanı"}
+           if args.dosyadan else {"edinim": "betik tarafından indirildi"}),
         "note": "Durak işaretli sürüm. Okunuşta yalnız sekte (U+06DC) için kullanılır; "
                 "diğer durak işaretleri geleneksel — yorum içerebilir.",
     })

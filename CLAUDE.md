@@ -47,7 +47,7 @@ Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. �
 | morfoloji (**kanonik**) | QAC v0.4 | `02_morphology/qac`, `03_indices` | delil |
 | morfoloji (ikinci annotation) | mustafa0x/quran-morphology | yok → §5 | çapraz kontrol |
 | okunuş | Tanzil'den kurallı aktarım (`okunus.py`, `okunus_kurallari.md`) | üretilir | aktarım, delil değil |
-| durak işaretleri | Tanzil Uthmani v1.1 `marks=true` (`08_scripts/fetch_tanzil_marks.py`) | `01_raw/tanzil/quran-uthmani-durak.txt` (henüz indirilmedi) | okunuşta yalnız sekte; diğerleri "geleneksel — yorum içerebilir" |
+| durak işaretleri | Tanzil Uthmani v1.1 `marks=true` (`08_scripts/fetch_tanzil_marks.py`) | `01_raw/tanzil/quran-uthmani-durak.txt` | okunuşta yalnız sekte; diğerleri "geleneksel — yorum içerebilir" |
 | kurumsal meal | fawazahmed0/quran-api `tur-diyanetisleri` (`python -m tezgah kur meal`) | `yerel/meal/` (depoya işlenmez) | sınanan okuma, delil değil |
 | çalışma çevirisi | kullanıcı | `kavramlar/` | kullanıcının yorumu |
 | Lane | LexiconDatabase v1.0.9 | yok → `yerel/` | hipotez |
@@ -138,7 +138,7 @@ Durum       : çalıştırıldı | çalıştırılmadı
 |---|---|---|
 | 0 | depo incelemesi, bu dosya | tamam |
 | 1 | `veri.py` + `tara.py` + `kayit.py` + sağlama testleri | tamam |
-| 2a | `okunus.py`: okunuş Tanzil Arapçasından, kök gösterimiyle aynı harf tablosuyla üretilir (fawazahmed0 kullanılmaz). Kurallar: `09_calisma_masasi/okunus_kurallari.md`. Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | tamam — **açık:** durak işaretli Tanzil dosyası indirilemedi (ağ politikasına tanzil.net eklendikten sonra da bu oturumdan 403), sekte gösterilmiyor |
+| 2a | `okunus.py`: okunuş Tanzil Arapçasından, kök gösterimiyle aynı harf tablosuyla üretilir (fawazahmed0 kullanılmaz). Kurallar: `09_calisma_masasi/okunus_kurallari.md`. Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | tamam (durak işaretli dosya kullanıcı yüklemesiyle kuruldu; sekte beş yerde) |
 | 2b | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur; parmak izi denetimli) | tamam |
 | 3 | `tez.py` (kayıtlar `kavramlar/tezler/<ad>/`: salt okunur sürüm dosyaları + zincirli defter + üretilen rapor) | uygulandı — onay bekliyor |
 | 4 | ikinci annotation katmanı ve çapraz denetim raporu | |

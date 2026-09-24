@@ -12,7 +12,7 @@ Bu dosya repoda gerçekten bulunan kaynaklarla yalnız aday/yardımcı kaynaklar
 - Lisans bildirimi: CC BY 3.0 + Tanzil'in ek verbatim/değiştirmeme kullanım şartı
 - Durum: ham dosyalar mevcut; SHA-256 değerleri validator içinde sabitlenmiş ve her push/PR'da doğrulanır.
 - Uyarı: Tanzil Uthmani v1.1 kelime tokenizasyonu QAC v0.4 ile birebir aynı değildir. `tanzil_qac_alignment.csv` kullanılmalıdır.
-- Durak işaretli sürüm (`01_raw/tanzil/quran-uthmani-durak.txt`, `marks=true`): ayrı ham dosya, `08_scripts/fetch_tanzil_marks.py` ile indirilir ve kaynak adresi + sha256 `manifest.local.json`'a işlenir. Çalışma masasında yalnız sekte için kullanılır; diğer durak işaretleri geleneksel — yorum içerebilir. Durum: henüz indirilmedi (oturum ağ politikası tanzil.net'i reddetti).
+- Durak işaretli sürüm (`01_raw/tanzil/quran-uthmani-durak.txt`, `marks=true`): ayrı ham dosya, `08_scripts/fetch_tanzil_marks.py` ile indirilir ve kaynak adresi + sha256 `manifest.local.json`'a işlenir. Çalışma masasında yalnız sekte için kullanılır; diğer durak işaretleri geleneksel — yorum içerebilir. Durum: kurulu (sha256 `7f30c647331a…`); oturumdan tanzil.net 403 döndüğü için kullanıcı yükledi, `--dosyadan` denetimleriyle kabul edildi (manifest `edinim` alanı).
 
 ## 2 — Quranic Arabic Corpus v0.4 — PRESENT
 

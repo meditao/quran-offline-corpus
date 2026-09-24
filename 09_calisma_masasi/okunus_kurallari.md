@@ -172,12 +172,16 @@ açılışta sha256'yı manifest'le, metni de tabanla yeniden denetler.
 | U+06DE | ۞ | rubʿ — kullanılmaz, gösterilmez |
 | U+06E9 | ۩ | secde — kullanılmaz, gösterilmez |
 
-**Durum (24.09.2026):** Dosya kurulu değil. Ortam ayarlarına `tanzil.net` eklendikten sonra da bu oturumdan
-yapılan istek 403 ile reddedildi. Kurulana kadar sekte gösterilmez ve gerçek dosyayı sınayan test
-(`test_durak.py`) atlanır. Mantık sentetik dosyayla sınanır.
+**Durum (24.09.2026):** Kurulu. Bu oturumdan `tanzil.net` 403 döndürdüğü için dosyayı kullanıcı yükledi ve dosya
+`--dosyadan` ile aynı denetimlerden geçirilerek kabul edildi. Manifest'teki `edinim` alanı bunu kaydeder.
+- sha256 `7f30c647331a…`: kullanıcının ölçümüyle aynı.
+- Denklik: 6.236 ayetin 6.236'sı taban dosyayla aynı.
+- İşaret sayıları: U+06D6 1.682 · U+06D7 603 · U+06D8 22 · U+06D9 68 · U+06DA 1.972 · U+06DB 12 · U+06DC 7
+  (5'i tek başına sekte, 2'si ص üzerinde) · U+06DE 199 · U+06E9 15.
+- Eklenen tatvil: 6.036.
 
-**Sekte yerleri.** Tek başına duran sekte beş yerde beklenir: 18:1, 36:52, 69:28, 75:27, 83:14. Gerçek dosya
-kurulunca test bunu denetler; tutmazsa sebep araştırılır, test değiştirilmez.
+**Sekte yerleri.** Tek başına duran sekte beş yerde bulunur: 18:1, 36:52, 69:28, 75:27, 83:14. Gerçek dosyada ölçüldü ve
+`test_durak.py` bunu denetler.
 - **69:28** (`mâ ʾagnâ ʿannî mâliyah`, 69:29 `halaka` ile devam eder): Hafs'ta sekte burada **isteğe bağlıdır**.
   Ayetler birleştirilerek okunduğunda ya sekte yapılır ya da he harfi sonraki he'ye idgam edilir; iki okuyuş
   da geçerli sayılır (geleneksel okuma bilgisi — yorum içerebilir). Okunuş her ayeti vakfla bitirdiği için

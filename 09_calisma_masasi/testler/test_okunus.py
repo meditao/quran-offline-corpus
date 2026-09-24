@@ -268,8 +268,13 @@ class OkunusTesti(unittest.TestCase):
             kod = main(["okunus", "107:4"])
         satirlar = tampon.getvalue().rstrip("\n").splitlines()
         self.assertEqual(kod, 0)
-        self.assertEqual(satirlar[-5], "Kaynak      : Tanzil Uthmani v1.1")
-        self.assertEqual(satirlar[-2], f"Veri izi    : {okunus.TANZIL_SHA256[:12]}")
+        # Durak işaretli sürüm kuruluysa ikinci kaynak ve izi de yazılır (okunus_komutu).
+        kaynak, iz = "Tanzil Uthmani v1.1", okunus.TANZIL_SHA256[:12]
+        if okunus.DURAK_YOLU.exists():
+            kaynak += f" | + {okunus.DURAK_KAYNAK_ADI}"
+            iz += f" | {veri.sha256(okunus.DURAK_YOLU)[:12]}"
+        self.assertEqual(satirlar[-5], f"Kaynak      : {kaynak}")
+        self.assertEqual(satirlar[-2], f"Veri izi    : {iz}")
         self.assertEqual(satirlar[-1], "Durum       : çalıştırıldı")
         with contextlib.redirect_stdout(io.StringIO()) as t:
             kod = main(["okunus", "2:999"])

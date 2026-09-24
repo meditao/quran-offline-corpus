@@ -22,6 +22,37 @@
       "source_url": "https://tanzil.net/res/text/metadata/quran-data.xml",
       "bytes": 77234,
       "sha256": "8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a"
+    },
+    {
+      "file": "01_raw/tanzil/quran-uthmani-durak.txt",
+      "source_url": "https://tanzil.net/pub/download/index.php?marks=true&sajdah=false&rub=false&tatweel=false&quranType=uthmani&outType=txt-2&agree=true",
+      "bytes": 1396684,
+      "sha256": "7f30c647331a61100ebf24a80507dc0fcdd9f2df97f1312b5b2dfcb982a7f326",
+      "sha256_beklenen": "7f30c647331a61100ebf24a80507dc0fcdd9f2df97f1312b5b2dfcb982a7f326",
+      "sha256_beklenenle_ayni": true,
+      "fetched": "2026-09-24",
+      "denklik": "6236/6236 (tezgah.okunus.denklik_tokenlari)",
+      "isaret_sayilari": {
+        "U+06D6": 1682,
+        "U+06D7": 603,
+        "U+06D8": 22,
+        "U+06D9": 68,
+        "U+06DA": 1972,
+        "U+06DB": 12,
+        "U+06DC": 7,
+        "U+06DE": 199,
+        "U+06E9": 15
+      },
+      "eklenen_tatvil": 6036,
+      "tek_basina_sekte": [
+        "18:1",
+        "36:52",
+        "69:28",
+        "75:27",
+        "83:14"
+      ],
+      "note": "Durak işaretli sürüm. Okunuşta yalnız sekte (U+06DC) için kullanılır; diğer durak işaretleri geleneksel — yorum içerebilir.",
+      "edinim": "kullanıcı tarafından yüklendi (--dosyadan); bu oturumdan tanzil.net 403. source_url kullanıcının indirdiği adrestir; sha256 kullanıcının ölçümüyle aynı."
     }
   ]
 }
