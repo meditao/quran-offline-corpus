@@ -21,6 +21,8 @@ jobs:
         run: python 08_scripts/validate_tanzil.py
       - name: Validate pinned QAC source
         run: python 08_scripts/validate_qac.py
+      - name: Çalışma masası sağlama testleri
+        run: python -m unittest discover -s 09_calisma_masasi/testler -v
       - name: Rebuild QAC indices
         run: python 08_scripts/build_qac_indices.py
       - name: Rebuild Tanzil-QAC alignment audit
