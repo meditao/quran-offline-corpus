@@ -160,9 +160,59 @@ class OkunusTesti(unittest.TestCase):
         # Korpusta ayet başında geçmeyen isimler: kuralın fiil/isim ayrımı birim düzeyinde sınanır.
         for kelime, beklenen in (("ٱبْنُ", "ibnu"), ("ٱسْمُهُۥ", "ismuhû"), ("ٱمْرُؤٌا۟", "imruʾun"),
                                  ("ٱثْنَانِ", "is̱nâni"), ("ٱنظُرْ", "unẓur"), ("ٱدْعُ", "udʿu"),
-                                 ("ٱسْمَعْ", "ismaʿ"), ("ٱقْرَأْ", "iqraʾ")):
+                                 ("ٱسْمَعْ", "ismaʿ"), ("ٱقْرَأْ", "iqraʾ"),
+                                 ("ٱمْرَأَتُ", "imraʾatu"), ("ٱمْرَأَةً", "imraʾatan"),
+                                 ("ٱثْنَتَا", "is̱natâ"), ("ٱثْنَتَيْنِ", "is̱natayni"),
+                                 ("ٱسْتَغْفِرْ", "istagfir"), ("ٱسْتُهْزِئَ", "ustuhziʾa")):
             with self.subTest(kelime=kelime):
                 self.assertEqual(okunus._metin(okunus.kelime_oku(kelime, True)[0]), beklenen)
+
+    def test_ibtida_qac_ile_bagimsiz_dogrulama(self):
+        """Ayet başı vasl elifli kelimeler: araç ↔ ham QAC (IMPV etiketi, bab, gövde harekesi).
+
+        QAC tarafı: IMPV + I. bab -> 2. kök harfinin gövde harekesi u ise u (yâ ile biten kök hariç);
+        türemiş bab, PERF etken ve isim -> i; PERF edilgen -> u.
+        """
+        bablar = {f"({b})" for b in ("II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII")}
+        isaret = set("aiuo~`FNK^@{")
+        qac = {}
+        with veri.QAC_YOLU.open(encoding="utf-8-sig", newline="") as f:
+            for satir in f:
+                alan = satir.rstrip("\r\n").split("\t")
+                if len(alan) == 4 and alan[0].startswith("("):
+                    s_, a_, k_, _ = map(int, alan[0].strip("()").split(":"))
+                    if k_ == 1 and "STEM" in alan[3].split("|"):
+                        qac[(s_, a_)] = (alan[1], alan[3].split("|"))
+
+        def govde_unlusu(bicim):
+            n = 0
+            for i, c in enumerate(bicim[1:], 1):
+                if c not in isaret:
+                    n += 1
+                    if n == 2:
+                        return next((d for d in bicim[i + 1:] if d in "aui"), None)
+            return None
+
+        def beklenen(bicim, oz):
+            kok = next((x[5:] for x in oz if x.startswith("ROOT:")), "")
+            if "POS:V" in oz and "IMPV" in oz and not bablar & set(oz):
+                return "u" if govde_unlusu(bicim) == "u" and not kok.endswith("y") else "i"
+            if "POS:V" in oz and "PASS" in oz:
+                return "u"
+            return "i"
+
+        sayac = collections.Counter()
+        for (s, a), metin in okunus.tanzil().items():
+            ilk = okunus.ayet_oku(s, a, metin).kelimeler[0]
+            if not (ilk.arapca.startswith(okunus.VASL_ELIF) and ilk.arapca[1:2] != "ل"):
+                continue
+            bicim, oz = qac[(s, a)]
+            with self.subTest(ayet=f"{s}:{a}"):
+                self.assertTrue(bicim.startswith("{"), "QAC'ta da vasl elifi olmalı")
+                self.assertEqual(ilk.latin[0], beklenen(bicim, oz), (ilk.latin, bicim))
+            sayac["IMPV" if "IMPV" in oz else ("V" if "POS:V" in oz else "N")] += 1
+        self.assertEqual(sum(sayac.values()), 54)
+        self.assertEqual(dict(sayac), {"IMPV": 46, "V": 7, "N": 1})
 
     def test_mukattaa_tablosu_belge_ve_harf_tablosuyla_ayni(self):
         belge = (_ortak.MASA / "okunus_kurallari.md").read_text(encoding="utf-8")

@@ -32,7 +32,7 @@ def _test(_kor, ns) -> tara.Sonuc:
     yukleyici = unittest.TestLoader()
     paket = yukleyici.discover(str(TESTLER), top_level_dir=str(TESTLER))
     sonuc = unittest.TextTestRunner(verbosity=2 if ns.ayrintili else 1, stream=sys.stdout).run(paket)
-    gecen = sonuc.testsRun - len(sonuc.failures) - len(sonuc.errors)
+    gecen = sonuc.testsRun - len(sonuc.failures) - len(sonuc.errors) - len(sonuc.skipped)
     satirlar = [
         "",
         f"Sağlama testleri: {sonuc.testsRun} çalıştı | {gecen} geçti | "
@@ -111,8 +111,10 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("ayetler", nargs="*", help="sûre:ayet, ör. 2:3 30:30")
     s.add_argument("--arapca", action="store_true", help="denetim için Tanzil kelimesini yanında göster")
     s.add_argument("--mukattaa", action="store_true", help="tüm korpusta hurûf-ı mukattaa taraması")
+    s.add_argument("--durak", action="store_true",
+                   help="sekte dışı durak işaretlerini de göster (geleneksel — yorum içerebilir)")
     s.set_defaults(islev=lambda k, n: okunus.mukattaa_komutu() if n.mukattaa
-                   else okunus.okunus_komutu(n.ayetler, n.arapca),
+                   else okunus.okunus_komutu(n.ayetler, n.arapca, n.durak),
                    korpus_gerekmez=True, veri_kaynagi="tanzil")
     return p
 

@@ -77,7 +77,7 @@ QAC kökünde hemze `A` harfiyle yazılır; kök gösteriminde de `ʾ` olur (`Am
 | 1 | Hurûf-ı mukattaa: harekesiz kelime harf adlarıyla okunur (§3a) | hiç hareke yok | 2:1 `ʾalif lâm mîm`, 20:1 `ṭâ hâ` |
 | 2 | Sûre başı besmelesi Tanzil'de ilk ayete önektir; ayrı gösterilir (QAC'ta yok). 95:1 ve 97:1'de önek şeddeyle yazılmıştır (بِّسْمِ) | ilk ayet, 1:1 metni | 2:1 |
 | 3 | Vasl elifi ٱ ayet içinde okunmaz | ٱ | 1:1 `bismi llâhi` |
-| 4 | **İbtidâ (istisna):** ayet başındaki ٱ şöyle okunur: harf-i tariften önce `a`; vasl elifli isimlerde (iskelet سم بن مر ثن ست: ٱسْم, ٱبْن, ٱمْرُؤ, ٱثْنَان, ٱسْت) her zaman `i`; diğer durumlarda (fiil) 3. harf dammeliyse `u`, değilse `i` | ٱ (ünlü yazıda yok) | 2:3 `allaẕîna`, 1:6 `ihdinâ`, 96:1 `iqraʾ`, 16:125 `udʿu`, 4:50 `unẓur` |
+| 4 | **İbtidâ (istisna):** ayet başındaki ٱ şöyle okunur: harf-i tariften önce `a`; vasl elifli isimlerde (iskelet سم بن مر ثن: ٱسْم · ٱبْن, ٱبْنَة · ٱمْرُؤ, ٱمْرَأَة · ٱثْنَان, ٱثْنَتَا/ٱثْنَتَيْن) her zaman `i`; diğer durumlarda (fiil) 3. harf dammeliyse `u`, değilse `i` | ٱ (ünlü yazıda yok) | 2:3 `allaẕîna`, 1:6 `ihdinâ`, 96:1 `iqraʾ`, 16:125 `udʿu`, 4:50 `unẓur` |
 | 5 | Kelime içi idgam: harekesiz ve sükûnsuz ünsüzden sonraki harf şeddeliyse, ilk ünsüz yazılmaz | işaretsiz harf + şedde | 1:1 `rraḥmâni`, 30:30 `liddîni`, 9:1 `ʿâhattum` |
 | 6 | Harekesiz ve sükûnsuz, arkasından şeddeli harf gelmeyen ünsüz sükûnlu gibi okunur (ihfâ/izhar ayrımı gösterilmez) | işaretsiz harf | 2:3 `yunfiqûn` |
 | 7 | Kelimeler arası idgam: kelime şeddeli harfle başlıyorsa önceki kelimenin tenvin n'si veya harekesiz son ünsüzü bu harfe dönüşür; baştaki harf tek yazılır | kelime başında şedde | 107:4 `favaylul lilmuṣallîn` |
@@ -93,6 +93,8 @@ Doğrulama (tüm korpus, `testler/test_okunus.py`):
 - 6.236 ayetin hepsi bilinmeyen karakter ve belirsiz durum üretmeden okunur.
 - Besmele öneki 112 ayette bulunur (114 − 1:1 − 9. sûre).
 - Kural 13'ün deseni ayet ayet QAC'ın `{ll~ah` + `{ll~ahum~a` lemma sayısıyla aynıdır.
+- İbtidâ (kural 4): ayet başında vasl elifiyle başlayan 54 kelimenin hepsinde araç, QAC'tan bağımsız türetilen ünlüyle aynı sonucu verir. QAC tarafında IMPV + I. bab için 2. kök harfinin gövde harekesi `u` ise `u`, diğer durumlarda (türemiş bab, PERF etken, isim) `i` alınır.
+- Kural 4'ün bilinen sınırı: çoğul emirde 3. harfin dammesi çoğul ekinden geliyorsa (yâ ile biten fiiller: ٱمْشُوا۟, ٱقْضُوٓا۟) kural yanlış olarak `u` verir. Bu kelimeler korpusta ayet başında geçmez; ayet içinde vasl elifi okunmadığı için okunuşa etkileri yoktur.
 - Mukattaa taraması (kural 1) ham QAC `INL` satırlarıyla ayet, kelime konumu ve harf dizisinde birebir aynıdır (§3a).
 
 ## 3a. Hurûf-ı mukattaa
@@ -128,18 +130,43 @@ Tarama: `python -m tezgah okunus --mukattaa`. Doğrulama ham QAC'tan bağımsız
 (`testler/test_okunus.py`): QAC'ta `INL` etiketli segmentler Tanzil taramasıyla ayet, kelime konumu ve harf
 dizisinde birebir karşılaştırılır.
 
-## 3b. Sekte
+## 3b. Sekte ve durak işaretleri
 
-Tanzil Uthmani v1.1 dosyasında sekte işareti **yoktur**. U+06DC (ۜ) dosyada yalnız 2:245 ve 7:69'da,
-ص üzerinde geçer; orada "sin okunur" anlamındadır (§4). Sekte yerleri olarak bilinen 18:1, 36:52, 75:27 ve
-83:14'te hiçbir işaret bulunmaz; bu bilgi geleneksel veridir ve metinde yer almaz. Okunuşa etkisi:
-
-- 75:27 `man râq` ve 83:14 `bal râna`: Tanzil burada sükûn yazar, sonraki harfte şedde yoktur. Kural 7 idgam
-  uygulamaz. Çıktı sekteli okuyuşla aynıdır, ama bu sonuç yazımdan gelir, sekte kuralından değil.
-- 18:1 sonu (`ʿivacâ`) ve 36:52 (`marqadinâ hâẕâ`): sekte duraklaması gösterilmez.
-
-Olası sebep (hipotez, doğrulanmadı): dosya durak işaretleri olmadan indirilmiş olabilir; dosyada U+06D6–06DB
+**Taban dosyada sekte yok.** Tanzil Uthmani v1.1 taban dosyasında (`quran-uthmani.txt`) sekte işareti **yoktur**.
+U+06DC (ۜ) orada yalnız 2:245 ve 7:69'da, ص üzerinde geçer ve "sin okunur" anlamındadır (§4). Dosyada U+06D6–06DB
 durak işaretlerinin hiçbiri de yoktur.
+
+**Durak işaretli sürüm.** Bu sürüm ayrı bir ham dosyadır: `01_raw/tanzil/quran-uthmani-durak.txt`, taban dosyanın
+üzerine yazılmaz. Kurulum komutu `python 08_scripts/fetch_tanzil_marks.py --i-agree-to-tanzil-terms`; kaynak
+Tanzil'dir (`marks=true`). Betik dosyayı ancak şu koşulla yazar: durak işaretleri (U+06D6–06DC) çıkarılınca
+6.236 ayetin hepsi taban dosyayla birebir aynı olmalı. Kaynak adresi, bayt sayısı ve sha256 `manifest.local.json`'a
+işlenir. Yükleyici her açılışta sha256'yı manifest'le ve metni tabanla yeniden denetler.
+
+**Okunuşta kullanım.**
+- **Sekte:** Varsayılan olarak yalnız sekte kullanılır. Kelimeden sonra `[sekte]` yazılır. Sekteli kelimede vakf
+  kuralları uygulanır; o kelimeden sonrasına kelimeler arası idgam yapılmaz.
+- **Diğer durak işaretleri:** Varsayılan olarak gösterilmez. `--durak` verilirse ayrı bir sütunda
+  "geleneksel — yorum içerebilir" etiketiyle gösterilir. Durak işaretleri, metnin nasıl bölüneceğine dair
+  geleneksel bir yorumdur ve veri değildir.
+
+| kod | işaret | ad |
+|---|---|---|
+| U+06D6 | ۖ | ṣlâ (vasl evlâ) |
+| U+06D7 | ۗ | qlâ (vakf evlâ) |
+| U+06D8 | ۘ | mîm (vakf lâzım) |
+| U+06D9 | ۙ | lâ (vakf yok) |
+| U+06DA | ۚ | cîm (vakf câiz) |
+| U+06DB | ۛ | muʿânaqa |
+| U+06DC | ۜ | sekte (ص üzerinde değilse) |
+
+**Durum (24.09.2026):** Dosya kurulu değil. Oturumun ağ politikası `tanzil.net` adresini reddetti (403).
+Kurulana kadar sekte gösterilmez. Gerçek dosyayı sınayan test (`test_durak.py`) atlanır. Mantık, sentetik
+dosyayla sınanır.
+
+**Sekteye bağlı ayetler.** Sekte yerleri olarak bilinen yerler 18:1, 36:52, 75:27 ve 83:14'tür. Taban dosyada
+buralarda işaret yoktur.
+- **75:27 ve 83:14** (`man râq`, `bal râna`): Tanzil sükûn yazar ve sonraki harfte şedde yoktur, bu yüzden
+  idgam uygulanmaz. Bu sonuç sekte işaretinden değil yazımdan gelir.
 
 ## 4. Osmanî özel işaretler (U+06DC–06ED ve diğerleri)
 

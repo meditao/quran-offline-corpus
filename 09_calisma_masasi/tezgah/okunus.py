@@ -13,6 +13,7 @@ Kuralın öngörmediği bir dizilim "belirsiz" listesine yazılır ve çıktıda
 
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass, field
 from functools import lru_cache
@@ -25,6 +26,24 @@ DEPO = Path(__file__).resolve().parents[2]
 TANZIL_YOLU = DEPO / "01_raw" / "tanzil" / "quran-uthmani.txt"
 TANZIL_SHA256 = "bf4f57b968d03f4131c070b1e285da9be0e0a108a21c910e872801ca273312c8"
 KAYNAK_ADI = "Tanzil Uthmani v1.1"
+
+# Durak işaretli sürüm: ayrı ham dosya (08_scripts/fetch_tanzil_marks.py). Okunuşta yalnız
+# sekte için kullanılır; diğer durak işaretleri yalnız istenirse ve etiketle gösterilir.
+DURAK_YOLU = DEPO / "01_raw" / "tanzil" / "quran-uthmani-durak.txt"
+MANIFEST_YOLU = DEPO / "01_raw" / "tanzil" / "manifest.local.json"
+DURAK_KAYNAK_ADI = "Tanzil Uthmani v1.1 durak işaretli"
+DURAK_ETIKETI = "geleneksel — yorum içerebilir"
+SEKTE = "\u06DC"
+DURAK_ADLARI = {
+    "\u06D6": "ṣlâ (vasl evlâ)",
+    "\u06D7": "qlâ (vakf evlâ)",
+    "\u06D8": "mîm (vakf lâzım)",
+    "\u06D9": "lâ (vakf yok)",
+    "\u06DA": "cîm (vakf câiz)",
+    "\u06DB": "muʿânaqa",
+    SEKTE: "sekte",
+}
+DURAK_KARAKTERLERI = set(DURAK_ADLARI)
 
 # --- karakter sınıfları ---------------------------------------------------
 FETHA, KESRE, DAMME = "َ", "ِ", "ُ"
@@ -77,10 +96,13 @@ MUKATTAA_TABLOSU: tuple[tuple[str, str], ...] = (
 )
 MUKATTAA_ADLARI = dict(MUKATTAA_TABLOSU)
 
-# Vasl elifli isimler: ibtidâda her zaman "i" (ٱبْنُ, ٱسْمُهُۥ, ٱمْرُؤٌا۟, ٱثْنَانِ, ٱسْت).
+# Vasl elifli isimler: ibtidâda her zaman "i". İskelet ٱ'dan sonraki ünsüzlerin başıdır:
+#   سم  ٱسْم        بن  ٱبْن, ٱبْنَة, ٱبْنَم
+#   مر  ٱمْرُؤ, ٱمْرَأَة   ثن  ٱثْنَان, ٱثْنَتَان (ٱثْنَتَا, ٱثْنَتَيْن)
 # "3. harf dammeli -> u" kuralı yalnız fiiller içindir; bu isimlerde 3. harfteki
 # damme i'rab ünlüsüdür. Tanzil'de sözcük türü olmadığından iskeletle tanınır.
-VASL_ISIM_ISKELETLERI = ("سم", "بن", "مر", "ثن", "ست")
+# ("ست" bilinçli olarak yok: X. bab fiillerini de yakalar, ör. edilgen ٱسْتُهْزِئَ -> u.)
+VASL_ISIM_ISKELETLERI = ("سم", "بن", "مر", "ثن")
 
 
 # Lafzatullah: Tanzil Uthmani "ٱللَّه" adında hançerî elifi yazmaz; okunuştaki
@@ -114,6 +136,8 @@ class KelimeOkunus:
     arapca: str
     latin: str
     belirsiz: list[str] = field(default_factory=list)
+    sekte: bool = False                                  # durak işaretli sürümden
+    duraklar: list[str] = field(default_factory=list)    # sekte dışı durak adları (geleneksel)
 
 
 @dataclass
@@ -126,6 +150,11 @@ class AyetOkunus:
     @property
     def latin(self) -> str:
         return " ".join(k.latin for k in self.kelimeler)
+
+    @property
+    def latin_isaretli(self) -> str:
+        """Sekte, kelimeden sonra [sekte] olarak gösterilir."""
+        return " ".join(k.latin + (" [sekte]" if k.sekte else "") for k in self.kelimeler)
 
     @property
     def belirsiz(self) -> list[str]:
@@ -317,8 +346,12 @@ def _vakf(birimler: list[Birim]) -> None:
         return
 
 
-def ayet_oku(sure: int, ayet: int, metin: str) -> AyetOkunus:
+def ayet_oku(sure: int, ayet: int, metin: str,
+             duraklar: dict[int, list[str]] | None = None) -> AyetOkunus:
+    """duraklar: Tanzil token sırası (0'dan, besmele öneki dahil) -> durak işaretleri."""
     kelimeler = metin.split(" ")
+    duraklar = duraklar or {}
+    onek = 0
     besmele: list[KelimeOkunus] = []
     if ayet == 1 and sure not in (1, 9):
         # Sûre başı besmelesi Tanzil'de ilk ayete önek olarak yazılır; QAC'ta yoktur.
@@ -328,6 +361,9 @@ def ayet_oku(sure: int, ayet: int, metin: str) -> AyetOkunus:
         if aday and [aday[0].replace(SEDDE, "", 1), *aday[1:]] == bsm:
             besmele = ayet_oku(1, 1, besmele_metni()).kelimeler
             kelimeler = kelimeler[len(bsm):]
+            onek = len(bsm)
+    kelime_duraklari = {i - onek: d for i, d in duraklar.items() if i >= onek}
+    sekteli = {i for i, d in kelime_duraklari.items() if SEKTE in d}
 
     cozulen: list[tuple[str, list[Birim] | None, str, list[str]]] = []
     for i, k in enumerate(kelimeler):
@@ -351,7 +387,7 @@ def ayet_oku(sure: int, ayet: int, metin: str) -> AyetOkunus:
         if birimler is None or onceki is None:
             continue
         ilk = birimler[0]
-        if not (ilk.unsuz and ilk.sedde()):
+        if not (ilk.unsuz and ilk.sedde()) or (i - 1) in sekteli:
             continue
         tek = ilk.unsuz[: len(ilk.unsuz) // 2]
         son = next((b for b in reversed(onceki) if b.unsuz or b.unlu), None)
@@ -365,12 +401,17 @@ def ayet_oku(sure: int, ayet: int, metin: str) -> AyetOkunus:
         ilk.unsuz = tek
 
     son_i = len(cozulen) - 1
-    if cozulen and cozulen[son_i][1] is not None:
-        _vakf(cozulen[son_i][1])
+    for i, (_, b, _, _) in enumerate(cozulen):
+        if b is not None and (i == son_i or i in sekteli):   # sekte: nefessiz kısa durak
+            _vakf(b)
 
     sonuc = [
-        KelimeOkunus(k, muk if b is None else _metin(b), bel)
-        for k, b, muk, bel in cozulen
+        KelimeOkunus(
+            k, muk if b is None else _metin(b), bel,
+            sekte=i in sekteli,
+            duraklar=[DURAK_ADLARI[c] for c in kelime_duraklari.get(i, []) if c != SEKTE],
+        )
+        for i, (k, b, muk, bel) in enumerate(cozulen)
     ]
     return AyetOkunus(sure, ayet, sonuc, besmele)
 
@@ -396,6 +437,71 @@ def tanzil() -> dict[tuple[int, int], str]:
     return ayetler
 
 
+def _durak_cikar(t: str) -> list[str]:
+    return "".join(c for c in t if c not in DURAK_KARAKTERLERI).split()
+
+
+def durak_yukle(yol: Path, manifest_yolu: Path, taban: dict[tuple[int, int], str]):
+    """Durak işaretli dosyayı okur ve taban metne göre token sırasına bağlar.
+
+    Denetimler: sha256 manifest kaydıyla aynı; işaretler çıkarılınca her ayet taban metinle
+    birebir aynı. Tutmazsa VeriHatasi. Dönüş: (sûre, ayet) -> {token sırası: [işaretler]}.
+    İşaret kelimeye bitişikse o kelimeye, ayrı tokensa önceki kelimeye bağlanır. Taban metinde
+    de bulunan işaret (2:245 ve 7:69'da ص üzerindeki ۜ) durak sayılmaz.
+    """
+    kayit = None
+    if manifest_yolu.exists():
+        manifest = json.loads(manifest_yolu.read_text(encoding="utf-8"))
+        ad = yol.name
+        kayit = next((f for f in manifest.get("files", []) if Path(f["file"]).name == ad), None)
+    if kayit is None:
+        raise VeriHatasi(f"{yol.name} manifest'te kayıtlı değil: {manifest_yolu}")
+    gercek = sha256(yol)
+    if gercek != kayit["sha256"]:
+        raise VeriHatasi(f"{yol.name} sha256 manifest ile uyuşmuyor.\n  manifest: {kayit['sha256']}\n  bulunan : {gercek}")
+
+    sonuc: dict[tuple[int, int], dict[int, list[str]]] = {}
+    gorulen = set()
+    with yol.open("r", encoding="utf-8-sig", newline="") as f:
+        for ham in f:
+            satir = ham.rstrip("\r\n")
+            if not satir or satir.startswith("#"):
+                continue
+            s_, a_, metin = satir.split("|", 2)
+            anahtar = (int(s_), int(a_))
+            gorulen.add(anahtar)
+            taban_tokenlari = taban.get(anahtar, "").split(" ")
+            if _durak_cikar(metin) != _durak_cikar(taban.get(anahtar, "")):
+                raise VeriHatasi(f"{yol.name}: {anahtar[0]}:{anahtar[1]} durak işaretleri çıkarılınca taban metinle aynı değil")
+            isaretler: dict[int, list[str]] = {}
+            j = -1
+            for tok in metin.split():
+                if all(c in DURAK_KARAKTERLERI for c in tok):
+                    if j >= 0:
+                        isaretler.setdefault(j, []).extend(tok)
+                    continue
+                j += 1
+                taban_isaret = [c for c in taban_tokenlari[j] if c in DURAK_KARAKTERLERI]
+                fazla = [c for c in tok if c in DURAK_KARAKTERLERI]
+                for c in taban_isaret:
+                    fazla.remove(c)
+                if fazla:
+                    isaretler.setdefault(j, []).extend(fazla)
+            if isaretler:
+                sonuc[anahtar] = isaretler
+    if gorulen != set(taban):
+        raise VeriHatasi(f"{yol.name}: ayet kümesi taban metinle aynı değil ({len(gorulen)} ↔ {len(taban)})")
+    return sonuc
+
+
+@lru_cache(maxsize=1)
+def durak_isaretleri():
+    """Kuruluysa durak işaretleri; kurulu değilse None."""
+    if not DURAK_YOLU.exists():
+        return None
+    return durak_yukle(DURAK_YOLU, MANIFEST_YOLU, tanzil())
+
+
 def besmele_metni() -> str:
     return tanzil()[(1, 1)]
 
@@ -404,7 +510,8 @@ def oku(sure: int, ayet: int) -> AyetOkunus:
     metin = tanzil().get((sure, ayet))
     if metin is None:
         raise KeyError(f"Tanzil'de ayet yok: {sure}:{ayet}")
-    return ayet_oku(sure, ayet, metin)
+    dur = durak_isaretleri()
+    return ayet_oku(sure, ayet, metin, dur.get((sure, ayet)) if dur else None)
 
 
 # --- komut ------------------------------------------------------------------
@@ -451,12 +558,22 @@ def mukattaa_komutu():
     return Sonuc(satirlar, ["ayet", "sûre"], veri, kaynak=KAYNAK_ADI, veri_izi=TANZIL_SHA256[:12])
 
 
-def okunus_komutu(refler: list[str], arapca: bool = False):
+def okunus_komutu(refler: list[str], arapca: bool = False, durak: bool = False):
     from .tara import GirdiHatasi, Sonuc, _tablo
     if not refler:
         raise GirdiHatasi("En az bir ayet referansı (ör. 2:3) ya da --mukattaa verilmeli.")
     anahtarlar = [_ayet_ayristir(r) for r in refler]
+    dur = durak_isaretleri()
     satirlar = ["Okunuş — Tanzil Uthmani metninden kurallı aktarım (delil değil; kurallar: okunus_kurallari.md)"]
+    if dur is None:
+        satirlar.append("Not: durak işaretli Tanzil sürümü kurulu değil; sekte gösterilemiyor "
+                        "(kurulum: python 08_scripts/fetch_tanzil_marks.py).")
+        if durak:
+            raise GirdiHatasi("--durak için durak işaretli Tanzil sürümü kurulu olmalı.")
+    else:
+        satirlar.append("Sekte: Tanzil durak işaretli sürümünden; kelimeden sonra [sekte] olarak gösterilir.")
+    if durak:
+        satirlar.append(f"Durak işaretleri gösteriliyor — {DURAK_ETIKETI}.")
     veri = {}
     for s, a in anahtarlar:
         o = oku(s, a)
@@ -465,11 +582,31 @@ def okunus_komutu(refler: list[str], arapca: bool = False):
         if o.besmele:
             satirlar.append("  [sûre başı besmelesi — Tanzil öneki, QAC'ta bu ayete dahil değil] "
                             + " ".join(k.latin for k in o.besmele))
-        satirlar.append("  " + o.latin)
-        basliklar = ["no", "okunuş"] + (["Tanzil (denetim için)"] if arapca else [])
-        tablo = [[i, k.latin] + ([k.arapca] if arapca else []) for i, k in enumerate(o.kelimeler, 1)]
+        satirlar.append("  " + o.latin_isaretli)
+        sekte_var = any(k.sekte for k in o.kelimeler)
+        basliklar = ["no", "okunuş"]
+        if sekte_var:
+            basliklar.append("sekte")
+        if durak:
+            basliklar.append(f"durak ({DURAK_ETIKETI})")
+        if arapca:
+            basliklar.append("Tanzil (denetim için)")
+        tablo = []
+        for i, k in enumerate(o.kelimeler, 1):
+            satir = [i, k.latin]
+            if sekte_var:
+                satir.append("sekte" if k.sekte else "")
+            if durak:
+                satir.append(", ".join(k.duraklar))
+            if arapca:
+                satir.append(k.arapca)
+            tablo.append(satir)
         satirlar += ["", "  Kelime kelime (Tanzil boşluk tokenı; QAC kelime konumu değildir):"]
         satirlar += ["  " + x for x in _tablo(basliklar, tablo, sag={0})]
         for b in o.belirsiz:
             satirlar.append(f"  BELİRSİZ: {b}")
-    return Sonuc(satirlar, [], veri, kaynak=KAYNAK_ADI, veri_izi=TANZIL_SHA256[:12])
+    kaynak, iz = KAYNAK_ADI, TANZIL_SHA256[:12]
+    if dur is not None:
+        kaynak += f" | + {DURAK_KAYNAK_ADI}"
+        iz += f" | {sha256(DURAK_YOLU)[:12]}"
+    return Sonuc(satirlar, [], veri, kaynak=kaynak, veri_izi=iz)
