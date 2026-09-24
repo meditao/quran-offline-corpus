@@ -50,9 +50,9 @@ Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. �
 | durak işaretleri | Tanzil Uthmani v1.1 `marks=true` (`08_scripts/fetch_tanzil_marks.py`) | `01_raw/tanzil/quran-uthmani-durak.txt` | okunuşta yalnız sekte; diğerleri "geleneksel — yorum içerebilir" |
 | kurumsal meal | fawazahmed0/quran-api `tur-diyanetisleri` (`python -m tezgah kur meal`) | `yerel/meal/` (depoya işlenmez) | sınanan okuma, delil değil |
 | çalışma çevirisi | kullanıcı | `kavramlar/` | kullanıcının yorumu |
-| Lane | LexiconDatabase v1.0.9 | yok → `yerel/` | hipotez |
-| İbranice | BDB index | `04_lexicons/generated` | hipotez |
-| Süryanice | SEDRA 3 | yok → `yerel/` | hipotez |
+| Lane | LexiconDatabase v1.0.9, commit `b371ab1` (`python -m tezgah kur lane`) | `yerel/lane/` (265 MB; depoya işlenmez) | hipotez |
+| İbranice | Open Scriptures Hebrew Lexicon dizini (BDB atıflı) | `04_lexicons/generated` (yerinde okunur; incelenmiş kayıtlar `04_lexicons/semitic/cognates.tsv`) | hipotez |
+| Süryanice | SEDRA 3, sedrajs commit `ba6684a` (`python -m tezgah kur sedra`) | `yerel/sedra/` (değiştirilmemiş; dağıtılamaz) | hipotez |
 
 **Meal görünümü:** Varsayılan kapalıdır. Açıldığında "kurumsal okuma — sınanan, delil değil" etiketiyle, çalışma çevirisinin **altında** gösterilir.
 
@@ -114,7 +114,7 @@ Anlam önerisi kaydedilirken şu alanlar boş bırakılamaz:
 
 **tez.py** — tez tek cümleyle dondurulur; tanımlar ve karşı örnek havuzu **taramadan önce** kaydedilir ve sonradan değiştirilemez (değişirse yeni sürüm açılır, eskisi silinmez). Her bulgu eksen etiketi taşır (tanımlayıcı/normatif, oluşum/sorumluluk vb.); farklı eksendeki bulgu "çelişen" rafına konamaz. Kullanıcının tez ifadesi kendiliğinden güçlendirilmez.
 
-**ikincil/** — Lane ve Sâmî çıktıları her satırda "hipotez" etiketi taşır. Tek dilde kognat vuruşu tek başına raporlanmaz. Lane'in ك harfinden sonraki bölgesinde "Lane'de yok" argümanı üretilmez.
+**ikincil/** — Lane ve Sâmî çıktıları her satırda "hipotez" etiketi taşır. Tek dilde kognat vuruşu tek başına raporlanmaz. Lane'in ك harfinden sonraki bölgesinde "Lane'de yok" argümanı üretilmez. Ölçümler (Lane eşleşmesi, bölge yoğunluğu, Sâmî gürültü tabanı) QAC köklerine göre yapılır: `03_indices/audits/ikincil_katmanlar.md` (`08_scripts/measure_secondary_layers.py`).
 
 ## 8. Kayıt satırı
 
@@ -122,7 +122,7 @@ Her sorgu çıktısının ve her kavram dosyası bölümünün sonunda:
 
 ```
 Kaynak      : QAC v0.4 | + quran-morphology | + Lane | + Sâmî
-Sayım birimi: kelime konumu | segment | ayet | sûre
+Sayım birimi: kelime konumu | segment | ayet | sûre | kök (yalnız envanter ölçümlerinde)
 Sorgu       : çalıştırılan tam komut
 Veri izi    : kaynak dosyanın sha256'sının ilk 12 hanesi
 Durum       : çalıştırıldı | çalıştırılmadı
@@ -144,8 +144,8 @@ Durum       : çalıştırıldı | çalıştırılmadı
 | 2a | `okunus.py`: okunuş Tanzil Arapçasından, kök gösterimiyle aynı harf tablosuyla üretilir (fawazahmed0 kullanılmaz). Kurallar: `09_calisma_masasi/okunus_kurallari.md`. Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | tamam (durak işaretli dosya kullanıcı yüklemesiyle kuruldu; sekte beş yerde) |
 | 2b | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur; parmak izi denetimli) | tamam |
 | 3 | `tez.py` (kayıtlar `kavramlar/tezler/<ad>/`: salt okunur sürüm dosyaları + zincirli defter + üretilen rapor; farklı eksen gerekçesi, yeniden değerlendirme, destek kapsamı) | tamam |
-| 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`) | uygulandı — onay bekliyor |
-| 5 | `ikincil/` (Lane, Sâmî) | |
+| 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`); sayısı farklı kökte otomatik uyarı | tamam |
+| 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`) | uygulandı — onay bekliyor |
 | 6 | yerel web arayüzü (aynı paketin üstünde, ayrı mantık yok) | |
 
 Her aşama sonunda: testler çalışır, sonuç kullanıcıya sayılarla raporlanır, bir sonraki aşama için onay alınır.

@@ -14,6 +14,7 @@ import unittest
 from pathlib import Path
 
 from . import kavram, okuma, okunus, qm, tara, tez, veri
+from .ikincil import lane, sami
 from .kayit import CALISTIRILMADI, Kayit, komut_metni
 
 TESTLER = Path(__file__).resolve().parents[1] / "testler"
@@ -144,9 +145,37 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("metin", nargs="?", help="verilirse yeni sürüm olarak eklenir")
     s.set_defaults(islev=lambda k, n: okuma.ceviri_komutu(n.ayet, n.metin), korpus_gerekmez=True)
 
-    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal, quran-morphology)")
-    s.add_argument("ne", choices=["meal", "quran-morphology"])
+    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal, quran-morphology, lane, sedra)")
+    s.add_argument("ne", choices=["meal", "quran-morphology", "lane", "sedra"])
     s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne), korpus_gerekmez=True)
+
+    s = alt.add_parser("lane", help="Lane sözlüğü (hipotez): kok / kapsam / sigla")
+    la = s.add_subparsers(dest="lane_komut", required=True, metavar="işlem")
+    x = la.add_parser("kok", help="kök maddeleri")
+    x.add_argument("kok")
+    x.add_argument("--tam", action="store_true")
+    x.add_argument("--madde", type=int)
+    x.set_defaults(islev=lambda k, n: lane.kok_komutu(k, n.kok, n.tam, n.madde))
+    x = la.add_parser("kapsam", help="QAC köklerinin Lane eşleşmesi ve bölge yoğunluğu (ölçüm)")
+    x.set_defaults(islev=lambda k, n: lane.kapsam_komutu(k))
+    x = la.add_parser("sigla", help="kaynak kısaltmaları (ölçüm + kategori)")
+    x.set_defaults(islev=lambda k, n: lane.sigla_komutu(), korpus_gerekmez=True)
+
+    s = alt.add_parser("sami", help="Sâmî katmanı (hipotez): kok / gurultu / denklik / atif")
+    sa = s.add_subparsers(dest="sami_komut", required=True, metavar="işlem")
+    x = sa.add_parser("kok", help="İbranice ve Süryanice kognat adayları")
+    x.add_argument("kok")
+    x.add_argument("--tek-dil", action="store_true", help="tek dil vuruşlarının adaylarını da göster (etiketli)")
+    x.add_argument("--tam", action="store_true")
+    x.set_defaults(islev=lambda k, n: sami.kok_komutu(k, n.kok, n.tek_dil, n.tam))
+    x = sa.add_parser("gurultu", help="rastgele kontrolle gürültü tabanı (ölçüm)")
+    x.add_argument("--tekrar", type=int, default=10)
+    x.add_argument("--tohum", type=int, default=20260924)
+    x.set_defaults(islev=lambda k, n: sami.gurultu_komutu(k, n.tekrar, n.tohum))
+    x = sa.add_parser("denklik", help="ünsüz denklik tablosu")
+    x.set_defaults(islev=lambda k, n: sami.denklik_komutu(), korpus_gerekmez=True)
+    x = sa.add_parser("atif", help="SEDRA atıf metni")
+    x.set_defaults(islev=lambda k, n: sami.atif_komutu(), korpus_gerekmez=True)
 
     kavram.parser_ekle(alt)
     tez.parser_ekle(alt)

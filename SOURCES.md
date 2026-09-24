@@ -75,6 +75,18 @@ Bu dosya repoda gerçekten bulunan kaynaklarla yalnız aday/yardımcı kaynaklar
 - Rol: Aramice tarihsel kognat kontrolü
 - Durum: toplu offline snapshot yok; yeniden dağıtım koşulları teyit edilmeden veri kopyalanmaz.
 
+## 7a — Lane, An Arabic-English Lexicon (LexiconDatabase v1.0.9) — LOCAL ONLY (yerel/)
+
+- Kaynak: https://github.com/laneslexicon/LexiconDatabase, commit `b371ab16b963def3085674a516e5f45d9c787b1d` (etiket v1.0.9)
+- `lexicon.sqlite.zip` sha256 `eff9e0528572a1d2d4bc7097da78d938d6db444b0e99e8f1ef4f010c8ab15463`; `lexicon.sqlite` sha256 `a16651d5381bbeccf5e26a58a3be77f36e5225374404117835abef90b791ef49`
+- Lisans: veritabanı GPLv3; Lane metni (1863-93) kamu malı. Boyut (265 MB) nedeniyle depoya işlenmez; `python -m tezgah kur lane`.
+- Rol: hipotez kaynağı, delil değil (dairesellik; ك sonrası seyrelme). Ölçüm: `03_indices/audits/ikincil_katmanlar.md`.
+
+## 8a — SEDRA 3 (sedrajs deposundaki değiştirilmemiş dosyalar) — LOCAL ONLY (yerel/)
+
+- Kaynak: https://github.com/peshitta/sedrajs, commit `ba6684a97e80cde14cc2b51903d8f802a1a19ab1`, `sedra/ROOTS.TXT`, `LEXEMES.TXT`, `ENGLISH.TXT`, `SEDRA3.DOC` (sha256'lar `tezgah/ikincil/sami.py` içinde sabit; CRLF)
+- Lisans: kişisel/akademik kullanım; değiştirilmiş dosya dağıtılamaz, ticari kullanılamaz; yayında atıf zorunlu (`python -m tezgah sami atif`). Depoya işlenmez; `python -m tezgah kur sedra`.
+
 ## 8 — SEDRA / Beth Mardutho — ONLINE REFERENCE
 
 - Site: https://sedra.bethmardutho.org/

@@ -281,12 +281,17 @@ def ceviri_komutu(ref: str, metin: str | None):
 def kur_komutu(ne: str):
     from .tara import GirdiHatasi, Sonuc
     from . import qm
-    if ne not in {"meal", "quran-morphology"}:
-        raise GirdiHatasi("Kurulabilecek katman: meal, quran-morphology")
+    from .ikincil import lane, sami
+    kurucular = {"meal": meal_kur, "quran-morphology": qm.kur, "lane": lane.kur, "sedra": sami.kur}
+    if ne not in kurucular:
+        raise GirdiHatasi("Kurulabilecek katman: " + ", ".join(kurucular))
     try:
-        bilgi = meal_kur() if ne == "meal" else qm.kur()
+        bilgi = kurucular[ne]()
     except FileExistsError as e:
         raise GirdiHatasi(str(e)) from e
+    if ne in {"lane", "sedra"}:
+        return Sonuc([f"{ne} kuruldu (yerel/, depoya işlenmez):", *[f"  {k}: {v}" for k, v in bilgi.items()]], [],
+                     bilgi, kaynak=ne, veri_izi="—")
     if ne == "quran-morphology":
         return Sonuc(["quran-morphology kuruldu (yerel/, depoya işlenmez):",
                       *[f"  {k}: {v}" for k, v in bilgi.items()]], [], bilgi,
