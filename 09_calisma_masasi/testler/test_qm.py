@@ -53,6 +53,47 @@ class NotrlemeVeAyristirma(unittest.TestCase):
         self.assertEqual(sonuclar[0][2], {"سمو"}, "kök değerinde \\r kalmamalı")
 
 
+class SayiFarkiUyarisi(unittest.TestCase):
+    """Depodaki audit TSV'lerinden beslenir; yerel veri gerekmez (CI'da da çalışır)."""
+
+    def cikti(self, argv):
+        t = io.StringIO()
+        with contextlib.redirect_stdout(t):
+            kod = main(argv)
+        return kod, t.getvalue()
+
+    def test_farkli_kokler_uyari_basar(self):
+        import csv
+        with (AUDIT / "qac_quranmorphology_kok_sayilari.tsv").open(encoding="utf-8", newline="") as f:
+            satirlar = list(csv.DictReader(f, delimiter="\t"))
+        self.assertEqual(len(satirlar), 34)
+        qac_kokleri = [r["qac_kok_bw"] for r in satirlar if r["qac_kok_bw"] != "—"]
+        self.assertEqual(len(qac_kokleri), 21)
+        for kok in qac_kokleri:
+            with self.subTest(kok=kok):
+                kod, c = self.cikti(["sayim", "--kok", kok])
+                self.assertEqual(kod, 0)
+                self.assertTrue(c.startswith("UYARI (çapraz kontrol — quran-morphology, delil değil)"), c[:80])
+
+    def test_ans_ve_nws(self):
+        _, c = self.cikti(["sayim", "--kok", "Ans"])
+        self.assertIn("QAC 97, quran-morphology 338", c)
+        self.assertIn("QAC bu konumları nws (n-v-s) köküne bağlar (QAC lemma: n~aAs) — bu 241 konum QAC sonucunda yok", c)
+        _, c = self.cikti(["kok", "nws", "--limit", "1"])
+        self.assertIn("QAC'ın bu köke bağladığı 241 konumu quran-morphology ʾ-n-s köküne bağlar", c)
+
+    def test_farksiz_kokte_uyari_yok(self):
+        for kok in ("Slw", "Amn", "gfr"):
+            with self.subTest(kok=kok):
+                self.assertNotIn("çapraz kontrol", self.cikti(["sayim", "--kok", kok])[1])
+
+    def test_yalniz_qm_kokunde_hata_notu(self):
+        kod, c = self.cikti(["sayim", "--kok", "Adm"])
+        self.assertEqual(kod, 2)
+        self.assertIn("QAC'ta bu kök yok, ama quran-morphology'de var", c)
+        self.assertIn("QAC 0, quran-morphology 25", c)
+
+
 @unittest.skipUnless(kurulu(), "quran-morphology kurulu değil (python -m tezgah kur quran-morphology)")
 class CaprazDenetim(unittest.TestCase):
     @classmethod
@@ -75,6 +116,11 @@ class CaprazDenetim(unittest.TestCase):
         self.assertEqual(ek["qac_crlf_satir"], ek["qac_toplam_satir"])
         self.assertEqual((ek["qac_kok_satir_sonu_soyulmadan"], ek["qac_kok_soyulunca"]), (1_652, 1_642))
         self.assertEqual(ek["qm_cr"], 0)
+        # eski kabuk denetimiyle tutarlılık: 1.651 / 1.641 ↔ 1.652 / 1.642, aynı 10 CR'li değer, fark wAd
+        self.assertEqual((ek["kabuk_ham"], ek["kabuk_cr_soyulunca"]), (1_651, 1_641))
+        self.assertEqual(ek["cr_li_kokler"], ek["kabuk_cr_li_kokler"])
+        self.assertEqual(len(ek["cr_li_kokler"]), 10)
+        self.assertEqual(ek["kabuk_eksik"], ["wAd"])
 
     def test_konum_toplamlari_tutarli(self):
         o = self.h["ozet"]

@@ -44,7 +44,7 @@ def binlik(n: int) -> str:
 
 def crlf_olcumu() -> dict[str, int]:
     ham = veri.QAC_YOLU.read_bytes()
-    naif, temiz = set(), set()
+    naif, temiz, cr_li = set(), set(), set()
     for satir in ham.decode("utf-8-sig").split("\n"):
         if not satir.startswith("("):
             continue
@@ -52,12 +52,21 @@ def crlf_olcumu() -> dict[str, int]:
             if oz.startswith("ROOT:"):
                 naif.add(oz[5:])
                 temiz.add(oz[5:].rstrip("\r"))
+                if oz.endswith("\r"):
+                    cr_li.add(oz[5:].rstrip("\r"))
+    eski = json.loads((OUT / "qac_1651_vs_1642.json").read_text(encoding="utf-8"))
+    kabuk = eski["legacy_shell"]
     return {
         "qac_crlf_satir": ham.count(b"\r\n"),
         "qac_toplam_satir": ham.count(b"\n"),
         "qac_kok_satir_sonu_soyulmadan": len(naif),
         "qac_kok_soyulunca": len(temiz),
         "qm_cr": qm.QM_YOLU.read_bytes().count(b"\r"),
+        "cr_li_kokler": sorted(cr_li),
+        "kabuk_ham": eski["counts"]["legacy_shell_distinct_raw_byte_values"],
+        "kabuk_cr_soyulunca": eski["counts"]["legacy_shell_distinct_after_cr_strip"],
+        "kabuk_cr_li_kokler": sorted(v["cleaned_root"] for v in kabuk["cr_suffixed_variants"]),
+        "kabuk_eksik": kabuk["missing_vs_current_after_cr_strip"],
     }
 
 
@@ -168,7 +177,22 @@ def hesapla() -> dict:
         f"sonu soyulmadan okunursa QAC'ta **{binlik(ek['qac_kok_satir_sonu_soyulmadan'])}** \"kök\" çıkar (sonunda CR "
         f"taşıyan kopyalar); soyulunca **{binlik(ek['qac_kok_soyulunca'])}**. quran-morphology dosyasında CR sayısı "
         f"{ek['qm_cr']}; oradaki {binlik(olcum['kok_qm'])} gerçek sayıdır, artefakt değildir. İki ayrıştırıcı da satır "
-        "sonunu `\\r\\n` olarak soyar. Tarihsel 1.651 kaydı için: `qac_1651_vs_1642.md`.",
+        "sonunu `\\r\\n` olarak soyar.",
+        "",
+        "Depodaki eski denetimle (`qac_1651_vs_1642.md`) tutarlılık:",
+        "",
+        "| yöntem | CR soyulmadan | CR soyulunca | fark |",
+        "|---|---:|---:|---:|",
+        f"| kabuk boru hattı (eski denetim) | {binlik(ek['kabuk_ham'])} | {binlik(ek['kabuk_cr_soyulunca'])} | "
+        f"{ek['kabuk_ham'] - ek['kabuk_cr_soyulunca']} |",
+        f"| sağlam ayrıştırıcı (bu rapor) | {binlik(ek['qac_kok_satir_sonu_soyulmadan'])} | "
+        f"{binlik(ek['qac_kok_soyulunca'])} | {ek['qac_kok_satir_sonu_soyulmadan'] - ek['qac_kok_soyulunca']} |",
+        "",
+        f"CR'nin eklediği sahte değerler iki yöntemde {'aynıdır' if ek['cr_li_kokler'] == ek['kabuk_cr_li_kokler'] else '**FARKLIDIR**'} "
+        f"({len(ek['cr_li_kokler'])}: {', '.join(f'`{k}`' for k in ek['cr_li_kokler'])}). Kabuk tarafının her iki sütunda "
+        f"{ek['kabuk_cr_soyulunca'] - ek['qac_kok_soyulunca']:+d} farkı CR'den değil, eski boru hattındaki virgül ayırıcısından "
+        f"kaynaklanır: {', '.join(f'`{k}`' for k in ek['kabuk_eksik'])} o boru hattında düşer (eski denetim). "
+        "quran-morphology'nin 1.651'i ile kabuk sayımının 1.651'i iki ayrı sebepten çıkan aynı sayıdır; biri diğerini doğrulamaz.",
         "",
         "## Kök envanteri (hemze yazımı nötrlenerek)",
         "",

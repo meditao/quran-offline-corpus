@@ -188,3 +188,67 @@ def _kelime_sirasi_onbellek() -> dict[tuple[int, int, int], int]:
 
 def _kelime_sirasi(kor: veri.Korpus) -> dict[tuple[int, int, int], int]:
     return _kelime_sirasi_onbellek() if kor is veri.korpus() else {k.anahtar: i for i, k in enumerate(kor.kelimeler)}
+
+
+# --- sayısı farklı kökler için uyarı (depodaki audit dosyalarından; yerel veri gerekmez) ----------
+
+AUDIT = veri.DEPO / "03_indices" / "audits"
+
+
+@lru_cache(maxsize=1)
+def _audit() -> tuple[dict[str, dict], list[dict]] | None:
+    import csv
+    sayilar_yolu = AUDIT / "qac_quranmorphology_kok_sayilari.tsv"
+    farklar_yolu = AUDIT / "qac_quranmorphology_kok_farklari.tsv"
+    if not (sayilar_yolu.exists() and farklar_yolu.exists()):
+        return None
+    with sayilar_yolu.open(encoding="utf-8", newline="") as f:
+        sayilar = {r["kok_notr_latin"]: r for r in csv.DictReader(f, delimiter="\t")}
+    with farklar_yolu.open(encoding="utf-8", newline="") as f:
+        farklar = list(csv.DictReader(f, delimiter="\t"))
+    return sayilar, farklar
+
+
+def _kume(deger: str) -> list[str]:
+    return [x for x in deger.split(";") if x]
+
+
+def sayi_farki_uyarisi(kor: veri.Korpus, kok_bw: str | None = None, notr_anahtar: str | None = None) -> str | None:
+    """Kök iki korpusta farklı sayıda kelime konumunda geçiyorsa uyarı metni, yoksa None.
+
+    Kaynak: 03_indices/audits/qac_quranmorphology_kok_{sayilari,farklari}.tsv (Aşama 4 raporu).
+    """
+    a = _audit()
+    if a is None:
+        return None
+    sayilar, farklar = a
+    anahtar = notr_anahtar if notr_anahtar is not None else qac_notr(kok_bw)
+    latin = arapca_latin(anahtar)
+    satir = sayilar.get(latin)
+    if satir is None:
+        return None
+    konum_lemma = {k.konum: ";".join(sorted(k.lemmalar)) for k in kor.kelimeler}
+    gelen: dict[str, list[str]] = {}    # qm bu köke bağlar, QAC bağlamaz -> QAC kökü
+    giden: dict[str, list[str]] = {}    # QAC bu köke bağlar, qm bağlamaz -> qm kökü
+    for r in farklar:
+        qm_var = anahtar in {notr(x) for x in _kume(r["qm_kok"])}
+        qac_var = anahtar in {qac_notr(x) for x in _kume(r["qac_kok_bw"])}
+        if qm_var and not qac_var:
+            hedef = ";".join(f"{x} ({veri.kok_latin(x)})" for x in _kume(r["qac_kok_bw"])) or "köksüz"
+            gelen.setdefault(hedef, []).append(r["konum"])
+        elif qac_var and not qm_var:
+            hedef = ";".join(arapca_latin(x) for x in _kume(r["qm_kok"])) or "köksüz"
+            giden.setdefault(hedef, []).append(r["konum"])
+    parcalar = [f"UYARI (çapraz kontrol — quran-morphology, delil değil): {latin} kökü iki korpusta farklı sayıda "
+                f"kelime konumunda geçer: QAC {satir['qac_kelime_konumu']}, quran-morphology {satir['qm_kelime_konumu']}."]
+    for hedef, konumlar in sorted(gelen.items(), key=lambda x: -len(x[1])):
+        lemmalar = sorted({konum_lemma.get(k, "") for k in konumlar} - {""})
+        lem = f" (QAC lemma: {', '.join(lemmalar[:3])})" if lemmalar else ""
+        bag = "köksüz bırakır" if hedef == "köksüz" else f"{hedef} köküne bağlar"
+        parcalar.append(f"  quran-morphology {len(konumlar)} konumu bu köke bağlar; QAC bu konumları {bag}{lem} — "
+                        f"bu {len(konumlar)} konum QAC sonucunda yok.")
+    for hedef, konumlar in sorted(giden.items(), key=lambda x: -len(x[1])):
+        bag = "köksüz bırakır" if hedef == "köksüz" else f"{hedef} köküne bağlar"
+        parcalar.append(f"  QAC'ın bu köke bağladığı {len(konumlar)} konumu quran-morphology {bag}.")
+    parcalar.append("  Ayrıntı: --capraz; rapor: 03_indices/audits/qac_quranmorphology.md")
+    return "\n".join(parcalar)

@@ -140,7 +140,9 @@ def kok_coz(kor: Korpus, girdi: str) -> KokCozum:
                 f"Kök envanterde yok: {ham} -> Buckwalter {aday!r}. "
                 f"QAC v0.4 kök envanterinde bu kök bulunmadı; boş sonuç üretilmedi."
             )
-        return KokCozum(aday, kok_latin(aday), [])
+        from . import qm
+        fark = qm.sayi_farki_uyarisi(kor, aday)
+        return KokCozum(aday, kok_latin(aday), [fark] if fark else [])
 
     gecersiz = sorted({ch for ch in ham if ch not in KOK_LATIN})
     if gecersiz:
@@ -157,12 +159,19 @@ def kok_coz(kor: Korpus, girdi: str) -> KokCozum:
             k for k in kor.kok_kelimeleri if k.lower() == ham.lower()
         })
         ek = f" Olası karşılıklar: {_aday_metni(adaylar)}." if adaylar else ""
+        from . import qm
+        qm_notu = qm.sayi_farki_uyarisi(kor, None, qm.qac_notr(ham))
+        qm_ek = f"\nNot: QAC'ta bu kök yok, ama quran-morphology'de var.\n{qm_notu}" if qm_notu else ""
         raise GirdiHatasi(
             f"Kök envanterde yok: Buckwalter {ham!r} ({kok_latin(ham)}). Buckwalter büyük/küçük "
-            f"harf duyarlıdır (S=ص, s=س). Boş sonuç üretilmedi.{ek}"
+            f"harf duyarlıdır (S=ص, s=س). Boş sonuç üretilmedi.{ek}{qm_ek}"
         )
 
     uyarilar = []
+    from . import qm
+    fark = qm.sayi_farki_uyarisi(kor, ham)
+    if fark:
+        uyarilar.append(fark)
     ikizler = sorted(k for k in kor.kok_kelimeleri if k != ham and k.lower() == ham.lower())
     if ikizler:
         uyarilar.append(

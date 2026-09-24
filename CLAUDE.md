@@ -73,7 +73,8 @@ Kanonik korpus: **QAC v0.4** (depodaki denetimli veri).
 
 - İki korpus kelime konumunda birebir aynıdır (77.429); segmentasyon ve kök envanteri farklıdır (1.651 ↔ 1.642).
 - `08_scripts/crosscheck_qac_quranmorphology.py` konum bazında karşılaştırır ve `03_indices/audits/` altına rapor yazar.
-- Rapor: `03_indices/audits/qac_quranmorphology.md` (+ `.json`, kök farkları ve kök sayıları TSV). Kök karşılaştırması hemze yazımı nötrlenerek yapılır. Her iki dosya da satır sonu `\r\n` soyularak okunur: QAC dosyası CRLF'dir; soyulmazsa QAC'ta 1.652 "kök" çıkar.
+- Rapor: `03_indices/audits/qac_quranmorphology.md` (+ `.json`, kök farkları ve kök sayıları TSV). Kök karşılaştırması hemze yazımı nötrlenerek yapılır. Her iki dosya da satır sonu `\r\n` soyularak okunur: QAC dosyası CRLF'dir; soyulmazsa QAC'ta 1.652 "kök" çıkar. Eski denetimle tutarlılık: kabuk boru hattı 1.651 / 1.641 ↔ sağlam ayrıştırıcı 1.652 / 1.642 (CR soyulmadan / soyulunca); iki yöntemde de CR'nin eklediği 10 sahte değer aynıdır, kabuk tarafındaki 1 eksik virgül ayırıcısında düşen `wAd`'dır. quran-morphology'nin 1.651'i ile kabuğun 1.651'i ayrı sebeplerden çıkan aynı sayıdır.
+- Sayısı iki korpusta farklı çıkan 34 kökten biri (QAC'ta sorgulanabilen 21'i) sorgulandığında `--capraz` verilmese de çıktının başına çapraz kontrol uyarısı basılır; QAC'ta hiç olmayan 13 kök için hata mesajına not eklenir.
 - Ayrım: depodaki `02_morphology/quranmorph` ve `crosscheck_qac_quranmorph.py`, SinaLab'ın **QuranMorph** korpusu içindir; bu katmanla ilgisi yoktur.
 - Çalışma masasında `--capraz` bayrağı bir kökün iki korpustaki sonucunu **yan yana**, ayrı tablolarda gösterir. İki sayının aynı çıkması doğrulama sayılmaz; kök atamasının farklı çıktığı yerler ayrıca listelenir.
 

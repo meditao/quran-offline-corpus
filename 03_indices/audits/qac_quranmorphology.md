@@ -28,7 +28,16 @@ Birimler: kelime konumu `(sûre, ayet, kelime)`; segment `(sûre, ayet, kelime, 
 
 ## CRLF tuzağı
 
-QAC dosyasında CRLF ile biten satır: 128.276 / 128.276. Satır sonu soyulmadan okunursa QAC'ta **1.652** "kök" çıkar (sonunda CR taşıyan kopyalar); soyulunca **1.642**. quran-morphology dosyasında CR sayısı 0; oradaki 1.651 gerçek sayıdır, artefakt değildir. İki ayrıştırıcı da satır sonunu `\r\n` olarak soyar. Tarihsel 1.651 kaydı için: `qac_1651_vs_1642.md`.
+QAC dosyasında CRLF ile biten satır: 128.276 / 128.276. Satır sonu soyulmadan okunursa QAC'ta **1.652** "kök" çıkar (sonunda CR taşıyan kopyalar); soyulunca **1.642**. quran-morphology dosyasında CR sayısı 0; oradaki 1.651 gerçek sayıdır, artefakt değildir. İki ayrıştırıcı da satır sonunu `\r\n` olarak soyar.
+
+Depodaki eski denetimle (`qac_1651_vs_1642.md`) tutarlılık:
+
+| yöntem | CR soyulmadan | CR soyulunca | fark |
+|---|---:|---:|---:|
+| kabuk boru hattı (eski denetim) | 1.651 | 1.641 | 10 |
+| sağlam ayrıştırıcı (bu rapor) | 1.652 | 1.642 | 10 |
+
+CR'nin eklediği sahte değerler iki yöntemde aynıdır (10: `Any`, `End`, `Hyn`, `Hyv`, `bEd`, `byn`, `kll`, `kyf`, `mss`, `qbl`). Kabuk tarafının her iki sütunda -1 farkı CR'den değil, eski boru hattındaki virgül ayırıcısından kaynaklanır: `wAd` o boru hattında düşer (eski denetim). quran-morphology'nin 1.651'i ile kabuk sayımının 1.651'i iki ayrı sebepten çıkan aynı sayıdır; biri diğerini doğrulamaz.
 
 ## Kök envanteri (hemze yazımı nötrlenerek)
 
