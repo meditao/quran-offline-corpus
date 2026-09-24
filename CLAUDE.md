@@ -114,7 +114,7 @@ Anlam önerisi kaydedilirken şu alanlar boş bırakılamaz:
 
 **tez.py** — tez tek cümleyle dondurulur; tanımlar ve karşı örnek havuzu **taramadan önce** kaydedilir ve sonradan değiştirilemez (değişirse yeni sürüm açılır, eskisi silinmez). Her bulgu eksen etiketi taşır (tanımlayıcı/normatif, oluşum/sorumluluk vb.); farklı eksendeki bulgu "çelişen" rafına konamaz. Kullanıcının tez ifadesi kendiliğinden güçlendirilmez.
 
-**ikincil/** — Lane ve Sâmî çıktıları her satırda "hipotez" etiketi taşır. Tek dilde kognat vuruşu tek başına raporlanmaz. Lane'in ك harfinden sonraki bölgesinde "Lane'de yok" argümanı üretilmez. Ölçümler (Lane eşleşmesi, bölge yoğunluğu, Sâmî gürültü tabanı) QAC köklerine göre yapılır: `03_indices/audits/ikincil_katmanlar.md` (`08_scripts/measure_secondary_layers.py`).
+**ikincil/** — Lane ve Sâmî çıktıları her satırda "hipotez" etiketi taşır. Tek dilde kognat vuruşu tek başına raporlanmaz. Lane'in ك harfinden sonraki bölgesinde "Lane'de yok" argümanı üretilmez. Ölçümler (Lane eşleşmesi, bölge yoğunluğu, Sâmî gürültü tabanı) QAC köklerine göre yapılır: `03_indices/audits/ikincil_katmanlar.md` (`08_scripts/measure_secondary_layers.py`). Sâmî son-harf-zayıf kuralı (İbranice ה / Süryanice Alef) gerçek/rastgele oranını düşürdüğü için varsayılan kapalıdır; `sami kok --zayif-son` ile açılır. Lane kısaltma kategorileri ve dayanakları `09_calisma_masasi/lane_kisaltmalari.tsv` dosyasındadır; `lane sigla` kategori dayanağını her çalıştırmada ölçer.
 
 ## 8. Kayıt satırı
 
@@ -122,7 +122,7 @@ Her sorgu çıktısının ve her kavram dosyası bölümünün sonunda:
 
 ```
 Kaynak      : QAC v0.4 | + quran-morphology | + Lane | + Sâmî
-Sayım birimi: kelime konumu | segment | ayet | sûre | kök (yalnız envanter ölçümlerinde)
+Sayım birimi: kelime konumu | segment | ayet | sûre | kök (yalnız envanter ölçümlerinde) | atıf geçişi (yalnız Lane kısaltma ölçümünde)
 Sorgu       : çalıştırılan tam komut
 Veri izi    : kaynak dosyanın sha256'sının ilk 12 hanesi
 Durum       : çalıştırıldı | çalıştırılmadı

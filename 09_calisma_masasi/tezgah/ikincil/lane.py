@@ -7,7 +7,8 @@ Kurallar (kök analizi becerisi §10; sayılar QAC v0.4'ün 1.642 köküne göre
   böyle diyor" bağımsız doğrulama değildir. Kur'an atfı taşıyan madde ayrıca işaretlenir.
 - ك sonrası seyrelme: Lane'in ك-ي bölgesi ölümünden sonra derlendi ve seyrektir; bu bölgede
   "Lane'de yok" argümanı üretilmez. Yoğunluk `lane kapsam` ile ölçülür.
-- Tefsir (Bd, Jel, Ksh), hadis ("trad.") ve şiir satırları işaretlenir.
+- Tefsir, hadis ("trad." ve hadis kısaltmaları) ve şiir satırları işaretlenir; kısaltma kategorileri ve
+  dayanakları: 09_calisma_masasi/lane_kisaltmalari.tsv (`lane sigla` ölçer).
 - Zayıf kuralla eşleşen kök "<< DOĞRULA" ile işaretlenir ve elle denetlenir.
 
 Veri: yerel/lane/lexicon.sqlite (depoya işlenmez; 265 MB). Kurulum: python -m tezgah kur lane
@@ -42,17 +43,38 @@ ALFABE = "ابتثجحخدذرزسشصضطظعغفقكلمنهوي"
 SEYREK_BOLGE = set("كلمنهوي")
 HEMZE = set("ءأإآؤئٱا")
 
-# Lane kaynak kısaltmaları (Lane'in önsözü; elle atanmış kategori — tam liste değil).
-SIGLA_KATEGORI = {
-    "S": ("sözlük", "Ṣiḥāḥ (Cevherî)"), "K": ("sözlük", "Ḳāmūs"), "TA": ("sözlük", "Tâcü'l-ʿarûs"),
-    "M": ("sözlük", "Muḥkem (İbn Sîde)"), "Msb": ("sözlük", "Miṣbāḥ"), "T": ("sözlük", "Tehẕîb (Ezherî)"),
-    "A": ("sözlük", "Esâs (Zemahşerî)"), "Mgh": ("sözlük", "Muġrib"), "O": ("sözlük", "ʿUbâb (Ṣaġânî)"),
-    "L": ("sözlük", "Lisânü'l-ʿArab"), "Bd": ("tefsir", "Beyżâvî"), "Jel": ("tefsir", "Celâleyn"),
-    "Ksh": ("tefsir", "Keşşâf"), "IAth": ("hadis", "İbnü'l-Esîr, en-Nihâye (hadis garibi)"),
-    "Mughnee": ("dil bilgisi", "Muġnî'l-lebîb"),
-}
-TEFSIR_RE = re.compile(r"\b(Bd|Jel|Ksh)\b")
-HADIS_RE = re.compile(r"\btrad\.|\btrads\.|\bIAth\b")
+# Lane kaynak kısaltmaları: kategori ve dayanak ayrı tablo dosyasındadır (lane_kisaltmalari.tsv).
+KISALTMA_YOLU = MASA / "lane_kisaltmalari.tsv"
+KISALTMA_SUTUNLARI = ["kisaltma", "kategori", "kaynak", "kimlik_dayanagi", "veri_deseni", "kategori_dayanagi"]
+KATEGORILER = {"sözlük", "tefsir", "hadis", "dil bilgisi"}
+YAKINLIK = 300     # atfın iki yanında bakılan karakter sayısı (olcum:kur / olcum:trad)
+KAT_ESIGI = 3.0    # ölçülen oran, sözlük kategorisi ortancasının en az bu katı olmalı
+
+
+@lru_cache(maxsize=1)
+def kisaltmalar() -> dict[str, dict[str, str]]:
+    """lane_kisaltmalari.tsv → {kısaltma: satır}. '#' ile başlayan satırlar açıklamadır."""
+    satirlar = [s for s in KISALTMA_YOLU.read_text(encoding="utf-8").splitlines() if s.strip() and not s.startswith("#")]
+    baslik = satirlar[0].split("\t")
+    if baslik != KISALTMA_SUTUNLARI:
+        raise veri.VeriHatasi(f"{KISALTMA_YOLU.name}: sütunlar {KISALTMA_SUTUNLARI} olmalı, bulunan {baslik}")
+    tablo = {}
+    for s in satirlar[1:]:
+        r = dict(zip(baslik, s.split("\t")))
+        if len(r) != len(baslik) or r["kategori"] not in KATEGORILER or r["kisaltma"] in tablo:
+            raise veri.VeriHatasi(f"{KISALTMA_YOLU.name}: geçersiz satır: {s!r}")
+        if r["kategori_dayanagi"] not in {"elle", "olcum:kur", "olcum:trad"}:
+            raise veri.VeriHatasi(f"{KISALTMA_YOLU.name}: bilinmeyen kategori dayanağı: {r['kategori_dayanagi']}")
+        tablo[r["kisaltma"]] = r
+    return tablo
+
+
+def _kategori_re(kategori: str) -> str:
+    return "|".join(re.escape(k) for k, r in kisaltmalar().items() if r["kategori"] == kategori)
+
+
+TEFSIR_RE = re.compile(rf"\b({_kategori_re('tefsir')})\b")
+HADIS_RE = re.compile(rf"\btrads?\.|\b(?:{_kategori_re('hadis')})\b")
 SIIR_RE = re.compile(r"\b(verse|poet|hemistich|rejez|rajaz)\b", re.I)
 KURAN_RE = re.compile(r"\bKur\b")
 
@@ -275,19 +297,78 @@ def kapsam_komutu(kor: veri.Korpus):
                  veri_izi=f"{kor.veri_izi} | {SQLITE_SHA256[:12]}")
 
 
-def sigla_komutu():
-    """Maddelerdeki parantez içi kaynak kısaltmalarını sayar; bilinenlere kategori ekler."""
-    from ..tara import GirdiHatasi, Sonuc, _tablo
+ATIF_GRUBU = re.compile(r"\(([A-Z][A-Za-z]{0,6}(?:,?\s*\*?\s*[A-Z][A-Za-z]{0,6}\.?)*),?\s*\*?\)")
+KUR_YAKIN = re.compile(r"\bKur\b")
+TRAD_YAKIN = re.compile(r"\btrads?\.")
+
+
+@lru_cache(maxsize=1)
+def sigla_olcumu() -> dict:
+    """Parantez içi atıf kısaltmalarını sayar; her geçişin ±YAKINLIK karakterinde Kur / trad. oranını ölçer."""
     c = baglanti()
-    if c is None:
-        raise GirdiHatasi("Lane kurulu değil (python -m tezgah kur lane).")
-    sayac = Counter()
+    say, kur, trad, desen = Counter(), Counter(), Counter(), Counter()
+    tablo = kisaltmalar()
+    desenler = {k: re.compile(r["veri_deseni"]) for k, r in tablo.items() if r["veri_deseni"] != "-"}
     for xml, in c.execute("select xml from entry"):
-        for grup in re.findall(r"\(([A-Z][A-Za-z]{0,6}(?:,\s*[A-Z][A-Za-z]{0,6})*),?\)", re.sub(r"<[^>]+>", "", xml)):
-            sayac.update(x.strip() for x in grup.split(","))
-    tablo = [[s, n, *SIGLA_KATEGORI.get(s, ("belirsiz", "—"))] for s, n in sayac.most_common(40)]
-    satirlar = ["Lane kaynak kısaltmaları (parantez içi atıflar; sayım bu çalıştırmada yapıldı; kategori elle atanmış):",
-                *_tablo(["kısaltma", "geçiş", "kategori", "kaynak"], tablo, sag={1}),
-                "tefsir ve hadis kategorisindeki atıflar delil değildir; aktarılırsa kaynağı açıkça yazılır."]
-    return Sonuc(etiketle(satirlar), [], {"sigla": dict(sayac.most_common(40))}, kaynak=KAYNAK_ADI,
-                 veri_izi=SQLITE_SHA256[:12])
+        m = re.sub(r"<[^>]+>", "", xml)
+        for k, d in desenler.items():
+            if d.search(m):
+                desen[k] += 1
+        for g in ATIF_GRUBU.finditer(m):
+            pencere = m[max(0, g.start() - YAKINLIK):g.end() + YAKINLIK]
+            k_var, t_var = bool(KUR_YAKIN.search(pencere)), bool(TRAD_YAKIN.search(pencere))
+            for x in re.split(r"[,\s*]+", g.group(1)):
+                x = x.strip(". ")
+                if x:
+                    say[x] += 1
+                    kur[x] += k_var
+                    trad[x] += t_var
+    oran = lambda sayac, k: sayac[k] / say[k] if say[k] else 0.0
+
+    def ortanca(xs):
+        xs = sorted(xs)
+        return (xs[(len(xs) - 1) // 2] + xs[len(xs) // 2]) / 2 if xs else 0.0
+    sozluk = [k for k, r in tablo.items() if r["kategori"] == "sözlük"]
+    taban = {"kur": ortanca([oran(kur, k) for k in sozluk]), "trad": ortanca([oran(trad, k) for k in sozluk])}
+    satir = {}
+    for k, r in tablo.items():
+        o = {"gecis": say[k], "kur": oran(kur, k), "trad": oran(trad, k),
+             "veri_deseni_madde": desen[k] if k in desenler else None}
+        if r["kategori_dayanagi"].startswith("olcum:"):
+            tur = r["kategori_dayanagi"].split(":")[1]
+            o["olcum_tutuyor"] = say[k] > 0 and taban[tur] > 0 and o[tur] >= KAT_ESIGI * taban[tur]
+        satir[k] = o
+    return {"satir": satir, "taban": taban, "diger": dict((k, n) for k, n in say.most_common() if k not in tablo)}
+
+
+def sigla_komutu():
+    """Kısaltma tablosunu (lane_kisaltmalari.tsv) veride ölçülen dayanakla birlikte gösterir."""
+    from ..tara import GirdiHatasi, Sonuc, _tablo
+    if baglanti() is None:
+        raise GirdiHatasi("Lane kurulu değil (python -m tezgah kur lane).")
+    o = sigla_olcumu()
+    yz = lambda x: f"%{100 * x:.1f}".replace(".", ",")
+    tablo = []
+    for k, r in kisaltmalar().items():
+        s = o["satir"][k]
+        if r["kategori_dayanagi"] == "elle":
+            kd = "elle"
+        else:
+            kd = f"{r['kategori_dayanagi']} — {'tutuyor' if s['olcum_tutuyor'] else 'TUTMUYOR'}"
+        tablo.append([k, s["gecis"], r["kategori"], r["kaynak"], yz(s["kur"]), yz(s["trad"]), kd,
+                      "—" if s["veri_deseni_madde"] is None else f"{r['veri_deseni']} → {s['veri_deseni_madde']} madde"])
+    diger = list(o["diger"].items())[:15]
+    satirlar = [
+        f"Lane kaynak kısaltmaları — tablo: {KISALTMA_YOLU.name}; sayımlar ve oranlar bu çalıştırmada ölçüldü.",
+        "Kimlik (kısaltma → eser): Lane önsözündeki liste; LexiconDatabase'de önsöz yok, eşleme bu depoda veriyle "
+        "doğrulanmadı (elle atandı). Veri deseni yalnız dolaylı destektir.",
+        f"Kategori ölçümü: atfın ±{YAKINLIK} karakterinde 'Kur' / 'trad.' geçme oranı (birim: atıf geçişi). Sözlük "
+        f"ortancası: Kur {yz(o['taban']['kur'])}, trad {yz(o['taban']['trad'])}; eşik ortancanın {KAT_ESIGI:g} katı.",
+        *_tablo(["kısaltma", "geçiş", "kategori", "kaynak", "Kur yakın", "trad yakın", "kategori dayanağı", "veri deseni"],
+                tablo, sag={1, 4, 5}),
+        "Tabloda olmayan en sık kısaltmalar (kategori atanmadı): " + ", ".join(f"{k} {n}" for k, n in diger),
+        "tefsir ve hadis kategorisindeki atıflar delil değildir; aktarılırsa kaynağı açıkça yazılır.",
+    ]
+    veri_ = {"satir": o["satir"], "taban": o["taban"]}
+    return Sonuc(etiketle(satirlar), ["atıf geçişi"], veri_, kaynak=KAYNAK_ADI,
+                 veri_izi=f"{SQLITE_SHA256[:12]} | {veri.sha256(KISALTMA_YOLU)[:12]}")

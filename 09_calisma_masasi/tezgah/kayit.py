@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 CALISTIRILDI = "çalıştırıldı"
 CALISTIRILMADI = "çalıştırılmadı"
 
-GECERLI_BIRIMLER = ("kelime konumu", "segment", "ayet", "sûre", "kök")
+GECERLI_BIRIMLER = ("kelime konumu", "segment", "ayet", "sûre", "kök", "atıf geçişi")
 
 
 def komut_metni(argv: list[str] | None = None) -> str:

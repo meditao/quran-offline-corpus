@@ -32,17 +32,21 @@ def binlik(n: int) -> str:
     return f"{n:,}".replace(",", ".")
 
 
+ADLAR = {"ibranice": "İbranice", "suryanice": "Süryanice", "ikisi": "ikisi birden"}
+
+
 def hesapla() -> dict:
     if lane.baglanti() is None or sami.suryanice() is None:
         raise SystemExit("Lane ve SEDRA kurulu olmalı: python -m tezgah kur lane / kur sedra")
     kor = veri.korpus()
     k = lane.kapsam(kor)
-    g = sami.gurultu(10, 20260924)
+    karsi = sami.gurultu_karsilastirma(10, 20260924)
+    g = karsi["kapali"]
     ozet = {
         "qac_sha256": kor.sha256, "lane_sqlite_sha256": lane.SQLITE_SHA256, "lane_commit": lane.LANE_COMMIT,
         "ibranice_dizin_sha256": veri.sha256(sami.IBRANICE_YOLU), "sedra_commit": sami.SEDRA_COMMIT,
         "lane_kapsam": {**k, "zayif": [list(z) for z in k["zayif"]]},
-        "sami_gurultu": g,
+        "sami_gurultu": karsi,
         "envanter": {"ibranice_kok": len(sami.ibranice()), "sedra_kok": len(sami.suryanice()),
                      "sedra_bagsiz": sami.sedra_bagsiz()},
     }
@@ -83,13 +87,20 @@ def hesapla() -> dict:
         f"{ozet['envanter']['sedra_bagsiz']['ENGLISH.TXT']}). Denklik tablosu: `python -m tezgah sami denklik`.",
         "",
         f"Yöntem: {binlik(g['kok'])} gerçek QAC kökü ile aynı harf ve uzunluk dağılımından üretilmiş {g['tekrar']} × "
-        f"{binlik(g['kok'])} sahte kök (tohum {g['tohum']}; gerçek köklerle çakışanlar atıldı) aynı işlemden geçirildi.",
+        f"{binlik(g['kok'])} sahte kök (tohum {g['tohum']}; gerçek köklerle çakışanlar atıldı) aynı işlemden geçirildi. "
+        "Son-harf-zayıf kuralı (İbranice ה / Süryanice Alef) kapalı ve açık olarak aynı kümelerde ayrı ölçüldü.",
         "",
-        "| dil | gerçek vuruş | rastgele vuruş (ort.; en az–en çok) | gürültü payı |",
-        "|---|---:|---:|---:|",
-        *[f"| {ad} | {yuzde(g['gercek'][d])} | {yuzde(g['rastgele'][d]['ortalama'])} ({yuzde(g['rastgele'][d]['en_az'])}–"
-          f"{yuzde(g['rastgele'][d]['en_cok'])}) | {yuzde(g['gurultu_payi'][d])} |"
+        "| kural | dil | gerçek vuruş | rastgele vuruş (ort.; en az–en çok) | gerçek/rastgele | gürültü payı |",
+        "|---|---|---:|---:|---:|---:|",
+        *[f"| {etiket} | {ad} | {yuzde(karsi[kk]['gercek'][d])} | {yuzde(karsi[kk]['rastgele'][d]['ortalama'])} "
+          f"({yuzde(karsi[kk]['rastgele'][d]['en_az'])}–{yuzde(karsi[kk]['rastgele'][d]['en_cok'])}) | "
+          f"{karsi[kk]['gercek_rastgele_orani'][d]:.2f}".replace(".", ",") + f" | {yuzde(karsi[kk]['gurultu_payi'][d])} |"
+          for kk, etiket in (("kapali", "kapalı (varsayılan)"), ("acik", "açık (--zayif-son)"))
           for d, ad in (("ibranice", "İbranice"), ("suryanice", "Süryanice"), ("ikisi", "ikisi birden"))],
+        "",
+        "Kural gerçek/rastgele oranını iyileştiriyor mu: "
+        + ", ".join(f"{ADLAR[d]}: {'evet' if v else 'hayır'}" for d, v in karsi["kural_iyilestiriyor"].items())
+        + ". Oranı iyileştirmediği için varsayılan kapalıdır; `sami kok --zayif-son` ile açılır.",
         "",
         "Kurallar: kognat anlam değildir; tek dildeki vuruş tek başına raporlanmaz; \"aday yok\" bulgu değildir; İbranice ve "
         "Süryanice bağımsız iki tanık değildir. SEDRA verisi değiştirilmiş hâliyle dağıtılamaz ve depoya işlenmez; sonuç "

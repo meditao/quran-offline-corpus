@@ -163,6 +163,8 @@ def kur() -> dict:
 # --- eşleştirme -----------------------------------------------------------------
 
 # Son harfi zayıf (و/ي) kökler: İbranice sözlük geleneği ה ile (lamed-he: בנה), SEDRA Alef ile yazar.
+# Varsayılan KAPALI: aynı kök ve sahte kök kümesinde ölçüldü, kural gerçek/rastgele oranını üç
+# ölçümde de düşürüyor (gerçek vuruşu artırıyor ama gürültüyü daha çok artırıyor). --zayif-son ile açılır.
 SON_ZAYIF = {"ibranice": "ה", "suryanice": "A"}
 
 
@@ -175,17 +177,18 @@ def adaylar(harfler: str, denklik: dict[str, str], envanter, son_zayif: str = ""
     return sorted({"".join(p) for p in itertools.product(*secenek) if "".join(p) in envanter})
 
 
-def vurus(harfler: str) -> tuple[list[str], list[str]]:
+def vurus(harfler: str, zayif_son: bool = False) -> tuple[list[str], list[str]]:
     sur = suryanice() or {}
-    return (adaylar(harfler, IBRANICE_DENKLIK, ibranice(), SON_ZAYIF["ibranice"]),
-            adaylar(harfler, SURYANICE_DENKLIK, sur, SON_ZAYIF["suryanice"]))
+    ek_h, ek_s = (SON_ZAYIF["ibranice"], SON_ZAYIF["suryanice"]) if zayif_son else ("", "")
+    return (adaylar(harfler, IBRANICE_DENKLIK, ibranice(), ek_h),
+            adaylar(harfler, SURYANICE_DENKLIK, sur, ek_s))
 
 
-def _oranlar(kokler: list[str]) -> dict[str, float]:
+def _oranlar(kokler: list[str], zayif_son: bool = False) -> dict[str, float]:
     n = len(kokler)
     h = s = iki = 0
     for k in kokler:
-        a, b = vurus(k)
+        a, b = vurus(k, zayif_son)
         h += bool(a)
         s += bool(b)
         iki += bool(a and b)
@@ -193,7 +196,7 @@ def _oranlar(kokler: list[str]) -> dict[str, float]:
 
 
 @lru_cache(maxsize=4)
-def gurultu(tekrar: int = 10, tohum: int = 20260924) -> dict:
+def gurultu(tekrar: int = 10, tohum: int = 20260924, zayif_son: bool = False) -> dict:
     """Gerçek QAC kökleri ile aynı harf ve uzunluk dağılımından üretilmiş sahte köklerin vuruş oranı."""
     kor = veri.korpus()
     gercek = [qac_harfleri(k) for k in kor.kok_kelimeleri]
@@ -211,8 +214,8 @@ def gurultu(tekrar: int = 10, tohum: int = 20260924) -> dict:
                 if aday not in gercek_kume:
                     break
             sahte.append(aday)
-        rastgele_oranlar.append(_oranlar(sahte))
-    g = _oranlar(gercek)
+        rastgele_oranlar.append(_oranlar(sahte, zayif_son))
+    g = _oranlar(gercek, zayif_son)
     sonuc = {"kok": len(gercek), "tekrar": tekrar, "tohum": tohum, "gercek": g, "rastgele": {}, "gurultu_payi": {}}
     for dil in ("ibranice", "suryanice", "ikisi"):
         degerler = [r[dil] for r in rastgele_oranlar]
@@ -228,19 +231,21 @@ def _yuzde(x: float) -> str:
 
 # --- komutlar ---------------------------------------------------------------------
 
-def kok_komutu(kor: veri.Korpus, girdi: str, tek_dil: bool = False, tam: bool = False):
+def kok_komutu(kor: veri.Korpus, girdi: str, tek_dil: bool = False, tam: bool = False, zayif_son: bool = False):
     from ..tara import Sonuc, kok_coz
     c = kok_coz(kor, girdi)
     harfler = qac_harfleri(c.bw)
-    heb, sur = vurus(harfler)
+    heb, sur = vurus(harfler, zayif_son)
     sur_kurulu = suryanice() is not None
-    g = gurultu()
+    g = gurultu(zayif_son=zayif_son)
     satirlar = [
         "Karşılaştırmalı Sâmî katmanı (İbranice: Open Scriptures Hebrew Lexicon dizini; Süryanice: SEDRA 3) — "
         "hipotez kaynağı, delil değil.",
         "Kognat anlam değildir: ortak ünsüz dizisi yalnız ortak köken adayıdır. İbranice ve Süryanice bağımsız "
         "iki tanık değildir; ödünçleme yönü bu yöntemle ayırt edilemez.",
         f"QAC kökü: {c.bw} ({c.latin})",
+        "Son-harf-zayıf kuralı: " + ("AÇIK (--zayif-son; ölçümde gerçek/rastgele oranını düşürüyor, gürültü payı yüksek)"
+                                     if zayif_son else "kapalı (açmak için --zayif-son)"),
     ]
     for r in incelenmis().get(c.bw, []):
         satirlar.append(f"İncelenmiş kayıt (04_lexicons/semitic/cognates.tsv): {r['language']} {r['cognate_translit']} — "
@@ -274,6 +279,11 @@ def kok_komutu(kor: veri.Korpus, girdi: str, tek_dil: bool = False, tam: bool = 
             goster(dil, kokler, heb_anlam if heb else sur_anlam, heb_latin if heb else sur_latin)
     else:
         satirlar.append("Aday yok — bu bir bulgu değildir (sözlükler eksiksiz değildir).")
+    if not zayif_son:
+        h2, s2 = vurus(harfler, True)
+        if (h2, s2) != (heb, sur):
+            satirlar.append(f"Not: --zayif-son ile aday kümesi değişir (İbranice {len(h2)}, Süryanice {len(s2)}); kural "
+                            "ölçümde gerçek/rastgele oranını düşürdüğü için varsayılan kapalı (sami gurultu).")
     satirlar.append("Kural: hipotez korpusta sınanır; sonuç korpus bulgusuyla yazılır. SEDRA yayında atıf ister: sami atif")
     iz = f"{kor.veri_izi} | {veri.sha256(IBRANICE_YOLU)[:12]}" + (
         f" | {SEDRA_DOSYALARI['ROOTS.TXT'][:12]}" if sur_kurulu else "")
@@ -281,25 +291,50 @@ def kok_komutu(kor: veri.Korpus, girdi: str, tek_dil: bool = False, tam: bool = 
                  kaynak=f"QAC v0.4 | + {KAYNAK_ADI}", veri_izi=iz)
 
 
+DIL_ADI = {"ibranice": "İbranice", "suryanice": "Süryanice", "ikisi": "ikisi birden"}
+
+
+def gurultu_karsilastirma(tekrar: int = 10, tohum: int = 20260924) -> dict:
+    """Aynı gerçek kök ve aynı sahte kök kümesinde son-harf-zayıf kuralı kapalı ↔ açık."""
+    sonuc = {}
+    for ad, z in (("kapali", False), ("acik", True)):
+        g = dict(gurultu(tekrar, tohum, z))   # önbellekteki sözlük değiştirilmez
+        g["gercek_rastgele_orani"] = {d: (g["gercek"][d] / g["rastgele"][d]["ortalama"]
+                                          if g["rastgele"][d]["ortalama"] else None) for d in g["gercek"]}
+        sonuc[ad] = g
+    sonuc["kural_iyilestiriyor"] = {d: sonuc["acik"]["gercek_rastgele_orani"][d] > sonuc["kapali"]["gercek_rastgele_orani"][d]
+                                    for d in sonuc["kapali"]["gercek"]}
+    return sonuc
+
+
 def gurultu_komutu(kor: veri.Korpus, tekrar: int, tohum: int):
     from ..tara import GirdiHatasi, Sonuc, _tablo
     if suryanice() is None:
         raise GirdiHatasi("SEDRA kurulu değil (python -m tezgah kur sedra); gürültü ölçümü iki dili ister.")
-    g = gurultu(tekrar, tohum)
+    k = gurultu_karsilastirma(tekrar, tohum)
+    g0 = k["kapali"]
     tablo = []
-    for dil, ad in (("ibranice", "İbranice"), ("suryanice", "Süryanice"), ("ikisi", "ikisi birden")):
-        r = g["rastgele"][dil]
-        tablo.append([ad, _yuzde(g["gercek"][dil]), f"{_yuzde(r['ortalama'])} ({_yuzde(r['en_az'])}–{_yuzde(r['en_cok'])})",
-                      _yuzde(g["gurultu_payi"][dil])])
+    for ad_k, etiket in (("kapali", "kapalı (varsayılan)"), ("acik", "açık (--zayif-son)")):
+        g = k[ad_k]
+        for dil, ad in (("ibranice", "İbranice"), ("suryanice", "Süryanice"), ("ikisi", "ikisi birden")):
+            r = g["rastgele"][dil]
+            tablo.append([etiket, ad, _yuzde(g["gercek"][dil]),
+                          f"{_yuzde(r['ortalama'])} ({_yuzde(r['en_az'])}–{_yuzde(r['en_cok'])})",
+                          f"{g['gercek_rastgele_orani'][dil]:.2f}".replace(".", ","), _yuzde(g["gurultu_payi"][dil])])
+    iyi = k["kural_iyilestiriyor"]
     satirlar = [
-        f"Sâmî gürültü tabanı — QAC v0.4'ün {g['kok']} gerçek kökü ↔ aynı harf ve uzunluk dağılımından "
-        f"{g['tekrar']} kez {g['kok']} sahte kök (tohum {g['tohum']}; gerçek köklerle çakışanlar atıldı). Birim: kök.",
-        *_tablo(["dil", "gerçek vuruş", "rastgele vuruş (ort., en az–en çok)", "gürültü payı"], tablo, sag={1, 2, 3}),
-        "Gürültü payı = rastgele ortalama / gerçek oran: gerçek vuruşların yaklaşık bu kadarı rastlantıyla açıklanabilir.",
+        f"Sâmî gürültü tabanı — QAC v0.4'ün {g0['kok']} gerçek kökü ↔ aynı harf ve uzunluk dağılımından "
+        f"{g0['tekrar']} kez {g0['kok']} sahte kök (tohum {g0['tohum']}; gerçek köklerle çakışanlar atıldı). Birim: kök.",
+        "Son-harf-zayıf kuralı kapalı ve açık, aynı gerçek ve aynı sahte kök kümesinde ölçüldü:",
+        *_tablo(["kural", "dil", "gerçek vuruş", "rastgele vuruş (ort., en az–en çok)", "gerçek/rastgele", "gürültü payı"],
+                tablo, sag={2, 3, 4, 5}),
+        "Gürültü payı = rastgele ortalama / gerçek oran. Gerçek/rastgele oranı yüksek olan ayrım gücü yüksek olandır.",
+        "Kural oranı iyileştiriyor mu: " + ", ".join(f"{DIL_ADI[d]}: {'evet' if v else 'hayır'}" for d, v in iyi.items())
+        + (" → varsayılan kapalı." if not any(iyi.values()) else " → karışık sonuç; varsayılan kapalı."),
         f"İbranice kök envanteri: {len(ibranice())}; SEDRA kök envanteri: {len(suryanice())} (farklı kök yazımı; "
         f"köke bağlanmamış SEDRA kaydı atlandı: sözcük {sedra_bagsiz()['LEXEMES.TXT']}, anlam {sedra_bagsiz()['ENGLISH.TXT']}).",
     ]
-    return Sonuc(etiketle(satirlar), ["kök"], g, kaynak=f"QAC v0.4 | + {KAYNAK_ADI}",
+    return Sonuc(etiketle(satirlar), ["kök"], k, kaynak=f"QAC v0.4 | + {KAYNAK_ADI}",
                  veri_izi=f"{kor.veri_izi} | {veri.sha256(IBRANICE_YOLU)[:12]} | {SEDRA_DOSYALARI['ROOTS.TXT'][:12]}")
 
 
@@ -311,7 +346,8 @@ def denklik_komutu():
     satirlar = ["Ünsüz denklik tablosu (Arapça → İbranice / Süryanice; karşılaştırmalı Sâmî dilbiliminin yerleşik "
                 "denklikleri — hipotez düzeyinde, ses yasası istisnaları kapsanmaz):",
                 *_tablo(["Arapça", "İbranice", "Süryanice"], tablo),
-                "Son harfi zayıf kök (و/ي): İbranice ayrıca ה (lamed-he yazımı), Süryanice ayrıca ʾ (Alef) ile eşlenir."]
+                "Son harfi zayıf kök (و/ي): --zayif-son ile İbranice ayrıca ה (lamed-he yazımı), Süryanice ayrıca ʾ (Alef) "
+                "ile eşlenir; varsayılan kapalı (sami gurultu: kural gerçek/rastgele oranını düşürüyor)."]
     return Sonuc(etiketle(satirlar), [], {}, kaynak=KAYNAK_ADI, veri_izi="—")
 
 

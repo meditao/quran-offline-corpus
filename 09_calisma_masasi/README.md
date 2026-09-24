@@ -31,8 +31,8 @@ Depo kökünden: `PYTHONPATH=09_calisma_masasi python -m tezgah ...`
 | `ayet` | `ayet 2:3` · `ayet 2:3 --meal` | kelime konumu (okunuş + QAC çözümlemesi + çalışma çevirisi; meal isteğe bağlı) |
 | `ceviri` | `ceviri 2:3 "..."` · `ceviri 2:3` | — (kullanıcının yorumu) |
 | `kur` | `kur meal` · `kur quran-morphology` · `kur lane` · `kur sedra` | — (yerel/, depoya işlenmez) |
-| `lane` | `lane kok Slw` · `lane kok Slw --madde 2 --tam` · `lane kapsam` · `lane sigla` | hipotez; `kapsam`: kök |
-| `sami` | `sami kok Slw` · `sami kok Elm --tek-dil` · `sami gurultu` · `sami denklik` · `sami atif` | hipotez; `gurultu`: kök |
+| `lane` | `lane kok Slw` · `lane kok Slw --madde 2 --tam` · `lane kapsam` · `lane sigla` | hipotez; `kapsam`: kök; `sigla`: atıf geçişi (tablo: [`lane_kisaltmalari.tsv`](lane_kisaltmalari.tsv)) |
+| `sami` | `sami kok Slw` · `sami kok Slw --zayif-son` · `sami kok Elm --tek-dil` · `sami gurultu` · `sami denklik` · `sami atif` | hipotez; `gurultu`: kök |
 | `--capraz` | `kok Slw --capraz` · `sayim --kok nws --capraz` | kelime konumu / ayet / sûre; QAC ve quran-morphology ayrı tablolar + kök ataması farklı konumlar |
 | `kavram` | `kavram ac salat --soru "..." --kok Slw` · `kavram sorgu salat --bolum asama2 -- kalip "ROOT:Slw&POS:V"` · `kavram ayet salat 2:3` · `kavram oneri salat ...` · `kavram yenile salat` · `kavram denetle salat` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
 | `tez` | `tez ac t --tez "..." --tanim "terim=tanım" --eksen kip=tanımlayıcı --eksen düzlem=oluşum --karsi "kalip ROOT:Slw&POS:V"` · `tez tara t` · `tez bulgu t --eksen ... --raf ... --aciklama ... -- kalip "..."` · `tez sonuc t ...` · `tez yeni-surum t --gerekce ...` · `tez goster t` · `tez denetle t` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
@@ -63,3 +63,4 @@ Her çıktı §8 kayıt bloğuyla biter (kaynak, sayım birimi, tam komut, veri 
 - `kavramlar/` — çalışma çevirisi ve kavram dosyaları
 - `yerel/` — depoya işlenmeyen yerel veri (`.gitignore`): meal, quran-morphology, lane, sedra
 - `okunus_kurallari.md` — okunuş ve kök gösteriminin ortak harf tablosu ve kuralları
+- `lane_kisaltmalari.tsv` — Lane kaynak kısaltmaları: kategori, eser, kimlik ve kategori dayanağı (hipotez katmanı)

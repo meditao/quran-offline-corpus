@@ -98,35 +98,84 @@
     }
   },
   "sami_gurultu": {
-    "kok": 1642,
-    "tekrar": 10,
-    "tohum": 20260924,
-    "gercek": {
-      "ibranice": 0.6784409257003654,
-      "suryanice": 0.3806333739342265,
-      "ikisi": 0.33008526187576126
-    },
-    "rastgele": {
-      "ibranice": {
-        "ortalama": 0.25779537149817294,
-        "en_az": 0.2417783191230207,
-        "en_cok": 0.2844092570036541
+    "kapali": {
+      "kok": 1642,
+      "tekrar": 10,
+      "tohum": 20260924,
+      "gercek": {
+        "ibranice": 0.584652862362972,
+        "suryanice": 0.30694275274056027,
+        "ikisi": 0.25761266747868455
       },
-      "suryanice": {
-        "ortalama": 0.1338002436053593,
-        "en_az": 0.13093788063337394,
-        "en_cok": 0.13702801461632155
+      "rastgele": {
+        "ibranice": {
+          "ortalama": 0.20676004872107184,
+          "en_az": 0.1900121802679659,
+          "en_cok": 0.2320341047503045
+        },
+        "suryanice": {
+          "ortalama": 0.09494518879415348,
+          "en_az": 0.08891595615103533,
+          "en_cok": 0.10048721071863581
+        },
+        "ikisi": {
+          "ortalama": 0.05383678440925701,
+          "en_az": 0.04689403166869671,
+          "en_cok": 0.05907429963459196
+        }
       },
-      "ikisi": {
-        "ortalama": 0.08599269183922045,
-        "en_az": 0.07917174177831912,
-        "en_cok": 0.09378806333739342
+      "gurultu_payi": {
+        "ibranice": 0.3536458333333333,
+        "suryanice": 0.3093253968253969,
+        "ikisi": 0.20898345153664302
+      },
+      "gercek_rastgele_orani": {
+        "ibranice": 2.8276877761413846,
+        "suryanice": 3.2328415651058364,
+        "ikisi": 4.785067873303167
       }
     },
-    "gurultu_payi": {
-      "ibranice": 0.3799820466786355,
-      "suryanice": 0.35152,
-      "ikisi": 0.26051660516605163
+    "acik": {
+      "kok": 1642,
+      "tekrar": 10,
+      "tohum": 20260924,
+      "gercek": {
+        "ibranice": 0.6784409257003654,
+        "suryanice": 0.3806333739342265,
+        "ikisi": 0.33008526187576126
+      },
+      "rastgele": {
+        "ibranice": {
+          "ortalama": 0.25779537149817294,
+          "en_az": 0.2417783191230207,
+          "en_cok": 0.2844092570036541
+        },
+        "suryanice": {
+          "ortalama": 0.1338002436053593,
+          "en_az": 0.13093788063337394,
+          "en_cok": 0.13702801461632155
+        },
+        "ikisi": {
+          "ortalama": 0.08599269183922045,
+          "en_az": 0.07917174177831912,
+          "en_cok": 0.09378806333739342
+        }
+      },
+      "gurultu_payi": {
+        "ibranice": 0.3799820466786355,
+        "suryanice": 0.35152,
+        "ikisi": 0.26051660516605163
+      },
+      "gercek_rastgele_orani": {
+        "ibranice": 2.631703283723128,
+        "suryanice": 2.8447883477469276,
+        "ikisi": 3.8385269121813033
+      }
+    },
+    "kural_iyilestiriyor": {
+      "ibranice": false,
+      "suryanice": false,
+      "ikisi": false
     }
   },
   "envanter": {

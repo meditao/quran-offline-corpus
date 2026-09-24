@@ -61,6 +61,23 @@ class VeridenBagimsiz(unittest.TestCase):
             self.assertTrue(s.startswith("[hipotez"), s)
         self.assertIn("Kaynak      : QAC v0.4 | + Sâmî", c)
 
+    def test_kisaltma_tablosu_dosyada(self):
+        self.assertEqual(lane.KISALTMA_YOLU, _ortak.MASA / "lane_kisaltmalari.tsv")
+        self.assertFalse(hasattr(lane, "SIGLA_KATEGORI"), "kategori kodda değil tablo dosyasında olmalı")
+        t = lane.kisaltmalar()
+        for k, r in t.items():
+            with self.subTest(k=k):
+                self.assertIn(r["kategori"], lane.KATEGORILER)
+                self.assertTrue(r["kimlik_dayanagi"] and r["kategori_dayanagi"] and r["kaynak"])
+                if r["kategori"] in ("tefsir", "hadis"):
+                    self.assertTrue(r["kategori_dayanagi"].startswith("olcum:"),
+                                    "işaretlenen kategoriler ölçülebilir dayanak taşımalı")
+        # işaret desenleri tablodan türetilir
+        self.assertEqual(set(lane.TEFSIR_RE.findall("(Bd) (Jel.) (Ksh) (S)")), {"Bd", "Jel", "Ksh"})
+        for m in ("(IAth)", "(Nh, TA)", "a trad. says"):
+            self.assertTrue(lane.HADIS_RE.search(m), m)
+        self.assertIsNone(lane.HADIS_RE.search("(S, K, TA)"))
+
     def test_latin_kok_girisi_reddedilir(self):
         self.assertEqual(calistir(["sami", "kok", "s-l-v"])[0], 2)
         self.assertEqual(calistir(["lane", "kok", "s-l-v"])[0], 2)
@@ -77,8 +94,16 @@ class SamiKatmani(unittest.TestCase):
         _, c = calistir(["sami", "kok", "Elm", "--tek-dil"])
         self.assertIn("  İbranice ", c)
 
-    def test_iki_dil_ve_son_zayif(self):
+    def test_son_zayif_varsayilan_kapali(self):
         _, c = calistir(["sami", "kok", "Slw"])
+        self.assertIn("Son-harf-zayıf kuralı: kapalı (açmak için --zayif-son)", c)
+        self.assertIn("Aday yok", c)
+        self.assertIn("Not: --zayif-son ile aday kümesi değişir", c)
+        self.assertNotIn("ṣ-l-h", c)
+
+    def test_iki_dil_ve_son_zayif(self):
+        _, c = calistir(["sami", "kok", "Slw", "--zayif-son"])
+        self.assertIn("Son-harf-zayıf kuralı: AÇIK", c)
         self.assertIn("İki dilde aday var", c)
         self.assertIn("İbranice ṣ-l-h", c)     # lamed-he yazımı
         self.assertIn("Süryanice ṣ-l-ʾ", c)    # Alef yazımı
@@ -91,13 +116,29 @@ class SamiKatmani(unittest.TestCase):
         self.assertEqual(sami.sedra_bagsiz(), {"LEXEMES.TXT": 36, "ENGLISH.TXT": 229})
 
     def test_gurultu_yeniden_uretilebilir(self):
-        g = sami.gurultu(10, 20260924)
-        self.assertEqual(g["kok"], 1_642)
-        for dil in ("ibranice", "suryanice", "ikisi"):
-            self.assertLess(g["rastgele"][dil]["ortalama"], g["gercek"][dil])
+        k = sami.gurultu_karsilastirma(10, 20260924)
+        for ad in ("kapali", "acik"):
+            g = k[ad]
+            self.assertEqual(g["kok"], 1_642)
+            for dil in ("ibranice", "suryanice", "ikisi"):
+                self.assertLess(g["rastgele"][dil]["ortalama"], g["gercek"][dil])
+        self.assertNotIn("gercek_rastgele_orani", sami.gurultu(10, 20260924), "önbellek değiştirilmemeli")
         if (AUDIT / "ikincil_katmanlar.json").exists():
             kayitli = json.loads((AUDIT / "ikincil_katmanlar.json").read_text(encoding="utf-8"))
-            self.assertEqual(kayitli["sami_gurultu"], json.loads(json.dumps(g)))
+            self.assertEqual(kayitli["sami_gurultu"], json.loads(json.dumps(k)))
+
+    def test_zayif_son_ayni_kumede_olculur_ve_varsayilan_kapali(self):
+        k = sami.gurultu_karsilastirma(10, 20260924)
+        # kural açıkken vuruş artar ama gerçek/rastgele oranı düşer → varsayılan kapalı
+        for dil in ("ibranice", "suryanice", "ikisi"):
+            self.assertGreaterEqual(k["acik"]["gercek"][dil], k["kapali"]["gercek"][dil])
+        self.assertFalse(any(k["kural_iyilestiriyor"].values()))
+        import inspect
+        self.assertIs(inspect.signature(sami.vurus).parameters["zayif_son"].default, False)
+        _, c = calistir(["sami", "gurultu"])
+        self.assertIn("kapalı (varsayılan)", c)
+        self.assertIn("açık (--zayif-son)", c)
+        self.assertIn("→ varsayılan kapalı.", c)
 
 
 @unittest.skipUnless(lane.LANE_YOLU.exists(), "Lane kurulu değil (python -m tezgah kur lane)")
@@ -127,6 +168,26 @@ class LaneKatmani(unittest.TestCase):
         _, c = calistir(["lane", "kok", "khf"])
         self.assertIn("bu bir bulgu değildir", c)
         self.assertIn("yokluk argümanı kurulamaz", c)
+
+    def test_kisaltma_kategori_dayanagi_olcumle_tutuyor(self):
+        o = lane.sigla_olcumu()
+        for k, r in lane.kisaltmalar().items():
+            s = o["satir"][k]
+            with self.subTest(k=k):
+                self.assertGreater(s["gecis"], 0, "tablodaki kısaltma veride geçmeli")
+                if r["kategori_dayanagi"] != "elle":
+                    self.assertTrue(s["olcum_tutuyor"], (k, s))
+                if r["veri_deseni"] != "-":
+                    self.assertGreater(s["veri_deseni_madde"], 0, (k, r["veri_deseni"]))
+        # sözlükler eşiğin altında kalmalı: ölçüm ayırt edici
+        for k in ("S", "K", "TA"):
+            self.assertLess(o["satir"][k]["kur"], lane.KAT_ESIGI * o["taban"]["kur"])
+        _, c = calistir(["lane", "sigla"])
+        self.assertIn("Sayım birimi: atıf geçişi", c)
+        self.assertIn("önsöz yok", c)
+        self.assertNotIn("TUTMUYOR", c)
+        for s_ in icerik_satirlari(c):
+            self.assertTrue(s_.startswith("[hipotez"), s_)
 
     def test_harekeli_kok_tablosu(self):
         self.assertEqual(lane.eslestir("jhl")[1], "tam")

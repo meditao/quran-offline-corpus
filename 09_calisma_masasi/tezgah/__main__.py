@@ -167,7 +167,9 @@ def parser_kur() -> argparse.ArgumentParser:
     x.add_argument("kok")
     x.add_argument("--tek-dil", action="store_true", help="tek dil vuruşlarının adaylarını da göster (etiketli)")
     x.add_argument("--tam", action="store_true")
-    x.set_defaults(islev=lambda k, n: sami.kok_komutu(k, n.kok, n.tek_dil, n.tam))
+    x.add_argument("--zayif-son", action="store_true",
+                   help="son harfi zayıf kök için İbranice ה / Süryanice Alef eşlemesi (ölçümde gürültüyü artırıyor)")
+    x.set_defaults(islev=lambda k, n: sami.kok_komutu(k, n.kok, n.tek_dil, n.tam, n.zayif_son))
     x = sa.add_parser("gurultu", help="rastgele kontrolle gürültü tabanı (ölçüm)")
     x.add_argument("--tekrar", type=int, default=10)
     x.add_argument("--tohum", type=int, default=20260924)
