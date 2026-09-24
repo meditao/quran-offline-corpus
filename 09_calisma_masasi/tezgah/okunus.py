@@ -44,6 +44,11 @@ DURAK_ADLARI = {
     SEKTE: "sekte",
 }
 DURAK_KARAKTERLERI = set(DURAK_ADLARI)
+DURAK_ISARETLERI = DURAK_KARAKTERLERI - {SEKTE}                 # U+06D6–06DB
+# Durak işaretli sürümün eklediği, okunuşta kullanılmayan işaretler (parametreler kapatmıyor).
+EK_ISARETLER = {"\u06DE": "rubʿ", "\u06E9": "secde"}
+TEK_BASINA_ISARETLER = DURAK_KARAKTERLERI | set(EK_ISARETLER)     # tek başına token olabilenler
+KARSILASTIRMADA_CIKAN = DURAK_ISARETLERI | set(EK_ISARETLER) | {"\u0640"}
 
 # --- karakter sınıfları ---------------------------------------------------
 FETHA, KESRE, DAMME = "َ", "ِ", "ُ"
@@ -437,17 +442,34 @@ def tanzil() -> dict[tuple[int, int], str]:
     return ayetler
 
 
-def _durak_cikar(t: str) -> list[str]:
-    return "".join(c for c in t if c not in DURAK_KARAKTERLERI).split()
+def _isaret_tokeni(tok: str) -> bool:
+    return all(c in TEK_BASINA_ISARETLER for c in tok)
+
+
+def denklik_tokenlari(metin: str) -> list[str]:
+    """Durak işaretli sürüm ↔ taban metin karşılaştırma biçimi.
+
+    Tek başına duran işaret tokenları (U+06D6–06DC, U+06DE, U+06E9) düşer; kalan tokenlardan
+    U+06D6–06DB, U+06DE, U+06E9 ve tatvil U+0640 çıkarılır. Kelimeye bitişik U+06DC korunur
+    (2:245 ve 7:69'da ص üzerindeki "sin okunur" işareti tabanda da vardır).
+    """
+    sonuc = []
+    for tok in metin.split():
+        if _isaret_tokeni(tok):
+            continue
+        t = "".join(c for c in tok if c not in KARSILASTIRMADA_CIKAN)
+        if t:
+            sonuc.append(t)
+    return sonuc
 
 
 def durak_yukle(yol: Path, manifest_yolu: Path, taban: dict[tuple[int, int], str]):
     """Durak işaretli dosyayı okur ve taban metne göre token sırasına bağlar.
 
-    Denetimler: sha256 manifest kaydıyla aynı; işaretler çıkarılınca her ayet taban metinle
-    birebir aynı. Tutmazsa VeriHatasi. Dönüş: (sûre, ayet) -> {token sırası: [işaretler]}.
-    İşaret kelimeye bitişikse o kelimeye, ayrı tokensa önceki kelimeye bağlanır. Taban metinde
-    de bulunan işaret (2:245 ve 7:69'da ص üzerindeki ۜ) durak sayılmaz.
+    Denetimler: sha256 manifest kaydıyla aynı; denklik_tokenlari() biçiminde her ayet taban
+    metinle birebir aynı. Tutmazsa VeriHatasi. Dönüş: (sûre, ayet) -> {token sırası: [işaretler]}.
+    Sekte yalnız tek başına duran U+06DC'dir. Durak işareti (U+06D6–06DB) kelimeye bitişikse o
+    kelimeye, ayrı tokensa önceki kelimeye bağlanır. Rubʿ (U+06DE) ve secde (U+06E9) kullanılmaz.
     """
     kayit = None
     if manifest_yolu.exists():
@@ -470,23 +492,22 @@ def durak_yukle(yol: Path, manifest_yolu: Path, taban: dict[tuple[int, int], str
             s_, a_, metin = satir.split("|", 2)
             anahtar = (int(s_), int(a_))
             gorulen.add(anahtar)
-            taban_tokenlari = taban.get(anahtar, "").split(" ")
-            if _durak_cikar(metin) != _durak_cikar(taban.get(anahtar, "")):
-                raise VeriHatasi(f"{yol.name}: {anahtar[0]}:{anahtar[1]} durak işaretleri çıkarılınca taban metinle aynı değil")
+            if denklik_tokenlari(metin) != denklik_tokenlari(taban.get(anahtar, "")):
+                raise VeriHatasi(f"{yol.name}: {anahtar[0]}:{anahtar[1]} işaretler ve tatvil çıkarılınca "
+                                 f"taban metinle aynı değil")
             isaretler: dict[int, list[str]] = {}
             j = -1
             for tok in metin.split():
-                if all(c in DURAK_KARAKTERLERI for c in tok):
+                if _isaret_tokeni(tok):
+                    # tek başına duran durak/sekte önceki kelimeye bağlanır; rubʿ ve secde kullanılmaz
                     if j >= 0:
-                        isaretler.setdefault(j, []).extend(tok)
+                        isaretler.setdefault(j, []).extend(c for c in tok if c in DURAK_KARAKTERLERI)
                     continue
                 j += 1
-                taban_isaret = [c for c in taban_tokenlari[j] if c in DURAK_KARAKTERLERI]
-                fazla = [c for c in tok if c in DURAK_KARAKTERLERI]
-                for c in taban_isaret:
-                    fazla.remove(c)
-                if fazla:
-                    isaretler.setdefault(j, []).extend(fazla)
+                bitisik = [c for c in tok if c in DURAK_ISARETLERI]   # bitişik U+06DC durak değildir
+                if bitisik:
+                    isaretler.setdefault(j, []).extend(bitisik)
+            isaretler = {k: v for k, v in isaretler.items() if v}
             if isaretler:
                 sonuc[anahtar] = isaretler
     if gorulen != set(taban):

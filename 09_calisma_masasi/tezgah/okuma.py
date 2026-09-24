@@ -35,6 +35,12 @@ MEAL_MANIFEST = MEAL_DIZINI / "manifest.json"
 # fawazahmed0/quran-api deposunun kendisi (jsdelivr bu deponun önbelleğidir).
 MEAL_URL = "https://raw.githubusercontent.com/fawazahmed0/quran-api/1/editions/tur-diyanetisleri.json"
 MEAL_ETIKETI = "kurumsal okuma — sınanan, delil değil"
+# Parmak izi: kurulan dosyanın gerçekten Diyanet İşleri meali olduğunu iki ayetin metniyle denetler
+# (değerler 24.09.2026'da kurulan dosyadan okundu). Tutmazsa kurulum/yükleme reddedilir.
+MEAL_PARMAK_IZI = {
+    (1, 1): "Rahman ve Rahim olan Allah'ın adıyla",
+    (107, 4): "Vay o namaz kılanların haline ki",
+}
 CEVIRI_ETIKETI = "kullanıcının yorumu"
 
 _HEMZE = set("ءأإؤئٱآ")
@@ -146,22 +152,33 @@ def ceviri_ekle(ref: str, metin: str) -> None:
 
 # --- meal (yerel/, depoya işlenmez) ----------------------------------------
 
+def meal_dogrula(json_verisi: dict) -> dict[tuple[int, int], str]:
+    """Ayet kümesi Tanzil ile aynı ve parmak izi ayetleri birebir tutmalı; yoksa VeriHatasi."""
+    metinler = {(int(r["chapter"]), int(r["verse"])): r["text"] for r in json_verisi["quran"]}
+    if set(metinler) != set(okunus.tanzil()):
+        raise veri.VeriHatasi(f"Meal ayet kümesi Tanzil ile aynı değil ({len(metinler)} ayet)")
+    for (s, a), beklenen in MEAL_PARMAK_IZI.items():
+        if metinler[(s, a)] != beklenen:
+            raise veri.VeriHatasi(f"Meal parmak izi tutmadı: {s}:{a}\n  beklenen: {beklenen!r}\n"
+                                  f"  bulunan : {metinler[(s, a)]!r}")
+    return metinler
+
+
 def meal_kur() -> dict[str, object]:
     if MEAL_YOLU.exists():
         raise FileExistsError(f"Meal zaten kurulu: {MEAL_YOLU}")
     istek = Request(MEAL_URL, headers={"User-Agent": "quran-offline-corpus/1.0"})
     with urlopen(istek, timeout=60) as yanit:
         ham = yanit.read()
-    kayitlar = json.loads(ham)["quran"]
-    anahtarlar = {(int(r["chapter"]), int(r["verse"])) for r in kayitlar}
-    if anahtarlar != set(okunus.tanzil()):
-        raise veri.VeriHatasi(f"Meal ayet kümesi Tanzil ile aynı değil ({len(anahtarlar)} ayet)")
+    metinler = meal_dogrula(json.loads(ham))
+    anahtarlar = set(metinler)
     MEAL_DIZINI.mkdir(parents=True, exist_ok=True)
     MEAL_YOLU.write_bytes(ham)
     bilgi = {
         "file": MEAL_YOLU.name, "source_url": MEAL_URL, "bytes": len(ham),
         "sha256": veri.sha256(MEAL_YOLU), "fetched": date.today().isoformat(),
-        "ayet": len(anahtarlar), "lisans": "doğrulanmadı — depoya işlenmez (CLAUDE.md §9)",
+        "ayet": len(anahtarlar), "parmak_izi": {f"{s}:{a}": m for (s, a), m in MEAL_PARMAK_IZI.items()},
+        "lisans": "doğrulanmadı — depoya işlenmez (CLAUDE.md §9)",
         "statu": MEAL_ETIKETI,
     }
     MEAL_MANIFEST.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -175,8 +192,7 @@ def meal() -> dict[tuple[int, int], str] | None:
     bilgi = json.loads(MEAL_MANIFEST.read_text(encoding="utf-8"))
     if veri.sha256(MEAL_YOLU) != bilgi["sha256"]:
         raise veri.VeriHatasi("Meal dosyasının sha256'sı yerel manifest ile uyuşmuyor.")
-    return {(int(r["chapter"]), int(r["verse"])): r["text"]
-            for r in json.loads(MEAL_YOLU.read_text(encoding="utf-8"))["quran"]}
+    return meal_dogrula(json.loads(MEAL_YOLU.read_text(encoding="utf-8")))
 
 
 # --- görünüm ----------------------------------------------------------------

@@ -137,13 +137,24 @@ U+06DC (ۜ) orada yalnız 2:245 ve 7:69'da, ص üzerinde geçer ve "sin okunur" 
 durak işaretlerinin hiçbiri de yoktur.
 
 **Durak işaretli sürüm.** Bu sürüm ayrı bir ham dosyadır: `01_raw/tanzil/quran-uthmani-durak.txt`, taban dosyanın
-üzerine yazılmaz. Kurulum komutu `python 08_scripts/fetch_tanzil_marks.py --i-agree-to-tanzil-terms`; kaynak
-Tanzil'dir (`marks=true`). Betik dosyayı ancak şu koşulla yazar: durak işaretleri (U+06D6–06DC) çıkarılınca
-6.236 ayetin hepsi taban dosyayla birebir aynı olmalı. Kaynak adresi, bayt sayısı ve sha256 `manifest.local.json`'a
-işlenir. Yükleyici her açılışta sha256'yı manifest'le ve metni tabanla yeniden denetler.
+üzerine yazılmaz. Kaynak adresi:
+`https://tanzil.net/pub/download/index.php?marks=true&sajdah=false&rub=false&tatweel=false&quranType=uthmani&outType=txt-2&agree=true`.
+Kurulum komutu: `python 08_scripts/fetch_tanzil_marks.py --i-agree-to-tanzil-terms`.
+
+Bu sürüm, parametreler kapalı olsa da rubʿ (U+06DE), secde (U+06E9) ve tatvil (U+0640) ekler.
+
+Denklik kuralı (`okunus.denklik_tokenlari`; betik ve yükleyici aynı işlevi kullanır):
+1. Tek başına duran işaret tokenları çıkarılır: U+06D6–06DC, U+06DE, U+06E9.
+2. Kalan tokenlardan U+06D6–06DB, U+06DE, U+06E9 ve U+0640 çıkarılır.
+3. Kelimeye bitişik U+06DC korunur (2:245 ve 7:69'da ص üzerinde, tabanda da vardır).
+
+Bu işlemden sonra 6.236 ayetin 6.236'sı taban dosyayla aynı olmalıdır; olmazsa dosya yazılmaz ya da yüklenmez.
+Manifest'e şunlar işlenir: kaynak adresi, bayt sayısı, sha256, kullanıcının ölçtüğü sha256 ve karşılaştırma
+sonucu. Tanzil dosyayı dinamik üretebileceği için sha256 farkı rapor edilir, iş durdurulmaz. Yükleyici her
+açılışta sha256'yı manifest'le, metni de tabanla yeniden denetler.
 
 **Okunuşta kullanım.**
-- **Sekte:** Varsayılan olarak yalnız sekte kullanılır. Kelimeden sonra `[sekte]` yazılır. Sekteli kelimede vakf
+- **Sekte:** Varsayılan olarak yalnız sekte kullanılır. Sekte, yalnız **tek başına duran** U+06DC'dir. Kelimeden sonra `[sekte]` yazılır. Sekteli kelimede vakf
   kuralları uygulanır; o kelimeden sonrasına kelimeler arası idgam yapılmaz.
 - **Diğer durak işaretleri:** Varsayılan olarak gösterilmez. `--durak` verilirse ayrı bir sütunda
   "geleneksel — yorum içerebilir" etiketiyle gösterilir. Durak işaretleri, metnin nasıl bölüneceğine dair
@@ -157,14 +168,20 @@ işlenir. Yükleyici her açılışta sha256'yı manifest'le ve metni tabanla ye
 | U+06D9 | ۙ | lâ (vakf yok) |
 | U+06DA | ۚ | cîm (vakf câiz) |
 | U+06DB | ۛ | muʿânaqa |
-| U+06DC | ۜ | sekte (ص üzerinde değilse) |
+| U+06DC | ۜ | sekte (tek başına duruyorsa; kelimeye bitişikse ص üzerindeki sin işaretidir) |
+| U+06DE | ۞ | rubʿ — kullanılmaz, gösterilmez |
+| U+06E9 | ۩ | secde — kullanılmaz, gösterilmez |
 
-**Durum (24.09.2026):** Dosya kurulu değil. Oturumun ağ politikası `tanzil.net` adresini reddetti (403).
-Kurulana kadar sekte gösterilmez. Gerçek dosyayı sınayan test (`test_durak.py`) atlanır. Mantık, sentetik
-dosyayla sınanır.
+**Durum (24.09.2026):** Dosya kurulu değil. Ortam ayarlarına `tanzil.net` eklendikten sonra da bu oturumdan
+yapılan istek 403 ile reddedildi. Kurulana kadar sekte gösterilmez ve gerçek dosyayı sınayan test
+(`test_durak.py`) atlanır. Mantık sentetik dosyayla sınanır.
 
-**Sekteye bağlı ayetler.** Sekte yerleri olarak bilinen yerler 18:1, 36:52, 75:27 ve 83:14'tür. Taban dosyada
-buralarda işaret yoktur.
+**Sekte yerleri.** Tek başına duran sekte beş yerde beklenir: 18:1, 36:52, 69:28, 75:27, 83:14. Gerçek dosya
+kurulunca test bunu denetler; tutmazsa sebep araştırılır, test değiştirilmez.
+- **69:28** (`mâ ʾagnâ ʿannî mâliyah`, 69:29 `halaka` ile devam eder): Hafs'ta sekte burada **isteğe bağlıdır**.
+  Ayetler birleştirilerek okunduğunda ya sekte yapılır ya da he harfi sonraki he'ye idgam edilir; iki okuyuş
+  da geçerli sayılır (geleneksel okuma bilgisi — yorum içerebilir). Okunuş her ayeti vakfla bitirdiği için
+  69:28'in harfleri değişmez; `[sekte]` yalnız durak işaretli sürümün işaretini gösterir.
 - **75:27 ve 83:14** (`man râq`, `bal râna`): Tanzil sükûn yazar ve sonraki harfte şedde yoktur, bu yüzden
   idgam uygulanmaz. Bu sonuç sekte işaretinden değil yazımdan gelir.
 

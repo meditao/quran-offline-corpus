@@ -35,6 +35,7 @@ BEKLENEN = {
     (18, 2): ("qayyimal liyunẕira baʾsan şadîdam mil ladunhu vayubaşşira lmuʾminîna llaẕîna yaʿmalûna "
               "ṣṣâliḥâti ʾanna lahum ʾacran ḥasanâ", False),
     (36, 52): ("qâlû yâvaylanâ mam baʿas̱anâ mim marqadinâ hâẕâ mâ vaʿada rraḥmânu vaṣadaqa lmursalûn", False),
+    (69, 28): ("mâ ʾagnâ ʿannî mâliyah", False),   # sekte Hafs'ta isteğe bağlı (§3b)
     (75, 27): ("vaqîla man râq", False),
     (83, 14): ("kallâ bal râna ʿalâ qulûbihim mâ kânû yaksibûn", False),
     # özel işaretler
@@ -44,7 +45,7 @@ BEKLENEN = {
     (112, 2): ("allâhu ṣṣamad", False),
 }
 
-SEKTE_AYETLERI = [(18, 1), (36, 52), (75, 27), (83, 14)]
+SEKTE_AYETLERI = [(18, 1), (36, 52), (69, 28), (75, 27), (83, 14)]
 
 
 # Her satır bir kurala karşılık gelir (okunus_kurallari.md §3–4): (ayet, Tanzil kelimesi, beklenen)

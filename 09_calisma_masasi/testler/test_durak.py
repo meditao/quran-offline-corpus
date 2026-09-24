@@ -17,7 +17,10 @@ import _ortak  # noqa: F401
 from tezgah import okunus, veri
 from tezgah.__main__ import main
 
-SEKTE, SLA, CIM = "ۜ", "ۖ", "ۚ"
+SEKTE, SLA, CIM, RUB, SECDE, TATVIL = "\u06DC", "\u06D6", "\u06DA", "\u06DE", "\u06E9", "\u0640"
+
+# Hafs'ta tek başına duran sekte yerleri; 69:28'de sekte isteğe bağlıdır (okunus_kurallari.md §3b).
+SEKTE_YERLERI = {(18, 1), (36, 52), (69, 28), (75, 27), (83, 14)}
 
 
 def sentetik_metin(degistir=None):
@@ -39,12 +42,21 @@ def bitistir(i, isaret):
     return lambda t: t[:i] + [t[i] + isaret] + t[i + 1:]
 
 
+def tatvil_ekle(i):
+    return lambda t: t[:i] + [t[i][:2] + TATVIL + t[i][2:]] + t[i + 1:]
+
+
 DEGISIKLIK = {
-    (18, 1): lambda t: t + [SEKTE],                  # ayrı token, ayet sonu (besmele önekli ayet)
-    (36, 52): ekle_sonra(5, SEKTE),                 # ayrı token, ayet içi (مَّرْقَدِنَا sonrası)
-    (75, 27): bitistir(1, SEKTE),                   # kelimeye bitişik (مَنْ)
-    (2, 3): bitistir(2, SLA),                       # sekte dışı durak
+    (18, 1): lambda t: t + [SEKTE],                 # ayet sonu, besmele önekli ayet
+    (36, 52): ekle_sonra(5, SEKTE),                 # ayet içi (مَّرْقَدِنَا sonrası)
+    (69, 28): lambda t: t + [SEKTE],                # ayet sonu (مَالِيَهْ), isteğe bağlı sekte
+    (75, 27): ekle_sonra(1, SEKTE),                 # مَنْ sonrası
+    (83, 14): ekle_sonra(1, SEKTE),                 # بَلْ sonrası
+    (2, 3): bitistir(2, SLA),                       # kelimeye bitişik durak
     (2, 1): ekle_sonra(4, CIM),                     # besmele önekinden sonraki ilk kelime
+    (2, 2): tatvil_ekle(1),                         # sürümün eklediği tatvil
+    (2, 26): lambda t: [RUB] + t,                   # rubʿ işareti (kullanılmaz)
+    (7, 206): lambda t: t + [SECDE],                # secde işareti (kullanılmaz)
 }
 
 
@@ -69,11 +81,23 @@ class SentetikDurak(unittest.TestCase):
         self.assertEqual(d, {
             (18, 1): {14: [SEKTE]},
             (36, 52): {5: [SEKTE]},
+            (69, 28): {3: [SEKTE]},
             (75, 27): {1: [SEKTE]},
+            (83, 14): {1: [SEKTE]},
             (2, 3): {2: [SLA]},
             (2, 1): {4: [CIM]},
         })
         self.assertNotIn((2, 245), d, "ص üzerindeki ۜ (tabanda da var) durak sayılmamalı")
+        for k in ((2, 2), (2, 26), (7, 206)):
+            self.assertNotIn(k, d, "tatvil, rubʿ ve secde durak sayılmaz")
+        self.assertEqual({k for k, v in d.items() if any(SEKTE in x for x in v.values())}, SEKTE_YERLERI)
+
+    def test_bitisik_fazla_sekte_reddedilir(self):
+        bozuk = dict(DEGISIKLIK)
+        bozuk[(75, 27)] = bitistir(1, SEKTE)   # yalnız tek başına duran U+06DC çıkarılır
+        self.yaz(sentetik_metin(bozuk))
+        with self.assertRaises(veri.VeriHatasi):
+            self.yukle()
 
     def test_sekte_okunusta_diger_duraklar_gizli(self):
         self.yaz(sentetik_metin(DEGISIKLIK))
@@ -87,6 +111,10 @@ class SentetikDurak(unittest.TestCase):
         self.assertIn("mim marqadinâ [sekte] hâẕâ", o.latin_isaretli)
         o = okunus.ayet_oku(75, 27, tz[(75, 27)], d[(75, 27)])
         self.assertEqual(o.latin_isaretli, "vaqîla man [sekte] râq")
+        o = okunus.ayet_oku(69, 28, tz[(69, 28)], d[(69, 28)])
+        self.assertEqual(o.latin_isaretli, "mâ ʾagnâ ʿannî mâliyah [sekte]")
+        o = okunus.ayet_oku(83, 14, tz[(83, 14)], d[(83, 14)])
+        self.assertTrue(o.latin_isaretli.startswith("kallâ bal [sekte] râna"))
         o = okunus.ayet_oku(2, 3, tz[(2, 3)], d[(2, 3)])
         self.assertEqual(o.kelimeler[2].duraklar, ["ṣlâ (vasl evlâ)"])
         self.assertNotIn("ṣlâ", o.latin_isaretli)
@@ -132,8 +160,9 @@ class GercekDurakDosyasi(unittest.TestCase):
             self.skipTest("durak işaretli Tanzil sürümü kurulu değil (08_scripts/fetch_tanzil_marks.py)")
         d = okunus.durak_isaretleri()
         sekte = {k for k, v in d.items() if any(okunus.SEKTE in x for x in v.values())}
-        # Hafs sekte yerleri (geleneksel beklenti; tutmazsa sebep araştırılır, test değiştirilmez)
-        self.assertEqual(sekte, {(18, 1), (36, 52), (75, 27), (83, 14)})
+        # Hafs'ta tek başına duran sekte (69:28 isteğe bağlı); tutmazsa sebep araştırılır, test değiştirilmez
+        self.assertEqual(sekte, SEKTE_YERLERI)
+        self.assertEqual(len(d), len({k for k in d}))
 
 
 if __name__ == "__main__":

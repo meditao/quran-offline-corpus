@@ -84,7 +84,8 @@ class AyetGorunumuTesti(unittest.TestCase):
             okuma.ceviri_ekle("107:4", "   ")
         meal_yolu = self.dizin / "meal.json"
         meal_yolu.write_text(json.dumps({"quran": [
-            {"chapter": s, "verse": a, "text": f"M{s}:{a}"} for s, a in okunus.tanzil()]}), encoding="utf-8")
+            {"chapter": s, "verse": a, "text": okuma.MEAL_PARMAK_IZI.get((s, a), f"M{s}:{a}")}
+            for s, a in okunus.tanzil()]}), encoding="utf-8")
         (self.dizin / "manifest.json").write_text(json.dumps(
             {"sha256": hashlib.sha256(meal_yolu.read_bytes()).hexdigest()}), encoding="utf-8")
         with mock.patch.object(okuma, "MEAL_YOLU", meal_yolu), \
@@ -94,9 +95,30 @@ class AyetGorunumuTesti(unittest.TestCase):
         self.assertIn("ikinci sürüm   [", cikti)
         self.assertIn("1 önceki sürüm", cikti)
         self.assertIn("Meal — kurumsal okuma — sınanan, delil değil", cikti)
-        self.assertIn("M107:4", cikti)
+        self.assertIn(okuma.MEAL_PARMAK_IZI[(107, 4)], cikti)
         self.assertLess(cikti.index("Çalışma çevirisi (kullanıcının yorumu)"), cikti.index("Meal —"),
                         "meal çalışma çevirisinin altında gösterilir")
+
+    def test_meal_parmak_izi(self):
+        tam = {"quran": [{"chapter": s, "verse": a, "text": okuma.MEAL_PARMAK_IZI.get((s, a), "x")}
+                         for s, a in okunus.tanzil()]}
+        self.assertEqual(len(okuma.meal_dogrula(tam)), 6_236)
+        for anahtar in okuma.MEAL_PARMAK_IZI:
+            with self.subTest(bozuk=anahtar):
+                bozuk = {"quran": [dict(r, text="başka meal") if (r["chapter"], r["verse"]) == anahtar else r
+                                   for r in tam["quran"]]}
+                with self.assertRaises(veri.VeriHatasi):
+                    okuma.meal_dogrula(bozuk)
+        eksik = {"quran": tam["quran"][:-1]}
+        with self.assertRaises(veri.VeriHatasi):
+            okuma.meal_dogrula(eksik)
+
+    def test_kurulu_meal_parmak_izi(self):
+        gercek = okuma.MASA / "yerel" / "meal" / "tur-diyanetisleri.json"
+        if not gercek.exists():
+            self.skipTest("meal kurulu değil (python -m tezgah kur meal)")
+        m = okuma.meal_dogrula(json.loads(gercek.read_text(encoding="utf-8")))
+        self.assertEqual(len(m), 6_236)
 
     def test_meal_kurulu_degil(self):
         _, cikti = calistir(["ayet", "1:1", "--meal"])
