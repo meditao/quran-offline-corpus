@@ -29,11 +29,13 @@ Açık Kuran'a erişilememesi veya snapshot bulunmaması çekirdek analizi durdu
 
 ## 5. QuranMorph
 
-QuranMorph için parser/validator altyapısı vardır, fakat veri dosyası bu repoda yoktur. Bu nedenle mevcut durumda QAC'a karşı aktif bağımsız morfoloji kontrolü sağlıyor gibi sunulmaz. Veri izinli kanaldan edinilirse ikinci annotation korpusu olarak devreye alınacaktır.
+QuranMorph için parser/validator altyapısı vardır, fakat veri dosyası bu repoda yoktur. Bu nedenle mevcut durumda QAC'a karşı aktif bağımsız morfoloji kontrolü sağlıyor gibi sunulmaz. Veri izinli kanaldan edinilirse bağımsız annotation korpusu olarak devreye alınacaktır.
+
+Ayrım: çalışma masasının ikinci annotation katmanı QuranMorph değil, `mustafa0x/quran-morphology`'dir (`CLAUDE.md` §3, §5; Aşama 4). O katman QAC v0.4'ün çatalıdır ve bu yüzden **bağımsız değildir**: çapraz kontroldür, delil değildir. Lisans dosyası olmadığı için `09_calisma_masasi/yerel/` altında tutulur, depoya işlenmez. Karşılaştırma raporu: `03_indices/audits/qac_quranmorphology.md`.
 
 ## 6. Sami dil katmanı
 
-İbranice offline lexical index mevcuttur; ancak `04_lexicons/semitic/cognates.tsv` şu anda filolojik olarak incelenmiş kognat kayıtlarıyla doldurulmuş değildir. Dolayısıyla Sami katmanı bugün için **altyapı + kaynak indeksi** düzeyindedir, tamamlanmış kognat veri tabanı değildir.
+İbranice offline lexical index mevcuttur. `04_lexicons/semitic/cognates.tsv` içinde incelenmiş kayıt yalnız bir kök (`Amn`) için vardır: 3 kayıt (İbranice `strong`, Aramice `medium`, Süryanice `medium`; sayım 24.09.2026'da dosyadan). Süryanice için SEDRA 3 çalışma masasında yerel olarak kurulur (`python -m tezgah kur sedra`; değiştirilmemiş, dağıtılamaz). Aday üretimi ve gürültü tabanı ölçümü `09_calisma_masasi/tezgah/ikincil/sami.py` ile yapılır (`03_indices/audits/ikincil_katmanlar.md`). Dolayısıyla Sami katmanı **altyapı + kaynak indeksi + ölçülü aday üretimi** düzeyindedir, tamamlanmış kognat veri tabanı değildir; bütün çıktısı hipotezdir.
 
 Kognat eşlemesi otomatik biçim benzerliğiyle yapılmaz; düzenli ses denklikleri, tarihsel ilişki ve semantik süreklilik aranır.
 
