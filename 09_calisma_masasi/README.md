@@ -27,7 +27,7 @@ Depo kökünden: `PYTHONPATH=09_calisma_masasi python -m tezgah ...`
 | `etiket` | `etiket PRON:3MP "(X)"` | segment |
 | `birlikte` | `birlikte Amn Eml --pencere 3` | ayet (pencerede ayrıca kelime konumu çifti) |
 | `kalip` | `kalip "ROOT:Amn&POS:V PRON:3MP bi+"` | segment dizisi |
-| `okunus` | `okunus 2:3 30:30` · `okunus 1:1 --arapca` | — (Tanzil Uthmani v1.1; aktarım, delil değil) |
+| `okunus` | `okunus 2:3 30:30` · `okunus 1:1 --arapca` · `okunus --mukattaa` | — (Tanzil Uthmani v1.1; aktarım, delil değil); `--mukattaa`: ayet / sûre |
 
 Kurallar:
 

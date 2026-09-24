@@ -12,13 +12,40 @@ from tezgah import harf, okunus, veri
 from tezgah.__main__ import main
 
 # Test ayetleri: beklenen okunuş kurallardan (okunus_kurallari.md) elle çıkarıldı.
+# İkinci alan: Tanzil'de sûre başı besmele öneki var mı.
 BEKLENEN = {
-    (1, 1): "bismi llâhi rraḥmâni rraḥîm",
-    (2, 3): "allaẕîna yuʾminûna bilgaybi vayuqîmûna ṣṣalâta vamimmâ razaqnâhum yunfiqûn",
-    (30, 30): "faʾaqim vachaka liddîni ḥanîfan fiṭrata llâhi llatî faṭara nnâsa ʿalayhâ lâ "
-              "tabdîla liḫalqi llâhi ẕâlika ddînu lqayyimu valâkinna ʾaks̱ara nnâsi lâ yaʿlamûn",
-    (107, 4): "favaylul lilmuṣallîn",
+    (1, 1): ("bismi llâhi rraḥmâni rraḥîm", False),
+    (2, 3): ("allaẕîna yuʾminûna bilgaybi vayuqîmûna ṣṣalâta vamimmâ razaqnâhum yunfiqûn", False),
+    (30, 30): ("faʾaqim vachaka liddîni ḥanîfan fiṭrata llâhi llatî faṭara nnâsa ʿalayhâ lâ "
+               "tabdîla liḫalqi llâhi ẕâlika ddînu lqayyimu valâkinna ʾaks̱ara nnâsi lâ yaʿlamûn", False),
+    (107, 4): ("favaylul lilmuṣallîn", False),
+    # hurûf-ı mukattaa
+    (2, 1): ("ʾalif lâm mîm", True),
+    (19, 1): ("kâf hâ yâ ʿayn ṣâd", True),
+    (42, 1): ("ḥâ mîm", True),
+    (42, 2): ("ʿayn sîn qâf", False),
+    # kelime başında vasl elifinin ünlüsü (ibtidâ): i ve u
+    (1, 6): ("ihdinâ ṣṣirâṭa lmustaqîm", False),
+    (96, 1): ("iqraʾ bismi rabbika llaẕî ḫalaq", True),
+    (16, 125): ("udʿu ʾilâ sabîli rabbika bilḥikmati valmavʿiẓati lḥasanati vacâdilhum billatî hiya "
+                "ʾaḥsanu ʾinna rabbaka huva ʾaʿlamu biman żalla ʿan sabîlihî vahuva ʾaʿlamu bilmuhtadîn", False),
+    (4, 50): ("unẓur kayfa yaftarûna ʿalâ llâhi lkaẕiba vakafâ bihî ʾis̱mam mubînâ", False),
+    # sekte yerleri: Tanzil v1.1'de işaret yok (okunus_kurallari.md §3b)
+    (18, 1): ("alḥamdu lillâhi llaẕî ʾanzala ʿalâ ʿabdihi lkitâba valam yacʿal lahû ʿivacâ", True),
+    (18, 2): ("qayyimal liyunẕira baʾsan şadîdam mil ladunhu vayubaşşira lmuʾminîna llaẕîna yaʿmalûna "
+              "ṣṣâliḥâti ʾanna lahum ʾacran ḥasanâ", False),
+    (36, 52): ("qâlû yâvaylanâ mam baʿas̱anâ mim marqadinâ hâẕâ mâ vaʿada rraḥmânu vaṣadaqa lmursalûn", False),
+    (75, 27): ("vaqîla man râq", False),
+    (83, 14): ("kallâ bal râna ʿalâ qulûbihim mâ kânû yaksibûn", False),
+    # özel işaretler
+    (21, 88): ("fastacabnâ lahû vanaccaynâhu mina lgammi vakaẕâlika nuncî lmuʾminîn", False),
+    (11, 41): ("vaqâla rkabû fîhâ bismi llâhi macrêhâ vamursâhâ ʾinna rabbî lagafûrur raḥîm", False),
+    (112, 1): ("qul huva llâhu ʾaḥad", True),
+    (112, 2): ("allâhu ṣṣamad", False),
 }
+
+SEKTE_AYETLERI = [(18, 1), (36, 52), (75, 27), (83, 14)]
+
 
 # Her satır bir kurala karşılık gelir (okunus_kurallari.md §3–4): (ayet, Tanzil kelimesi, beklenen)
 KURAL_ORNEKLERI = [
@@ -54,13 +81,15 @@ class OkunusTesti(unittest.TestCase):
         self.assertEqual(len(okunus.tanzil()), 6_236)
 
     def test_test_ayetleri(self):
-        for (s, a), beklenen in BEKLENEN.items():
+        for (s, a), (beklenen, besmele_var) in BEKLENEN.items():
             with self.subTest(ayet=f"{s}:{a}"):
                 o = ayet(s, a)
                 self.assertEqual(o.latin, beklenen)
                 self.assertEqual(o.belirsiz, [])
-                self.assertEqual(o.besmele, [])
-                self.assertEqual(len(o.kelimeler), len(okunus.tanzil()[(s, a)].split(" ")))
+                self.assertEqual(bool(o.besmele), besmele_var)
+                if besmele_var:
+                    self.assertEqual(" ".join(k.latin for k in o.besmele), BEKLENEN[(1, 1)][0])
+                self.assertEqual(len(o.kelimeler) + len(o.besmele), len(okunus.tanzil()[(s, a)].split(" ")))
 
     def test_kural_ornekleri(self):
         for (s, a), arapca, beklenen in KURAL_ORNEKLERI:
@@ -126,6 +155,61 @@ class OkunusTesti(unittest.TestCase):
         satirlar = [s for s in blok.strip().splitlines()[2:]]
         belgedeki = tuple(tuple(h.strip() for h in s.strip("|").split("|")) for s in satirlar)
         self.assertEqual(belgedeki, harf.HARF_TABLOSU)
+
+    def test_ibtida_vasl_elifli_isimler_i(self):
+        # Korpusta ayet başında geçmeyen isimler: kuralın fiil/isim ayrımı birim düzeyinde sınanır.
+        for kelime, beklenen in (("ٱبْنُ", "ibnu"), ("ٱسْمُهُۥ", "ismuhû"), ("ٱمْرُؤٌا۟", "imruʾun"),
+                                 ("ٱثْنَانِ", "is̱nâni"), ("ٱنظُرْ", "unẓur"), ("ٱدْعُ", "udʿu"),
+                                 ("ٱسْمَعْ", "ismaʿ"), ("ٱقْرَأْ", "iqraʾ")):
+            with self.subTest(kelime=kelime):
+                self.assertEqual(okunus._metin(okunus.kelime_oku(kelime, True)[0]), beklenen)
+
+    def test_mukattaa_tablosu_belge_ve_harf_tablosuyla_ayni(self):
+        belge = (_ortak.MASA / "okunus_kurallari.md").read_text(encoding="utf-8")
+        blok = belge.split("<!-- MUKATTAA_TABLOSU_BASI -->")[1].split("<!-- MUKATTAA_TABLOSU_SONU -->")[0]
+        belgedeki = tuple(tuple(h.strip() for h in s.strip("|").split("|"))
+                          for s in blok.strip().splitlines()[2:])
+        self.assertEqual(belgedeki, okunus.MUKATTAA_TABLOSU)
+        for h, ad in okunus.MUKATTAA_TABLOSU:
+            ilk = harf.HARF_LATIN["ء" if h == "ا" else h]
+            self.assertTrue(ad.startswith(ilk), (h, ad, ilk))
+
+    def test_mukattaa_ham_qac_ile_bagimsiz_dogrulama(self):
+        """Tanzil taraması ↔ ham QAC INL satırları: ayet, kelime konumu ve harf dizisi birebir.
+
+        QAC tarafı veri.py ayrıştırıcısını kullanmaz; ham dosya burada ayrıca okunur.
+        """
+        bw = {"A": "ا", "l": "ل", "m": "م", "S": "ص", "r": "ر", "k": "ك", "h": "ه", "y": "ي",
+              "E": "ع", "T": "ط", "s": "س", "H": "ح", "q": "ق", "n": "ن"}
+        qac = {}
+        with veri.QAC_YOLU.open(encoding="utf-8-sig", newline="") as f:
+            for satir in f:
+                alan = satir.rstrip("\r\n").split("\t")
+                if len(alan) == 4 and alan[2] == "INL":
+                    s, a, k, _ = map(int, alan[0].strip("()").split(":"))
+                    qac[(s, a, k)] = "".join(bw[c] for c in alan[1].replace("^", ""))
+        tanzil = {(s, a, i): hf for s, a, i, hf, _ in okunus.mukattaa_taramasi()}
+        self.assertEqual(len(qac), 30)
+        self.assertEqual(tanzil, qac)
+        ayetler = {(s, a) for s, a, _ in tanzil}
+        self.assertEqual((len(ayetler), len({s for s, _ in ayetler})), (30, 29))
+
+    def test_mukattaa_okunusu_harf_sayisi_kadar_ad(self):
+        for s, a, _, hf, latin in okunus.mukattaa_taramasi():
+            with self.subTest(ayet=f"{s}:{a}"):
+                self.assertEqual(latin.split(" "), [okunus.MUKATTAA_ADLARI[h] for h in hf])
+
+    def test_sekte_isareti_tanzilde_yok(self):
+        """U+06DC yalnız 2:245 ve 7:69'da, ص üzerinde; sekte ayetlerinde hiçbir sekte işareti yok."""
+        yerler = {k for k, m in okunus.tanzil().items() if "\u06DC" in m}
+        self.assertEqual(yerler, {(2, 245), (7, 69)})
+        for k in yerler:
+            for w in okunus.tanzil()[k].split():
+                if "\u06DC" in w:
+                    oncesi = [c for c in w[: w.index("\u06DC")] if c not in okunus.HAREKELER]
+                    self.assertEqual(oncesi[-1], "ص", (k, w))
+        for k in SEKTE_AYETLERI:
+            self.assertFalse(any("\u06D6" <= c <= "\u06DC" for c in okunus.tanzil()[k]), k)
 
     def test_komut_kaydi(self):
         tampon = io.StringIO()

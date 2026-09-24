@@ -57,16 +57,34 @@ HAREKELER = KISA_UNLULER | {SEDDE, SUKUN, UST_ELIF}
 UZATMA_HARFLERI = {"ا", "و", "ي", "ى"}
 TABAN = set(HARF_LATIN) | {"ا", "ى", "ة", VASL_ELIF, TATVIL, KUCUK_VAV, KUCUK_YA}
 
-# Hurûf-ı mukattaa harf adları (ortak tablodan kurulur).
-MUKATTAA_ADLARI = {
-    "ا": "ʾalif", "ل": "lâm", "م": "mîm", "ر": "râ", "ص": "ṣâd", "ك": "kâf",
-    "ه": "hâ", "ي": "yâ", "ع": "ʿayn", "ط": "ṭâ", "س": "sîn", "ح": "ḥâ",
-    "ق": "qâf", "ن": "nûn",
-}
+# Hurûf-ı mukattaa: (harf, Latin harf adı). Belgedeki tablo testle bununla eşitlenir.
+# Adların ilk ünsüzü ortak harf tablosundan gelir (elif adı hemzeyle başlar).
+MUKATTAA_TABLOSU: tuple[tuple[str, str], ...] = (
+    ("ا", "ʾalif"),
+    ("ل", "lâm"),
+    ("م", "mîm"),
+    ("ص", "ṣâd"),
+    ("ر", "râ"),
+    ("ك", "kâf"),
+    ("ه", "hâ"),
+    ("ي", "yâ"),
+    ("ع", "ʿayn"),
+    ("ط", "ṭâ"),
+    ("س", "sîn"),
+    ("ح", "ḥâ"),
+    ("ق", "qâf"),
+    ("ن", "nûn"),
+)
+MUKATTAA_ADLARI = dict(MUKATTAA_TABLOSU)
+
+# Vasl elifli isimler: ibtidâda her zaman "i" (ٱبْنُ, ٱسْمُهُۥ, ٱمْرُؤٌا۟, ٱثْنَانِ, ٱسْت).
+# "3. harf dammeli -> u" kuralı yalnız fiiller içindir; bu isimlerde 3. harfteki
+# damme i'rab ünlüsüdür. Tanzil'de sözcük türü olmadığından iskeletle tanınır.
+VASL_ISIM_ISKELETLERI = ("سم", "بن", "مر", "ثن", "ست")
 
 
 # Lafzatullah: Tanzil Uthmani "ٱللَّه" adında hançerî elifi yazmaz; okunuştaki
-# uzun â yazıdan çıkmaz. Tek sözlüksel istisna budur. Desen: iki lam (ikincisi
+# uzun â yazıdan çıkmaz. Sözlüksel istisnalardan biridir (diğeri vasl elifli isimler). Desen: iki lam (ikincisi
 # şeddeli-fethalı) + he + son hareke (+ ٱللَّهُمَّ). ٱللَّهْو, ٱللَّهَب, لَّهُم eşleşmez.
 ALLAH_RE = re.compile("ل[\u0651\u0650]*ل\u0651\u064E\u0647[\u064E\u064F\u0650](?:\u0645\u0651\u064E)?$")
 
@@ -199,8 +217,12 @@ def kelime_oku(kelime: str, ayet_basi: bool) -> tuple[list[Birim], list[str]]:
                 if sonraki is not None and sonraki.taban == "ل":
                     b.unlu = "a"
                 else:
+                    iskelet = "".join(x.taban for x in birimler[1:] if x.taban in HARF_LATIN)
                     ucuncu = birimler[2] if len(birimler) > 2 else None
-                    b.unlu = "u" if ucuncu is not None and DAMME in ucuncu.isaretler else "i"
+                    if iskelet.startswith(VASL_ISIM_ISKELETLERI):
+                        b.unlu = "i"
+                    else:
+                        b.unlu = "u" if ucuncu is not None and DAMME in ucuncu.isaretler else "i"
             continue                                            # vaslda okunmaz
 
         if t == "ا":
@@ -398,8 +420,41 @@ def _ayet_ayristir(ref: str) -> tuple[int, int]:
     return anahtar
 
 
-def okunus_komutu(refler: list[str], arapca: bool = False):
+def mukattaa_taramasi() -> list[tuple[int, int, int, str, str]]:
+    """Tüm korpusta harekesiz (mukattaa) Tanzil tokenları: (sûre, ayet, token no, harfler, okunuş).
+
+    Token no, sûre başı besmele öneki çıkarıldıktan sonraki sıradır (1'den).
+    """
+    sonuc = []
+    for (s, a), metin in tanzil().items():
+        o = ayet_oku(s, a, metin)
+        for i, k in enumerate(o.kelimeler, 1):
+            if _mukattaa_mi(k.arapca):
+                sonuc.append((s, a, i, k.arapca.replace(MEDDE, ""), k.latin))
+    return sonuc
+
+
+def mukattaa_komutu():
     from .tara import Sonuc, _tablo
+    liste = mukattaa_taramasi()
+    ayetler = {(s, a) for s, a, *_ in liste}
+    sureler = {s for s, *_ in liste}
+    harfler = sorted({h for *_, hf, _ in liste for h in hf})
+    satirlar = [
+        "Hurûf-ı mukattaa taraması — Tanzil Uthmani (harekesiz token)",
+        f"token: {len(liste)} | ayet: {len(ayetler)} | sûre: {len(sureler)} | farklı harf: {len(harfler)}",
+        "",
+        *_tablo(["ayet", "token no", "harf sayısı", "okunuş"],
+                [[f"{s}:{a}", i, len(hf), lt] for s, a, i, hf, lt in liste], sag={1, 2}),
+    ]
+    veri = {"token": len(liste), "ayet": len(ayetler), "sure": len(sureler), "harf": len(harfler)}
+    return Sonuc(satirlar, ["ayet", "sûre"], veri, kaynak=KAYNAK_ADI, veri_izi=TANZIL_SHA256[:12])
+
+
+def okunus_komutu(refler: list[str], arapca: bool = False):
+    from .tara import GirdiHatasi, Sonuc, _tablo
+    if not refler:
+        raise GirdiHatasi("En az bir ayet referansı (ör. 2:3) ya da --mukattaa verilmeli.")
     anahtarlar = [_ayet_ayristir(r) for r in refler]
     satirlar = ["Okunuş — Tanzil Uthmani metninden kurallı aktarım (delil değil; kurallar: okunus_kurallari.md)"]
     veri = {}

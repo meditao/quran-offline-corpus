@@ -108,9 +108,11 @@ def parser_kur() -> argparse.ArgumentParser:
     s.set_defaults(islev=lambda k, n: tara.kalip(k, n.desen, n.kelime_ici, n.alt_dize, n.limit))
 
     s = alt.add_parser("okunus", help="ayet okunuşu (Tanzil Uthmani'den kurallı Latin aktarım)")
-    s.add_argument("ayetler", nargs="+", help="sûre:ayet, ör. 2:3 30:30")
+    s.add_argument("ayetler", nargs="*", help="sûre:ayet, ör. 2:3 30:30")
     s.add_argument("--arapca", action="store_true", help="denetim için Tanzil kelimesini yanında göster")
-    s.set_defaults(islev=lambda k, n: okunus.okunus_komutu(n.ayetler, n.arapca),
+    s.add_argument("--mukattaa", action="store_true", help="tüm korpusta hurûf-ı mukattaa taraması")
+    s.set_defaults(islev=lambda k, n: okunus.mukattaa_komutu() if n.mukattaa
+                   else okunus.okunus_komutu(n.ayetler, n.arapca),
                    korpus_gerekmez=True, veri_kaynagi="tanzil")
     return p
 

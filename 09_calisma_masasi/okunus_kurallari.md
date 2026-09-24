@@ -74,10 +74,10 @@ QAC kökünde hemze `A` harfiyle yazılır; kök gösteriminde de `ʾ` olur (`Am
 
 | # | kural | yazıdaki işaret | örnek (test ayetleri) |
 |---|---|---|---|
-| 1 | Hurûf-ı mukattaa: harekesiz kelime harf adlarıyla okunur | hiç hareke yok | 2:1 `ʾalif lâm mîm`, 20:1 `ṭâ hâ` |
+| 1 | Hurûf-ı mukattaa: harekesiz kelime harf adlarıyla okunur (§3a) | hiç hareke yok | 2:1 `ʾalif lâm mîm`, 20:1 `ṭâ hâ` |
 | 2 | Sûre başı besmelesi Tanzil'de ilk ayete önektir; ayrı gösterilir (QAC'ta yok). 95:1 ve 97:1'de önek şeddeyle yazılmıştır (بِّسْمِ) | ilk ayet, 1:1 metni | 2:1 |
 | 3 | Vasl elifi ٱ ayet içinde okunmaz | ٱ | 1:1 `bismi llâhi` |
-| 4 | **İbtidâ (istisna):** ayet başındaki ٱ, harf-i tariften önce `a`, diğer durumlarda 3. harf dammeliyse `u`, değilse `i` olarak okunur | ٱ (ünlü yazıda yok) | 2:3 `allaẕîna` |
+| 4 | **İbtidâ (istisna):** ayet başındaki ٱ şöyle okunur: harf-i tariften önce `a`; vasl elifli isimlerde (iskelet سم بن مر ثن ست: ٱسْم, ٱبْن, ٱمْرُؤ, ٱثْنَان, ٱسْت) her zaman `i`; diğer durumlarda (fiil) 3. harf dammeliyse `u`, değilse `i` | ٱ (ünlü yazıda yok) | 2:3 `allaẕîna`, 1:6 `ihdinâ`, 96:1 `iqraʾ`, 16:125 `udʿu`, 4:50 `unẓur` |
 | 5 | Kelime içi idgam: harekesiz ve sükûnsuz ünsüzden sonraki harf şeddeliyse, ilk ünsüz yazılmaz | işaretsiz harf + şedde | 1:1 `rraḥmâni`, 30:30 `liddîni`, 9:1 `ʿâhattum` |
 | 6 | Harekesiz ve sükûnsuz, arkasından şeddeli harf gelmeyen ünsüz sükûnlu gibi okunur (ihfâ/izhar ayrımı gösterilmez) | işaretsiz harf | 2:3 `yunfiqûn` |
 | 7 | Kelimeler arası idgam: kelime şeddeli harfle başlıyorsa önceki kelimenin tenvin n'si veya harekesiz son ünsüzü bu harfe dönüşür; baştaki harf tek yazılır | kelime başında şedde | 107:4 `favaylul lilmuṣallîn` |
@@ -93,6 +93,53 @@ Doğrulama (tüm korpus, `testler/test_okunus.py`):
 - 6.236 ayetin hepsi bilinmeyen karakter ve belirsiz durum üretmeden okunur.
 - Besmele öneki 112 ayette bulunur (114 − 1:1 − 9. sûre).
 - Kural 13'ün deseni ayet ayet QAC'ın `{ll~ah` + `{ll~ahum~a` lemma sayısıyla aynıdır.
+- Mukattaa taraması (kural 1) ham QAC `INL` satırlarıyla ayet, kelime konumu ve harf dizisinde birebir aynıdır (§3a).
+
+## 3a. Hurûf-ı mukattaa
+
+Tanzil'de hiç hareke taşımayan token mukattaa sayılır; her harf adıyla okunur. Medde (ـٓ) gösterilmez.
+Adların ilk ünsüzü §1 tablosundan gelir; elifin adı hemzeyle başlar. Kod: `okunus.MUKATTAA_TABLOSU`
+(testler bu tabloyu kodla eşitler).
+
+<!-- MUKATTAA_TABLOSU_BASI -->
+| harf | ad |
+|---|---|
+| ا | ʾalif |
+| ل | lâm |
+| م | mîm |
+| ص | ṣâd |
+| ر | râ |
+| ك | kâf |
+| ه | hâ |
+| ي | yâ |
+| ع | ʿayn |
+| ط | ṭâ |
+| س | sîn |
+| ح | ḥâ |
+| ق | qâf |
+| ن | nûn |
+<!-- MUKATTAA_TABLOSU_SONU -->
+
+Uygulanmayanlar (yazıda işaret yok):
+- Harf adları arasındaki idgam ve ihfâ (ör. طسٓمٓ'de sîn'in nun'unun mîm'e idgamı).
+- Mukattaanın sonraki ayete vaslı. Her ayet vakfla biter.
+
+Tarama: `python -m tezgah okunus --mukattaa`. Doğrulama ham QAC'tan bağımsız yapılır
+(`testler/test_okunus.py`): QAC'ta `INL` etiketli segmentler Tanzil taramasıyla ayet, kelime konumu ve harf
+dizisinde birebir karşılaştırılır.
+
+## 3b. Sekte
+
+Tanzil Uthmani v1.1 dosyasında sekte işareti **yoktur**. U+06DC (ۜ) dosyada yalnız 2:245 ve 7:69'da,
+ص üzerinde geçer; orada "sin okunur" anlamındadır (§4). Sekte yerleri olarak bilinen 18:1, 36:52, 75:27 ve
+83:14'te hiçbir işaret bulunmaz; bu bilgi geleneksel veridir ve metinde yer almaz. Okunuşa etkisi:
+
+- 75:27 `man râq` ve 83:14 `bal râna`: Tanzil burada sükûn yazar, sonraki harfte şedde yoktur. Kural 7 idgam
+  uygulamaz. Çıktı sekteli okuyuşla aynıdır, ama bu sonuç yazımdan gelir, sekte kuralından değil.
+- 18:1 sonu (`ʿivacâ`) ve 36:52 (`marqadinâ hâẕâ`): sekte duraklaması gösterilmez.
+
+Olası sebep (hipotez, doğrulanmadı): dosya durak işaretleri olmadan indirilmiş olabilir; dosyada U+06D6–06DB
+durak işaretlerinin hiçbiri de yoktur.
 
 ## 4. Osmanî özel işaretler (U+06DC–06ED ve diğerleri)
 
@@ -125,3 +172,4 @@ Bu dosyada bulunmayan bir karakter hata üretir; sessizce atlanmaz.
 | İhfâ, ğunne, kalkale, med süreleri | Yazıda ayrı işareti yok ya da uzunluk derecesi Latin harfle gösterilmez |
 | Harf-i tarif ile isim arasına tire (`l-qayyimu`) | Kelime Tanzil tokenı olarak bütün tutulur |
 | Sûre ve ayet arası vasl (ayet sonunda durmadan okuma) | Her ayet vakfla biter |
+| Sekte (18:1, 36:52, 75:27, 83:14) | Tanzil v1.1 dosyasında işareti yok (§3b) |
