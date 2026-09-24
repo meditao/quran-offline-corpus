@@ -537,6 +537,85 @@ def oku(sure: int, ayet: int) -> AyetOkunus:
 
 # --- komut ------------------------------------------------------------------
 
+# --- lemma okunuşu (bağlamsız; kurallar: okunus_kurallari.md §6) ---------------
+
+# QAC genişletilmiş Buckwalter'ının lemma alanında geçen, veri.BW_ARAPCA'da olmayan işaretleri.
+# Karşılıklar Tanzil'in aynı işaretleridir; okunuş motoru onları zaten tanır (§5).
+QAC_EK_ISARETLER = {
+    "^": "\u0653",   # medde
+    "#": "\u0654",   # üst hemze (tatvil üstünde: _#)
+    "[": "\u06E2",   # küçük üst mim (iklab)
+    ",": "\u06E5",   # küçük vav (sıla)
+    ".": "\u06E6",   # küçük ye (sıla)
+    "@": "\u06DF",   # yuvarlak sıfır (okunmayan harf)
+}
+LEMMA_NO_RE = re.compile(r"(\d+)$")   # QAC eşsesli lemma ayırıcısı: EaSaA / EaSaA2
+# Lafzatullah (§4 kural 5'in lemma karşılığı): QAC lemması harekesiz yazılır (ٱللّه), motorun ALLAH_RE
+# deseni ayet metnindeki harekeli yazımı arar; lemmada uzun â doğrudan verilir.
+LEMMA_LAFZATULLAH = {"{ll~ah": "allâh", "{ll~ahum~a": "allâhumma"}
+
+
+@dataclass
+class LemmaOkunus:
+    bw: str
+    latin: str
+    no: str = ""                 # eşsesli lemma numarası (QAC: EaSaA2 -> "2")
+    belirsiz: tuple[str, ...] = ()
+
+    @property
+    def gosterim(self) -> str:
+        return self.latin + (f" ({self.no})" if self.no else "")
+
+
+def _lemma_tenvini(birimler: list[Birim]) -> None:
+    """Lemmadaki tenvin durum ekidir (QAC lemmaların çoğunda yoktur; 24'ünde vardır), sözlük başlığında düşer:
+    zamme/kesre tenvini düşer (ʾabun → ʾab); ى üzerindeki fetha tenvini vakftaki gibi â olur (hudan → hudâ);
+    ـًا sözcükseldir ve kalır (ʾiẕan, ʾabadan)."""
+    anlamli = [i for i, b in enumerate(birimler) if b.unsuz or b.unlu]
+    if not anlamli:
+        return
+    i = anlamli[-1]
+    son = birimler[i]
+    if son.unlu in {"un", "in", "um", "im"}:
+        son.unlu = ""
+    elif son.unlu in {"an", "am"} and i + 1 < len(birimler) and birimler[i + 1].taban == "ى":
+        son.unlu = "â"
+
+
+@lru_cache(maxsize=None)
+def lemma_okunusu(bw: str) -> LemmaOkunus:
+    """QAC lemmasının tek başına okunuşu: bağlamsız (ibtidâ), vakf uygulanmaz, yazıldığı harekelerle.
+
+    Ayet içindeki biçimden farkı (okunus_kurallari.md §6): komşu kelime yok (vasl, kelimeler arası idgam yok); vasl elifi
+    ibtidâ ünlüsüyle okunur; lemma QAC'ta durum eki taşımadığı için son ünlü eklenmez; ة `t` kalır
+    (vakf biçimi `h` kullanılmaz: ṣalât, ṣalâh değil).
+    """
+    from .veri import BW_ARAPCA
+    m = LEMMA_NO_RE.search(bw)
+    govde = bw[: m.start()] if m else bw
+    if govde in LEMMA_LAFZATULLAH:
+        return LemmaOkunus(bw, LEMMA_LAFZATULLAH[govde], m.group(1) if m else "")
+    if govde.endswith("["):
+        # Sondaki iklab işareti bağlamsız okumada anlamsızdır (sonraki kelime yok): nasofaEF[.
+        govde = govde[:-1]
+    if govde.startswith("A^"):
+        # QAC kelime başı آ'yı "elif + medde" yazar; Tanzil (ve motor) aynı sesi ءَا ile yazar: ʾâ.
+        govde = "'aA" + govde[2:]
+    arapca = []
+    for ch in govde:
+        karsilik = QAC_EK_ISARETLER.get(ch) or BW_ARAPCA.get(ch)
+        if karsilik is None:
+            raise BilinmeyenKarakter(f"lemma {bw!r}: bilinmeyen Buckwalter karakteri {ch!r}")
+        arapca.append(karsilik)
+    birimler, belirsiz = kelime_oku("".join(arapca), ayet_basi=True)
+    if birimler and birimler[0].unsuz and birimler[0].sedde():
+        # Şeddeli harfle başlayan lemma (QAC, önceki kelimeyle idgamlı biçimi yazar: m~ula`quwA):
+        # ayet başındaki gibi tek yazılır (ayet_oku ile aynı kural).
+        birimler[0].unsuz = birimler[0].unsuz[: len(birimler[0].unsuz) // 2]
+    _lemma_tenvini(birimler)
+    return LemmaOkunus(bw, _metin(birimler), m.group(1) if m else "", tuple(belirsiz))
+
+
 def _ayet_ayristir(ref: str) -> tuple[int, int]:
     from .tara import GirdiHatasi
     parca = ref.split(":")

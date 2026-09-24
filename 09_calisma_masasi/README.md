@@ -37,6 +37,11 @@ python -m tezgah arayuz --port 8766 --tarayici-acma
   sarı, `[hipotez]` satırları mor vurgulanır; kayıt satırı sonuç panelinin altında sabit durur, hata olsa da yazılır.
 - Meal kutusu varsayılan olarak kapalıdır. Açılınca meal "kurumsal okuma — sınanan, delil değil" etiketiyle,
   çalışma çevirisinin altında gösterilir.
+- Sonuç sınırı olan her formda **Tümünü göster** kutusu vardır (`--limit 0`); varsayılan kapalıdır.
+- **Hemze ve ayn** eş aralıklı yazı tipinde düz kesmeden ve birbirinden ayırt edilemeyecek kadar küçüktür. Arayüz
+  harfin hücresini boyar: `ʾ` hemze (U+02BE) mavi zemin + düz alt çizgi, `ʿ` ayn (U+02BF) turuncu zemin + noktalı
+  alt çizgi; düz kesme `'` (U+0027, yalnız Türkçe yazımda) işaretsizdir. Üstte lejant, harfin üzerinde kod noktası
+  ipucu vardır. Metin değişmez (kopyalanınca yine U+02BE / U+02BF).
 - `test` ve `kur` arayüzden çalışmaz; komut satırından çalıştırılır.
 
 ## Komutlar
@@ -44,7 +49,7 @@ python -m tezgah arayuz --port 8766 --tarayici-acma
 | komut | örnek | birim |
 |---|---|---|
 | `sayim` | `sayim` · `sayim --kok Slw` · `sayim --etiket "(IV)" POS:V` | kelime konumu / ayet / sûre; etikette segment |
-| `kok` | `kok Slw` · `kok "ص ل و"` | kelime konumu |
+| `kok` | `kok Slw` · `kok "ص ل و"` · `kok Slw --bw` | kelime konumu |
 | `lemma` | ``lemma 'Salaw`p'`` | kelime konumu |
 | `kokler` | `kokler --limit 20` | kelime konumu / ayet / sûre |
 | `dagilim` | `dagilim --kok Amn --gore tur\|lemma\|bab\|iyelik\|sure` | tür, lemma, sûre: kelime konumu · bab, iyelik: segment |
@@ -72,6 +77,11 @@ Kurallar:
   ortaktır: [`okunus_kurallari.md`](okunus_kurallari.md) §1.
 - **Etiket** tam eşleşmedir; QAC FEATURES belirteçleri olduğu gibi yazılır (`(IV)`, `PRON:3MP`, `ROOT:Amn`, `ACT`, `PCPL`),
   TAG sütunu için `TAG:V`. Alt-dize eşleşmesi yalnız `--alt-dize` ile yapılır ve uyarı basılır. QAC I. babı etiketlemez.
+- **Liste sütunları** (`kok`, `lemma`, `etiket`, `kalip`, `dagilim --gore lemma`): *biçim* kelimenin ayet içindeki
+  okunuşudur (okunuş motoru + `tanzil_qac_alignment.csv`; ayet görünümüyle aynı: 2:3:5 `ṣṣalâta`), *lemma* lemmanın
+  tek başına okunuşudur (`ṣalât`, `ʾinsân`; kurallar: [`okunus_kurallari.md`](okunus_kurallari.md) §6). Hizalaması
+  farklı kelimede okunuşun yanında `[not: ...]` yazar. Buckwalter yalnız `--bw` ile, ek sütun olarak gösterilir.
+  Okunuş Tanzil'den üretildiği için bu listelerin kayıt satırında kaynak `QAC v0.4 | + Tanzil Uthmani v1.1` olur.
 - **Kalıp**: boşlukla ayrılmış ardışık segmentler; `&` aynı segmentte birlikte, `!X` X olmasın, `*` herhangi bir segment.
   Varsayılan kapsam ayettir (kelime sınırı geçilebilir); `--kelime-ici` ile tek kelime konumuyla sınırlanır.
 - **Bab**: QAC I. babı işaretlemez. Fiilde işaretsiz gövde `I` olarak, isimde `işaretsiz` olarak raporlanır.

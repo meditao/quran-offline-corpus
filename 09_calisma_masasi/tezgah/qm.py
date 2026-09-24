@@ -227,7 +227,8 @@ def sayi_farki_uyarisi(kor: veri.Korpus, kok_bw: str | None = None, notr_anahtar
     satir = sayilar.get(latin)
     if satir is None:
         return None
-    konum_lemma = {k.konum: ";".join(sorted(k.lemmalar)) for k in kor.kelimeler}
+    from .okunus import lemma_okunusu
+    konum_lemma = {k.konum: ";".join(lemma_okunusu(x).gosterim for x in sorted(k.lemmalar)) for k in kor.kelimeler}
     gelen: dict[str, list[str]] = {}    # qm bu köke bağlar, QAC bağlamaz -> QAC kökü
     giden: dict[str, list[str]] = {}    # QAC bu köke bağlar, qm bağlamaz -> qm kökü
     for r in farklar:

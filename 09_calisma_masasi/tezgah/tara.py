@@ -24,6 +24,7 @@ from .veri import (
 )
 
 ISARETSIZ = "işaretsiz"
+OKUNUS_KAYNAGI = "Tanzil Uthmani v1.1"   # okunus.KAYNAK_ADI (döngüsel içe aktarmayı önlemek için sabit)
 BABLAR = ("I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII")
 LATIN_ISARETI = "Latin okunuş girişi kabul edilmez"
 
@@ -245,7 +246,7 @@ def _secim(kor: Korpus, kok: str | None, lemma: str | None) -> tuple[str, list[K
         return f"Kök: {c.bw} ({c.latin})", kor.kok_kelimeleri[c.bw], c.uyarilar, {"kok": c.bw}
     if lemma is not None:
         l = lemma_coz(kor, lemma)
-        return f"Lemma: {l}", kor.lemma_kelimeleri[l], [], {"lemma": l}
+        return f"Lemma: {lemma_gosterimi(l)} (QAC: {l})", kor.lemma_kelimeleri[l], [], {"lemma": l}
     raise GirdiHatasi("--kok veya --lemma verilmeli.")
 
 
@@ -302,35 +303,84 @@ def kokler(kor: Korpus, limit: int = 0, siralama: str = "siklik") -> Sonuc:
                  {"kokler": {k: (w, a, s) for k, w, a, s in satirlar_veri}})
 
 
-def _gecis_listesi(kelimeler: list[Kelime], kimlik: dict, limit: int) -> list[str]:
+# --- Latin gösterim (varsayılan) ve Buckwalter (--bw) ---------------------------
+# Biçim: kelimenin ayet içindeki okunuşu (okunus motoru + Tanzil↔QAC hizalaması; ayet görünümüyle aynı).
+# Lemma: lemmanın tek başına okunuşu (okunus_kurallari.md §6). Buckwalter yalnız --bw ile, ek sütun olarak.
+
+class _Okunuslar:
+    """Liste boyunca okunuş hücrelerini üretir; okunuş üretilemezse sorguyu düşürmez, uyarı bırakır."""
+
+    def __init__(self) -> None:
+        self.kullanildi = False
+        self.hata: str | None = None
+
+    def bicim(self, sure: int, ayet: int, kelime: int) -> str:
+        from . import okuma, okunus, veri as veri_
+        try:
+            hucre = okuma.okunus_hucresi(sure, ayet, kelime)
+        except (veri_.VeriHatasi, okunus.BilinmeyenKarakter) as e:
+            self.hata = self.hata or str(e).splitlines()[0]
+            return "— [okunuş üretilemedi]"
+        self.kullanildi = True
+        return hucre
+
+    def uyari(self) -> list[str]:
+        return [f"UYARI: okunuş üretilemedi (sayımlar etkilenmez; QAC): {self.hata}"] if self.hata else []
+
+    def kayit(self, kor: Korpus) -> dict:
+        if not self.kullanildi:
+            return {}
+        from .okunus import TANZIL_SHA256
+        return {"kaynak": f"QAC v0.4 | + {OKUNUS_KAYNAGI}", "veri_izi": f"{kor.veri_izi} | {TANZIL_SHA256[:12]}"}
+
+
+def lemma_gosterimi(lemma: str | None) -> str:
+    if not lemma:
+        return "-"
+    from .okunus import lemma_okunusu
+    return lemma_okunusu(lemma).gosterim
+
+
+def _gecis_listesi(kelimeler: list[Kelime], kimlik: dict, limit: int, bw: bool = False,
+                   ok: _Okunuslar | None = None) -> list[str]:
+    ok = ok or _Okunuslar()
     gosterilen = kelimeler if limit <= 0 else kelimeler[:limit]
     satirlar = [f"Geçişler (kelime konumu) — gösterilen {binlik(len(gosterilen))} / {binlik(len(kelimeler))}:"]
     tablo = []
     for k in gosterilen:
         govdeler = _hedef_govdeler(k, kimlik)
-        tablo.append([
+        lemmalar = sorted({g.lemma for g in govdeler if g.lemma})
+        satir = [
             k.konum,
-            k.bicim,
-            ";".join(sorted({g.lemma or "-" for g in govdeler})),
+            ok.bicim(k.sure, k.ayet, k.kelime),
+            ";".join(lemma_gosterimi(x) for x in lemmalar) or "-",
             ";".join(sorted({tur_etiketi(g) for g in govdeler})),
             ";".join(sorted({g.bab or ("I" if g.pos == "V" else ISARETSIZ) for g in govdeler})),
-        ])
-    satirlar += _tablo(["konum", "biçim (Buckwalter)", "lemma", "tür", "bab"], tablo)
-    return satirlar
+        ]
+        if bw:
+            satir += [k.bicim, ";".join(lemmalar) or "-"]
+        tablo.append(satir)
+    basliklar = ["konum", "biçim (ayet içinde okunuş)", "lemma (okunuş)", "tür", "bab"]
+    if bw:
+        basliklar += ["biçim (Buckwalter)", "lemma (Buckwalter)"]
+    satirlar += _tablo(basliklar, tablo)
+    return [*ok.uyari(), *satirlar]
 
 
-def kok(kor: Korpus, girdi: str, limit: int = 50) -> Sonuc:
+def kok(kor: Korpus, girdi: str, limit: int = 50, bw: bool = False) -> Sonuc:
     baslik, kelimeler, uyarilar, kimlik = _secim(kor, girdi, None)
     o = ozet(kelimeler)
-    satirlar = [*uyarilar, baslik, _ozet_satiri(o), "", *_gecis_listesi(kelimeler, kimlik, limit)]
-    return Sonuc(satirlar, ["kelime konumu", "ayet", "sûre"], {**kimlik, **o})
+    ok = _Okunuslar()
+    satirlar = [*uyarilar, baslik, _ozet_satiri(o), "", *_gecis_listesi(kelimeler, kimlik, limit, bw, ok)]
+    return Sonuc(satirlar, ["kelime konumu", "ayet", "sûre"], {**kimlik, **o}, **ok.kayit(kor))
 
 
-def lemma(kor: Korpus, girdi: str, limit: int = 50) -> Sonuc:
+def lemma(kor: Korpus, girdi: str, limit: int = 50, bw: bool = False) -> Sonuc:
     baslik, kelimeler, uyarilar, kimlik = _secim(kor, None, girdi)
     o = ozet(kelimeler)
-    satirlar = [*uyarilar, baslik, _ozet_satiri(o), "", *_gecis_listesi(kelimeler, kimlik, limit)]
-    return Sonuc(satirlar, ["kelime konumu", "ayet", "sûre"], {**kimlik, **o})
+    ok = _Okunuslar()
+    satirlar = [*uyarilar, baslik, _ozet_satiri(o), "", *_gecis_listesi(kelimeler, kimlik, limit, bw, ok)]
+    return Sonuc(satirlar, ["kelime konumu", "ayet", "sûre"], {**kimlik, **o}, **ok.kayit(kor))
 
 
 def _etiket_segmentleri(kor: Korpus, etiketler: list[str], alt_dize: bool) -> tuple[list[Segment], list[str], list[frozenset[str]]]:
@@ -355,24 +405,30 @@ def _segment_ozeti(segmentler: list[Segment]) -> dict[str, int]:
     }
 
 
-def etiket(kor: Korpus, etiketler: list[str], alt_dize: bool = False, limit: int = 50) -> Sonuc:
+def etiket(kor: Korpus, etiketler: list[str], alt_dize: bool = False, limit: int = 50, bw: bool = False) -> Sonuc:
     segmentler, uyarilar, gruplar = _etiket_segmentleri(kor, etiketler, alt_dize)
     o = _segment_ozeti(segmentler)
     gosterilen = segmentler if limit <= 0 else segmentler[:limit]
-    satirlar = [
+    ok = _Okunuslar()
+    tablo = []
+    for s in gosterilen:
+        satir = [s.konum, ok.bicim(s.sure, s.ayet, s.kelime), s.etiket, "|".join(s.ozellikler)]
+        if bw:
+            satir.append(s.bicim)
+        tablo.append(satir)
+    basliklar = ["konum", "kelime (ayet içinde okunuş)", "TAG", "özellikler"] + (["segment (Buckwalter)"] if bw else [])
+    satirlar = [*ok.uyari(),
         *uyarilar,
         f"Etiket ({'alt-dize' if alt_dize else 'tam eşleşme'}, aynı segmentte hepsi): "
         + " & ".join(etiketler),
         _ozet_satiri(o),
         "",
-        f"Segmentler — gösterilen {binlik(len(gosterilen))} / {binlik(len(segmentler))}:",
-        *_tablo(
-            ["konum", "biçim (Buckwalter)", "TAG", "özellikler"],
-            [[s.konum, s.bicim, s.etiket, "|".join(s.ozellikler)] for s in gosterilen],
-        ),
+        f"Segmentler — gösterilen {binlik(len(gosterilen))} / {binlik(len(segmentler))} "
+        "(okunuş segmentin değil, içinde geçtiği kelime konumunundur):",
+        *_tablo(basliklar, tablo),
     ]
     return Sonuc(satirlar, ["segment", "kelime konumu", "ayet", "sûre"],
-                 {**o, "etiket_gruplari": [sorted(g) for g in gruplar], "alt_dize": alt_dize})
+                 {**o, "etiket_gruplari": [sorted(g) for g in gruplar], "alt_dize": alt_dize}, **ok.kayit(kor))
 
 
 def sayim(kor: Korpus, kok: str | None = None, lemma: str | None = None,
@@ -402,7 +458,7 @@ def sayim(kor: Korpus, kok: str | None = None, lemma: str | None = None,
     return Sonuc([*uyarilar, baslik, _ozet_satiri(o)], ["kelime konumu", "ayet", "sûre"], {**kimlik, **o})
 
 
-def dagilim(kor: Korpus, gore: str, kok: str | None = None, lemma: str | None = None) -> Sonuc:
+def dagilim(kor: Korpus, gore: str, kok: str | None = None, lemma: str | None = None, bw: bool = False) -> Sonuc:
     baslik, kelimeler, uyarilar, kimlik = _secim(kor, kok, lemma)
     o = ozet(kelimeler)
     satirlar = [*uyarilar, baslik, _ozet_satiri(o), ""]
@@ -428,10 +484,13 @@ def dagilim(kor: Korpus, gore: str, kok: str | None = None, lemma: str | None = 
             sayac_c.update(degerler)
         ad = "tür" if gore == "tur" else "lemma"
         toplam = sum(sayac_c.values())
-        satirlar += [f"{ad.capitalize()} dağılımı (kelime konumu):",
-                     *_tablo([ad, "kelime konumu"],
-                             [[d, binlik(n)] for d, n in sorted(sayac_c.items(), key=lambda x: (-x[1], x[0]))],
-                             sag={1})]
+        sirali = sorted(sayac_c.items(), key=lambda x: (-x[1], x[0]))
+        if gore == "lemma":
+            basliklar = ["lemma (okunuş)", "kelime konumu"] + (["lemma (Buckwalter)"] if bw else [])
+            tablo = [[lemma_gosterimi(None if d == "-" else d), binlik(n)] + ([d] if bw else []) for d, n in sirali]
+        else:
+            basliklar, tablo = [ad, "kelime konumu"], [[d, binlik(n)] for d, n in sirali]
+        satirlar += [f"{ad.capitalize()} dağılımı (kelime konumu):", *_tablo(basliklar, tablo, sag={1})]
         if toplam != o["kelime konumu"]:
             satirlar.append(
                 f"Not: satır toplamı {binlik(toplam)} ≠ {binlik(o['kelime konumu'])} kelime konumu; "
@@ -580,7 +639,8 @@ def _desen_ayristir(kor: Korpus, desen: str, alt_dize: bool) -> tuple[list[_Dese
     return sonuc, uyarilar
 
 
-def kalip(kor: Korpus, desen: str, kelime_ici: bool = False, alt_dize: bool = False, limit: int = 50) -> Sonuc:
+def kalip(kor: Korpus, desen: str, kelime_ici: bool = False, alt_dize: bool = False, limit: int = 50,
+          bw: bool = False) -> Sonuc:
     ogeler, uyarilar = _desen_ayristir(kor, desen, alt_dize)
     n = len(ogeler)
     diziler = ([k.segmentler for k in kor.kelimeler] if kelime_ici
@@ -598,14 +658,23 @@ def kalip(kor: Korpus, desen: str, kelime_ici: bool = False, alt_dize: bool = Fa
     }
     gosterilen = eslesmeler if limit <= 0 else eslesmeler[:limit]
     kapsam = "aynı kelime konumu içinde" if kelime_ici else "aynı ayet içinde, kelime sınırı geçilebilir"
+    ok = _Okunuslar()
+    tablo = []
+    for e in gosterilen:
+        kelimeler = list(dict.fromkeys(s.kelime_anahtari for s in e))
+        satir = [e[0].konum, " · ".join(ok.bicim(*k) for k in kelimeler), "  ".join(s.etiket for s in e)]
+        if bw:
+            satir.append("  ".join(f"{s.bicim}/{s.etiket}" for s in e))
+        tablo.append(satir)
+    basliklar = ["başlangıç", "kelime(ler) (ayet içinde okunuş)", "TAG dizisi"] + (["segmentler (Buckwalter/TAG)"] if bw else [])
     satirlar = [
+        *ok.uyari(),
         *uyarilar,
         f"Kalıp ({'alt-dize' if alt_dize else 'tam eşleşme'}; ardışık {n} segment; {kapsam}): {desen}",
         f"eşleşme (segment dizisi): {binlik(o['eşleşme'])} | ilk segmentin kelime konumu: "
         f"{binlik(o['kelime konumu'])} | ayet: {binlik(o['ayet'])} | sûre: {binlik(o['sûre'])}",
         "",
         f"Eşleşmeler — gösterilen {binlik(len(gosterilen))} / {binlik(len(eslesmeler))}:",
-        *_tablo(["başlangıç", "segmentler (biçim/TAG)"],
-                [[e[0].konum, "  ".join(f"{s.bicim}/{s.etiket}" for s in e)] for e in gosterilen]),
+        *_tablo(basliklar, tablo),
     ]
-    return Sonuc(satirlar, ["segment", "kelime konumu", "ayet", "sûre"], o)
+    return Sonuc(satirlar, ["segment", "kelime konumu", "ayet", "sûre"], o, **ok.kayit(kor))

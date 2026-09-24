@@ -202,6 +202,54 @@ class SunucuTesti(unittest.TestCase):
         self.assertEqual(c.kod, 2)
         self.assertIn("çalıştırılmadı", c.cikti)
 
+    # --- hemze / ayn gösterimi ------------------------------------------------------------------
+
+    def test_hemze_ayn_isaretli_ve_metin_ayni(self):
+        for bw, latin, sinif, kod in (("Amn", "\u02be-m-n", "hz", "U+02BE"), ("Elm", "\u02bf-l-m", "ay", "U+02BF"),
+                                      ("Ans", "\u02be-n-s", "hz", "U+02BE")):
+            with self.subTest(kok=bw):
+                _, s = self.post("kok", {"kok": bw, "--limit": "3"})
+                harf = latin[0]
+                self.assertIn(f'<span class="{sinif}" title="{"hemze" if sinif == "hz" else "ayn"} ({kod})">{harf}</span>'
+                              "-" + latin[2:], s)
+                self.assertIn(f"Kök: {bw} ({latin})", duz_metin(s))          # görünen metin değişmedi
+                icerik = s.split('<div class="kayit"')[0]
+                # işaretli span dışında kalan hemze/ayn yok; U+0027 hiçbir span'ın içinde değil
+                self.assertEqual(icerik.count("\u02be"), icerik.count('class="hz"'))
+                self.assertEqual(icerik.count("\u02bf"), icerik.count('class="ay"'))
+                self.assertNotRegex(s, r'class="(hz|ay)"[^>]*>\'<')
+        _, s = self.get("/tarama")
+        self.assertIn("hemze</b> (U+02BE)", s)
+        self.assertIn("ayn</b> (U+02BF)", s)
+        self.assertIn("düz kesme</b> (U+0027", s)
+
+    # --- sonuç sınırı: tümünü göster -------------------------------------------------------------
+
+    def test_tumunu_goster(self):
+        for f in (f for _, (_, formlar) in arayuz.ekranlar().items() for f in formlar):
+            if any(a.ad == "--limit" for a in f.alanlar):
+                with self.subTest(form=f.kimlik):
+                    html_ = arayuz.form_html(f, "b", {}, True)
+                    kutu = re.search(r'<input type="checkbox" name="--limit:tumu"[^>]*>', html_)
+                    self.assertIsNotNone(kutu, "limitli her formda 'tümünü göster' olmalı")
+                    self.assertNotIn("checked", kutu.group(0))
+        _, s = self.post("kok", {"kok": "Amn", "--limit": "5", "--limit:tumu": "1"})
+        metin = duz_metin(s)
+        self.assertIn("gösterilen 879 / 879", metin)
+        self.assertIn("Sorgu       : python -m tezgah kok Amn --limit 0", metin)
+        _, s = self.post("kok", {"kok": "Amn", "--limit": "5"})
+        self.assertIn("gösterilen 5 / 879", duz_metin(s))
+
+    def test_bw_kutusu_varsayilan_kapali(self):
+        for kimlik in ("kok", "lemma", "etiket", "kalip", "dagilim"):
+            f = arayuz.form_bul(kimlik)[1]
+            kutu = re.search(r'<input type="checkbox" name="--bw"[^>]*>', arayuz.form_html(f, "b", {}, True))
+            with self.subTest(form=kimlik):
+                self.assertIsNotNone(kutu)
+                self.assertNotIn("checked", kutu.group(0))
+        _, s = self.post("kok", {"kok": "Slw", "--limit": "2", "--bw": "1"})
+        self.assertIn("biçim (Buckwalter)", duz_metin(s))
+
     def test_tire_ile_baslayan_deger(self):
         f = arayuz.form_bul("tez_ac")[1]
         argv = arayuz.argv_kur(f, {"ad": "t", "--tez": "-x tezi", "--tanim": "a=b", "--eksen": "k=v",

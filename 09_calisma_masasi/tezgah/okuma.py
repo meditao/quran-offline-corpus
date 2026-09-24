@@ -124,6 +124,46 @@ def _ayet_kelimeleri(sure: int, ayet: int) -> list[Kelime]:
     return _ayet_dizini().get((sure, ayet), [])
 
 
+# --- kelime konumunun ayet içindeki okunuşu (tarama listeleri) ------------------
+
+# Hizalama notunun listelerde okunuşun yanına düşülen kısa biçimi.
+KISA_NOT = {
+    "yazım farkı (Tanzil v1.1 ↔ QAC)": "Tanzil↔QAC yazım farkı",
+    "hizalanamadı": "Tanzil↔QAC hizalanamadı",
+}
+
+
+def _kisa_not(not_: str) -> str:
+    if not not_:
+        return ""
+    if "Tanzil tokenı tek QAC kelimesi" in not_:
+        return f"{not_.split()[0]} Tanzil tokenı = 1 QAC kelimesi"
+    return KISA_NOT.get(not_, not_)
+
+
+@lru_cache(maxsize=None)
+def _ayet_okunus_haritasi(sure: int, ayet: int) -> dict[int, tuple[str, str]]:
+    """kelime no -> (ayet içindeki okunuş, hizalama notu). Okunuş: okunus.oku + hizala (ayet görünümüyle aynı)."""
+    o = okunus.oku(sure, ayet)
+    eslesmeler, _ = hizala(sure, ayet, o)
+    harita = {}
+    for e in eslesmeler:
+        latin = " ".join(o.kelimeler[i].latin + (" [sekte]" if o.kelimeler[i].sekte else "")
+                         for i in e.tanzil) if e.tanzil else "—"
+        harita[e.kelime.kelime] = (latin, _kisa_not(e.not_))
+    return harita
+
+
+def konum_okunusu(sure: int, ayet: int, kelime: int) -> tuple[str, str]:
+    """(okunuş, not). Not boş değilse Tanzil↔QAC hizalaması o kelimede farklıdır."""
+    return _ayet_okunus_haritasi(sure, ayet).get(kelime, ("—", "Tanzil↔QAC hizalanamadı"))
+
+
+def okunus_hucresi(sure: int, ayet: int, kelime: int) -> str:
+    latin, not_ = konum_okunusu(sure, ayet, kelime)
+    return f"{latin} [not: {not_}]" if not_ else latin
+
+
 # --- çalışma çevirisi -------------------------------------------------------
 
 def ceviriler() -> dict[str, list[tuple[str, str]]]:
@@ -206,7 +246,7 @@ def _kelime_satiri(e: Eslesme, o: okunus.AyetOkunus) -> list[str]:
         k.konum,
         " ".join(o.kelimeler[i].latin for i in e.tanzil) if e.tanzil else "—",
         ";".join(f"{x} ({kok_latin(x)})" for x in kokler) or "—",
-        ";".join(sorted(k.lemmalar)) or "—",
+        ";".join(okunus.lemma_okunusu(x).gosterim for x in sorted(k.lemmalar)) or "—",
         ";".join(dict.fromkeys(tur_etiketi(g) for g in govdeler)) or "—",
         ";".join(dict.fromkeys(g.bab or ("I" if g.pos == "V" else "") for g in govdeler if g.kok)) or "",
         " + ".join(f"{s.bicim}/{'PRON:' + s.zamir if s.zamir else s.etiket}" for s in k.segmentler),
@@ -228,7 +268,7 @@ def ayet_komutu(ref: str, meal_goster: bool = False, arapca: bool = False):
                         + " ".join(k.latin for k in o.besmele))
     satirlar += ["", "Okunuş (aktarım, delil değil):", "  " + o.latin_isaretli, "",
                  "Kelime çözümlemesi (QAC v0.4; birim: kelime konumu):"]
-    basliklar = ["konum", "okunuş", "kök", "lemma", "tür", "bab", "segmentler (Buckwalter/TAG)"]
+    basliklar = ["konum", "okunuş", "kök", "lemma (okunuş)", "tür", "bab", "segmentler (Buckwalter/TAG)"]
     tablo = [_kelime_satiri(e, o) for e in eslesmeler]
     if arapca:
         basliklar.append("Tanzil (denetim için)")

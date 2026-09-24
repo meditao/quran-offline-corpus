@@ -6,6 +6,7 @@ import unittest
 
 import _ortak  # noqa: F401
 from tezgah import veri
+from tezgah.okunus import TANZIL_SHA256
 from tezgah.__main__ import main
 
 KOMUTLAR = [
@@ -27,6 +28,10 @@ KOMUTLAR = [
 ]
 
 
+# Geçiş listesi gösteren komutlar: biçim sütunu ayet içindeki okunuştur (Tanzil + hizalama).
+OKUNUSLU = {"kok", "lemma", "etiket", "kalip"}
+
+
 def calistir(argv):
     tampon = io.StringIO()
     with contextlib.redirect_stdout(tampon):
@@ -41,7 +46,12 @@ class KayitTesti(unittest.TestCase):
         self.assertTrue(son[1].startswith("Sayım birimi: "), son)
         self.assertEqual(son[2], "Sorgu       : python -m tezgah " + " ".join(
             a if " " not in a and "&" not in a and "(" not in a and "`" not in a else f"'{a}'" for a in argv))
-        self.assertEqual(son[3], f"Veri izi    : {veri.QAC_SHA256[:12]}")
+        if argv[0] in OKUNUSLU and durum == "çalıştırıldı":
+            # Liste sütunlarındaki okunuş Tanzil'den üretilir: kaynak ve veri izi bunu yazar (§8).
+            self.assertEqual(son[0], "Kaynak      : QAC v0.4 | + Tanzil Uthmani v1.1")
+            self.assertEqual(son[3], f"Veri izi    : {veri.QAC_SHA256[:12]} | {TANZIL_SHA256[:12]}")
+        else:
+            self.assertEqual(son[3], f"Veri izi    : {veri.QAC_SHA256[:12]}")
         self.assertTrue(son[4].startswith(f"Durum       : {durum}"), son)
 
     def test_her_komut_kayitla_biter(self):

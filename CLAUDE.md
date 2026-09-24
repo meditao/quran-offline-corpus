@@ -103,7 +103,7 @@ Platform: testler CI'da Linux ve Windows × Python 3.10 / 3.12 / 3.14 matrisinde
 
 ## 7. Modüller ve kabul ölçütleri
 
-**tara.py** — `sayim`, `dagilim` (tür / lemma / bab / iyelik / sûre), `kok`, `lemma`, `etiket`, `birlikte` (ortak geçiş), `kalip` (ardışık segment deseni), `kokler`. Kabul: §6 testleri geçer; her çıktının sonunda kayıt satırı (§8) vardır.
+**tara.py** — `sayim`, `dagilim` (tür / lemma / bab / iyelik / sûre), `kok`, `lemma`, `etiket`, `birlikte` (ortak geçiş), `kalip` (ardışık segment deseni), `kokler`. Kabul: §6 testleri geçer; her çıktının sonunda kayıt satırı (§8) vardır. Listelerde biçim sütunu kelimenin ayet içindeki okunuşu (okunuş motoru + Tanzil↔QAC hizalaması; hizalaması farklı kelimede not), lemma sütunu lemmanın tek başına okunuşudur (`okunus_kurallari.md` §6); Buckwalter yalnız `--bw` ile ek sütundur. Okunuş kullanan listenin kaydı Tanzil'i de yazar.
 
 **okuma.py** — `ayet 2:3`: okunuş, kelime kelime kök/lemma/biçim, çalışma çevirisi, isteğe bağlı meal. Kabul: ayet referansı QAC ve Tanzil'de aynı ayete düşer.
 
@@ -149,7 +149,7 @@ Durum       : çalıştırıldı | çalıştırılmadı
 | 3 | `tez.py` (kayıtlar `kavramlar/tezler/<ad>/`: salt okunur sürüm dosyaları + zincirli defter + üretilen rapor; farklı eksen gerekçesi, yeniden değerlendirme, destek kapsamı) | tamam |
 | 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`); sayısı farklı kökte otomatik uyarı | tamam |
 | 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`; Sâmî son-harf-zayıf kuralı varsayılan kapalı; Lane kısaltmaları `lane_kisaltmalari.tsv`) | tamam |
-| 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı) | uygulandı — onay bekliyor |
+| 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı; "tümünü göster"; hemze/ayn hücre işaretlemesi) | uygulandı — onay bekliyor |
 
 Her aşama sonunda: testler çalışır, sonuç kullanıcıya sayılarla raporlanır, bir sonraki aşama için onay alınır.
 

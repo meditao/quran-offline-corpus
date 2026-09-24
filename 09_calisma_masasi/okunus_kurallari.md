@@ -221,3 +221,33 @@ Bu dosyada bulunmayan bir karakter hata üretir; sessizce atlanmaz.
 | Harf-i tarif ile isim arasına tire (`l-qayyimu`) | Kelime Tanzil tokenı olarak bütün tutulur |
 | Sûre ve ayet arası vasl (ayet sonunda durmadan okuma) | Her ayet vakfla biter |
 | Sekte (18:1, 36:52, 75:27, 83:14) | Tanzil v1.1 dosyasında işareti yok (§3b) |
+
+## 6. Lemma okunuşu (bağlamsız okuma)
+
+Tarama listelerinde iki okunuş sütunu vardır. İkisi aynı motoru ve aynı harf tablosunu (§1) kullanır:
+
+| sütun | kaynak | nasıl üretilir |
+|---|---|---|
+| **biçim (ayet içinde okunuş)** | Tanzil Uthmani v1.1 + `tanzil_qac_alignment.csv` | Ayet bütün olarak okunur (§3: vasl, idgam, iklab, ayet sonu vakf). QAC kelime konumu hizalamayla Tanzil tokenına bağlanır; o tokenın okunuşu gösterilir (2:3:5 `ṣṣalâta`). Ayet görünümündeki okunuşla aynıdır. |
+| **lemma (okunuş)** | QAC v0.4 lemma alanı (Buckwalter) | Lemma tek başına okunur (bu bölüm): `Salaw`p` → `ṣalât`. |
+
+Hizalama farkı (§3 dışı, `okuma.hizala`): Tanzil↔QAC hizalaması bir kelimede farklıysa okunuşun yanına not düşülür: `[not: Tanzil↔QAC yazım farkı]`, `[not: 2 Tanzil tokenı = 1 QAC kelimesi]`, `[not: Tanzil↔QAC hizalanamadı]`. Tüm korpusta bu notu alan kelime konumu 7'dir (3 yazım farkı, 4 birleşik token); hizalanamayan yoktur. `etiket` ve `kalip` listelerinde okunuş segmentin değil, segmentin içinde geçtiği kelime konumunundur. Buckwalter biçim ve lemma yalnız `--bw` ile, ek sütun olarak gösterilir.
+
+Lemma okunuşunun kuralları (`okunus.lemma_okunusu`):
+
+| # | kural | örnek (QAC → okunuş) |
+|---|---|---|
+| 1 | **Bağlamsız:** komşu kelime yoktur. Kelimeler arası vasl ve idgam uygulanmaz; kelime ibtidâ ile başlar (§3 kural 4): vasl elifi ibtidâ ünlüsüyle okunur | `{som` → `ism`, `{l~a*iY` → `allaẕî` |
+| 2 | **Yazıldığı harekelerle:** QAC lemması hangi harekeyi taşıyorsa o okunur; eksik hareke eklenmez. İsim lemmaları durum eki taşımaz, fiil lemmaları son ünlüsüyle yazılır | `kita`b` → `kitâb`, `qaAla` → `qâla`, `maE2` → `maʿ (2)` |
+| 3 | **Vakf biçimi kullanılmaz:** ة `t` kalır. Vakftaki `h` sözlük başlığında kullanılmaz; ayet sonundaki biçim sütunu ise vakfla okunur (§3) | `Salaw`p` → `ṣalât` (`ṣalâh` değil) |
+| 4 | **Tenvin durum ekidir, düşer:** zamme/kesre tenvini düşer; ى üzerindeki fetha tenvini vakftaki gibi `â` olur; ـًا sözcükseldir ve kalır. QAC'ta 4.832 lemmanın 24'ü tenvinlidir | `>abN` → `ʾab`, `hudFY` → `hudâ`, `<i*FA` → `ʾiẕan`, `>abadFA` → `ʾabadan` |
+| 5 | **Kelime başı hemze yazılır** (§1: `ʾinna`). Vasl elifli lemmadan ayrım böyle korunur | `<insa`n` → `ʾinsân`, `{som` → `ism` |
+| 6 | **Kelime başı آ:** QAC bunu "elif + medde" (`A^`) diye, Tanzil ise ءَا diye yazar. Lemma Tanzil yazımına çevrilir: `ʾâ` | `A^dam` → `ʾâdam` |
+| 7 | **Lafzatullah** (§3 kuralının lemma karşılığı): QAC lemması harekesizdir; uzun â doğrudan verilir | `{ll~ah` → `allâh`, `{ll~ahum~a` → `allâhumma` |
+| 8 | **Kelime başı şedde** (QAC idgamlı biçimi yazar): ayet başındaki gibi tek yazılır | `m~ula`quwA` → `mulâqû` |
+| 9 | **Sondaki iklab işareti** (`[`) yok sayılır: iklab sonraki b'ye bağlıdır, bağlamsız okumada sonraki kelime yoktur. Kelime içindeki iklab uygulanır | `nasofaEF[` → `nasfaʿan`, `>an[ba>a` → `ʾambaʾa` |
+| 10 | **Eşsesli lemma numarası** (QAC `EaSaA` / `EaSaA2`) okunuşa katılmaz, parantezle eklenir | `EaSaA2` → `ʿaṣâ (2)` |
+
+QAC genişletilmiş Buckwalter işaretlerinin lemma karşılıkları (Tanzil'in aynı işaretleri; §4): `^` medde U+0653, `#` üst hemze U+0654, `[` küçük üst mim U+06E2, `,` küçük vav U+06E5, `.` küçük ye U+06E6, `@` yuvarlak sıfır U+06DF.
+
+Belirsiz kalan (`okunus.lemma_okunusu(...).belirsiz`) 6 lemma vardır. Hepsinde çoğul vavından ya da ئ'den sonraki elif QAC lemmasında okunmaz işareti (`@`) olmadan yazılmıştır; motor bu elifi uzatma saymaz ve okunuş doğru çıkar: `naAkisuwA` → `nâkisû`, `miA}ap` → `miʾat`. Bilinmeyen karakter hata üretir; 4.832 lemmanın hepsi hatasız okunur (`testler/test_okunus_liste.py`).

@@ -61,8 +61,15 @@ def _k(ad="kok", etiket="Kök (Arapça ya da Buckwalter; ör. Slw)"):
     return Alan(ad, "poz", etiket, zorunlu=True)
 
 
+TUMU = ":tumu"   # limit alanının "tümünü göster" kutusu: <ad>:tumu
+
+
 def _limit(v="50"):
-    return Alan("--limit", "deger", "Limit (0 = tümü)", v)
+    return Alan("--limit", "limit", "Limit (0 = tümü)", v)
+
+
+def _bw():
+    return Alan("--bw", "bayrak", "Buckwalter biçim/lemma ek sütun (--bw; varsayılan Latin okunuş)")
 
 
 def _ad(etiket="Ad"):
@@ -75,7 +82,7 @@ def ekranlar() -> dict[str, tuple[str, list[Form]]]:
     return {
         "tarama": ("Tarama", [
             Form("kok", "Kök geçişleri", ["kok"], [_k(), _limit(),
-                 Alan("--capraz", "bayrak", "İki korpus yan yana (--capraz; quran-morphology, çapraz kontrol)")],
+                 Alan("--capraz", "bayrak", "İki korpus yan yana (--capraz; quran-morphology, çapraz kontrol)"), _bw()],
                  "Birim: kelime konumu."),
             Form("sayim", "Sayım", ["sayim"], [
                 Alan("--kok", "deger", "Kök"), Alan("--lemma", "deger", "Lemma"),
@@ -85,18 +92,18 @@ def ekranlar() -> dict[str, tuple[str, list[Form]]]:
                 "Hepsi boşsa korpus toplamı."),
             Form("dagilim", "Dağılım", ["dagilim"], [
                 Alan("--kok", "deger", "Kök"), Alan("--lemma", "deger", "Lemma (kök yerine)"),
-                Alan("--gore", "secim", "Göre", "tur", True, ("tur", "lemma", "bab", "iyelik", "sure"))]),
-            Form("lemma", "Lemma geçişleri", ["lemma"], [Alan("lemma", "poz", "Lemma (QAC)", zorunlu=True), _limit()]),
+                Alan("--gore", "secim", "Göre", "tur", True, ("tur", "lemma", "bab", "iyelik", "sure")), _bw()]),
+            Form("lemma", "Lemma geçişleri", ["lemma"], [Alan("lemma", "poz", "Lemma (QAC Buckwalter ya da Arapça; ör. Salaw`p)", zorunlu=True), _limit(), _bw()]),
             Form("etiket", "Etiket (segment)", ["etiket"], [
                 Alan("etiketler", "poz_coklu", "Etiket(ler) — boşlukla, aynı segmentte", zorunlu=True),
-                Alan("--alt-dize", "bayrak", "Alt-dize eşleşmesi (uyarı basılır)"), _limit()]),
+                Alan("--alt-dize", "bayrak", "Alt-dize eşleşmesi (uyarı basılır)"), _limit(), _bw()]),
             Form("birlikte", "Ortak geçiş", ["birlikte"], [
                 _k("kok_a", "Kök A"), _k("kok_b", "Kök B"),
                 Alan("--pencere", "deger", "± kelime konumu penceresi (boş = aynı ayet)"), _limit()]),
             Form("kalip", "Kalıp (ardışık segment)", ["kalip"], [
                 Alan("desen", "poz", "Desen (ör. ROOT:Amn&POS:V PRON:3MP)", zorunlu=True),
                 Alan("--kelime-ici", "bayrak", "Yalnız aynı kelime konumu içinde"),
-                Alan("--alt-dize", "bayrak", "Alt-dize eşleşmesi (uyarı basılır)"), _limit()]),
+                Alan("--alt-dize", "bayrak", "Alt-dize eşleşmesi (uyarı basılır)"), _limit(), _bw()]),
             Form("kokler", "Kök envanteri", ["kokler"], [
                 _limit("30"), Alan("--siralama", "secim", "Sıralama", "siklik", False, ("siklik", "alfabe"))]),
             Form("denetim", "Kurulum denetimi", ["denetim"], []),
@@ -218,6 +225,9 @@ def argv_kur(form: Form, degerler: dict[str, str]) -> list[str]:
             if v:
                 argv.append(a.ad)
             continue
+        if a.tur == "limit" and degerler.get(a.ad + TUMU):
+            argv += [a.ad, "0"]          # "tümünü göster": paketin kendi kuralı, --limit 0 = tümü
+            continue
         if not v:
             if a.zorunlu:
                 raise FormHatasi(f"Zorunlu alan boş: {a.etiket}")
@@ -226,7 +236,7 @@ def argv_kur(form: Form, degerler: dict[str, str]) -> list[str]:
             argv.append(v)
         elif a.tur == "poz_coklu":
             argv += v.split()
-        elif a.tur in ("deger", "secim"):
+        elif a.tur in ("deger", "secim", "limit"):
             argv += [f"{a.ad}={v}"] if v.startswith("-") else [a.ad, v]   # '-' ile başlayan değer bayrak sanılmasın
         elif a.tur == "coklu":
             argv += [a.ad, *v.split()]
@@ -291,12 +301,16 @@ def ayir(cikti: str) -> tuple[str, str]:
 CSS = """
 :root{--zemin:#fbfaf7;--yuzey:#fff;--metin:#1f2328;--soluk:#5b6470;--cizgi:#d9d4c7;--vurgu:#1d5f8a;
 --uyari-z:#fff4d6;--uyari-c:#b7791f;--hip-z:#efe9fb;--hip-c:#6b46c1;--hata-z:#fde8e8;--hata-c:#c53030;
---kayit-z:#eef4f8;--meal-z:#f3f3f3}
+--kayit-z:#eef4f8;--meal-z:#f3f3f3;--hemze-c:#0b5fa5;--ayn-c:#b4470a;--hemze-z:#d8e9fb;--ayn-z:#fde3cf}
 @media (prefers-color-scheme:dark){:root{--zemin:#16181c;--yuzey:#1e2127;--metin:#e6e6e6;--soluk:#a0a7b1;
 --cizgi:#343a44;--vurgu:#6cb2e0;--uyari-z:#3a3016;--uyari-c:#e0b050;--hip-z:#2b2540;--hip-c:#b39cf0;
---hata-z:#3d1e1e;--hata-c:#f08080;--kayit-z:#1c2a35;--meal-z:#2a2a2a}}
+--hata-z:#3d1e1e;--hata-c:#f08080;--kayit-z:#1c2a35;--meal-z:#2a2a2a;--hemze-c:#6fb6ff;--ayn-c:#ffa15c;--hemze-z:#1b3550;--ayn-z:#4a2a14}}
 *{box-sizing:border-box}body{margin:0;background:var(--zemin);color:var(--metin);
 font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+.hz,.ay{display:inline-block;width:1ch;text-align:center;font-weight:700;border-radius:2px;line-height:1.15}
+.hz{color:var(--hemze-c);background:var(--hemze-z);border-bottom:2px solid var(--hemze-c)}
+.ay{color:var(--ayn-c);background:var(--ayn-z);border-bottom:2px dotted var(--ayn-c)}
+.lejant{font-size:13px;color:var(--soluk);margin:2px 0 0}.lejant b{font-weight:400;color:var(--metin)}
 header{background:var(--yuzey);border-bottom:1px solid var(--cizgi);padding:10px 16px}
 header h1{font-size:18px;margin:0 0 4px}.ilke{font-size:13px;color:var(--soluk);margin:0}
 nav{display:flex;flex-wrap:wrap;gap:4px;padding:8px 16px;background:var(--yuzey);border-bottom:1px solid var(--cizgi)}
@@ -357,11 +371,25 @@ def satir_siniflari(satirlar: list[str]) -> list[str]:
     return siniflar
 
 
+# Hemze (U+02BE) ve ayn (U+02BF) eş aralıklı yazı tiplerinde düz kesmeden (U+0027) ve birbirinden ayırt
+# edilemeyecek kadar küçük yarım halkalardır ve yazı tipine göre yer değiştirir. Gösterim yazı tipinden bağımsızdır:
+# harfin 1ch'lik hücresi boyanır (hemze mavi zemin + düz alt çizgi, ayn turuncu zemin + noktalı alt çizgi; renk
+# ayrımı yapamayan göz için çizgi biçimi), ipucunda kod noktası yazar. Sütun hizası ve metin değişmez.
+HEMZE, AYN = "\u02be", "\u02bf"
+HARF_ISARETI = {HEMZE: '<span class="hz" title="hemze (U+02BE)">\u02be</span>',
+                AYN: '<span class="ay" title="ayn (U+02BF)">\u02bf</span>'}
+
+
+def _harf_isaretle(kacisli: str) -> str:
+    """html.escape'ten geçmiş metinde ʾ ve ʿ'yi işaretli span'a sarar (kaçış bu karakterlere dokunmaz)."""
+    return kacisli.replace(HEMZE, HARF_ISARETI[HEMZE]).replace(AYN, HARF_ISARETI[AYN])
+
+
 def cikti_html(c: Calisma) -> str:
     icerik, kayit = ayir(c.cikti)
     ham = icerik.rstrip("\n").split("\n")
-    satirlar = "".join(f'<span class="s {k}">{_e(s) or " "}</span>' for s, k in zip(ham, satir_siniflari(ham)))
-    kayit_html = (f'<div class="kayit" id="kayit"><b>Kayıt satırı (§8) — gizlenmez</b><pre>{_e(kayit.strip(chr(10)))}</pre></div>'
+    satirlar = "".join(f'<span class="s {k}">{_harf_isaretle(_e(s)) or " "}</span>' for s, k in zip(ham, satir_siniflari(ham)))
+    kayit_html = (f'<div class="kayit" id="kayit"><b>Kayıt satırı (§8) — gizlenmez</b><pre>{_harf_isaretle(_e(kayit.strip(chr(10))))}</pre></div>'
                   if kayit else '<div class="kayit" id="kayit"><b>Kayıt satırı yok — çıktı eksik</b></div>')
     return (f'<section class="sonuc"><h2>Sonuç · çıkış kodu {c.kod} · <code>{_e(komut_metni(c.argv))}</code></h2>'
             f'<div class="icerik"><pre>{satirlar}</pre></div>{kayit_html}</section>')
@@ -376,6 +404,12 @@ def _alan_html(f: Form, a: Alan, degerler: dict[str, str]) -> str:
         isaret = " checked" if degerler.get(a.ad) else ""     # bayraklar varsayılan olarak kapalı
         return (f'<label class="kutu"><input type="checkbox" name="{_e(a.ad)}" value="1"{isaret}>'
                 f'<span>{_e(a.etiket)}</span></label>')
+    if a.tur == "limit":
+        isaret = " checked" if degerler.get(a.ad + TUMU) else ""   # varsayılan kapalı
+        return (f'<label for="{kimlik}">{_e(a.etiket)}</label>'
+                f'<input type="text" id="{kimlik}" name="{_e(a.ad)}" value="{_e(v)}" inputmode="numeric">'
+                f'<label class="kutu"><input type="checkbox" name="{_e(a.ad + TUMU)}" value="1"{isaret}>'
+                f'<span>Tümünü göster (sonuç sınırı yok; --limit 0)</span></label>')
     if a.tur == "secim":
         ops = "".join(f'<option value="{_e(o)}"{" selected" if o == v else ""}>{_e(o)}</option>' for o in a.secenekler)
         bos = "" if a.zorunlu else '<option value="">—</option>'
@@ -402,6 +436,12 @@ ILKE = ("Yalnız Kur'an verisi delildir. Lane, Sâmî ve meal hipotez / ikincil 
         "kayıt satırında yazılıdır; boş çıktı yokluk delili değildir. Okunuş aktarımdır, delil değildir.")
 
 
+LEJANT = (f'<p class="lejant">Harf işaretleri: {HARF_ISARETI[HEMZE]} <b>hemze</b> (U+02BE) · '
+          f'{HARF_ISARETI[AYN]} <b>ayn</b> (U+02BF) · <span>\'</span> <b>düz kesme</b> (U+0027; yalnız Türkçe '
+          f'yazımda: Kur\'an) — örnek: ʾ-m-n · ʿ-l-m · ʾ-n-s</p>').replace("ʾ-m-n", _harf_isaretle("ʾ-m-n")).replace(
+    "ʿ-l-m", _harf_isaretle("ʿ-l-m")).replace("ʾ-n-s", _harf_isaretle("ʾ-n-s"))
+
+
 def sayfa(ekran: str, belirtec: str, calisma: Calisma | None = None, form_kimlik: str = "",
           degerler: dict[str, str] | None = None) -> str:
     tum = ekranlar()
@@ -414,7 +454,7 @@ def sayfa(ekran: str, belirtec: str, calisma: Calisma | None = None, form_kimlik
     return (f'<!doctype html><html lang="tr"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width,initial-scale=1">'
             f'<title>Çalışma Masası — {_e(baslik)}</title><style>{CSS}</style></head><body>'
-            f'<header><h1>Kur\'an Çalışma Masası</h1><p class="ilke">{_e(ILKE)}</p></header>'
+            f'<header><h1>Kur\'an Çalışma Masası</h1><p class="ilke">{_e(ILKE)}</p>{LEJANT}</header>'
             f'<nav>{nav}</nav><main><div>{sol}</div><div>{sag}</div></main></body></html>')
 
 

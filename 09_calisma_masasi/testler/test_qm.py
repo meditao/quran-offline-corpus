@@ -78,7 +78,7 @@ class SayiFarkiUyarisi(unittest.TestCase):
     def test_ans_ve_nws(self):
         _, c = self.cikti(["sayim", "--kok", "Ans"])
         self.assertIn("QAC 97, quran-morphology 338", c)
-        self.assertIn("QAC bu konumları nws (n-v-s) köküne bağlar (QAC lemma: n~aAs) — bu 241 konum QAC sonucunda yok", c)
+        self.assertIn("QAC bu konumları nws (n-v-s) köküne bağlar (QAC lemma: nâs) — bu 241 konum QAC sonucunda yok", c)
         _, c = self.cikti(["kok", "nws", "--limit", "1"])
         self.assertIn("QAC'ın bu köke bağladığı 241 konumu quran-morphology ʾ-n-s köküne bağlar", c)
 

@@ -51,8 +51,8 @@ def _capraz_ekle(kor, ns, sonuc: tara.Sonuc) -> tara.Sonuc:
     satirlar, veri_ = qm.capraz(kor, sonuc.veri["kok"])
     sonuc.satirlar += satirlar
     sonuc.veri["capraz"] = veri_
-    sonuc.kaynak = f"{veri.KAYNAK_ADI} | + {qm.KAYNAK_ADI}"
-    sonuc.veri_izi = f"{kor.veri_izi} | {qm.korpus().veri_izi}"
+    sonuc.kaynak = f"{sonuc.kaynak or veri.KAYNAK_ADI} | + {qm.KAYNAK_ADI}"
+    sonuc.veri_izi = f"{sonuc.veri_izi or kor.veri_izi} | {qm.korpus().veri_izi}"
     return sonuc
 
 
@@ -82,12 +82,14 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("kok", help="Arapça harf veya Buckwalter (ör. Slw)")
     s.add_argument("--limit", type=int, default=50, help="gösterilecek geçiş; 0 = tümü")
     s.add_argument("--capraz", action="store_true", help="quran-morphology sonucunu ayrı tabloda yan yana göster")
-    s.set_defaults(islev=lambda k, n: _capraz_ekle(k, n, tara.kok(k, n.kok, n.limit)))
+    s.add_argument("--bw", action="store_true", help="Buckwalter biçim/lemma ek sütun olarak (varsayılan: Latin okunuş)")
+    s.set_defaults(islev=lambda k, n: _capraz_ekle(k, n, tara.kok(k, n.kok, n.limit, n.bw)))
 
     s = alt.add_parser("lemma", help="bir lemmanın geçişleri (kelime konumu)")
     s.add_argument("lemma")
     s.add_argument("--limit", type=int, default=50)
-    s.set_defaults(islev=lambda k, n: tara.lemma(k, n.lemma, n.limit))
+    s.add_argument("--bw", action="store_true", help="Buckwalter biçim/lemma ek sütun olarak (varsayılan: Latin okunuş)")
+    s.set_defaults(islev=lambda k, n: tara.lemma(k, n.lemma, n.limit, n.bw))
 
     s = alt.add_parser("sayim", help="sayım: korpus toplamı, kök, lemma veya etiket")
     g = s.add_mutually_exclusive_group()
@@ -101,13 +103,15 @@ def parser_kur() -> argparse.ArgumentParser:
     s = alt.add_parser("dagilim", help="dağılım: tür / lemma / bab / iyelik / sûre")
     _secici_ekle(s)
     s.add_argument("--gore", required=True, choices=["tur", "lemma", "bab", "iyelik", "sure"])
-    s.set_defaults(islev=lambda k, n: tara.dagilim(k, n.gore, n.kok, n.lemma))
+    s.add_argument("--bw", action="store_true", help="Buckwalter biçim/lemma ek sütun olarak (varsayılan: Latin okunuş)")
+    s.set_defaults(islev=lambda k, n: tara.dagilim(k, n.gore, n.kok, n.lemma, n.bw))
 
     s = alt.add_parser("etiket", help="segment düzeyi etiket sorgusu (tam eşleşme)")
     s.add_argument("etiketler", nargs="+", help='ör. "(IV)" PRON:3MP ROOT:Amn TAG:V')
     s.add_argument("--alt-dize", action="store_true")
     s.add_argument("--limit", type=int, default=50)
-    s.set_defaults(islev=lambda k, n: tara.etiket(k, n.etiketler, n.alt_dize, n.limit))
+    s.add_argument("--bw", action="store_true", help="Buckwalter biçim/lemma ek sütun olarak (varsayılan: Latin okunuş)")
+    s.set_defaults(islev=lambda k, n: tara.etiket(k, n.etiketler, n.alt_dize, n.limit, n.bw))
 
     s = alt.add_parser("birlikte", help="iki kökün aynı ayette ortak geçişi")
     s.add_argument("kok_a")
@@ -122,7 +126,8 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("--kelime-ici", action="store_true", help="yalnız aynı kelime konumu içinde ara")
     s.add_argument("--alt-dize", action="store_true")
     s.add_argument("--limit", type=int, default=50)
-    s.set_defaults(islev=lambda k, n: tara.kalip(k, n.desen, n.kelime_ici, n.alt_dize, n.limit))
+    s.add_argument("--bw", action="store_true", help="Buckwalter biçim/lemma ek sütun olarak (varsayılan: Latin okunuş)")
+    s.set_defaults(islev=lambda k, n: tara.kalip(k, n.desen, n.kelime_ici, n.alt_dize, n.limit, n.bw))
 
     s = alt.add_parser("okunus", help="ayet okunuşu (Tanzil Uthmani'den kurallı Latin aktarım)")
     s.add_argument("ayetler", nargs="*", help="sûre:ayet, ör. 2:3 30:30")
