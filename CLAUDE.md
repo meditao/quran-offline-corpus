@@ -17,6 +17,7 @@ Kavramları Kur'an'ın kendi verisinden tanımlamak için tek bir çalışma ort
     kavram.py        kavram dosyası işlemleri
     tez.py           tez sınama kaydı
     kayit.py         her sorgunun kaynak / birim / komut kaydı
+    arayuz.py        yerel web arayüzü (python -m tezgah arayuz; yalnız standart kütüphane, kendi mantığı yok)
     ikincil/         lane.py, sami.py — yalnız hipotez katmanı
   testler/           sağlama testleri (§6) — her değişiklikten sonra çalışır
   kavramlar/         ara çalışma dosyaları (olgunlaşınca 07_analyses'e taşınır); tezler/ alt klasörü tez kayıtları
@@ -145,8 +146,8 @@ Durum       : çalıştırıldı | çalıştırılmadı
 | 2b | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur; parmak izi denetimli) | tamam |
 | 3 | `tez.py` (kayıtlar `kavramlar/tezler/<ad>/`: salt okunur sürüm dosyaları + zincirli defter + üretilen rapor; farklı eksen gerekçesi, yeniden değerlendirme, destek kapsamı) | tamam |
 | 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`); sayısı farklı kökte otomatik uyarı | tamam |
-| 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`) | uygulandı — onay bekliyor |
-| 6 | yerel web arayüzü (aynı paketin üstünde, ayrı mantık yok) | |
+| 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`; Sâmî son-harf-zayıf kuralı varsayılan kapalı; Lane kısaltmaları `lane_kisaltmalari.tsv`) | tamam |
+| 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı) | uygulandı — onay bekliyor |
 
 Her aşama sonunda: testler çalışır, sonuç kullanıcıya sayılarla raporlanır, bir sonraki aşama için onay alınır.
 

@@ -181,12 +181,20 @@ def parser_kur() -> argparse.ArgumentParser:
 
     kavram.parser_ekle(alt)
     tez.parser_ekle(alt)
+
+    s = alt.add_parser("arayuz", help="yerel web arayüzü (yalnız 127.0.0.1; aynı komutları çalıştırır)")
+    s.add_argument("--port", type=int, default=8765)
+    s.add_argument("--tarayici-acma", action="store_true", help="tarayıcıyı kendiliğinden açma")
+    s.set_defaults(sunucu=True)
     return p
 
 
 def main(argv: list[str] | None = None) -> int:
     args = sys.argv[1:] if argv is None else argv
     ns = parser_kur().parse_args(args)
+    if getattr(ns, "sunucu", False):
+        from . import arayuz
+        return arayuz.baslat(ns.port, not ns.tarayici_acma)
     sorgu = komut_metni(args)
     veri_izi = "—"
     try:

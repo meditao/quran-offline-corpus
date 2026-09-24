@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import csv
 import itertools
+import math
 import random
 from collections import Counter
 from functools import lru_cache
@@ -219,7 +220,7 @@ def gurultu(tekrar: int = 10, tohum: int = 20260924, zayif_son: bool = False) ->
     sonuc = {"kok": len(gercek), "tekrar": tekrar, "tohum": tohum, "gercek": g, "rastgele": {}, "gurultu_payi": {}}
     for dil in ("ibranice", "suryanice", "ikisi"):
         degerler = [r[dil] for r in rastgele_oranlar]
-        ort = sum(degerler) / len(degerler)
+        ort = math.fsum(degerler) / len(degerler)   # sürümden bağımsız (3.12+ sum() telafili toplar)
         sonuc["rastgele"][dil] = {"ortalama": ort, "en_az": min(degerler), "en_cok": max(degerler)}
         sonuc["gurultu_payi"][dil] = ort / g[dil] if g[dil] else None
     return sonuc

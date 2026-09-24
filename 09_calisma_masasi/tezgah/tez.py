@@ -572,11 +572,22 @@ def denetle(ad: str) -> tuple[list[str], list[str]]:
     return hatalar, uyarilar
 
 
+def liste() -> list[str]:
+    """Dondurulmuş tez kayıtları (kavramlar/tezler/<ad>/surum-001.json)."""
+    if not TEZLER.exists():
+        return []
+    return sorted(d.name for d in TEZLER.iterdir() if d.is_dir() and (d / "surum-001.json").exists())
+
+
 # --- komut satırı -----------------------------------------------------------
 
 def _komut(n):
     from .tara import GirdiHatasi, Sonuc
     try:
+        if n.tez_komut == "liste":
+            adlar = liste()
+            satirlar = [f"Tez kayıtları (kavramlar/tezler/): {len(adlar)}", *[f"  {a}" for a in adlar]]
+            return Sonuc(satirlar, [], {"tezler": adlar}, kaynak="tez kaydı", veri_izi="—")
         if n.tez_komut == "ac":
             t = ac(n.ad, n.tez, n.tanim, n.eksen, n.karsi, n.havuz_notu)
             s = t.surum()
@@ -618,8 +629,10 @@ def _komut(n):
 
 
 def parser_ekle(alt) -> None:
-    p = alt.add_parser("tez", help="tez sınama: ac / tara / bulgu / degerlendir / sonuc / yeni-surum / goster / denetle")
+    p = alt.add_parser("tez", help="tez sınama: liste / ac / tara / bulgu / degerlendir / sonuc / yeni-surum / goster / denetle")
     k = p.add_subparsers(dest="tez_komut", required=True, metavar="işlem")
+
+    k.add_parser("liste", help="tez kayıtlarını listele")
 
     s = k.add_parser("ac", help="tezi dondur: tek cümle + tanımlar + eksenler + karşı örnek havuzu")
     s.add_argument("ad")

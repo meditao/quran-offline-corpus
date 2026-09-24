@@ -3,7 +3,7 @@
 Talimat ve ilkeler: depo kökündeki [`CLAUDE.md`](../CLAUDE.md). Kanonik korpus **QAC v0.4**.
 Bu katman `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` klasörlerinden yalnız okur.
 
-Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri), **Aşama 2a** (`harf.py`, `okunus.py`) **Aşama 2b** (`okuma.py`, `kavram.py`) **Aşama 3** (`tez.py`), **Aşama 4** (`qm.py`, `--capraz`) ve **Aşama 5** (`ikincil/lane.py`, `ikincil/sami.py`). Python 3.10+; dış bağımlılık yok.
+Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri), **Aşama 2a** (`harf.py`, `okunus.py`) **Aşama 2b** (`okuma.py`, `kavram.py`) **Aşama 3** (`tez.py`), **Aşama 4** (`qm.py`, `--capraz`), **Aşama 5** (`ikincil/lane.py`, `ikincil/sami.py`) ve **Aşama 6** (`arayuz.py`). Python 3.10+; dış bağımlılık yok.
 
 ## Çalıştırma
 
@@ -14,6 +14,24 @@ python -m tezgah test             # sağlama testleri (§6) — her değişiklik
 ```
 
 Depo kökünden: `PYTHONPATH=09_calisma_masasi python -m tezgah ...`
+
+## Web arayüzü
+
+```bash
+cd 09_calisma_masasi
+python -m tezgah arayuz                     # http://127.0.0.1:8765/ tarayıcıda açılır
+python -m tezgah arayuz --port 8766 --tarayici-acma
+```
+
+- Yalnız Python standart kütüphanesi (`http.server`); ek paket gerekmez.
+- Yalnız bu bilgisayardan erişilir (127.0.0.1). Host başlığı denetlenir, her form oturum belirteci taşır.
+- Ekranlar: tarama · ayet okuma · kavram dosyası · tez sınama · ikincil katmanlar (hipotez).
+- Arayüzün kendi sorgu mantığı yoktur. Her form bir `python -m tezgah ...` komutuna çevrilir ve paketin `main()`
+  işleviyle çalıştırılır. Çıktı komut satırındakiyle aynıdır ve süzülmez. Uyarılar (ikiz kök, iki korpus farkı)
+  sarı, `[hipotez]` satırları mor vurgulanır; kayıt satırı sonuç panelinin altında sabit durur, hata olsa da yazılır.
+- Meal kutusu varsayılan olarak kapalıdır. Açılınca meal "kurumsal okuma — sınanan, delil değil" etiketiyle,
+  çalışma çevirisinin altında gösterilir.
+- `test` ve `kur` arayüzden çalışmaz; komut satırından çalıştırılır.
 
 ## Komutlar
 
@@ -30,12 +48,13 @@ Depo kökünden: `PYTHONPATH=09_calisma_masasi python -m tezgah ...`
 | `okunus` | `okunus 2:3 30:30` · `okunus 1:1 --arapca` · `okunus --mukattaa` · `okunus 2:3 --durak` | — (Tanzil Uthmani v1.1; aktarım, delil değil); `--mukattaa`: ayet / sûre |
 | `ayet` | `ayet 2:3` · `ayet 2:3 --meal` | kelime konumu (okunuş + QAC çözümlemesi + çalışma çevirisi; meal isteğe bağlı) |
 | `ceviri` | `ceviri 2:3 "..."` · `ceviri 2:3` | — (kullanıcının yorumu) |
+| `arayuz` | `arayuz` · `arayuz --port 8766 --tarayici-acma` | — (yerel web arayüzü; aynı komutlar) |
 | `kur` | `kur meal` · `kur quran-morphology` · `kur lane` · `kur sedra` | — (yerel/, depoya işlenmez) |
 | `lane` | `lane kok Slw` · `lane kok Slw --madde 2 --tam` · `lane kapsam` · `lane sigla` | hipotez; `kapsam`: kök; `sigla`: atıf geçişi (tablo: [`lane_kisaltmalari.tsv`](lane_kisaltmalari.tsv)) |
 | `sami` | `sami kok Slw` · `sami kok Slw --zayif-son` · `sami kok Elm --tek-dil` · `sami gurultu` · `sami denklik` · `sami atif` | hipotez; `gurultu`: kök |
 | `--capraz` | `kok Slw --capraz` · `sayim --kok nws --capraz` | kelime konumu / ayet / sûre; QAC ve quran-morphology ayrı tablolar + kök ataması farklı konumlar |
-| `kavram` | `kavram ac salat --soru "..." --kok Slw` · `kavram sorgu salat --bolum asama2 -- kalip "ROOT:Slw&POS:V"` · `kavram ayet salat 2:3` · `kavram oneri salat ...` · `kavram yenile salat` · `kavram denetle salat` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
-| `tez` | `tez ac t --tez "..." --tanim "terim=tanım" --eksen kip=tanımlayıcı --eksen düzlem=oluşum --karsi "kalip ROOT:Slw&POS:V"` · `tez tara t` · `tez bulgu t --eksen ... --raf ... --aciklama ... -- kalip "..."` · `tez sonuc t ...` · `tez yeni-surum t --gerekce ...` · `tez goster t` · `tez denetle t` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
+| `kavram` | `kavram liste` · `kavram goster salat` · `kavram ac salat --soru "..." --kok Slw` · `kavram sorgu salat --bolum asama2 -- kalip "ROOT:Slw&POS:V"` · `kavram ayet salat 2:3` · `kavram oneri salat ...` · `kavram yenile salat` · `kavram denetle salat` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
+| `tez` | `tez liste` · `tez ac t --tez "..." --tanim "terim=tanım" --eksen kip=tanımlayıcı --eksen düzlem=oluşum --karsi "kalip ROOT:Slw&POS:V"` · `tez tara t` · `tez bulgu t --eksen ... --raf ... --aciklama ... -- kalip "..."` · `tez sonuc t ...` · `tez yeni-surum t --gerekce ...` · `tez goster t` · `tez denetle t` | bkz. [`kavramlar/README.md`](kavramlar/README.md) |
 
 Kurallar:
 

@@ -385,11 +385,29 @@ def denetle(ad: str) -> tuple[list[str], list[str]]:
     return hatalar, uyarilar
 
 
+def liste() -> list[str]:
+    """Kavram dosyası olan adlar (kavramlar/<ad>/kavram.md)."""
+    if not KAVRAMLAR.exists():
+        return []
+    return sorted(d.name for d in KAVRAMLAR.iterdir() if d.is_dir() and d.name != "tezler" and (d / "kavram.md").exists())
+
+
 # --- komut satırı -----------------------------------------------------------------
 
 def _komut(n):
+    from . import veri
     from .tara import GirdiHatasi, Sonuc
     try:
+        if n.kavram_komut == "liste":
+            adlar = liste()
+            satirlar = [f"Kavram dosyaları ({_goreli(KAVRAMLAR)}): {len(adlar)}", *[f"  {a}" for a in adlar]]
+            return Sonuc(satirlar, [], {"kavramlar": adlar}, kaynak="kavram dosyası", veri_izi="—")
+        if n.kavram_komut == "goster":
+            metin = _metin(n.ad)
+            satirlar = [f"Kavram dosyası: {_goreli(_dosya(n.ad))} (olduğu gibi; gömülü sorgular kendi kayıt "
+                        "bloklarıyla)", "", *metin.splitlines()]
+            return Sonuc(satirlar, [], {"ad": n.ad}, kaynak="kavram dosyası",
+                         veri_izi=veri.sha256(_dosya(n.ad))[:12])
         if n.kavram_komut == "ac":
             yol = ac(n.ad, n.soru, n.kok)
             satirlar = [f"Kavram dosyası açıldı: {_goreli(yol)}",
@@ -424,8 +442,12 @@ def _komut(n):
 
 
 def parser_ekle(alt) -> None:
-    p = alt.add_parser("kavram", help="kavram dosyası: ac / sorgu / ayet / oneri / yenile / denetle")
+    p = alt.add_parser("kavram", help="kavram dosyası: liste / goster / ac / sorgu / ayet / oneri / yenile / denetle")
     k = p.add_subparsers(dest="kavram_komut", required=True, metavar="işlem")
+
+    k.add_parser("liste", help="kavram dosyalarını listele")
+    s = k.add_parser("goster", help="kavram dosyasını olduğu gibi göster")
+    s.add_argument("ad")
 
     s = k.add_parser("ac", help="yeni kavram dosyası (Aşama 1 sorguları gömülür)")
     s.add_argument("ad")
