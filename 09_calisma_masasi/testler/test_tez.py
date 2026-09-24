@@ -154,15 +154,15 @@ class TezTesti(unittest.TestCase):
         yol = d / "surum-001.json"
         yedek = yol.read_text(encoding="utf-8")
         os.chmod(yol, 0o644)
-        yol.write_text(yedek.replace("ifade eder", "kesin olarak ifade eder"), encoding="utf-8")
+        yol.write_text(yedek.replace("ifade eder", "kesin olarak ifade eder"), encoding="utf-8", newline="\n")
         self.assertIn("Dondurulmuş sürüm değiştirilmiş", tez.denetle("t")[0][0])
-        yol.write_text(yedek, encoding="utf-8")
+        yol.write_text(yedek, encoding="utf-8", newline="\n")
 
         defter = d / "defter.json"
         yedek_d = defter.read_text(encoding="utf-8")
         kayitlar = json.loads(yedek_d)
         kayitlar[-1]["raf"] = "destekleyen"
-        defter.write_text(json.dumps(kayitlar, ensure_ascii=False), encoding="utf-8")
+        defter.write_text(json.dumps(kayitlar, ensure_ascii=False), encoding="utf-8", newline="\n")
         self.assertIn("zinciri bozuk", tez.denetle("t")[0][0])
 
         # zinciri de yeniden hesaplanmış sahte çıktı: sorgu yeniden çalıştırılınca yakalanır
@@ -172,14 +172,14 @@ class TezTesti(unittest.TestCase):
         for k in kayitlar:
             k["zincir"] = tez.Tez._zincir(onceki, k)
             onceki = k["zincir"]
-        defter.write_text(json.dumps(kayitlar, ensure_ascii=False), encoding="utf-8")
+        defter.write_text(json.dumps(kayitlar, ensure_ascii=False), encoding="utf-8", newline="\n")
         tez.rapor_yaz(tez.Tez("t"))
         self.assertTrue(any("sorgu çıktısı değişti" in h for h in tez.denetle("t")[0]))
-        defter.write_text(yedek_d, encoding="utf-8")
+        defter.write_text(yedek_d, encoding="utf-8", newline="\n")
         tez.rapor_yaz(tez.Tez("t"))
 
         rapor = d / "tez.md"
-        rapor.write_text(rapor.read_text(encoding="utf-8").replace(TEZ, "Güçlendirilmiş tez."), encoding="utf-8")
+        rapor.write_text(rapor.read_text(encoding="utf-8").replace(TEZ, "Güçlendirilmiş tez."), encoding="utf-8", newline="\n")
         self.assertTrue(any("tez.md defterle uyuşmuyor" in h for h in tez.denetle("t")[0]))
 
     def test_farkli_eksen_rafi_ayri_ve_gorunur(self):

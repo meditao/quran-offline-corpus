@@ -85,9 +85,9 @@ class AyetGorunumuTesti(unittest.TestCase):
         meal_yolu = self.dizin / "meal.json"
         meal_yolu.write_text(json.dumps({"quran": [
             {"chapter": s, "verse": a, "text": okuma.MEAL_PARMAK_IZI.get((s, a), f"M{s}:{a}")}
-            for s, a in okunus.tanzil()]}), encoding="utf-8")
+            for s, a in okunus.tanzil()]}), encoding="utf-8", newline="\n")
         (self.dizin / "manifest.json").write_text(json.dumps(
-            {"sha256": hashlib.sha256(meal_yolu.read_bytes()).hexdigest()}), encoding="utf-8")
+            {"sha256": hashlib.sha256(meal_yolu.read_bytes()).hexdigest()}), encoding="utf-8", newline="\n")
         with mock.patch.object(okuma, "MEAL_YOLU", meal_yolu), \
                 mock.patch.object(okuma, "MEAL_MANIFEST", self.dizin / "manifest.json"):
             okuma.meal.cache_clear()

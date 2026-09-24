@@ -239,7 +239,7 @@ def main() -> int:
     h = hesapla()
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "qac_quranmorphology.json").write_text(json.dumps(h["ozet"], ensure_ascii=False, indent=2) + "\n",
-                                                  encoding="utf-8")
+                                                  encoding="utf-8", newline="\n")
     with (OUT / "qac_quranmorphology_kok_farklari.tsv").open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(h["farklar"][0]), delimiter="\t", lineterminator="\n")
         w.writeheader()
@@ -248,7 +248,7 @@ def main() -> int:
         w = csv.writer(f, delimiter="\t", lineterminator="\n")
         w.writerow(["kok_notr_latin", "qac_kok_bw", "qac_kelime_konumu", "qm_kelime_konumu", "fark_qm_eksi_qac"])
         w.writerows(h["kok_satirlari"])
-    (OUT / "qac_quranmorphology.md").write_text("\n".join(h["md"]), encoding="utf-8")
+    (OUT / "qac_quranmorphology.md").write_text("\n".join(h["md"]), encoding="utf-8", newline="\n")
     md = h["md"]
     print("\n".join(md[md.index("## Beklenen değerler"):md.index("## CRLF tuzağı")]))
     print("Çıktılar:", ", ".join(p.name for p in sorted(OUT.glob("qac_quranmorphology*"))))
@@ -256,4 +256,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    from tezgah import utf8_akislar
+    utf8_akislar()
     sys.exit(main())

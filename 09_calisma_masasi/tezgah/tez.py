@@ -179,7 +179,7 @@ class Tez:
         kayit["zincir"] = self._zincir(onceki, kayit)
         self.kayitlar.append(kayit)
         self.defter_yolu.write_text(json.dumps(self.kayitlar, ensure_ascii=False, indent=2) + "\n",
-                                    encoding="utf-8")
+                                    encoding="utf-8", newline="\n")
         return kayit
 
     # okuma
@@ -219,9 +219,10 @@ class Tez:
         if yol.exists():
             raise TezHatasi(f"Sürüm dosyası zaten var: {dosya}")
         ham = json.dumps(icerik, ensure_ascii=False, indent=2) + "\n"
-        yol.write_text(ham, encoding="utf-8")
+        # İkili kip: Windows metin kipi \n'yi \r\n'ye çevirir; sha her zaman diskteki baytlardan alınır.
+        yol.write_bytes(ham.encode("utf-8"))
         os.chmod(yol, 0o444)
-        self._ekle({"tur": "surum", "surum": no, "dosya": dosya, "sha256": _sha(ham.encode("utf-8"))})
+        self._ekle({"tur": "surum", "surum": no, "dosya": dosya, "sha256": _sha(yol.read_bytes())})
 
 
 def ac(ad: str, tez: str, tanim: list[str], eksen: list[str], karsi: list[str], havuz_notu: str = "") -> Tez:
@@ -242,7 +243,7 @@ def ac(ad: str, tez: str, tanim: list[str], eksen: list[str], karsi: list[str], 
     if not icerik["karsi_ornek_havuzu"]:
         raise TezHatasi("Karşı örnek havuzu taramadan önce kaydedilmeli: en az bir --karsi sorgusu.")
     dizin.mkdir(parents=True)
-    (dizin / "defter.json").write_text("[]\n", encoding="utf-8")
+    (dizin / "defter.json").write_text("[]\n", encoding="utf-8", newline="\n")
     t = Tez(ad)
     t._surum_yaz(icerik)
     rapor_yaz(t)
@@ -535,7 +536,7 @@ def rapor(t: Tez) -> str:
 
 def rapor_yaz(t: Tez) -> Path:
     yol = t.dizin / "tez.md"
-    yol.write_text(rapor(t), encoding="utf-8")
+    yol.write_text(rapor(t), encoding="utf-8", newline="\n")
     return yol
 
 

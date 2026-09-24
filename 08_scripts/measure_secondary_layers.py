@@ -113,11 +113,13 @@ def hesapla() -> dict:
 def main() -> int:
     h = hesapla()
     OUT.mkdir(parents=True, exist_ok=True)
-    (OUT / "ikincil_katmanlar.json").write_text(json.dumps(h["ozet"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    (OUT / "ikincil_katmanlar.md").write_text("\n".join(h["md"]), encoding="utf-8")
+    (OUT / "ikincil_katmanlar.json").write_text(json.dumps(h["ozet"], ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    (OUT / "ikincil_katmanlar.md").write_text("\n".join(h["md"]), encoding="utf-8", newline="\n")
     print("\n".join(h["md"]))
     return 0
 
 
 if __name__ == "__main__":
+    from tezgah import utf8_akislar
+    utf8_akislar()
     sys.exit(main())

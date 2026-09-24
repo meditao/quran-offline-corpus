@@ -110,7 +110,7 @@ def main() -> None:
         "note": "Durak işaretli sürüm. Okunuşta yalnız sekte (U+06DC) için kullanılır; "
                 "diğer durak işaretleri geleneksel — yorum içerebilir.",
     })
-    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    MANIFEST.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(f"Yazıldı: {TARGET.relative_to(ROOT)} ({len(veri)} bayt)")
     print(f"sha256: {sha}")
     print("sha256 beklenenle " + ("AYNI" if sha == BEKLENEN_SHA256 else f"FARKLI (beklenen {BEKLENEN_SHA256})"))
@@ -120,4 +120,6 @@ def main() -> None:
 
 
 if __name__ == "__main__":
+    from tezgah import utf8_akislar
+    utf8_akislar()
     main()

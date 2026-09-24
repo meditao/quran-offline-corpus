@@ -75,14 +75,14 @@ class KavramTesti(unittest.TestCase):
         from tezgah.tara import GirdiHatasi
         with self.assertRaises(GirdiHatasi):
             kavram.oneri_ekle("deneme", **{**TAM, "bulunan_ayetler": "2:999"})
-        self.assertEqual(json.loads((self.dizin / "deneme" / "oneriler.json").read_text()), [])
+        self.assertEqual(json.loads((self.dizin / "deneme" / "oneriler.json").read_text(encoding="utf-8")), [])
 
     def test_oneri_eklenir_eskisi_silinmez(self):
         kavram.oneri_ekle("deneme", **{**TAM, "mantiksal_durum": "yalniz uyumlu", "delil_derecesi": "spekülatif"})
         kavram.oneri_ekle("deneme", **{**TAM, "anlam": "İkinci öneri", "bulunan_ayetler": "yok",
                                        "bulunan_sorgu": "kalip ROOT:Slw&POS:V",
                                        "mantiksal_durum": "Destek gösterilemedi"})
-        kayitlar = json.loads((self.dizin / "deneme" / "oneriler.json").read_text())
+        kayitlar = json.loads((self.dizin / "deneme" / "oneriler.json").read_text(encoding="utf-8"))
         self.assertEqual([k["mantiksal_durum"] for k in kayitlar], ["Yalnız uyumlu", "Destek gösterilemedi"])
         self.assertEqual(kayitlar[0]["delil_derecesi"], "Spekülatif")
         m = self.metin()
@@ -96,7 +96,7 @@ class KavramTesti(unittest.TestCase):
         m = self.metin().replace("kelime konumu: 99 | ayet: 90", "kelime konumu: 98 | ayet: 90", 1)
         m = m.replace("## 8. Sentez ve anlam önerileri\n",
                       "## 8. Sentez ve anlam önerileri\n\nKök 99 kez geçer; bkz. 2:3 ve 107:4.\n", 1)
-        self.yol.write_text(m, encoding="utf-8")
+        self.yol.write_text(m, encoding="utf-8", newline="\n")
         hatalar, uyarilar = kavram.denetle("deneme")
         self.assertEqual(len(hatalar), 1)
         self.assertIn("sayim --kok Slw", hatalar[0])

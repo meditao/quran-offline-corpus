@@ -130,7 +130,7 @@ def kur() -> dict[str, object]:
                   "depoya işlenmez (CLAUDE.md §9)",
         "statu": "ikinci annotation katmanı — çapraz kontrol, delil değil",
     }
-    QM_MANIFEST.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    QM_MANIFEST.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     return bilgi
 
 

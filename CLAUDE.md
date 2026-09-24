@@ -99,6 +99,8 @@ QAC v0.4 (depodan ölçüldü, 24.09.2026):
 
 Ayrıca: araç, `root_index.csv` ile kendi hesabının bütün kökler için aynı çıktığını doğrular.
 
+Platform: testler CI'da Linux ve Windows × Python 3.10 / 3.12 / 3.14 matrisinde, `PYTHONUTF8` verilmeden ve çıktı dosyaya yönlendirilerek çalışır (`.github/workflows/calisma-masasi-testleri.yml`). Kod kuralı (`testler/test_platform.py` denetler): metin kipinde her zaman `encoding="utf-8"`; metin yazımında `newline="\n"`; hash'lenen dosya ikili kipte yazılır, sha diskteki baytlardan alınır; alt süreçlere ortam açıkça geçirilir. `.gitattributes` satır sonu çevirisini kapatır.
+
 ## 7. Modüller ve kabul ölçütleri
 
 **tara.py** — `sayim`, `dagilim` (tür / lemma / bab / iyelik / sûre), `kok`, `lemma`, `etiket`, `birlikte` (ortak geçiş), `kalip` (ardışık segment deseni), `kokler`. Kabul: §6 testleri geçer; her çıktının sonunda kayıt satırı (§8) vardır.

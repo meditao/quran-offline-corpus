@@ -15,6 +15,12 @@ python -m tezgah test             # sağlama testleri (§6) — her değişiklik
 
 Depo kökünden: `PYTHONPATH=09_calisma_masasi python -m tezgah ...`
 
+**Windows.** `-X utf8` ya da `PYTHONUTF8` gerekmez: giriş noktaları stdout/stderr'i UTF-8'e ayarlar (çıktı dosyaya
+yönlendirildiğinde de), bütün dosyalar `encoding="utf-8"` ile açılır, metin dosyaları `newline="\n"` ile, hash'lenen
+dosyalar ikili kipte yazılır ve sha diskteki baytlardan alınır. Depodaki `.gitattributes` satır sonu çevirisini
+kapatır (git'in Windows varsayılanı `core.autocrlf=true` Tanzil dosyasının sha256'sını değiştirirdi). CI bunları
+Linux ve Windows'ta Python 3.10 / 3.12 / 3.14 ile sınar (`.github/workflows/calisma-masasi-testleri.yml`).
+
 ## Web arayüzü
 
 ```bash

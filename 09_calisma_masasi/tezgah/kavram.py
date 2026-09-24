@@ -231,7 +231,7 @@ def _yaz(ad: str, metin: str, calistir: bool = True) -> str:
         raise KavramHatasi(f"Kavram dosyasında eksik bölüm işaretleri: {', '.join(eksik)}")
     yeni = bas + "".join(f"<!-- tezgah:bolum {a} -->\n" + _bolum_yenile(a, g, oneriler, calistir)
                          for a, g in bolumler)
-    _dosya(ad).write_text(yeni, encoding="utf-8")
+    _dosya(ad).write_text(yeni, encoding="utf-8", newline="\n")
     return yeni
 
 
@@ -248,7 +248,7 @@ def ac(ad: str, soru: str, kokler: list[str]) -> Path:
     kor = veri.korpus()
     cozumler = [kok_coz(kor, k) for k in kokler]   # Latin giriş burada reddedilir
     dizin.mkdir(parents=True)
-    _oneriler_yolu(ad).write_text("[]\n", encoding="utf-8")
+    _oneriler_yolu(ad).write_text("[]\n", encoding="utf-8", newline="\n")
     parca = [f"# Kavram: {ad}\n\n",
              "_Çalışma dosyası (kavramlar/). Sorgu blokları `python -m tezgah kavram yenile` ile yeniden "
              "üretilir; elle değiştirilmez. Bölüm kayıtları otomatiktir._\n\n"]
@@ -334,7 +334,7 @@ def oneri_ekle(ad: str, **alan: str) -> dict:
         "uygulanan_orneklem": " ".join(alan["uygulanan_orneklem"].split()),
     }
     oneriler = _oneriler(ad) + [kayit]
-    _oneriler_yolu(ad).write_text(json.dumps(oneriler, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    _oneriler_yolu(ad).write_text(json.dumps(oneriler, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     _yaz(ad, _metin(ad), calistir=False)
     return kayit
 

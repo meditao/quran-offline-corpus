@@ -35,7 +35,7 @@ def indir(url: str, beklenen_sha: str) -> bytes:
 
 def manifest_yaz(yol: Path, bilgi: dict) -> None:
     bilgi = {**bilgi, "fetched": date.today().isoformat()}
-    yol.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    yol.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
 def arapca_latin_metin(arapca: str) -> str:

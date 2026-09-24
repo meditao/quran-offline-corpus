@@ -181,7 +181,7 @@ def meal_kur() -> dict[str, object]:
         "lisans": "doğrulanmadı — depoya işlenmez (CLAUDE.md §9)",
         "statu": MEAL_ETIKETI,
     }
-    MEAL_MANIFEST.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    MEAL_MANIFEST.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     return bilgi
 
 

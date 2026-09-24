@@ -67,10 +67,10 @@ class SentetikDurak(unittest.TestCase):
         self.manifest = self.dizin / "manifest.local.json"
 
     def yaz(self, metin, sha=None):
-        self.yol.write_text(metin, encoding="utf-8")
+        self.yol.write_text(metin, encoding="utf-8", newline="\n")
         gercek = hashlib.sha256(self.yol.read_bytes()).hexdigest()
         self.manifest.write_text(json.dumps({"files": [
-            {"file": "01_raw/tanzil/quran-uthmani-durak.txt", "sha256": sha or gercek}]}), encoding="utf-8")
+            {"file": "01_raw/tanzil/quran-uthmani-durak.txt", "sha256": sha or gercek}]}), encoding="utf-8", newline="\n")
 
     def yukle(self):
         return okunus.durak_yukle(self.yol, self.manifest, okunus.tanzil())
