@@ -69,6 +69,8 @@ def _secenek(deger: str, secenekler: tuple[str, ...], ad: str) -> str:
 def _dizin(ad: str) -> Path:
     if not re.fullmatch(r"[\w-]+", ad):
         raise KavramHatasi(f"Kavram adı yalnız harf, rakam, _ ve - içerebilir: {ad!r}")
+    if ad == "tezler":
+        raise KavramHatasi("'tezler' adı tez kayıtlarına ayrılmıştır (kavramlar/tezler/).")
     return KAVRAMLAR / ad
 
 
@@ -95,6 +97,8 @@ def sorgu_calistir(argv: list[str]) -> str:
         raise KavramHatasi(f"Kavram dosyasına gömülebilen sorgular: {', '.join(sorted(IZINLI_SORGULAR))}")
     if "--meal" in argv:
         raise KavramHatasi("Meal kavram dosyasına gömülmez (delil değil; lisansı doğrulanmadı, depo açık).")
+    if "--arapca" in argv:
+        raise KavramHatasi("Gömülü sorguda --arapca kullanılmaz (sunum: Latin harfli okunuş, §2.8).")
     from .__main__ import main
     tampon = io.StringIO()
     try:

@@ -13,7 +13,7 @@ import sys
 import unittest
 from pathlib import Path
 
-from . import kavram, okuma, okunus, tara, veri
+from . import kavram, okuma, okunus, tara, tez, veri
 from .kayit import CALISTIRILMADI, Kayit, komut_metni
 
 TESTLER = Path(__file__).resolve().parents[1] / "testler"
@@ -133,6 +133,7 @@ def parser_kur() -> argparse.ArgumentParser:
     s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne), korpus_gerekmez=True)
 
     kavram.parser_ekle(alt)
+    tez.parser_ekle(alt)
     return p
 
 

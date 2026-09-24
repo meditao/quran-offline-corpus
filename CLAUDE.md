@@ -19,7 +19,7 @@ Kavramları Kur'an'ın kendi verisinden tanımlamak için tek bir çalışma ort
     kayit.py         her sorgunun kaynak / birim / komut kaydı
     ikincil/         lane.py, sami.py — yalnız hipotez katmanı
   testler/           sağlama testleri (§6) — her değişiklikten sonra çalışır
-  kavramlar/         ara çalışma dosyaları (olgunlaşınca 07_analyses'e taşınır)
+  kavramlar/         ara çalışma dosyaları (olgunlaşınca 07_analyses'e taşınır); tezler/ alt klasörü tez kayıtları
   yerel/             .gitignore — lisansı doğrulanmamış veya dağıtılamaz veri
 ```
 
@@ -138,9 +138,9 @@ Durum       : çalıştırıldı | çalıştırılmadı
 |---|---|---|
 | 0 | depo incelemesi, bu dosya | tamam |
 | 1 | `veri.py` + `tara.py` + `kayit.py` + sağlama testleri | tamam |
-| 2a | `okunus.py`: okunuş Tanzil Arapçasından, kök gösterimiyle aynı harf tablosuyla üretilir (fawazahmed0 kullanılmaz). Kurallar: `09_calisma_masasi/okunus_kurallari.md`. Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | tamam — **açık:** durak işaretli Tanzil dosyası indirilemedi (ağ politikası), sekte gösterilmiyor |
-| 2b | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur) | uygulandı — onay bekliyor |
-| 3 | `tez.py` | |
+| 2a | `okunus.py`: okunuş Tanzil Arapçasından, kök gösterimiyle aynı harf tablosuyla üretilir (fawazahmed0 kullanılmaz). Kurallar: `09_calisma_masasi/okunus_kurallari.md`. Tanzil işaretleri: U+064B–0654, 0670, 0671 (vasl elifi), 06DC–06ED (Osmanî özel işaretleri) | tamam — **açık:** durak işaretli Tanzil dosyası indirilemedi (ağ politikasına tanzil.net eklendikten sonra da bu oturumdan 403), sekte gösterilmiyor |
+| 2b | `okuma.py` + `kavram.py` (meal `yerel/`'e kurulur; parmak izi denetimli) | tamam |
+| 3 | `tez.py` (kayıtlar `kavramlar/tezler/<ad>/`: salt okunur sürüm dosyaları + zincirli defter + üretilen rapor) | uygulandı — onay bekliyor |
 | 4 | ikinci annotation katmanı ve çapraz denetim raporu | |
 | 5 | `ikincil/` (Lane, Sâmî) | |
 | 6 | yerel web arayüzü (aynı paketin üstünde, ayrı mantık yok) | |
