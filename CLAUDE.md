@@ -70,7 +70,7 @@ Kanonik korpus: **QAC v0.4** (depodaki denetimli veri).
 
 ## 5. İkinci annotation katmanı (quran-morphology)
 
-`counting_units.md` §6'daki açık konu (130.030 birim ↔ 128.219 segment) bu katmanla kapatılır:
+`counting_units.md` §6'daki açık konu (130.030 birim ↔ 128.219 segment) bu katmanla Aşama 4'te kapatıldı. Sonuç ve rapor bağlantısı `counting_units.md` §6'dadır:
 
 - İki korpus kelime konumunda birebir aynıdır (77.429); segmentasyon ve kök envanteri farklıdır (1.651 ↔ 1.642).
 - `08_scripts/crosscheck_qac_quranmorphology.py` konum bazında karşılaştırır ve `03_indices/audits/` altına rapor yazar.
@@ -149,7 +149,7 @@ Durum       : çalıştırıldı | çalıştırılmadı
 | 3 | `tez.py` (kayıtlar `kavramlar/tezler/<ad>/`: salt okunur sürüm dosyaları + zincirli defter + üretilen rapor; farklı eksen gerekçesi, yeniden değerlendirme, destek kapsamı) | tamam |
 | 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`); sayısı farklı kökte otomatik uyarı | tamam |
 | 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`; Sâmî son-harf-zayıf kuralı varsayılan kapalı; Lane kısaltmaları `lane_kisaltmalari.tsv`) | tamam |
-| 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı; "tümünü göster"; hemze/ayn hücre işaretlemesi) | uygulandı — onay bekliyor |
+| 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı; "tümünü göster"; hemze/ayn hücre işaretlemesi) | tamam (kullanıcı onayı; PR #1 birleştirildi. Kullanıcı doğrulaması, Türkçe Windows 11 + Python 3.14.7: 153 test çalıştı, 132 geçti, 0 başarısız, 0 hata, 21 atlandı; arayüzde Slw ve Ans aramaları, tez liste ve hemze/ayn işaretleri doğru) |
 
 Her aşama sonunda: testler çalışır, sonuç kullanıcıya sayılarla raporlanır, bir sonraki aşama için onay alınır.
 

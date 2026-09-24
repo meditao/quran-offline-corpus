@@ -220,7 +220,6 @@ Bu dosyada bulunmayan bir karakter hata üretir; sessizce atlanmaz.
 | İhfâ, ğunne, kalkale, med süreleri | Yazıda ayrı işareti yok ya da uzunluk derecesi Latin harfle gösterilmez |
 | Harf-i tarif ile isim arasına tire (`l-qayyimu`) | Kelime Tanzil tokenı olarak bütün tutulur |
 | Sûre ve ayet arası vasl (ayet sonunda durmadan okuma) | Her ayet vakfla biter |
-| Sekte (18:1, 36:52, 75:27, 83:14) | Tanzil v1.1 dosyasında işareti yok (§3b) |
 
 ## 6. Lemma okunuşu (bağlamsız okuma)
 

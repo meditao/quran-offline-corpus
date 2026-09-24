@@ -47,6 +47,8 @@ Analiz katmanı artık aktiftir. İlk ayrıntılı kamuya açık ana analiz İma
 
 İbranice lexical index mevcuttur. İncelenmiş Arapça↔Sami kognat eşlemeleri aşamalı olarak eklenmektedir. QuranMorph ve çeviri katmanları henüz tamamlanmış veri setleri değildir.
 
+Kur'an çalışma masası (`09_calisma_masasi/`, `python -m tezgah`) tamamlanmıştır (Aşama 1–6: tarama, okunuş, ayet görünümü, kavram dosyası, tez sınama, quran-morphology çapraz kontrolü, Lane/Sâmî hipotez katmanı, yerel web arayüzü). Talimat ve ilkeler: [`CLAUDE.md`](CLAUDE.md); kullanım: [`09_calisma_masasi/README.md`](09_calisma_masasi/README.md). Testler Linux ve Windows'ta CI ile çalışır.
+
 Opsiyonel yardımcı kaynak Açık Kuran'dır. Eski REST API çekirdek workflow'un parçası değildir.
 
 ## Temel ilke
@@ -63,6 +65,7 @@ Ham kaynak verisi, türetilmiş indeksler, sözlük katmanı ve yorum/analiz kat
 - `06_methodology/` — kaynak, lisans, sayım ve alignment kuralları
 - `07_analyses/` — okunabilir kavram/kök/ayet analizleri ve bunların denetim verileri
 - `08_scripts/` — doğrulama, sayım, sorgu ve audit scriptleri
+- `09_calisma_masasi/` — Kur'an çalışma masası (`tezgah` paketi, sağlama testleri, kavram ve tez kayıtları; lisansı doğrulanmamış veri `yerel/` altında, depoya işlenmez)
 
 ## Kaynak hiyerarşisi
 
