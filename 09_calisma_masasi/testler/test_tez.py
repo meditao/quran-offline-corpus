@@ -71,8 +71,13 @@ class TezTesti(unittest.TestCase):
             with self.subTest(farkli_eksen=raf):
                 with self.assertRaises(tez.TezHatasi):
                     tez.bulgu("t", FARKLI, raf, "normatif bulgu", ["sayim", "--kok", "Slw"])
-        k = tez.bulgu("t", FARKLI, "farklı eksen", "normatif bulgu", ["sayim", "--kok", "Slw"])
-        self.assertEqual(k["raf"], "farklı eksen")
+        with self.assertRaises(tez.TezHatasi):   # farklı eksen için gerekçe zorunlu
+            tez.bulgu("t", FARKLI, "farklı eksen", "normatif bulgu", ["sayim", "--kok", "Slw"])
+        with self.assertRaises(tez.TezHatasi):
+            tez.bulgu("t", FARKLI, "farklı eksen", "normatif bulgu", ["sayim", "--kok", "Slw"], gerekce="  ")
+        k = tez.bulgu("t", FARKLI, "farklı eksen", "normatif bulgu", ["sayim", "--kok", "Slw"],
+                      gerekce="bulgu buyruk kipinde, tez tanımlayıcı")
+        self.assertEqual((k["raf"], k["gerekce"]), ("farklı eksen", "bulgu buyruk kipinde, tez tanımlayıcı"))
         with self.assertRaises(tez.TezHatasi):
             tez.bulgu("t", AYNI, "farklı eksen", "aynı eksen", ["sayim", "--kok", "Slw"])
         with self.assertRaises(tez.TezHatasi):
@@ -99,7 +104,7 @@ class TezTesti(unittest.TestCase):
         with self.assertRaises(tez.TezHatasi):
             tez.sonuc("t", "Belirsiz", "Spekülatif", "tarama yok")          # önce tara
         tez.tara("t")
-        tez.bulgu("t", FARKLI, "farklı eksen", "normatif", ["sayim", "--kok", "Slw"])
+        tez.bulgu("t", FARKLI, "farklı eksen", "normatif", ["sayim", "--kok", "Slw"], gerekce="normatif kip")
         with self.assertRaises(tez.TezHatasi):
             tez.sonuc("t", "Çelişiyor", "Muhtemel", "farklı eksen çelişki sayılmaz")
         tez.bulgu("t", AYNI, "yalnız uyumlu", "uyumlu ama ayırt edici değil", SORGU)
@@ -107,7 +112,11 @@ class TezTesti(unittest.TestCase):
             tez.sonuc("t", "Destekleniyor", "Sağlam", "yalnız uyumlu destek değildir")
         tez.sonuc("t", "yalniz uyumlu", "muhtemel", "ayırt edici bulgu yok")
         tez.bulgu("t", AYNI, "destekleyen", "ayırt edici bulgu", SORGU)
-        tez.sonuc("t", "Destekleniyor", "Muhtemel", "ayırt edici bulgu var")
+        with self.assertRaises(tez.TezHatasi):   # desteklenen kapsam zorunlu
+            tez.sonuc("t", "Destekleniyor", "Muhtemel", "ayırt edici bulgu var")
+        k = tez.sonuc("t", "Destekleniyor", "Muhtemel", "ayırt edici bulgu var",
+                      kapsam="yalnız ṣ-l-v fiil kullanımları (kalip ROOT:Slw&POS:V)")
+        self.assertIn("Desteklenen kapsam:** yalnız ṣ-l-v fiil", (self.dizin / "t" / "tez.md").read_text(encoding="utf-8"))
         tez.bulgu("t", AYNI, "çelişen", "çelişen bulgu", ["sayim", "--kok", "Slw"])
         for durum in ("Destekleniyor", "Yalnız uyumlu"):
             with self.assertRaises(tez.TezHatasi):
@@ -172,6 +181,51 @@ class TezTesti(unittest.TestCase):
         rapor = d / "tez.md"
         rapor.write_text(rapor.read_text(encoding="utf-8").replace(TEZ, "Güçlendirilmiş tez."), encoding="utf-8")
         self.assertTrue(any("tez.md defterle uyuşmuyor" in h for h in tez.denetle("t")[0]))
+
+    def test_farkli_eksen_rafi_ayri_ve_gorunur(self):
+        self.ac()
+        tez.bulgu("t", AYNI, "yalnız uyumlu", "uyumlu", SORGU)
+        tez.bulgu("t", FARKLI, "farklı eksen", "normatif ifade", ["sayim", "--kok", "Slw"],
+                  gerekce="bulgu normatif kipte")
+        r = (self.dizin / "t" / "tez.md").read_text(encoding="utf-8")
+        bolum = r.split("## 5b. Farklı eksen rafı (1 bulgu")[1].split("## 6.")[0]
+        self.assertIn("Bulgu 2", bolum)
+        self.assertIn("Eksen farkı: kip: bulgu **normatif** ↔ tez **tanımlayıcı**", bolum)
+        self.assertIn("Gerekçe (farklı eksen): bulgu normatif kipte", bolum)
+        self.assertNotIn("Bulgu 2", r.split("## 5. Bulgular")[1].split("## 5b.")[0])
+
+    def test_yeniden_degerlendirme(self):
+        self.ac()
+        tez.tara("t")
+        tez.bulgu("t", AYNI, "yalnız uyumlu", "ilk okuma", SORGU)
+        tez.sonuc("t", "Yalnız uyumlu", "Muhtemel", "ilk değerlendirme")
+        onceki_kayit = len(tez.Tez("t").kayitlar)
+        with self.assertRaises(tez.TezHatasi):
+            tez.degerlendir("t", 1, "destekleyen", "  ")                     # gerekçe zorunlu
+        with self.assertRaises(tez.TezHatasi):
+            tez.degerlendir("t", 1, "yalnız uyumlu", "aynı raf")              # değişiklik yok
+        with self.assertRaises(tez.TezHatasi):
+            tez.degerlendir("t", 1, "çelişen", "g", eksen=FARKLI)             # farklı eksen → çelişen olmaz
+        with self.assertRaises(tez.TezHatasi):
+            tez.degerlendir("t", 9, "çelişen", "g")                          # bulgu yok
+        tez.degerlendir("t", 1, "destekleyen", "karşı okuma bu ayetleri açıklayamıyor")
+        tez.degerlendir("t", 1, "farklı eksen", "etiket normatif olmalıydı", eksen=FARKLI)
+        t = tez.Tez("t")
+        b = t.turler("bulgu")[0]
+        self.assertEqual(b["raf"], "yalnız uyumlu", "ilk kayıt silinmez/değişmez")
+        self.assertEqual(t.etkin(b)["raf"], "farklı eksen")
+        self.assertEqual(len(t.kayitlar), onceki_kayit + 2)
+        self.assertEqual(t.raf_sayilari(1)["farklı eksen"], 1)
+        r = (self.dizin / "t" / "tez.md").read_text(encoding="utf-8")
+        self.assertIn("Değerlendirme geçmişi (ilk kayıt: yalnız uyumlu", r)
+        self.assertIn("yalnız uyumlu → **destekleyen** — karşı okuma bu ayetleri açıklayamıyor", r)
+        self.assertIn("destekleyen → **farklı eksen** (eksen etiketi değişti) — etiket normatif olmalıydı", r)
+        hatalar, uyarilar = tez.denetle("t")
+        self.assertEqual(hatalar, [])
+        self.assertTrue(any("yeniden değerlendirildi" in u for u in uyarilar))
+        tez.yeni_surum("t", "tanım daraltıldı", tanim=["eylem=daraltılmış"])
+        with self.assertRaises(tez.TezHatasi):
+            tez.degerlendir("t", 1, "belirsiz", "eski sürüm bulgusu")        # yalnız güncel sürüm
 
     def test_tezler_adi_kavrama_ayrilmaz(self):
         with self.assertRaises(kavram.KavramHatasi):

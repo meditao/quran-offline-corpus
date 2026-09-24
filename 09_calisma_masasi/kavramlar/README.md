@@ -39,17 +39,23 @@ Tez kaydı kuralları (`tez.py`):
   dayanır. `--ayet` ile verilen ayetler o sorgunun çıktısında geçmek zorundadır.
 - **Raf.** Raflar şunlardır: destekleyen · yalnız uyumlu · çelişen · belirsiz · farklı eksen. Eksenleri
   tezinkinden farklı olan bulgu yalnız "farklı eksen" rafına konur. CLAUDE.md §7 yalnız "çelişen" rafını
-  yasaklar; araç simetri için destekleyen, yalnız uyumlu ve belirsiz raflarını da yasaklar. Farklı eksen
-  rafı sonuç hesabına girmez.
+  yasaklar; araç simetri için destekleyen, yalnız uyumlu ve belirsiz raflarını da yasaklar.
+- **Farklı eksen rafı.** Bu rafa konan her bulgu için `--gerekce` zorunludur. Rapor bu rafı ayrı bir bölümde
+  (§5b) listeler: eksen farkı ve gerekçe görünür. Bu raf sonuç hesabına girmez.
+- **Yeniden değerlendirme (`tez degerlendir AD NO --raf ... --gerekce ... [--eksen ...]`).** Bulgunun rafı
+  silinmeden değiştirilir; deftere yeni bir kayıt eklenir ve zincir korunur. İlk kayıt ve bütün eski
+  değerlendirmeler raporda görünür. Yalnız güncel sürümün bulguları yeniden değerlendirilebilir.
 - **Sonuç (`tez sonuc`).** Sonuç iki eksende yazılır: mantıksal durum ve delil derecesi. Tutarlılık kuralları:
   - Her sonuç için havuzun taranmış olması gerekir.
   - "Destekleniyor" için en az bir "destekleyen" bulgu gerekir ve hiç "çelişen" bulgu olmamalıdır.
     "Yalnız uyumlu" bulgular destek sayılmaz.
   - "Yalnız uyumlu" sonucu, çelişen bulgu varken yazılamaz.
   - "Çelişiyor" için en az bir çelişen bulgu gerekir.
+  - "Destekleniyor" sonucunda desteklenen kapsam (`--kapsam`) zorunludur.
 - **Denetim (`tez denetle`).** Şunları bildirir:
   - bozulmuş defter zincirini;
   - değişmiş sürüm dosyasını;
   - yeniden çalıştırınca farklı çıkan sorgu çıktısını;
   - defterle uyuşmayan `tez.md` dosyasını;
-  - sonuç yazıldıktan sonra eklenen bulguları.
+  - sonuç yazıldıktan sonra eklenen ya da yeniden değerlendirilen bulguları;
+  - gerekçesiz farklı eksen bulgusunu ve kapsamsız "Destekleniyor" sonucunu.

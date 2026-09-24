@@ -13,8 +13,12 @@ Kurallar (CLAUDE.md §7, §2.6):
 - Her bulgu eksen etiketi taşır ve bir sorguya dayanır; bulgudaki ayetler o sorgunun çıktısında
   geçmek zorundadır. Eksenleri tezinkinden farklı olan bulgu yalnız "farklı eksen" rafına konur
   (çelişen rafına konamaz; simetri için destekleyen / yalnız uyumlu rafına da konamaz).
+- "Farklı eksen" rafındaki her bulgu gerekçe taşır; rapor bu rafı ayrı bir bölümde listeler.
+- Bulgunun rafı silinmeden, gerekçeli "yeniden değerlendirme" kaydıyla değiştirilir; eski
+  değerlendirme raporda görünür, defter zinciri korunur (kayıt yalnız eklenir).
 - Sonuç iki eksende yazılır (mantıksal durum + delil derecesi) ve bulgularla tutarlı olmalıdır:
-  "Yalnız uyumlu" bulgulardan "Destekleniyor" sonucu çıkmaz.
+  "Yalnız uyumlu" bulgulardan "Destekleniyor" sonucu çıkmaz. "Destekleniyor" sonucunda
+  desteklenen kapsam zorunludur.
 """
 
 from __future__ import annotations
@@ -191,10 +195,20 @@ class Tez:
     def guncel_no(self) -> int:
         return self.turler("surum")[-1]["surum"]
 
+    def degerlendirmeler(self, no: int) -> list[dict]:
+        return [k for k in self.kayitlar if k["tur"] == "degerlendirme" and k["bulgu"] == no]
+
+    def etkin(self, b: dict) -> dict:
+        """Bulgunun son değerlendirmeye göre etkin rafı, eksenleri ve (farklı eksen) gerekçesi."""
+        durum = {"raf": b["raf"], "eksenler": b["eksenler"], "gerekce": b.get("gerekce", "")}
+        for d in self.degerlendirmeler(b["no"]):
+            durum = {"raf": d["yeni_raf"], "eksenler": d["yeni_eksenler"], "gerekce": d["gerekce"]}
+        return durum
+
     def raf_sayilari(self, surum: int) -> dict[str, int]:
         sayim = {r: 0 for r in RAFLAR}
         for b in self.turler("bulgu", surum):
-            sayim[b["raf"]] += 1
+            sayim[self.etkin(b)["raf"]] += 1
         return sayim
 
     # yazma
@@ -278,23 +292,40 @@ def tara(ad: str) -> dict:
     return k
 
 
-def bulgu(ad: str, eksen: list[str], raf: str, aciklama: str, argv: list[str],
-          ayetler: list[str] | None = None) -> dict:
-    from . import okunus
-    t = Tez(ad)
-    s = t.surum()
-    if not aciklama or not re.search(r"\w", aciklama):
-        raise TezHatasi("Bulgu açıklaması boş olamaz.")
-    b_eksen = eksenler(eksen)
-    if set(b_eksen) != set(s["eksenler"]):
-        raise TezHatasi(f"Bulgu tezin bütün eksen boyutlarını etiketlemeli: {', '.join(s['eksenler'])}")
+def _dolu(metin: str | None) -> bool:
+    return bool(metin) and bool(re.search(r"\w", metin))
+
+
+def eksen_farki(b_eksen: dict[str, str], t_eksen: dict[str, str]) -> dict[str, tuple[str, str]]:
+    return {b: (b_eksen[b], t_eksen[b]) for b in b_eksen if b_eksen[b] != t_eksen[b]}
+
+
+def _raf_denetle(b_eksen: dict[str, str], t_eksen: dict[str, str], raf: str, gerekce: str | None) -> str:
+    """Eksen/raf kuralı; geçerli raf adını döndürür."""
+    if set(b_eksen) != set(t_eksen):
+        raise TezHatasi(f"Bulgu tezin bütün eksen boyutlarını etiketlemeli: {', '.join(t_eksen)}")
     raf = _sec(raf, RAFLAR, "Raf")
-    farkli = {b: (b_eksen[b], s["eksenler"][b]) for b in b_eksen if b_eksen[b] != s["eksenler"][b]}
+    farkli = eksen_farki(b_eksen, t_eksen)
     if farkli and raf != "farklı eksen":
         ayrinti = ", ".join(f"{b}: bulgu {x} ↔ tez {y}" for b, (x, y) in farkli.items())
         raise TezHatasi(f"Farklı eksendeki bulgu '{raf}' rafına konamaz ({ayrinti}); raf: farklı eksen.")
     if not farkli and raf == "farklı eksen":
         raise TezHatasi("Eksenleri tezle aynı olan bulgu 'farklı eksen' rafına konamaz.")
+    if raf == "farklı eksen" and not _dolu(gerekce):
+        raise TezHatasi("'Farklı eksen' rafına konan bulgu için gerekçe zorunlu (--gerekce): "
+                        "bulgunun neden tezin ekseninde olmadığını yazın.")
+    return raf
+
+
+def bulgu(ad: str, eksen: list[str], raf: str, aciklama: str, argv: list[str],
+          ayetler: list[str] | None = None, gerekce: str | None = None) -> dict:
+    from . import okunus
+    t = Tez(ad)
+    s = t.surum()
+    if not _dolu(aciklama):
+        raise TezHatasi("Bulgu açıklaması boş olamaz.")
+    b_eksen = eksenler(eksen)
+    raf = _raf_denetle(b_eksen, s["eksenler"], raf, gerekce)
     if not argv:
         raise TezHatasi("Bulgu bir sorguya dayanmalı (-- ile tezgah komutu).")
     if "--arapca" in argv:
@@ -308,7 +339,33 @@ def bulgu(ad: str, eksen: list[str], raf: str, aciklama: str, argv: list[str],
         bulunan.append(f"{sa[0]}:{sa[1]}")
     k = t._ekle({"tur": "bulgu", "surum": s["surum"], "no": len(t.turler("bulgu")) + 1,
                  "eksenler": b_eksen, "raf": raf, "aciklama": " ".join(aciklama.split()),
+                 "gerekce": " ".join((gerekce or "").split()),
                  "ayetler": bulunan, "argv": argv, "cikti": cikti})
+    rapor_yaz(t)
+    return k
+
+
+def degerlendir(ad: str, no: int, raf: str, gerekce: str, eksen: list[str] | None = None) -> dict:
+    """Bulgunun rafını (ve gerekirse eksen etiketini) silmeden değiştirir: yeni kayıt eklenir."""
+    t = Tez(ad)
+    s = t.surum()
+    b = next((x for x in t.turler("bulgu") if x["no"] == no), None)
+    if b is None:
+        raise TezHatasi(f"Bulgu yok: {no}")
+    if b["surum"] != s["surum"]:
+        raise TezHatasi(f"Bulgu {no} sürüm {b['surum']}'e ait; yalnız güncel sürümün ({s['surum']}) bulguları "
+                        "yeniden değerlendirilir.")
+    if not _dolu(gerekce):
+        raise TezHatasi("Yeniden değerlendirme için gerekçe zorunlu.")
+    once = t.etkin(b)
+    yeni_eksen = eksenler(eksen) if eksen else once["eksenler"]
+    yeni_raf = _raf_denetle(yeni_eksen, s["eksenler"], raf, gerekce)
+    if yeni_raf == once["raf"] and yeni_eksen == once["eksenler"]:
+        raise TezHatasi("Değişiklik yok: raf ve eksen aynı.")
+    k = t._ekle({"tur": "degerlendirme", "surum": s["surum"], "bulgu": no,
+                 "eski_raf": once["raf"], "yeni_raf": yeni_raf,
+                 "eski_eksenler": once["eksenler"], "yeni_eksenler": yeni_eksen,
+                 "gerekce": " ".join(gerekce.split())})
     rapor_yaz(t)
     return k
 
@@ -333,19 +390,23 @@ def sonuc_tutarliligi(durum: str, sayim: dict[str, int], tarandi: bool) -> str |
     return None
 
 
-def sonuc(ad: str, mantiksal_durum: str, delil_derecesi: str, gerekce: str) -> dict:
+def sonuc(ad: str, mantiksal_durum: str, delil_derecesi: str, gerekce: str, kapsam: str | None = None) -> dict:
     t = Tez(ad)
     no = t.guncel_no
     durum = _sec(mantiksal_durum, MANTIKSAL_DURUM, "Mantıksal durum")
     derece = _sec(delil_derecesi, DELIL_DERECESI, "Delil derecesi")
-    if not gerekce or not re.search(r"\w", gerekce):
+    if not _dolu(gerekce):
         raise TezHatasi("Sonuç gerekçesi boş olamaz.")
+    if durum == "Destekleniyor" and not _dolu(kapsam):
+        raise TezHatasi("'Destekleniyor' sonucunda desteklenen kapsam zorunlu (--kapsam): tezin hangi "
+                        "kullanımlar / ayet kümesi için desteklendiğini yazın.")
     sayim = t.raf_sayilari(no)
     sorun = sonuc_tutarliligi(durum, sayim, bool(t.turler("tarama", no)))
     if sorun:
         raise TezHatasi(f"Sonuç bulgularla tutarsız: {sorun}.")
     k = t._ekle({"tur": "sonuc", "surum": no, "mantiksal_durum": durum, "delil_derecesi": derece,
-                 "gerekce": " ".join(gerekce.split()), "raf_sayilari": sayim})
+                 "gerekce": " ".join(gerekce.split()), "kapsam": " ".join((kapsam or "").split()),
+                 "raf_sayilari": sayim})
     rapor_yaz(t)
     return k
 
@@ -400,20 +461,44 @@ def rapor(t: Tez) -> str:
 
     p.append("## 5. Bulgular\n")
     sayim = t.raf_sayilari(no)
-    p.append(" · ".join(f"{r}: {n}" for r, n in sayim.items()) + " (bulgu sayısı, bu sürüm)\n")
+    p.append(" · ".join(f"{r}: {n}" for r, n in sayim.items()) + " (bulgu sayısı, etkin raf, bu sürüm)\n")
     ciktilar = []
-    for raf in RAFLAR:
-        bulgular = [b for b in t.turler("bulgu", no) if b["raf"] == raf]
-        if not bulgular:
-            continue
-        p.append(f"### Raf: {raf}\n")
-        for b in bulgular:
-            eks = ", ".join(f"{k}={v}" for k, v in b["eksenler"].items())
-            p.append(f"#### Bulgu {b['no']} — {b['tarih']} — eksen: {eks}\n\n{b['aciklama']}\n")
-            if b["ayetler"]:
-                p.append(f"Ayetler (sorgu çıktısında doğrulandı): {', '.join(b['ayetler'])}\n")
-            p.append(_blok(b["argv"], b["cikti"]))
-            ciktilar.append(b["cikti"])
+
+    def bulgu_md(b: dict) -> None:
+        e = t.etkin(b)
+        eks = ", ".join(f"{k}={v}" for k, v in e["eksenler"].items())
+        p.append(f"#### Bulgu {b['no']} — {b['tarih']} — eksen: {eks}\n\n{b['aciklama']}\n")
+        if e["raf"] == "farklı eksen":
+            fark = eksen_farki(e["eksenler"], s["eksenler"])
+            p.append("Eksen farkı: " + ", ".join(f"{k}: bulgu **{x}** ↔ tez **{y}**" for k, (x, y) in fark.items()))
+            p.append(f"\nGerekçe (farklı eksen): {e['gerekce']}\n")
+        gecmis = t.degerlendirmeler(b["no"])
+        if gecmis:
+            p.append(f"Değerlendirme geçmişi (ilk kayıt: {b['raf']}; eski değerlendirmeler silinmez):")
+            for d in gecmis:
+                ek = "" if d["eski_eksenler"] == d["yeni_eksenler"] else " (eksen etiketi değişti)"
+                p.append(f"- {d['tarih']}: {d['eski_raf']} → **{d['yeni_raf']}**{ek} — {d['gerekce']}")
+            p.append("")
+        if b["ayetler"]:
+            p.append(f"Ayetler (sorgu çıktısında doğrulandı): {', '.join(b['ayetler'])}\n")
+        p.append(_blok(b["argv"], b["cikti"]))
+        ciktilar.append(b["cikti"])
+
+    for raf in RAFLAR[:-1]:
+        bulgular = [b for b in t.turler("bulgu", no) if t.etkin(b)["raf"] == raf]
+        if bulgular:
+            p.append(f"### Raf: {raf}\n")
+            for b in bulgular:
+                bulgu_md(b)
+    p.append(_kayit(ciktilar))
+
+    farkli = [b for b in t.turler("bulgu", no) if t.etkin(b)["raf"] == "farklı eksen"]
+    p.append(f"## 5b. Farklı eksen rafı ({len(farkli)} bulgu — sonuç hesabına girmez, çelişen/destekleyen sayılmaz)\n")
+    ciktilar = []
+    if not farkli:
+        p.append("_Bu sürümde farklı eksen rafında bulgu yok._\n")
+    for b in farkli:
+        bulgu_md(b)
     p.append(_kayit(ciktilar))
 
     p.append("## 6. Sonuç (iki eksen)\n")
@@ -421,8 +506,9 @@ def rapor(t: Tez) -> str:
     if not sonuclar:
         p.append("_Bu sürüm için sonuç yazılmadı._\n")
     for k in sonuclar:
+        kapsam = f" · **Desteklenen kapsam:** {k['kapsam']}" if k.get("kapsam") else ""
         p.append(f"- {k['tarih']}: **Mantıksal durum:** {k['mantiksal_durum']} · "
-                 f"**Delil derecesi:** {k['delil_derecesi']} — {k['gerekce']} "
+                 f"**Delil derecesi:** {k['delil_derecesi']}{kapsam} — {k['gerekce']} "
                  f"(raflar: {', '.join(f'{r} {n}' for r, n in k['raf_sayilari'].items())})")
     p.append("")
     p.append(_kayit([], "defter.json" if sonuclar else "—"))
@@ -467,12 +553,19 @@ def denetle(ad: str) -> tuple[list[str], list[str]]:
             if _sorgu(q["argv"]) != q["cikti"]:
                 hatalar.append(f"{k['tur']} (sürüm {k['surum']}): sorgu çıktısı değişti — "
                                f"python -m tezgah {shlex.join(q['argv'])}")
+    for b in t.turler("bulgu"):
+        e = t.etkin(b)
+        if e["raf"] == "farklı eksen" and not _dolu(e["gerekce"]):
+            hatalar.append(f"bulgu {b['no']}: farklı eksen rafında gerekçesiz")
     for k in t.turler("sonuc"):
+        if k["mantiksal_durum"] == "Destekleniyor" and not _dolu(k.get("kapsam")):
+            hatalar.append(f"sonuç (sürüm {k['surum']}): 'Destekleniyor' için desteklenen kapsam yok")
         sorun = sonuc_tutarliligi(k["mantiksal_durum"], k["raf_sayilari"], True)
         if sorun:
             hatalar.append(f"sonuç (sürüm {k['surum']}): {sorun}")
         if k["raf_sayilari"] != t.raf_sayilari(k["surum"]):
-            uyarilar.append(f"sonuç (sürüm {k['surum']}) yazıldıktan sonra bulgu eklendi; sonuç yeniden değerlendirilmeli")
+            uyarilar.append(f"sonuç (sürüm {k['surum']}) yazıldıktan sonra bulgu eklendi ya da yeniden "
+                            f"değerlendirildi; sonuç yeniden gözden geçirilmeli")
     rapor_yolu = t.dizin / "tez.md"
     if not rapor_yolu.exists() or rapor_yolu.read_text(encoding="utf-8") != rapor(t):
         hatalar.append("tez.md defterle uyuşmuyor (elle değiştirilmiş; yeniden üretmek için: tez goster)")
@@ -500,10 +593,14 @@ def _komut(n):
             satirlar = [f"Karşı örnek havuzu tarandı (sürüm {k['surum']}): {len(k['sorgular'])} sorgu"]
         elif n.tez_komut == "bulgu":
             argv = n.argv[1:] if n.argv[:1] == ["--"] else n.argv
-            k = bulgu(n.ad, n.eksen, n.raf, n.aciklama, argv, n.ayet)
+            k = bulgu(n.ad, n.eksen, n.raf, n.aciklama, argv, n.ayet, n.gerekce)
             satirlar = [f"Bulgu {k['no']} kaydedildi (sürüm {k['surum']}, raf: {k['raf']})"]
+        elif n.tez_komut == "degerlendir":
+            k = degerlendir(n.ad, n.no, n.raf, n.gerekce, n.eksen)
+            satirlar = [f"Bulgu {k['bulgu']} yeniden değerlendirildi: {k['eski_raf']} → {k['yeni_raf']} "
+                        "(eski kayıt korunur)"]
         elif n.tez_komut == "sonuc":
-            k = sonuc(n.ad, n.mantiksal_durum, n.delil_derecesi, n.gerekce)
+            k = sonuc(n.ad, n.mantiksal_durum, n.delil_derecesi, n.gerekce, n.kapsam)
             satirlar = [f"Sonuç kaydedildi (sürüm {k['surum']}): {k['mantiksal_durum']} · {k['delil_derecesi']}"]
         elif n.tez_komut == "goster":
             t = Tez(n.ad)
@@ -521,7 +618,7 @@ def _komut(n):
 
 
 def parser_ekle(alt) -> None:
-    p = alt.add_parser("tez", help="tez sınama: ac / tara / bulgu / sonuc / yeni-surum / goster / denetle")
+    p = alt.add_parser("tez", help="tez sınama: ac / tara / bulgu / degerlendir / sonuc / yeni-surum / goster / denetle")
     k = p.add_subparsers(dest="tez_komut", required=True, metavar="işlem")
 
     s = k.add_parser("ac", help="tezi dondur: tek cümle + tanımlar + eksenler + karşı örnek havuzu")
@@ -551,13 +648,22 @@ def parser_ekle(alt) -> None:
     s.add_argument("--raf", required=True, help=" · ".join(RAFLAR))
     s.add_argument("--aciklama", required=True)
     s.add_argument("--ayet", action="append", help="sorgu çıktısında geçmesi gereken ayet (birden çok)")
+    s.add_argument("--gerekce", help="'farklı eksen' rafı için zorunlu")
     s.add_argument("argv", nargs="+", help="-- ile ayrılmış tezgah komutu")
+
+    s = k.add_parser("degerlendir", help="bulgunun rafını silmeden değiştir (gerekçeli yeni kayıt)")
+    s.add_argument("ad")
+    s.add_argument("no", type=int, help="bulgu numarası")
+    s.add_argument("--raf", required=True, help=" · ".join(RAFLAR))
+    s.add_argument("--gerekce", required=True)
+    s.add_argument("--eksen", action="append", help="eksen etiketi de değişiyorsa (boyut=değer)")
 
     s = k.add_parser("sonuc", help="iki eksenli sonuç (bulgularla tutarlı olmalı)")
     s.add_argument("ad")
     s.add_argument("--mantiksal-durum", required=True, help=" · ".join(MANTIKSAL_DURUM))
     s.add_argument("--delil-derecesi", required=True, help=" · ".join(DELIL_DERECESI))
     s.add_argument("--gerekce", required=True)
+    s.add_argument("--kapsam", help="'Destekleniyor' için zorunlu: desteklenen kapsam")
 
     s = k.add_parser("goster", help="raporu üret ve göster")
     s.add_argument("ad")
