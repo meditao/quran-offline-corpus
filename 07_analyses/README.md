@@ -21,6 +21,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 
 - [Âsr Suresi (103) — Kur'an içi analiz ve tefsirli meal](surahs/Asr-103-analysis.md)
 - [Bakara 2:2–2:62 — terimleri koruyan çeviri ve tefsirli çeviri](surahs/Bakara-002-062-meal-tefsir.md) — her ayette terimleri koruyan çeviri ile kavramları bağlam içinde açan tefsirli çeviriyi birlikte sunan, sürümlenen bir yorum/çalışma kaydıdır. Kavram çalışmalarında ikincil referans olarak kullanılabilir; ham korpus ve morfoloji kaynak katmanlarından ayrıdır. Yeni bulgularla gerekçesi kaydedilerek güncellenebilir.
+- [Bakara 2:67–2:117 — terimleri koruyan çeviri ve tefsirli çeviri](surahs/Bakara-067-117-meal-tefsir.md) — bu çalışma oturumunda geliştirilen çeviri, kavram notları ve tartışmalı ayet açıklamalarını; iman, ibadet/kulluk, velî, ikâme, salât ve kalp-mühür/perde gibi ortak okuma anahtarlarıyla birlikte içerir.
 
 Aynı klasördeki TSV/CSV türü dosyalar manuel kontrol, sınıflandırma ve falsifikasyon kayıtlarıdır. Bunlar teknik kanıt katmanıdır; nihai okuyucu metninin yerine geçmez.
 
@@ -43,6 +44,8 @@ Yeni ve tamamlanmış her kavram çalışması mümkün olduğunca şu yapıda t
 Analiz metni teknik olmayan bir okuyucunun da anlayabileceği Türkçe ile yazılır. Arapça terim ilk geçtiğinde açıklanır. Teknik transliterasyon ve script çıktıları ana anlatımı boğmaz.
 
 Bir ayet merkezi kanıt olarak kullanılıyorsa yalnız referans verilmez; mümkün olduğunda tam Arapça ayet ve analizde kullanılan sade/kavramsal Türkçe karşılık da gösterilir. Böylece okuyucu sonucu metin üzerinden doğrudan denetleyebilir.
+
+Çeviri/tefsir çalışmalarında geniş anlam alanlı kavramlar için `06_methodology/kavramsal_ceviri_ilkesi.md` uygulanır: terimli çeviri kavramı korur, tefsirli çeviri ise kavramı Türkçede birkaç tamamlayıcı ifadeyle açar.
 
 ## Veri ile yorumun ayrılması
 
