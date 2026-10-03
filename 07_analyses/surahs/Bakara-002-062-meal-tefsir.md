@@ -1,7 +1,10 @@
-# Bakara 2:2–2:62 — Çeviri ve Tefsir Derlemesi
+# Bakara 2:2–2:62 — Terimleri Koruyan Çeviri ve Tefsirli Çeviri
 
-Bu metin, bu sohbet boyunca ulaşılan son sonuçların temizlenmiş derlemesidir. Aynı ayet için daha sonra düzeltilen eski sürümler çıkarılmış; yalnız terimleri koruyan çeviri, sade/kavramsal çeviri ve ayetin anlamını etkileyen tefsir notları bırakılmıştır. Özellikle ayrıntılı tartışılan ayetlerde (2:30–39, 2:53–56 ve 2:62 gibi) yalnız sonuca katkı sağlayan ek analizler korunmuştur.
+Bu derleme, her ayeti iki bölümde sunar: terimleri koruyan çeviri ve kavramların anlamını bağlam içinde açan tefsirli çeviri. Tefsirli çevirideki açıklamalar yorum içerir; açılan kavramlar parantez içinde gösterilir.
 
+Bu metin, ham korpus ve morfoloji kaynak katmanlarından ayrı tutulan, yeni bulgularla gerekçesi kaydedilerek güncellenebilen sürümlenen bir yorum/çalışma kaydıdır.
+
+Salât kavramının analizi sonraki çalışmaya bırakıldığından 2:3, 2:43 ve 2:45’te terim korunmuştur.
 
 ## Bakara 2:2
 
@@ -9,14 +12,9 @@ Bu metin, bu sohbet boyunca ulaşılan son sonuçların temizlenmiş derlemesidi
 
 İşte o Kitap; onda rayb yoktur. Muttakiler için bir hidayettir.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Bu Kitap, güveni sarsacak bir kuşku taşımayan rehberdir; kendini koruma bilinciyle yaşayanlar ondan yol bulur.
-
-**Tefsir**
-
-Ayet Kitabın hidayet oluşunu muttakilerle ilişkilendirir. Bu, rehberliğin yalnız onlara sunulduğu anlamına gelmez; 2:185 Kur’an’ın insanlar için hidayet olduğunu söyler. Buradaki vurgu, hidayetten fiilen yararlanan insan tipidir. Takvâ korkuya indirgenmez; kök alanı korunma, sakınma ve kendini tehlikeden koruyacak bilinçli tedbir alma fikrini taşır.
-
+İşte o Kitap! Allah’tan gelen rehberlik olduğunda kuşku (rayb) yoktur. Allah’a karşı sorumluluğunu gözeterek kendisini yanlış davranışlardan ve bunların sonuçlarından korumaya çalışanlara (muttakiler), doğru yönü gösteren bir rehberdir (hidayet).
 
 ## Bakara 2:3
 
@@ -24,14 +22,9 @@ Ayet Kitabın hidayet oluşunu muttakilerle ilişkilendirir. Bu, rehberliğin ya
 
 Onlar gayba iman eder, salâtı ikame eder ve kendilerine rızık olarak verdiklerimizden infak ederler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Onlar doğrudan görmedikleri hakikate güven duyar, salâtı hayatlarında ayakta tutar ve kendilerine verilen imkânlardan başkaları için harcarlar.
-
-**Tefsir**
-
-İman burada yalnız zihinsel bir kabul değil güven bağını da içerir. Gayb doğrudan algının dışında kalan alandır. Salât, ayetin kendi kelimesidir ve doğrudan ‘ibadet’ ile özdeşleştirilmemelidir. İnfak ise verilen rızkın bir kısmını dışarıya aktarmayı, paylaşmayı anlatır. Muttaki portresi iç inanç ile davranışı birlikte taşır.
-
+Onlar, doğrudan görüp gözlemleyemedikleri hâlde Allah’ın bildirdiği gerçekliği (gayb) güvenle kabul edip ona bağlanırlar (iman). Salâtı hayatlarında düzenli ve gereğince yerine getirirler (ikame). Kendilerine geçimlerini sürdürmeleri ve yararlanmaları için verdiğimiz imkânların (rızık) bir bölümünü başkalarının yararına harcarlar (infak). Böylece güvenleri, Allah’a yönelişlerinde ve ellerindekini paylaşmalarında karşılık bulur.
 
 ## Bakara 2:4
 
@@ -39,14 +32,9 @@ Onlar doğrudan görmedikleri hakikate güven duyar, salâtı hayatlarında ayak
 
 Onlar sana indirilene ve senden önce indirilene iman ederler; âhiret konusunda da yakîn sahibidirler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Onlar sana gelen vahye de senden önce gönderilmiş vahye de güvenir; son hesap ve dönüş konusunda güçlü bir kesinlik taşırlar.
-
-**Tefsir**
-
-Ayet vahiy zincirinde süreklilik kurar. ‘Senden önce indirilene iman’ ifadesi, geçmişte Allah’tan gelen vahyin kaynağını kabul etmeyi gerektirir; bugün elde bulunan her metin biçimini ve her yorumu otomatik olarak tasdik etmek anlamına gelmez. Âhiret için kullanılan yakîn, sıradan bir ihtimal değil güçlü kesinliktir.
-
+Onlar sana indirilen vahye de senden önce indirilen vahye de güvenip bağlanırlar (iman); Allah’tan gelen rehberliği, yalnız kendi dönemlerine veya topluluklarına ait olanla sınırlamazlar. Ölümün ardından gelecek hayatın ve yaptıklarının hesabını verecekleri son karşılaşmanın (âhiret) gerçekliği konusunda sağlam bir kesinlik taşırlar (yakîn); yaşayışlarını bu karşılaşmayı hesaba katarak sürdürürler.
 
 ## Bakara 2:5
 
@@ -54,14 +42,9 @@ Ayet vahiy zincirinde süreklilik kurar. ‘Senden önce indirilene iman’ ifad
 
 İşte onlar Rablerinden bir hidayet üzeredirler; kurtuluşa/başarıya ulaşanlar da onlardır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Böyle yaşayanlar Rablerinin gösterdiği yol üzerindedir; gerçek başarıya ulaşacak olanlar bunlardır.
-
-**Tefsir**
-
-Hidayetin kaynağı Rabb’dir. Falah yalnız dünyevî başarı değil, doğru sonuca ve iyi sona ulaşmayı kapsar. İlk dört ayetteki iman, salât, infak ve âhiret bilinci hidayetin insan hayatındaki görünümünü oluşturur.
-
+İşte bu güveni, yönelişi, paylaşmayı ve hesap bilincini taşıyanlar; kendilerini gözetip yetiştiren, üzerlerinde söz ve hüküm sahibi olan Allah’tan (Rabb) gelen rehberliğin gösterdiği yol üzerindedirler (hidayet). Kurtuluşa ve gerçek başarıya ulaşanlar (müflihûn) işte onlardır.
 
 ## Bakara 2:6
 
@@ -69,14 +52,9 @@ Hidayetin kaynağı Rabb’dir. Falah yalnız dünyevî başarı değil, doğru 
 
 Küfredenleri uyarsan da uyarmasan da onlar için birdir; iman etmezler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Hakikati örtmede yerleşik hâle gelenler için uyarının yapılıp yapılmaması sonucu değiştirmez; güvenip kabul etmezler.
-
-**Tefsir**
-
-Ayet her inanmayan insanı değişmez biçimde tanımlamıyor; bağlam, uyarının artık etkili olmadığı yerleşik bir reddediş tavrını anlatıyor. Küfür yalnız ‘Allah yoktur’ demek değildir; karşılaşılan hakikati örtme ve reddetme yönüdür.
-
+Hakikati örtüp reddetmekte kararlı hâle gelenleri (küfredenler) uyarsan da uyarmasan da onlar açısından sonuç değişmez; kendilerine gösterilen gerçeği güvenle kabul edip ona bağlanmazlar (iman). Uyarının karşılık bulmasını engelleyen, sürdürdükleri bu reddediş tutumudur.
 
 ## Bakara 2:7
 
@@ -84,14 +62,9 @@ Ayet her inanmayan insanı değişmez biçimde tanımlamıyor; bağlam, uyarın�
 
 Allah onların kalplerini ve işitmelerini mühürlemiştir; gözlerinin üzerinde de bir örtü vardır. Onlar için büyük bir azap vardır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Sürekli reddedişlerinin sonunda algılama ve kabul kanalları kapanmış hâle gelmiştir; bunun ağır bir sonucu vardır.
-
-**Tefsir**
-
-Metnin doğrudan öznesi Allah’tır: mühürleyen O’dur. Fakat Kur’an’ın başka yerleri bu hâli önceki ısrarlı reddedişin sonucu olarak gösterir (ör. 4:155; 6:110). Bu nedenle ayet, hiçbir tercih olmadan baştan zorla inançsızlaştırılan bir insan tasviri olarak okunmamalıdır. Sürekli tercih, sonunda algının kapanmasına dönüşür.
-
+Allah, ısrarla sürdürdükleri reddedişin sonucunda onların anlama ve yöneliş merkezlerini (kalplerini) ve işitmelerini mühürlemiştir; gözlerinin üzerinde de bir örtü vardır. Gerçek önlerine gelse de onu değerlendirmeye ve kabul etmeye kapalı hâle gelmişlerdir. Onları büyük acı ve sıkıntı yaşatacak bir ceza (azap) beklemektedir.
 
 ## Bakara 2:8
 
@@ -99,14 +72,9 @@ Metnin doğrudan öznesi Allah’tır: mühürleyen O’dur. Fakat Kur’an’ı
 
 İnsanlardan bazıları, ‘Allah’a ve âhiret gününe iman ettik’ derler; oysa iman etmiş değillerdir.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Bazıları ağızlarıyla Allah’a ve son güne güvendiklerini söyler; fakat bu güven iç dünyalarında oluşmamıştır.
-
-**Tefsir**
-
-Ayet sözlü kimlik beyanı ile gerçek imanı ayırır. ‘İman ettim’ demek tek başına iman değildir; güvenin kişinin iç yönelişinde ve devam eden davranışında karşılığı bulunmalıdır.
-
+İnsanlardan bazıları, “Allah’a ve sonunda hesap vereceğimiz güne (âhiret günü) inanıp güvendik” (iman) derler. Oysa söyledikleri, içten benimsedikleri bir güven ve bağlılığa dönüşmemiştir. Kendilerini inananlardan saymaları, bu güveni gerçekten taşıdıkları anlamına gelmez.
 
 ## Bakara 2:9
 
@@ -114,14 +82,9 @@ Ayet sözlü kimlik beyanı ile gerçek imanı ayırır. ‘İman ettim’ demek
 
 Allah’ı ve iman edenleri aldatmaya çalışırlar; oysa yalnız kendilerini aldatırlar ve bunun farkında değildirler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Allah’ı ve güvenenleri kandırdıklarını sanırlar; gerçekte kurdukları aldatmaca kendi üzerlerine döner.
-
-**Tefsir**
-
-Nifakın temel sorunlarından biri öz-aldatmadır. İnsan dışarıya bir kimlik sunarken kendi iç gerçekliğiyle bağını kaybedebilir; yaptığı şeyin sonucunu en sonunda kendisi taşır.
-
+İçlerinde taşımadıkları bir güveni taşıyormuş gibi görünerek Allah’ı ve O’na güvenip bağlananları (iman edenleri) aldatmaya çalışırlar. Oysa gerçekte yalnız kendilerini aldatırlar: Başkalarına sundukları görünüşü kendi gerçekliklerinin yerine koyar, söyledikleriyle içten yönelişleri arasındaki kopukluğu göremezler. Bunun farkında da değildirler.
 
 ## Bakara 2:10
 
@@ -129,14 +92,9 @@ Nifakın temel sorunlarından biri öz-aldatmadır. İnsan dışarıya bir kimli
 
 Kalplerinde bir hastalık vardır; Allah da hastalıklarını artırmıştır. Yalan söylemeleri sebebiyle onlar için acı bir azap vardır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-İçlerinde zaten bulunan bozulma, tercihleri sürdükçe daha da büyür; sürekli yalanları bunun ağır sonucuna dönüşür.
-
-**Tefsir**
-
-Ayet önce hastalığın varlığını, ardından Allah’ın onu artırmasını söyler. Bu sıra önemlidir: artış boşluktan başlamaz. Yalanın sürekliliği iç bozulmayı pekiştirir.
-
+İç dünyalarında, güvenlerini ve dürüstlüklerini bozan bir hastalık vardır; Allah da bu hastalıklarını artırmıştır. Sürdürdükleri yalan ve ikiyüzlülük, içlerindeki bozulmayı daha da derinleştirir. İnanıp güvendiklerini söyleyerek gerçekte taşımadıkları bir bağlılığı varmış gibi göstermeleri yüzünden, onları acı veren bir ceza (azap) beklemektedir.
 
 ## Bakara 2:11
 
@@ -144,14 +102,9 @@ Ayet önce hastalığın varlığını, ardından Allah’ın onu artırmasını
 
 Onlara, ‘Yeryüzünde fesat çıkarmayın’ denildiğinde, ‘Biz ancak ıslah edenleriz’ derler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Kendilerine düzeni bozmayın denildiğinde, yaptıklarını tam tersine düzeltme ve iyileştirme olarak sunarlar.
-
-**Tefsir**
-
-İnsan kendisini ‘ıslah edici’ diye adlandırabilir; fakat isimlendirme gerçeği belirlemez. Kur’an davranışın ortaya çıkardığı sonuca bakar: düzen kuruluyor mu, bozuluyor mu?
-
+Onlara, “Yeryüzündeki düzeni bozmayın, insanları ve aralarındaki ilişkileri bozulmaya sürüklemeyin” (fesat) denildiğinde, “Biz yalnızca düzeltmeye ve iyileştirmeye çalışıyoruz” (ıslah) derler. Yaptıklarının doğurduğu bozulmayı görmek yerine, kendi davranışlarını iyileştirme olarak sunarlar.
 
 ## Bakara 2:12
 
@@ -159,14 +112,9 @@ Kendilerine düzeni bozmayın denildiğinde, yaptıklarını tam tersine düzelt
 
 Dikkat edin! Asıl mufsidler onlardır; fakat bunun farkında değildirler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Gerçekte düzeni bozanlar kendileridir; fakat kendi bozulmalarını göremezler.
-
-**Tefsir**
-
-Fesat bilinçli bir slogan olmak zorunda değildir. İnsan kendisini iyi niyetli görürken fiilen bozucu sonuç üretebilir. Bu nedenle öz değerlendirme tek başına yeterli ölçü değildir.
-
+Dikkat edin! Kendilerini düzeltici olarak sunsalar da gerçekte düzeni bozan ve bozulmaya yol açanlar (mufsidler) onlardır. Yaptıklarına verdikleri iyi ad, davranışlarının doğurduğu zararı ortadan kaldırmaz; fakat kendilerinin bu bozucu rolünün farkında değildirler.
 
 ## Bakara 2:13
 
@@ -174,14 +122,9 @@ Fesat bilinçli bir slogan olmak zorunda değildir. İnsan kendisini iyi niyetli
 
 Onlara, ‘İnsanların iman ettiği gibi iman edin’ denildiğinde, ‘Akılsızların iman ettiği gibi mi iman edelim?’ derler. Dikkat edin! Asıl akılsızlar kendileridir; fakat bilmezler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Gerçekten güvenen insanları aptalca davranmakla suçlarlar; fakat Kur’an, gerçeği göremeyen akılsızlığın kendilerinde olduğunu söyler.
-
-**Tefsir**
-
-Sufehâ kelimesini fazla yumuşatmak ayetin sertliğini kaybettirir. Ayet değer ölçülerinin tersine çevrilmesini gösterir: doğru tavır ‘akılsızlık’ diye küçümsenirken asıl muhakeme kaybı reddeden taraftadır.
-
+Onlara, “İçtenlikle inanan insanların yaptığı gibi siz de hakikati güvenle kabul edip ona bağlanın” (iman) denildiğinde, “Biz de o akılsızların güvendiği gibi mi güvenelim?” diyerek inananları küçümserler. Dikkat edin! Başkalarının içten güvenini akılsızlık sayarken, kendi değerlendirmelerinde akılsızca davrananlar (sufehâ) onlardır; fakat bunu bilmezler.
 
 ## Bakara 2:14
 
@@ -189,14 +132,9 @@ Sufehâ kelimesini fazla yumuşatmak ayetin sertliğini kaybettirir. Ayet değer
 
 İman edenlerle karşılaştıklarında, ‘İman ettik’ derler; şeytanlarıyla baş başa kaldıklarında ise, ‘Biz sizinle beraberiz; biz yalnızca alay ediyoruz’ derler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Güvenenlerin yanında onlardanmış gibi davranır, kendi yönlendiricilerinin yanına dönünce gerçek bağlılıklarını açığa vururlar.
-
-**Tefsir**
-
-Buradaki şeytanlar yalnız görünmeyen varlıklarla sınırlandırılamaz; insanlardan saptırıcı önderler de bu işlevi görebilir. Ayet nifakın çift yüzlü sosyal davranışını açıkça gösterir.
-
+Allah’a güvenip bağlananlarla (iman edenlerle) karşılaştıklarında, “Biz de inanıp güvendik” derler. Kendilerini kötülüğe ve sapmaya yöneltenlerle (şeytanlarıyla) baş başa kaldıklarında ise, “Asıl bağlılığımız size; onların yanında söylediklerimizle yalnızca alay ediyoruz” derler. Böylece bir topluluğun yanında benimsediklerini söyledikleri bağlılığı, diğerinin yanında açıkça reddederler.
 
 ## Bakara 2:15
 
@@ -204,14 +142,9 @@ Buradaki şeytanlar yalnız görünmeyen varlıklarla sınırlandırılamaz; ins
 
 Allah onlarla alay eder ve taşkınlıkları içinde körlemesine dolaşmalarına süre tanır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Kendilerinin başkalarıyla alay ettiğini sananların alayı sonunda kendi üzerlerine döner; sınır aşmaları içinde şaşkınca sürüklenirler.
-
-**Tefsir**
-
-Metin Allah’ın onlarla alay ettiğini doğrudan söyler. Tughyan sınırı aşan taşkınlığı, ‘ya‘mehûn’ ise yönünü kaybetmiş şaşkın dolaşmayı anlatır.
-
+Onların alayına karşılık Allah da onlarla alay eder: Başkalarını küçümseyerek kendilerini üstün ve kazançlı sandıkları tutum, sonunda kendi zararlarına döner. Allah, sınırları aşan taşkınlıkları (tuğyân) içinde, doğru yönü bulamadan şaşkınca dolaşmalarına süre tanır. Kendilerine tanınan bu süre, tuttukları yolun doğru olduğu anlamına gelmez.
 
 ## Bakara 2:16
 
@@ -219,14 +152,9 @@ Metin Allah’ın onlarla alay ettiğini doğrudan söyler. Tughyan sınırı a�
 
 Onlar hidayet karşılığında dalâleti satın alanlardır. Ticaretleri kazanç sağlamamış ve hidayete erenlerden olmamışlardır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Doğru yön ellerindeyken yanlış yönü tercih etmiş, kârlı sandıkları seçimde kaybetmişlerdir.
-
-**Tefsir**
-
-Ayet bilinçli tercih için ticaret metaforu kullanır. Hidayet ile dalâlet bir değiş tokuş konusu yapılmış, fakat tercih zarar getirmiştir. Yanlış yön yalnız bilgisizlik değil, değerli olanı bırakıp zarar vereni seçme hâli de olabilir.
-
+Onlar, kendilerine doğru yönü gösteren rehberliği (hidayet) bırakıp yolu kaybetmeyi ve yanlış yöne gitmeyi (dalâlet) seçmişlerdir. Yaptıkları, değerli olanı verip karşılığında kendilerine zarar getireni satın almaya benzer. Kazançlı sandıkları bu alışveriş onlara bir yarar sağlamamış; seçtikleri yol onları doğru yöne ulaştırmamıştır.
 
 ## Bakara 2:17
 
@@ -234,14 +162,9 @@ Ayet bilinçli tercih için ticaret metaforu kullanır. Hidayet ile dalâlet bir
 
 Onların örneği bir ateş yakan kimsenin örneği gibidir: ateş çevresini aydınlatınca Allah onların ışığını giderir ve onları göremeyecekleri karanlıklar içinde bırakır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Kısa süreli bir aydınlık elde ederler; fakat onu taşıyacak iç yönelim olmadığı için ışık kaybolur ve birden fazla karanlık içinde kalırlar.
-
-**Tefsir**
-
-Metin tekil ışığa karşı çoğul karanlıklar kullanır. Hakikat bir aydınlatma imkânı verir; fakat nifak bu ışığı sürdürülebilir bir rehberliğe dönüştüremez.
-
+Onların durumu, çevresini görebilmek için ateş yakan birinin durumuna benzer. Ateş etrafını aydınlatmış, önündekileri görme imkânı doğmuşken Allah onların ışığını giderir ve kendilerini, yollarını göremedikleri karanlıklar içinde bırakır. Hakikatin sağladığı aydınlıkla karşılaşmış olmaları, onu kalıcı bir rehberliğe dönüştürdükleri anlamına gelmez; içtenlikle benimsemedikleri bu aydınlığın ardından yönlerini kaybederler.
 
 ## Bakara 2:18
 
@@ -249,14 +172,9 @@ Metin tekil ışığa karşı çoğul karanlıklar kullanır. Hakikat bir aydın
 
 Sağırdırlar, dilsizdirler, kördürler; bu yüzden geri dönmezler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Hakikati işitme, ifade etme ve görme yetilerini işlevsizleştirmiş gibidirler; bu yüzden yönlerini düzeltemezler.
-
-**Tefsir**
-
-Bunlar fiziksel engel değil, algı ve tepkiyi anlatan metaforlardır. Sorun bilgi kanalının bulunmaması değil, var olan kanalların hakikat karşısında işlevsizleşmesidir.
-
+Hakikati işitmeye sağır, onu dile getirmeye dilsiz, görmeye kör kesilmişlerdir. İşitme, konuşma ve görme imkânları bulunsa da bunlar hakikatle bağ kurmalarını sağlamaz. İçine yerleştikleri bu kapanmışlık yüzünden yanlış yönlerinden geri dönmezler.
 
 ## Bakara 2:19
 
@@ -264,14 +182,9 @@ Bunlar fiziksel engel değil, algı ve tepkiyi anlatan metaforlardır. Sorun bil
 
 Yahut gökten boşanan; içinde karanlıklar, gök gürültüsü ve şimşek bulunan bir yağmur gibidir. Ölüm korkusuyla yıldırımlardan parmaklarını kulaklarına tıkarlar. Allah kâfirleri kuşatmıştır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Hakikat üzerlerine güçlü ve sarsıcı biçimde geldiğinde, ondan yararlanmak yerine korktukları kısımları duymamaya çalışırlar; fakat kaçış onları gerçeğin dışına çıkarmaz.
-
-**Tefsir**
-
-İkinci benzetme seçici kaçınmayı gösterir. Yağmur hayat verici olabilir; fakat gök gürültüsü ve şimşek rahatsız edince kişi bütünü reddetmeye yönelir. Rahatsız edici uyarıyı duymamak, kuşatıcı gerçeği ortadan kaldırmaz.
-
+Yahut onların durumu, karanlıklar, gök gürültüsü ve şimşeklerle birlikte gökten boşanan şiddetli bir yağmura yakalananların durumuna benzer. Yıldırımlar karşısında ölüm korkusuna kapılır, parmaklarıyla kulaklarını tıkarlar. Hayat veren yağmurun sarsıcı yönünden kaçmaları gibi, kendilerine gelen rehberliğin de rahatsız edici uyarılarını duymak istemezler. Oysa Allah, hakikati örtüp reddedenleri (kâfirleri) kuşatmıştır; kulaklarını kapatmaları onları bu kuşatmanın dışına çıkarmaz.
 
 ## Bakara 2:20
 
@@ -279,14 +192,9 @@ Hakikat üzerlerine güçlü ve sarsıcı biçimde geldiğinde, ondan yararlanma
 
 Şimşek neredeyse gözlerini kapıverecek. Önlerini aydınlattığında yürürler; üzerlerine karanlık çökünce dururlar. Allah dileseydi işitmelerini ve görmelerini giderirdi. Allah her şeye güç yetirendir.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-İşlerine yarayan bir aydınlık gördüklerinde ilerler, zorlayıcı tarafla karşılaşınca dururlar. Rehberlikle ilişkileri süreklilik değil fırsatçılık hâline gelir.
-
-**Tefsir**
-
-Ayet kesintili bağlılığı anlatır: ışık varsa hareket, karanlık varsa donma. İman ise yalnız rahat anlarda kullanılan geçici bir araç değil, yönü karanlıkta da koruyan güven olmalıdır.
-
+Şimşeğin şiddetli parıltısı neredeyse gözlerini alacak. Önlerini her aydınlattığında ilerler, karanlık üzerlerine çöktüğünde oldukları yerde kalırlar. Rehberlikle ilişkileri de böyledir: Kendilerine elverişli bir yol gördüklerinde yürür, zorlayıcı olanla karşılaşınca dururlar; bağlılıkları şartlara göre değişir. Allah dileseydi işitme ve görme imkânlarını da bütünüyle giderirdi. Ellerinde kalan bu imkânlar da O’nun kudreti içindedir; Allah her şeye güç yetirendir.
 
 ## Bakara 2:21
 
@@ -294,14 +202,9 @@ Ayet kesintili bağlılığı anlatır: ışık varsa hareket, karanlık varsa d
 
 Ey insanlar! Sizi ve sizden öncekileri yaratan Rabbinize ibadet edin; umulur ki takvâ sahibi olursunuz.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Ey insanlar! Sizi var eden Rabbinizin hüküm ve bağlılığı altında yaşayın; böylece kendinizi koruyan bir bilinç geliştirebilirsiniz.
-
-**Tefsir**
-
-İbadet burada yalnız ritüel değildir. Abd–Rabb ilişkisi içinde insanın kime bağlandığını, kimin hükmünü esas aldığını ve hayatını hangi otorite altında sürdürdüğünü kapsar. Ayetin hedefi takvâdır; yani kulluk ilişkisi insanı koruyucu sınır bilincine götürmelidir. ‘Leallekum’ bunu otomatik sonuç değil hedef ve beklenti olarak kurar.
-
+Ey insanlar! Sizi ve sizden öncekileri yaratan, sizi gözetip yetiştiren ve üzerinizde söz ve hüküm sahibi olan Allah’a (Rabb) kulluk edin (ibadet). Hayatınızı O’na bağlılık içinde, gösterdiği ölçüleri esas alarak yaşayın. Böylece davranışlarınızın sınırlarını gözeten, kendisini yanlışlardan ve bunların sonuçlarından koruyan bir bilinç (takvâ) geliştirebilirsiniz.
 
 ## Bakara 2:22
 
@@ -309,14 +212,9 @@ Ey insanlar! Sizi var eden Rabbinizin hüküm ve bağlılığı altında yaşay�
 
 O, yeri sizin için bir döşek, göğü bir yapı yaptı; gökten su indirip onunla size rızık olarak ürünler çıkardı. Öyleyse bile bile Allah’a denkler edinmeyin.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Yaşanabilir yeri, düzenli göğü, suyu ve besini sağlayan Allah iken, hayatınızda O’na rakip otoriteler kurmayın.
-
-**Tefsir**
-
-Ayet yaratma ve rızık düzeninden ilahlık/otorite sonucuna geçer. ‘Endâd’ Allah’a denk ve rakip kılınan odaklardır. Bu nedenle şirk yalnız bir heykele secde etmekle sınırlı düşünülmemelidir; Allah’ın nihai otoritesine rakip merci üretmek de aynı kavramsal alana girer.
-
+O, yeryüzünü üzerinde yaşayabileceğiniz bir döşek, göğü de üzerinizde bir yapı hâline getirdi. Gökten su indirerek onunla, beslenip hayatınızı sürdürebileceğiniz ürünler (rızık) çıkardı. Yaşamınızı mümkün kılan bu imkânların kaynağı Allah iken, bile bile başka varlıkları veya mercileri O’na denk konuma getirmeyin (endâd). O’na ait mutlak bağlılık ve hüküm konumunu başkalarına vermeyin.
 
 ## Bakara 2:23
 
@@ -324,14 +222,9 @@ Ayet yaratma ve rızık düzeninden ilahlık/otorite sonucuna geçer. ‘Endâd�
 
 Kulumuza indirdiğimizden şüphe içindeyseniz onun benzeri bir sûre getirin; doğruysanız Allah’tan başka şahitlerinizi de çağırın.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Bu vahyin Allah’tan geldiğinden kuşkunuz varsa, iddianızı yalnız sözle bırakmayın; onun düzeyinde bir sûre ortaya koyup destekçilerinizi de çağırın.
-
-**Tefsir**
-
-Meydan okumanın odağı vahyin kaynağıdır. Kur’an kriterleri bu ayette tek tek tanımlamaz; bu yüzden meydan okumayı yalnız edebî güzelliğe veya tek bir teknik özelliğe indirgemek metnin söylediğinden fazlasını ekler.
-
+Kulumuza indirdiğimiz bu vahyin Allah’tan geldiği konusunda kuşku (rayb) taşıyorsanız, ona benzer bir bölüm (sûre) ortaya koyun. İddianızda doğruysanız, Allah dışında dayandığınız tanık ve destekçilerinizi de çağırın. Vahyin kaynağına ilişkin kuşkunuzu, onun benzerini ortaya koyabileceğinizi göstererek sınayın.
 
 ## Bakara 2:24
 
@@ -339,14 +232,9 @@ Meydan okumanın odağı vahyin kaynağıdır. Kur’an kriterleri bu ayette tek
 
 Bunu yapamazsanız -ki yapamayacaksınız- yakıtı insanlar ve taşlar olan, kâfirler için hazırlanmış ateşe karşı kendinizi koruyun.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Bu meydan okumayı karşılayamıyorsanız, hakikati örtmenin sonucundan kendinizi koruyun.
-
-**Tefsir**
-
-‘Fettekû’n-nâr’ takvânın somut mantığını gösterir: tehlike gelmeden önce korunmak. Buradaki taşların ne olduğu ayette açıklanmaz; onları otomatik olarak put diye belirlemek gerekmez.
-
+Bunu yapamazsanız —ki yapamayacaksınız— yakıtını insanların ve taşların oluşturduğu, hakikati örtüp reddedenler (kâfirler) için hazırlanmış ateşten kendinizi koruyun. Bu uyarıyı ciddiye alın; sizi o sonuca götürecek reddedişten şimdiden sakının. Korunma, sonuçla karşılaşıldığında değil, bugün tutulan yolun düzeltilmesiyle başlar.
 
 ## Bakara 2:25
 
@@ -354,14 +242,9 @@ Bu meydan okumayı karşılayamıyorsanız, hakikati örtmenin sonucundan kendin
 
 İman eden ve salih ameller işleyenlere, altlarından ırmaklar akan cennetler olduğunu müjdele. Oradan her rızık verildiğinde, ‘Bu bize daha önce de verilmişti’ derler; onlara benzeşen şeyler verilmiştir. Orada onlar için arındırılmış eşler vardır ve orada kalıcıdırlar.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Güvenini salih davranışla birleştirenlere sürekli nimet, temiz ilişkiler ve kalıcı bir iyi son vaat edilir.
-
-**Tefsir**
-
-İman ile salih amel yine birlikte anılır. ‘Müteşâbihen’ burada anlaşılmazlık değil, verilen nimetlerin birbirine benzemesi anlamındadır. Ödül yalnız tek bir unsur değil, çevre, rızık, ilişki ve süreklilik bütünüdür.
-
+Allah’a ve O’ndan gelen rehberliğe güvenip bağlanan (iman), bu güvenle birlikte doğru, yararlı ve iyileştirici işler yapanlara (salih amel), altlarından ırmaklar akan bahçeler (cennetler) bulunduğunu müjdele. Orada kendilerine her nimet ve besin (rızık) sunulduğunda, “Bu bize daha önce de verilmişti” derler; çünkü kendilerine sunulanlar birbirini andırır (müteşâbih). Orada onlar için arındırılmış eşler de vardır. Kendilerine vaat edilen bu yaşam ve nimetler geçici değildir; orada kalıcı olacaklardır.
 
 ## Bakara 2:26
 
@@ -369,14 +252,11 @@ Güvenini salih davranışla birleştirenlere sürekli nimet, temiz ilişkiler v
 
 Allah bir sivrisineği, hatta onun ötesindekini örnek vermekten çekinmez. İman edenler bunun Rablerinden gelen hak olduğunu bilirler. Küfredenler ise, ‘Allah bu örnekle neyi amaçladı?’ derler. Allah bununla birçoklarını dalâlete düşürür, birçoklarını hidayete yöneltir; fakat bununla yalnız fâsıkları dalâlete düşürür.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Aynı örnek, hakikate açık kişiye yol gösterirken sınır dışına çıkmayı seçen kişide daha fazla sapmaya dönüşebilir.
+Allah bir sivrisineği, hatta onun ötesindeki bir şeyi örnek vermekten çekinmez. Allah’a güvenip bağlananlar (iman edenler), bu örneğin kendilerini gözetip yöneten Allah’tan (Rabb) gelen, gerçeğe dayalı ve yerinde bir anlatım (hak) olduğunu bilirler. Hakikati örtüp reddedenler (küfredenler) ise, “Allah böyle bir örnekle ne anlatmak istiyor?” diyerek onu sorgularlar.
 
-**Tefsir**
-
-Sorun örneğin küçüklüğü veya büyüklüğü değil, alıcının tavrıdır. Ayet açık biçimde ‘yalnız fâsıkları’ diyerek dalâletin rastgele olmadığını sınırlar. ‘Fe-mâ fevkahâ’yı mutlaka ‘daha küçüğü’ diye zorlamak gerekmez; ‘ötesi/üstü’ anlam alanı yeterlidir.
-
+Allah aynı örnekle birçoklarını yanlış yöne sürükler (dalâlet), birçoklarına da doğru yolu gösterir (hidayet). Ancak onunla sapmaya sürüklenenler, Allah’ın koyduğu sınırların dışına çıkanlardır (fâsıklar). Örneğin yol gösterici oluşundan yararlanıp yararlanmamaları, kendilerine gösterilen gerçeğe karşı tutumlarıyla ilişkilidir.
 
 ## Bakara 2:27
 
@@ -384,14 +264,9 @@ Sorun örneğin küçüklüğü veya büyüklüğü değil, alıcının tavrıd�
 
 Onlar Allah’ın ahdini sağlamlaştırılmasından sonra bozar, Allah’ın birleştirilmesini emrettiği şeyi keser ve yeryüzünde fesat çıkarırlar. Kaybedenler işte onlardır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Bağlayıcı sözü bozmak, korunması gereken bağları koparmak ve düzeni bozmak fıskın somut davranışlarıdır.
-
-**Tefsir**
-
-Ayet fâsığı soyut bir etiket olarak bırakmaz, davranışla tanımlar. ‘Allah’ın birleştirilmesini emrettiği şey’ yalnız akrabalığa indirgenemez; ifade daha geniştir. Ahdin bozulması ve bağların koparılması fesat üretir.
-
+Bu sınırların dışına çıkanlar, Allah’a karşı taşıdıkları bağlayıcı sözü ve yükümlülüğü (ahid), sağlam biçimde güvenceye bağlanmış olmasına rağmen bozarlar. Allah’ın birleştirilmesini ve bağlı tutulmasını emrettiği şeyleri birbirinden koparır; yeryüzündeki ilişkileri ve yaşam düzenini bozulmaya sürüklerler (fesat). Verdikleri sözü bozarak ve korunması gereken bağları keserek kazanç sağladıklarını düşünseler de sonunda kayba uğrayanlar kendileridir.
 
 ## Bakara 2:28
 
@@ -399,14 +274,9 @@ Ayet fâsığı soyut bir etiket olarak bırakmaz, davranışla tanımlar. ‘Al
 
 Allah’ı nasıl küfredersiniz? Siz ölü/yaşamsız iken O size hayat verdi; sonra sizi öldürecek, sonra yeniden hayat verecek; sonunda O’na döndürüleceksiniz.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Hayatınız size ait bağımsız bir mülk değil: yokluk/ölülükten hayata, ölümden yeniden hayata ve sonunda Allah’a dönüşe uzanan bir süreç içindesiniz.
-
-**Tefsir**
-
-Ayet açık bir sıra verir: yaşamsızlık/ölülük, hayat, ölüm, yeniden hayat ve dönüş. Fakat bundan ‘evrende ilk yaratılan şey insan veya yeryüzüdür’ sonucu çıkarılamaz; ayetin konusu kozmik ilk yaratılış sırası değildir.
-
+Varlığınız ve hayatınız O’na bağlıyken Allah’ı nasıl tanımazdan gelir, O’nu reddedersiniz (küfür)? Siz yaşamsız durumdayken size hayat veren O’dur. Sonra sizi öldürecek, ardından yeniden hayata döndürecektir; sonunda O’na döndürüleceksiniz. Hayata gelişiniz de ölümünüz de yeniden yaşayışınız da bu dönüşün parçalarıdır.
 
 ## Bakara 2:29
 
@@ -414,14 +284,9 @@ Ayet açık bir sıra verir: yaşamsızlık/ölülük, hayat, ölüm, yeniden ha
 
 Yeryüzünde bulunanların tümünü sizin için yaratan O’dur. Sonra göğe yönelmiş ve onları yedi gök olarak düzenlemiştir. O her şeyi bilendir.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Yeryüzündeki imkânları insanın kullanımına veren ve göksel düzeni kuran Allah’tır; bütün bu düzen O’nun bilgisi içindedir.
-
-**Tefsir**
-
-‘Mâ fi’l-ard’ yeryüzünün kendisinden çok onda bulunanları ifade eder. ‘Sümme’ pasajdaki sıralamayı verir; bundan mutlak kozmik yaratılış kronolojisini tek başına kurmak güvenli değildir. 41:9–12 ve 79:27–33 ile birlikte yaratma, düzenleme ve yeryüzünü yaşama elverişli hâle getirme aşamaları ayrıştırılabilir.
-
+Yeryüzünde bulunanların tümünü sizin yararlanmanız için yaratan O’dur. Ardından göğe yönelmiş ve gökleri yedi gök olarak düzenlemiştir. Yaşamanızı sağlayan yeryüzü imkânları da göklerin düzeni de O’nun yaratmasıyla oluşmuştur. O, bütün bunları ve her şeyi bilir.
 
 ## Bakara 2:30
 
@@ -429,14 +294,11 @@ Yeryüzündeki imkânları insanın kullanımına veren ve göksel düzeni kuran
 
 Rabbin meleklere, ‘Yeryüzünde bir halife yerleştireceğim’ dediğinde onlar, ‘Orada fesat çıkaracak ve kan dökecek birini mi yerleştireceksin? Biz seni hamdinle tesbih ediyor ve seni takdis ediyoruz’ dediler. Allah, ‘Ben sizin bilmediklerinizi bilirim’ dedi.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-İnsan yeryüzünde sorumluluk taşıyan, ardıllık ve temsil niteliği bulunan bir konuma yerleştirilirken, onun fesat ve kan dökme ihtimali de baştan görünür durumdadır.
+Seni gözetip yetiştiren ve yöneten Allah (Rabb), meleklere, “Yeryüzünde ardıl olarak yer alıp sorumluluk taşıyacak birini (halife) yerleştireceğim” dediğinde onlar, “Oradaki düzeni bozacak (fesat) ve kan dökecek birini mi yerleştireceksin? Biz seni övgüyle anıp (hamd) yüceltiyor (tesbih), her türlü kusurdan arınmışlığını dile getiriyoruz (takdis)” dediler.
 
-**Tefsir**
-
-‘Halife’yi otomatik olarak ‘Allah’ın yeryüzündeki vekili’ diye çevirmek zorunlu değildir; h-l-f kökü ardıl olma, birinin ardından gelme ve yerini alma alanını taşır. Yakın bağlamdaki kişi Âdem’dir; fakat ayet Âdem’i ‘ilk biyolojik Homo sapiens’ diye tanımlamaz. Kur’an’ın sorusu biyolojik tür başlangıcından çok, insana verilen bilgi ve sorumluluk kapasitesidir. Âdem de Kur’an’da hiçbir yerde açıkça ‘nebi’ veya ‘resul’ diye adlandırılmaz.
-
+Allah, “Ben sizin bilmediklerinizi bilirim” dedi. Böylece meleklerin dile getirdiği bozulma ve kan dökme ihtimalinin, bu varlığa ilişkin bilginin tamamını oluşturmadığını bildirdi; onun taşıdığı imkânlar, meleklerin o anda gördükleriyle sınırlı değildi.
 
 ## Bakara 2:31
 
@@ -444,14 +306,9 @@ Rabbin meleklere, ‘Yeryüzünde bir halife yerleştireceğim’ dediğinde onl
 
 Allah Âdem’e bütün isimleri öğretti; sonra onları meleklere gösterip, ‘Eğer doğru söylüyorsanız bunların isimlerini bana bildirin’ dedi.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Âdem’e varlıkları ayırt etme, adlandırma ve bilgisini ifade etme kapasitesi verildi; ardından bu bilgi meleklerin önünde sınandı.
-
-**Tefsir**
-
-Ayetin açık söylediği şey ‘isimlerin öğretilmesi’dir. Bunu modern biyoloji diliyle ‘ilk sembolik Homo sapiens’ diye kesinleştirmek metni aşar; ancak öğrenme, kavramlaştırma, adlandırma ve aktarma kapasitesiyle ilişkilendirmek güçlü bir çıkarımdır.
-
+Allah Âdem’e bütün adları öğretti; böylece ona varlıkları ayırt etme, adlandırma ve öğrendiğini ifade etme imkânı verdi. Sonra onları meleklere göstererek, “Eğer doğru söylüyorsanız bunların adlarını bana bildirin” dedi. Yeryüzünde yer alacak bu varlık hakkındaki değerlendirmelerinin karşısına, ona öğretilen bilgiyi çıkardı.
 
 ## Bakara 2:32
 
@@ -459,14 +316,9 @@ Ayetin açık söylediği şey ‘isimlerin öğretilmesi’dir. Bunu modern biy
 
 Melekler, ‘Seni tenzih ederiz. Senin bize öğrettiğinden başka bilgimiz yoktur. Şüphesiz bilen ve hikmet sahibi olan sensin’ dediler.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Melekler bilgi sınırlarını kabul eder: sahip oldukları bilgi bağımsız değil, Allah’ın öğrettiği kadardır.
-
-**Tefsir**
-
-Ayet bilgi karşısında tevazuyu kurar. Bilginin çokluğu değil, kaynağını ve sınırını bilmek önemlidir. Allah’ın ‘Alîm’ ve ‘Hakîm’ oluşu bilgi ile yerli yerinde hüküm ve düzeni birleştirir.
-
+Melekler, “Sen her türlü eksiklik ve kusurdan uzaksın (tenzih). Bizim bilgimiz, bize öğrettiklerinle sınırlıdır; bunun ötesini bildiğimizi ileri süremeyiz. Şüphesiz her şeyi bilen (Alîm) ve bilgisiyle yerli yerince hükmeden (Hakîm) sensin” dediler. Böylece kendi değerlendirmelerinin sınırını ve Allah’ın bilgisinin bu sınırın ötesinde olduğunu kabul ettiler.
 
 ## Bakara 2:33
 
@@ -474,14 +326,9 @@ Ayet bilgi karşısında tevazuyu kurar. Bilginin çokluğu değil, kaynağını
 
 Allah, ‘Ey Âdem! Onlara bunların isimlerini bildir’ dedi. Âdem isimleri bildirince Allah, ‘Size göklerin ve yerin gaybını bildiğimi, açığa vurduklarınızı da gizlediklerinizi de bildiğimi söylememiş miydim?’ dedi.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Âdem öğrendiği bilgiyi yalnız taşımakla kalmadı, ifade edip aktarabildi. Allah ise görünenin yanında gizli olanı da bildiğini gösterdi.
-
-**Tefsir**
-
-2:31–33 birlikte okunduğunda öğrenme → bilme → ifade/aktarma zinciri görünür. İnsana verilen ayrıcalık salt bilgi depolamak değil, bilgiyi işleyip ortaya koyabilme kapasitesidir.
-
+Allah, “Ey Âdem! Bunların adlarını onlara bildir” dedi. Âdem, kendisine öğretilen adları bildirerek öğrendiği bilgiyi ifade edip aktarabildiğini gösterdi. Bunun üzerine Allah, “Göklerde ve yerde sizin bilginize ve algınıza açık olmayanı (gayb), ayrıca açığa vurduklarınızı da gizli tuttuklarınızı da bildiğimi size söylememiş miydim?” dedi. Meleklerin değerlendirmesi kendilerine açık olanla sınırlıyken, Allah onların bilmediklerini ve dile getirmediklerini de biliyordu.
 
 ## Bakara 2:34
 
@@ -489,14 +336,9 @@ Allah, ‘Ey Âdem! Onlara bunların isimlerini bildir’ dedi. Âdem isimleri b
 
 Meleklere, ‘Âdem’e secde edin’ dediğimizde İblis dışında hepsi secde etti. O reddetti, büyüklendi ve kâfirlerden oldu.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-İblis Allah’ı bilmediği için değil, açık emri kibri sebebiyle reddettiği için küfür konumuna düştü.
-
-**Tefsir**
-
-18:50 İblis’in cinlerden olduğunu açıklar. Âdem’e secde, Âdem’i ilah edinmek değil Allah’ın emrine itaattir. Bu ayet küfrün yalnız ‘Allah’ın varlığını inkâr’ olmadığını çok açık gösterir: İblis Allah’ı bilir fakat kibirle emre karşı çıkar.
-
+Meleklere, “Âdem’in önünde eğilip yere kapanın” (secde) dediğimizde, İblis dışında hepsi bu emre uydu. İblis ise kendisini üstün görerek emri yerine getirmeyi reddetti. Allah’ı tanıdığı hâlde O’nun açık emrine kibirle karşı çıktı ve hakikati örtüp reddedenlerden (kâfirler) oldu. Âdem’e gösterilen bu boyun eğiş, Allah’ın emrine bağlılığın sınandığı bir davranıştı.
 
 ## Bakara 2:35
 
@@ -504,14 +346,9 @@ Meleklere, ‘Âdem’e secde edin’ dediğimizde İblis dışında hepsi secde
 
 ‘Ey Âdem! Sen ve eşin bu cennette/bahçede yerleşin; dilediğiniz yerden bolca yiyin. Fakat şu ağaca yaklaşmayın; yoksa zalimlerden olursunuz’ dedik.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Geniş bir serbestlik alanı verildi, fakat tek bir sınıra yaklaşmamaları istendi. Özgürlük sınırla birlikte anlam kazandı.
-
-**Tefsir**
-
-Cenne kökü örtülü, sık bitkili bahçe alanını da ifade eder; ayet buranın mutlaka âhiretteki ebedî cennet olduğunu söylemez. Ağacın türü belirtilmez; elma, buğday veya ‘bilgi ağacı’ gibi tanımlar Kur’an’dan çıkmaz. 20:120’de ‘ölümsüzlük ağacı’ ifadesi Allah’ın adı değil, şeytanın pazarlamasıdır. En önemli nokta ‘yemeyin’ yerine ‘yaklaşmayın’ denmesidir: yasak sonuca götüren yolları daha baştan kapatma ilkesi. Bu, 17:32’deki ‘zinaya yaklaşmayın’ mantığıyla aynı koruyucu sınır anlayışını gösterir.
-
+“Ey Âdem! Sen ve eşin bu bahçeye (cennet) yerleşin. Oradaki yiyeceklerden dilediğiniz yerde, bolluk içinde yararlanın. Fakat şu ağaca yaklaşmayın; bu sınırı aşarsanız haksızlık edenlerden (zalimler) olursunuz” dedik. Kendilerine geniş bir yararlanma ve seçim alanı açılırken korunması gereken bir sınır da gösterildi. Ağaca yaklaşmamaları yönündeki uyarı, onları sınırın ihlaline götürecek adımlardan da sakınmaya çağırıyordu.
 
 ## Bakara 2:36
 
@@ -519,14 +356,9 @@ Cenne kökü örtülü, sık bitkili bahçe alanını da ifade eder; ayet buran�
 
 Şeytan onların ayağını kaydırdı ve içinde bulundukları durumdan çıkardı. ‘Birbirinize düşman olarak inin/geçin; yeryüzünde sizin için bir süre yerleşim ve geçim vardır’ dedik.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Sınır ihlali korunaklı durumun kaybına ve yeryüzünde sorumluluk taşıyan yeni bir hayata geçişe yol açtı.
-
-**Tefsir**
-
-‘İhbitû’ fiili tek başına gökten fiziksel inişi kanıtlamaz; 2:61’de aynı kök bir yerleşime gitmek/inmek için kullanılır. Ayetin açık sonucu yeryüzünde yerleşim, karşıtlık ve sınırlı süreli geçimdir.
-
+Yanıltıp doğru yoldan uzaklaştıran (şeytan), onların bu sınırı çiğnemelerine ve içinde bulundukları korunaklı yaşayıştan çıkmalarına yol açtı. “Birbirinize düşman olarak bulunduğunuz yerden ayrılıp yeni hayatınıza geçin. Yeryüzünde belirli bir süre barınacak ve hayatınızı sürdürecek imkânlar bulacaksınız” dedik. Böylece sınırın ihlali, içinde yaşadıkları durumun değişmesine yol açtı; önlerinde karşıtlıkların ve sınırlı bir ömrün bulunduğu bir hayat açıldı.
 
 ## Bakara 2:37
 
@@ -534,14 +366,9 @@ Sınır ihlali korunaklı durumun kaybına ve yeryüzünde sorumluluk taşıyan 
 
 Âdem Rabbinden birtakım sözler aldı; bunun üzerine Allah onun dönüşünü/tövbesini kabul etti. Şüphesiz O, tövbeleri kabul eden ve rahîm olandır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Âdem hatasından sonra Rabbinden aldığı yönlendirmeyle geri döndü ve Allah bu dönüşü kabul etti.
-
-**Tefsir**
-
-Âdem ile İblis arasındaki temel fark burada görünür: ikisi de emirle karşılaştı; Âdem hata edip geri döndü, İblis ise kibirde ısrar etti. 7:23’teki itiraf bu dönüşle bağlantılı olabilir, fakat 2:37 aldığı sözlerin tam olarak ne olduğunu açıklamaz.
-
+Âdem, kendisini gözetip yetiştiren Allah’tan (Rabb) birtakım sözler aldı. Bu yönlendirmeyi benimseyerek hatalı tutumundan döndü (tövbe); Allah da onun dönüşünü kabul etti. Şüphesiz Allah, kendisine yönelenlerin dönüşünü tekrar tekrar kabul eden (Tevvâb), merhametiyle gözetip esirgeyendir (Rahîm). Âdem’in hatası, dönüş imkânını ortadan kaldırmadı; verilen yönlendirmeye nasıl karşılık verdiği belirleyici oldu.
 
 ## Bakara 2:38
 
@@ -549,14 +376,9 @@ Sınır ihlali korunaklı durumun kaybına ve yeryüzünde sorumluluk taşıyan 
 
 ‘Hepiniz oradan inin/geçin. Benden size bir hidayet geldiğinde, kim benim hidayetime uyarsa onlara korku yoktur ve onlar üzülmeyeceklerdir’ dedik.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Yeryüzündeki hayat rehbersiz bırakılmayacaktır. Allah’tan gelen yol gösterimi kim izlerse geleceği için korku, geçmişi için yıkıcı hüzün taşımayacağı bir sona yönelir.
-
-**Tefsir**
-
-Bu ayet hidayet modelini açık kurar: hidayetin kaynağı Allah’tır; insanın görevi ona uymaktır. 28:56, resulün sevdiği kişiyi zorla hidayete erdiremeyeceğini; 42:52 ise yolu gösterebildiğini ortaya koyar. Böylece Allah hidayeti verir/gönderir, resul iletir ve açıklar, insan ise izler veya reddeder. Hidayet kişinin iradesini iptal eden bir zorlama değildir.
-
+“Hepiniz bulunduğunuz yerden ayrılıp yeni hayatınıza geçin. Benden size doğru yolu gösteren bir rehberlik (hidayet) geldiğinde, kim bu rehberliğe uyar ve gösterdiğim yolu izlerse onlar için korku yoktur ve onlar üzülmeyeceklerdir” dedik. Yeryüzündeki hayatlarında kendilerine yol gösterilecekti; insanın sorumluluğu, kendisine ulaşan bu rehberliği izlemekti.
 
 ## Bakara 2:39
 
@@ -564,14 +386,9 @@ Bu ayet hidayet modelini açık kurar: hidayetin kaynağı Allah’tır; insanı
 
 Küfreden ve ayetlerimizi yalanlayanlar ise ateşin halkıdır; orada kalıcıdırlar.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Kendilerine gelen rehberliği örtüp Allah’ın göstergelerini reddedenler bunun sonucunu taşırlar.
-
-**Tefsir**
-
-2:38–39 bir bütün oluşturur: önce hidayet gelir, sonra insanın ona verdiği karşılık ve ardından sonuç gelir. Sorumluluk, rehberlik karşısındaki tavra bağlanır.
-
+Kendilerine gelen hakikati örtüp reddeden (küfreden), gerçeği gösteren işaret ve bildirimlerimizi (ayetlerimizi) yalan sayanlar ise ateşte kalacak olanlardır; orada kalıcıdırlar. Kendilerine sunulan rehberliği reddetmeleri ve onun göstergelerini yalanlamaları, karşılaşacakları bu sonucun gerekçesidir.
 
 ## Bakara 2:40
 
@@ -579,14 +396,9 @@ Kendilerine gelen rehberliği örtüp Allah’ın göstergelerini reddedenler bu
 
 Ey İsrailoğulları! Size verdiğim nimetimi hatırlayın; ahdimi yerine getirin ki ben de size verdiğim ahdi yerine getireyim. Yalnız benden çekinin.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Geçmiş ayrıcalıklarınızı değil, bunun getirdiği sorumluluğu hatırlayın; Allah’la bağlayıcı sözünüzü koruyun.
-
-**Tefsir**
-
-Bu bölüm kimlik övgüsünden çok ahid ve sorumlulukla başlar. 2:27’de ahdi bozmak fıskın işaretiydi; burada İsrailoğulları doğrudan o ahdi korumaya çağrılır.
-
+Ey İsrailoğulları! Size sağladığım iyilikleri ve imkânları (nimet) hatırlayın; bunların getirdiği sorumluluğu gözetin. Bana karşı üstlendiğiniz bağlayıcı sözü ve yükümlülükleri (ahid) yerine getirin ki ben de size verdiğim sözü yerine getireyim. Bu bağlılığı koruyun ve yalnız bana karşı gelmekten çekinin.
 
 ## Bakara 2:41
 
@@ -594,14 +406,9 @@ Bu bölüm kimlik övgüsünden çok ahid ve sorumlulukla başlar. 2:27’de ahd
 
 Yanınızdakini tasdik eden olarak indirdiğime iman edin; onu ilk örtenlerden olmayın. Ayetlerimi az bir bedelle değiştirmeyin ve yalnız bana karşı takvâlı olun.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Elinizdeki vahyin hak olan yönünü doğrulayan yeni vahyi çıkar uğruna reddetmeyin; baskı ve menfaat karşısında ölçünüz Allah olsun.
-
-**Tefsir**
-
-Tasdik, önceki vahyin Allah’tan gelen hak kaynağını doğrulamaktır; mevcut her metin formunu ve yorumu bütünüyle onaylamak değildir. ‘Az bir bedel’ hakikati çıkarla değiştirme tehlikesini gösterir. Takvâ burada menfaat karşısında sınırı korumaktır.
-
+Elinizdeki vahyin Allah’tan gelen gerçeğini doğrulayan (tasdik) bu indirdiğime güvenip bağlanın (iman). Onu örtüp reddetmede (küfür) başı çekenlerden olmayın. Gerçeği gösteren bildirimlerimi (ayetlerimi) küçük çıkarlarla değiştirmeyin; menfaatleriniz uğruna onları gizlemeyin veya reddetmeyin. Yalnız bana karşı sorumluluğunuzu gözeterek, çıkarlarınız karşısında da sınırlarınızı koruyun (takvâ).
 
 ## Bakara 2:42
 
@@ -609,14 +416,9 @@ Tasdik, önceki vahyin Allah’tan gelen hak kaynağını doğrulamaktır; mevcu
 
 Hakkı bâtılla karıştırmayın ve bildiğiniz hâlde hakkı gizlemeyin.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Doğruyu yanlışla bulandırmayın; bildiğiniz gerçeği de insanların erişiminden saklamayın.
-
-**Tefsir**
-
-Ayet bilgi üzerinde iki ayrı bozulmayı yasaklar: hak ile bâtılı karıştırmak ve hakkı gizlemek. Bilgi sahibi olmak tek başına erdem değildir; bilgi dürüstçe korunup aktarılmalıdır.
-
+Gerçeği ve doğru olanı (hak), asılsız ve geçersiz olanla (bâtıl) karıştırıp insanların doğruyu ayırt etmesini zorlaştırmayın. Bildiğiniz gerçeği de gizleyerek başkalarının ona ulaşmasını engellemeyin. Bildiğinizi aktarırken doğruluğunu koruyun ve onu insanların erişimine açık tutun.
 
 ## Bakara 2:43
 
@@ -624,14 +426,11 @@ Ayet bilgi üzerinde iki ayrı bozulmayı yasaklar: hak ile bâtılı karıştı
 
 Salâtı ikame edin, zekâtı verin ve rükû edenlerle birlikte rükû edin.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Salâtı hayatınızda düzenli ve ayakta tutun, zekâtı verin ve bu yönelişe toplulukla birlikte bedensel olarak katılın.
+Salâtı hayatınızda düzenli ve gereğince yerine getirin (ikame). Arınmaya yönelik maddi katkıyı (zekât) verin. Allah’ın önünde eğilerek boyun eğenlerle birlikte siz de eğilin (rükû); bu yönelişe toplulukla birlikte, bedeninizle de katılın.
 
-**Tefsir**
-
-Ayet ‘salât’ der; bunu doğrudan ‘ibadet’ diye çevirmek kavramları birbirine karıştırır. Rükû ifadesi salâtın bedensel ve toplulukla icra edilen bir yönü olduğunu açıkça gösterir; fakat salât bütün ibadet kavramıyla eş anlamlı değildir.
-
+*Çalışma notu: Zekât için kullanılan “arınmaya yönelik maddi katkı” karşılığı geçici bir çalışma önerisidir; kavramın tanımı henüz kesinleşmemiştir.*
 
 ## Bakara 2:44
 
@@ -639,14 +438,9 @@ Ayet ‘salât’ der; bunu doğrudan ‘ibadet’ diye çevirmek kavramları bi
 
 Siz Kitab’ı okuyup dururken insanlara birri emrediyor da kendinizi unutuyor musunuz? Hâlâ akletmeyecek misiniz?
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-İnsanlara doğru davranışı öğütlerken kendi hayatınızın aynı ölçüye uymasını unutmayın.
-
-**Tefsir**
-
-Bilgi ile davranış arasındaki kopukluk ayetin ana problemidir. Kitabı okumak kişiyi otomatik olarak doğru kılmaz; öğrendiği ölçünün kendi üzerinde de işlemesi gerekir.
-
+Siz Kitab’ı okuyup dururken insanlara doğru ve iyi bir hayat sürmeyi (birr) söylüyor, fakat kendi davranışlarınızı aynı ölçüyle değerlendirmeyi unutuyor musunuz? Başkalarından istediğiniz iyiliğin kendi hayatınızda da karşılık bulması gerektiğini düşünmüyor musunuz? Hâlâ aklınızı kullanıp bu tutumunuzdaki çelişkiyi görmeyecek misiniz?
 
 ## Bakara 2:45
 
@@ -654,14 +448,9 @@ Bilgi ile davranış arasındaki kopukluk ayetin ana problemidir. Kitabı okumak
 
 Sabr ve salât ile yardım isteyin. Şüphesiz bu, huşû sahipleri dışında ağırdır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Kendinizi tutma, dayanma ve salâtı ayakta tutma yoluyla destek arayın; bu yöneliş içten ciddiyet taşımayanlara ağır gelir.
-
-**Tefsir**
-
-Sabr yalnız beklemek değildir; baskı ve zorluk altında çizgiyi korumaktır. Salât burada doğrudan yardım isteme ve dayanıklılık aracı olarak anılır. Huşû ise içsel ciddiyet, alçakgönüllülük ve Allah karşısındaki konumun bilincidir.
-
+Güçlükler karşısında kendinizi tutup doğru tutumda kararlılıkla durarak (sabr) ve salât ile yardım arayın. Şüphesiz bu, Allah karşısındaki konumunu bilerek O’na içten bir saygı ve alçakgönüllülükle yönelenler (huşû sahipleri) dışındakilere ağır gelir.
 
 ## Bakara 2:46
 
@@ -669,14 +458,9 @@ Sabr yalnız beklemek değildir; baskı ve zorluk altında çizgiyi korumaktır.
 
 Onlar Rableriyle karşılaşacaklarını ve O’na döneceklerini güçlü biçimde bekleyenlerdir.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Allah’ın huzuruna çıkacaklarını ve sonunda O’na döneceklerini gerçekten hesaba katan insanlar için salât ve sabr anlam kazanır.
-
-**Tefsir**
-
-Buradaki zann sıradan bir tahmin gibi çevrilmemelidir; bağlam güçlü beklenti ve kanaati gösterir. Âhiret bilinci davranışa ağırlık kazandırır.
-
+Onlar, kendilerini gözetip yöneten Allah’la (Rabb) karşılaşacakları ve sonunda O’na dönecekleri konusunda güçlü bir beklenti ve kanaat taşırlar (zann). Bu karşılaşmayı hayatlarının gerçek bir sonucu olarak hesaba katarlar; Allah karşısındaki sorumluluklarının bilincinde olmaları, O’na içtenlikle yönelmelerini sağlar.
 
 ## Bakara 2:47
 
@@ -684,14 +468,9 @@ Buradaki zann sıradan bir tahmin gibi çevrilmemelidir; bağlam güçlü beklen
 
 Ey İsrailoğulları! Size verdiğim nimetimi ve sizi âlemler üzerine üstün kıldığımı hatırlayın.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Size verilmiş özel imkân ve sorumluluğu hatırlayın; bu ayrıcalığı bir güvence değil yükümlülük olarak görün.
-
-**Tefsir**
-
-Ayet gerçek bir üstün kılma/fazilet verme bildirir; fakat bunu bütün zamanlar için biyolojik veya etnik üstünlük ilanına çevirmek metnin bağlamını aşar. Yakındaki ayetler ayrıcalığın hesap ve sorumluluğu ortadan kaldırmadığını özellikle gösterir.
-
+Ey İsrailoğulları! Size sağladığım iyilikleri ve imkânları (nimet), sizi diğer insan toplulukları (âlemler) karşısında üstün bir konuma getirişimi hatırlayın. Size verilmiş bu ayrıcalığın taşıdığı sorumluluğu gözetin; geçmişte üstün kılınmış olmanız, davranışlarınızın hesabını verme yükümlülüğünü ortadan kaldırmaz.
 
 ## Bakara 2:48
 
@@ -699,14 +478,9 @@ Ayet gerçek bir üstün kılma/fazilet verme bildirir; fakat bunu bütün zaman
 
 Hiçbir nefsin başka bir nefis adına bir şey karşılayamayacağı, hiçbir şefaatin kabul edilmeyeceği, hiçbir fidyenin alınmayacağı ve kimseye yardım edilmeyeceği güne karşı kendinizi koruyun.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Soy, topluluk ve başkasının itibarıyla kurtulamayacağınız hesap gününü dikkate alarak bugünden kendinizi koruyun.
-
-**Tefsir**
-
-‘Vettekû yevmen’ takvânın yine ileriye dönük korunma anlamını gösterir. Bir önceki ayetteki üstün kılınma, bireysel hesabı ortadan kaldırmaz. Kimlik ve geçmiş ayrıcalık hiçbir kişinin yerine hesap vermez.
-
+Hiçbir kişinin (nefis) başka birinin yerine sorumluluk üstlenip onun hesabını karşılayamayacağı güne karşı bugünden kendinizi koruyun. O gün bir başkasının araya girerek kurtuluş sağlaması (şefaat) kabul edilmeyecek, kurtulmak için sunulan bir bedel (fidye) alınmayacak ve kendilerine yardım edilmeyecektir. Soyunuza, topluluğunuza veya başkasının konumuna güvenerek kendi sorumluluğunuzu ihmal etmeyin.
 
 ## Bakara 2:49
 
@@ -714,14 +488,9 @@ Soy, topluluk ve başkasının itibarıyla kurtulamayacağınız hesap gününü
 
 Hani sizi Firavun ailesinden kurtarmıştık; onlar size azabın kötüsünü tattırıyor, oğullarınızı boğazlıyor ve kadınlarınızı sağ bırakıyordu. Bunda Rabbinizden büyük bir sınama vardı.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Sistematik baskı ve öldürme altında bulunduğunuz dönemden sizi çıkaran Allah’tı; yaşanan ağır baskı aynı zamanda büyük bir sınamaydı.
-
-**Tefsir**
-
-Ayet kurtuluş hafızasını canlı tutar. Zulüm yalnız bireysel kötü davranış değil, topluluğa uygulanan düzenli bir baskı biçiminde de ortaya çıkabilir.
-
+Hani sizi Firavun’un çevresinin elinden kurtarmıştık. Onlar size ağır ve sürekli bir eziyet (azap) yaşatıyor, oğullarınızı boğazlıyor ve kadınlarınızı sağ bırakıyorlardı. Yaşadığınız bu ağır süreçte, sizi gözetip yöneten Allah’tan (Rabb) gelen büyük bir sınama (belâ) vardı. Şimdi hatırlamanız istenen nimetler arasında, bu baskı düzeninden kurtarılmış olmanız da bulunuyordu.
 
 ## Bakara 2:50
 
@@ -729,14 +498,9 @@ Ayet kurtuluş hafızasını canlı tutar. Zulüm yalnız bireysel kötü davran
 
 Hani sizin için denizi yarmış, sizi kurtarmış ve siz bakarken Firavun ailesini boğmuştuk.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Kaçış yolu açılmış, siz kurtarılırken sizi ezen güç gözünüzün önünde son bulmuştu.
-
-**Tefsir**
-
-Ayet olayın mekanizmasını ayrıntılandırmaz; vurgusu kurtuluş ve zalim gücün çöküşüdür. Metnin söylediğinin ötesinde doğa mekanizması kurmak gerekmez.
-
+Hani sizin için denizi ayırarak bir geçiş yolu açmış ve sizi kurtarmıştık. Siz olup bitene tanık olurken, size baskı uygulayan Firavun’un çevresini de denizde boğmuştuk. Böylece çaresiz bırakıldığınız durumdan çıkışınız ve sizi ezen gücün son bulması, gözlerinizin önünde gerçekleşmişti.
 
 ## Bakara 2:51
 
@@ -744,14 +508,9 @@ Ayet olayın mekanizmasını ayrıntılandırmaz; vurgusu kurtuluş ve zalim gü
 
 Hani Musa ile kırk gece için sözleşmiş, ardından onun yokluğunda buzağıyı edinmiş ve zalimlerden olmuştunuz.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Güçlü işaretleri görmüş olmanıza rağmen Musa’nın ayrılışından kısa süre sonra başka bir bağlılık nesnesi edinerek sınırı aşmıştınız.
-
-**Tefsir**
-
-‘Buzağıyı edinmek’ tek başına bütün ayrıntıyı vermez; 7:148 ve 20:88 bunun ilahlaştırma/kulluk bağlamını açıklar. Büyük mucizeleri görmek, imanın ve takvânın otomatik olarak kalıcı olmasını sağlamaz.
-
+Hani Musa ile kırk gecelik bir buluşma için sözleşmiştik. Siz ise onun yokluğunda buzağıyı kendinize kulluk edeceğiniz bir varlık olarak edinmiştiniz. Böylece bağlılığınızı başka bir varlığa yönelterek sınırı aşmış, kendinize haksızlık edenlerden (zalimler) olmuştunuz. Daha önce yaşadığınız kurtuluş ve gördüğünüz işaretler, bu yanlış tercihi yapmanızı kendiliğinden engellememişti.
 
 ## Bakara 2:52
 
@@ -759,14 +518,9 @@ Güçlü işaretleri görmüş olmanıza rağmen Musa’nın ayrılışından k�
 
 Sonra bunun ardından sizi affettik; umulur ki şükredersiniz.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Bu ağır sapmadan sonra bile dönüş kapısı kapatılmadı; bağışlanma, nimetin farkına varıp şükürle karşılık vermeniz için verildi.
-
-**Tefsir**
-
-2:52 sonucu özetler; 2:54 ise tövbenin ağır sürecini daha ayrıntılı verir. Af, yapılanı önemsizleştirmek değil, dönüşün kabul edilmesidir.
-
+Sonra bu yaptıklarınızın ardından sizi bağışladık. Size yeniden açılan bu imkânın değerini anlayıp gördüğünüz iyiliği tanımanız ve ona uygun davranışlarla karşılık vermeniz (şükür) bekleniyordu. Bağışlanmanız, size verilen nimete nasıl karşılık vereceğiniz konusunda yeni bir sorumluluk taşıyordu.
 
 ## Bakara 2:53
 
@@ -774,14 +528,9 @@ Bu ağır sapmadan sonra bile dönüş kapısı kapatılmadı; bağışlanma, ni
 
 Hani Musa’ya Kitab’ı ve Furkan’ı vermiştik; umulur ki hidayete yönelirsiniz.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Musa’ya yol gösteren Kitab’ı ve doğruyla yanlışı ayırmaya yarayan Furkan’ı verdik ki doğru yönü bulasınız.
-
-**Tefsir**
-
-Furkan f-r-k kökünden ayırma ve ayrım koyma alanını taşır. 8:29’da takvâ sahibi kişiye furkan verilmesi, kelimenin her yerde ayrı bir kitap adı olmadığını gösterir. 2:53’te Kitab ve Furkan iki bağlı isim olarak gelir; bunların tamamen ayrı iki nesne mi, yoksa aynı ilahî verinin iki yönü mü olduğu metinden kesinleştirilemez. ‘Tahtadûn’ bir yetenek eki taşımaz; ‘hidayete yönelmek/doğru yönü bulmak’ daha uygundur.
-
+Hani Musa’ya Kitab’ı ve doğruyla yanlışı ayırmaya yarayan ölçüyü (Furkan) vermiştik. Böylece kendinize sunulan rehberlikle doğru yönü bulup o yönde ilerlemeniz (hidayete yönelmek) amaçlanıyordu. Verilen rehberlik, karşılaştığınız durumlarda neyi benimseyip neden uzak duracağınızı ayırt etmenize de hizmet ediyordu.
 
 ## Bakara 2:54
 
@@ -789,14 +538,11 @@ Furkan f-r-k kökünden ayırma ve ayrım koyma alanını taşır. 8:29’da tak
 
 Hani Musa kavmine, ‘Ey kavmim! Buzağıyı edinmenizle kendinize zulmettiniz. Sizi var edene dönün ve kendi içinizde/birbirinizi öldürün. Bu, sizi var eden katında sizin için daha hayırlıdır’ demişti. Sonra O tövbenizi kabul etti. Şüphesiz O, tövbeleri kabul eden ve rahîm olandır.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Buzağı olayı yalnız düşünsel bir hata sayılmadı; topluluğun içinde ağır bir tövbe ve yaptırım süreci doğurdu. Buna rağmen süreç Allah’ın dönüşlerini kabul etmesiyle sonuçlandı.
+Hani Musa halkına, “Ey halkım! Buzağıyı kendinize kulluk edeceğiniz bir varlık olarak edinerek kendinize haksızlık ettiniz (zulüm). Bu yanlış bağlılıktan vazgeçip sizi varlığa çıkarana (Bâri) dönün (tövbe) ve kendi topluluğunuz içinde birbirinizi öldürün. Bu, sizi varlığa çıkaran katında sizin için daha hayırlıdır” demişti.
 
-**Tefsir**
-
-‘Bâri’yi yalnız genel ‘Yaratıcı’ diye düzleştirmek yerine ‘sizi var eden’ karşılığı bağlama daha iyi oturur: insanların edindiği/yaptığı buzağının karşısında onları varlığa çıkaran gerçek merci hatırlatılır. ‘Faktulû enfusekum’daki q-t-l gerçek öldürme fiilidir; ‘egonuzu öldürün’ anlamı morfolojiden çıkmaz. Ancak ‘enfusekum’ Kur’an’da topluluk içi ‘birbiriniz/kendi insanlarınız’ anlamında da kullanılır (2:84–85; 49:11); bu yüzden herkesin kendini öldürmesi anlamına zorlamak da gerekmez. Tam olarak kimin kimi öldürdüğü belirtilmez. Ayetin sonu, tövbenin kabul edildiğini açıkça söyler.
-
+Ardından Allah dönüşünüzü kabul etti. Şüphesiz O, kendisine yönelenlerin dönüşünü kabul eden (Tevvâb), merhametiyle gözetip esirgeyendir (Rahîm). Buradaki öldürme emri, ağır bir tövbe sürecinin parçası olarak aktarılır; emrin kimler arasında ve nasıl uygulandığı ayette ayrıntılandırılmaz.
 
 ## Bakara 2:55
 
@@ -804,14 +550,9 @@ Buzağı olayı yalnız düşünsel bir hata sayılmadı; topluluğun içinde a�
 
 Hani, ‘Ey Musa! Allah’ı açıkça görmedikçe sana asla iman etmeyeceğiz/güvenmeyeceğiz’ demiştiniz; bunun üzerine siz bakarken sâika sizi yakalamıştı.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Musa’ya güvenlerini Allah’ı doğrudan görme şartına bağladılar; bu talebin ardından sarsıcı bir olayla karşılaştılar.
-
-**Tefsir**
-
-‘Nu’mina leke’ ifadesi ‘sana inanmak/güvenmek’ şeklindedir ve imanın ilişkisel güven boyutunu gösterir. ‘Sâika’ yıkıcı şok, yıldırım veya ağır çarpılma alanındadır; tek başına her yerde ölüm anlamına gelmez.
-
+Hani, “Ey Musa! Allah’ı açıkça görmedikçe sana güvenip söylediklerini kabul etmeyeceğiz” (iman) demiştiniz. Musa’ya güvenmenizi, Allah’ı doğrudan görme şartına bağlamıştınız. Bunun üzerine, siz olup bitene tanık olurken yıkıcı bir çarpılma (sâika) sizi yakalamıştı.
 
 ## Bakara 2:56
 
@@ -819,14 +560,9 @@ Musa’ya güvenlerini Allah’ı doğrudan görme şartına bağladılar; bu ta
 
 Sonra ölümünüzün ardından sizi yeniden kaldırdık; umulur ki şükredersiniz.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Ölümden sonra yeniden hayata döndürülmeniz bile size verilen nimeti fark edip şükürle karşılık vermeniz içindi.
-
-**Tefsir**
-
-‘Ba‘th’ tek başına her zaman diriliş anlamına gelmez; uyanma için de kullanılabilir. ‘Mevt’ de bazı bağlamlarda mecaz taşıyabilir. Fakat burada ‘ölümünüzden sonra sizi kaldırdık’ birleşimi gerçek ölüm ve yeniden dirilme okumasını daha güçlü kılar. 4:153 olayı farklı bir sıralamayla anlattığı için 2:54’teki öldürme ile 2:55–56’yı zorunlu olarak tek kronolojik olay zinciri saymamak gerekir.
-
+Sonra ölümünüzün ardından sizi yeniden hayata döndürdük. Size yeniden verilen hayatın değerini fark etmeniz, gördüğünüz iyiliği tanıyıp ona uygun davranışlarla karşılık vermeniz (şükür) bekleniyordu. Hayata dönüşünüz, size verilen nimetleri ve bunların getirdiği sorumluluğu yeniden hatırlatıyordu.
 
 ## Bakara 2:57
 
@@ -834,14 +570,11 @@ Sonra ölümünüzün ardından sizi yeniden kaldırdık; umulur ki şükredersi
 
 Üzerinize bulutu gölgelik yaptık; size menn ve selvâyı indirdik. ‘Size rızık olarak verdiklerimizin tayyib olanlarından yiyin’ dedik. Onlar bize zulmetmediler; fakat kendi nefislerine zulmediyorlardı.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Korunma ve rızık sağlandı; sınırların ihlali Allah’a zarar vermedi, insanın kendi üzerinde bozulma ve zarar üretti.
+Bulutu üzerinize gölgelik yaptık; beslenmeniz için menn ve selvâyı indirdik. “Hayatınızı sürdürmeniz için sağladığımız besinlerin (rızık), iyi ve temiz olanlarından (tayyib) yiyin” dedik. Buna rağmen sınırları çiğnemeleri bize zarar vermedi; yaptıkları haksızlık ve bozulmanın zararını kendileri taşıyorlardı (kendi nefislerine zulüm).
 
-**Tefsir**
-
-Tayyib yalnız ‘helal’ kelimesine indirgenmemelidir; iyi, temiz, hoş ve yararlı alanını taşır. Ayetin son cümlesi çok temel bir ilke kurar: insanın isyanı Allah’ı eksiltmez, zarar insanın kendisine döner. Bu, takvânın koruyucu mantığıyla uyumludur.
-
+*Çalışma notu: Menn ve selvâ besin adları korunmuştur; hangi yiyecekleri karşıladıkları ayrıca incelenecektir.*
 
 ## Bakara 2:58
 
@@ -849,14 +582,9 @@ Tayyib yalnız ‘helal’ kelimesine indirgenmemelidir; iyi, temiz, hoş ve yar
 
 Hani, ‘Şu yerleşim yerine girin; orada dilediğiniz yerden bolca yiyin. Kapıdan sücced hâlde girin ve “Hıtta” deyin; hatalarınızı bağışlayalım. Muhsinlere de artıracağız’ demiştik.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Hani size, ‘Bu yerleşim yerine girin ve oradaki nimetlerden dilediğiniz gibi bolluk içinde yararlanın. Kapıdan boyun eğmiş olarak girin ve “yükümüzü üzerimizden kaldır” deyin. Hatalarınızı bağışlayacağız; güzel davrananlara ise daha fazlasını vereceğiz’ demiştik.
-
-**Tefsir**
-
-‘Sücceden’ bir emir fiili değil, ‘secde edenler/boyun eğmiş olanlar olarak’ hâl ifadesidir. ‘Hıtta’ Kur’an’da yalnız 2:58 ve 7:161’de geçen bir isimdir; kelimenin kendisini doğrudan ‘bağışlanma’ diye çevirmek yerine, hemen ardından gelen ‘hatalarınızı bağışlayalım’ ifadesiyle birlikte hatanın/yükün kaldırılması talebi olarak anlamak daha temkinlidir. 7:161’de söz ve giriş emrinin sırası değişir; bu da vurgunun katı bir ritüel sıra değil, boyun eğme ve hata yükünün kaldırılmasını isteme tavrı olduğunu gösterir.
-
+Hani, “Şu yerleşim yerine girin ve oradaki yiyeceklerden dilediğiniz yerde bolluk içinde yararlanın. Kapıdan boyun eğmiş olarak (sücceden) girin ve ‘Hatalarımızın yükünü üzerimizden kaldır’ (hıtta) diyerek bağışlanma isteyin; hatalarınızı bağışlayalım. Davranışlarını güzelleştiren, yaptığını iyi ve özenli biçimde yapanlara (muhsinler) verdiklerimizi daha da artıracağız” demiştik.
 
 ## Bakara 2:59
 
@@ -864,14 +592,9 @@ Hani size, ‘Bu yerleşim yerine girin ve oradaki nimetlerden dilediğiniz gibi
 
 Fakat zulmedenler, kendilerine söylenen sözü başka bir sözle değiştirdiler. Bunun üzerine zulmedenlerin üzerine, fısk ediyor olmaları sebebiyle semâdan bir ricz indirdik.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-İçlerinden haksızlık edenler, kendilerine verilen sözü olduğu gibi kabul etmek yerine başka bir sözle değiştirdiler. Sınır dışına çıkmakta ısrar ettikleri için üzerlerine ağır bir cezalandırıcı musibet geldi.
-
-**Tefsir**
-
-2:58’de ‘Hıtta deyin’ denmiş, 2:59’da ise verilen sözün başka bir sözle değiştirildiği açıkça belirtilmiştir; Kur’an yerine hangi sözü söylediklerini açıklamaz. Paralel 7:162 ‘onlardan zulmedenler’ diyerek suçu bütün topluluğa yüklemez. Ayetin sonunda kullanılan fısk, Allah’ın açık talimatını başka bir şeye çevirerek sınırın dışına çıkmanın somut örneklerinden biridir.
-
+Fakat içlerinden haksızlık edenler (zulmedenler), kendilerine söylenen sözü başka bir sözle değiştirdiler. Verilen talimatı değiştirerek Allah’ın gösterdiği sınırların dışına çıkmayı sürdürdükleri için (fısk), bu haksızlığı yapanların üzerine gökten (semâ) ağır, cezalandırıcı bir musibet (ricz) indirdik. Burada sorumluluk, sözü değiştirip sınırı çiğneyenlere yüklenmektedir.
 
 ## Bakara 2:60
 
@@ -879,14 +602,9 @@ Fakat zulmedenler, kendilerine söylenen sözü başka bir sözle değiştirdile
 
 Hani Musa kavmi için su istemişti. Biz de, ‘Asânla taşa vur’ dedik. Bunun üzerine taştan on iki pınar fışkırdı. Her topluluk kendi meşrebini bildi. ‘Allah’ın rızkından yiyin, için; yeryüzünde mufsidler olarak taşkınlık etmeyin’ dedik.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Musa halkı için su isteyince ona, ‘Asânla taşa vur’ dedik. Taştan on iki su kaynağı çıktı ve her topluluk hangi kaynaktan yararlanacağını bildi. ‘Allah’ın sağladığı rızıktan yiyip için; fakat bu nimetleri kullanırken yeryüzündeki düzeni bozup fesat üretmeyin’ denildi.
-
-**Tefsir**
-
-Ayet yalnız mucizeyi değil, kaynağın düzenli kullanımını da anlatır. 7:160 on iki topluluk ile on iki su kaynağı arasındaki ilişkiyi daha açık gösterir. ‘Her topluluk kendi içme yerini bildi’ ifadesi nimetin paylaşım düzenine bağlandığını düşündürür. Sonundaki ‘fesat çıkararak taşkınlık etmeyin’ uyarısı, verilen kaynağın sınırsız sahiplenme hakkı vermediğini gösterir.
-
+Hani Musa halkı için su istemişti. Biz de ona, “Asânla taşa vur” dedik. Bunun üzerine taştan on iki pınar fışkırdı ve her topluluk su içeceği, yararlanacağı yeri (meşreb) bildi. Böylece verilen suyun kullanımı topluluklar arasında bir düzene kavuştu. “Allah’ın hayatınızı sürdürmeniz için sağladığı nimetlerden (rızık) yiyip için; fakat yeryüzündeki düzeni bozanlar (mufsidler) olarak sınırları aşmayın” dedik. Nimetlerden yararlanma imkânı, onları kullanırken başkalarına ve yaşanan düzene zarar verme hakkı vermiyordu.
 
 ## Bakara 2:61
 
@@ -894,14 +612,15 @@ Ayet yalnız mucizeyi değil, kaynağın düzenli kullanımını da anlatır. 7:
 
 Hani, ‘Ey Musa! Tek bir yiyeceğe dayanamayacağız. Bizim için Rabbine dua et de yerin bitirdiklerinden; yeşilliklerinden, hıyarından, fûmundan, mercimeğinden ve soğanından bize çıkarsın’ demiştiniz. Musa, ‘Daha hayırlı olanı daha aşağı olanla mı değiştirmek istiyorsunuz? Bir şehre inin; istediğiniz orada vardır’ dedi. Üzerlerine zillet ve meskenet vuruldu ve Allah’ın gazabını üzerlerine aldılar. Bu, Allah’ın ayetlerini küfretmeleri ve nebîleri haksız yere öldürmeleri sebebiyledir. Bu, isyan etmeleri ve sınırı aşmakta olmaları sebebiyledir.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-Musa’ya, ‘Aynı yiyecek düzenine artık dayanamıyoruz. Rabbine dua et de toprağın yetiştirdiği sebzelerden, salatalıktan, fûmdan, mercimekten ve soğandan bize versin’ dediler. Musa, ‘Size sağlanan daha hayırlı olanı, daha aşağı düzeyde olan şeylerle mi değiştirmek istiyorsunuz? Bir yerleşim yerine gidin; istediklerinizi orada bulabilirsiniz’ dedi. Sonunda üzerlerine aşağılanmışlık ve düşkünlük çöktü ve Allah’ın gazabını üzerlerine aldılar. Bunun nedeni Allah’ın ayetlerini örtmeleri, nebîleri haksız yere öldürmeleri, isyan etmeleri ve sürekli sınır aşmalarıydı.
+Hani, “Ey Musa! Hep aynı yiyecekle beslenmeye dayanamayacağız. Seni gözetip yöneten Allah’tan (Rabb) bizim için istekte bulun da topraktan yetişen yeşilliklerden, salatalıktan, fûm denilen üründen, mercimekten ve soğandan bize versin” demiştiniz.
 
-**Tefsir**
+Musa, “Sizin için daha iyi olanı (hayr), daha aşağı olanla (ednâ) mı değiştirmek istiyorsunuz? Bir yerleşim yerine gidin; istediğiniz yiyecekleri orada bulabilirsiniz” dedi.
 
-‘Fûm’ Kur’an’da yalnız bu ayette geçer; bu nedenle onu kesin biçimde sarımsak veya tahıl diye sabitlemek yerine terimi korumak daha güvenlidir. ‘Ednâ’, daha yakın/aşağı düzeyde olanı ifade eder; bağlamda ‘hayr’ ile karşıtlık kurar. ‘İhbitû mısran’ ifadesi aynı h-b-t kökünün bir şehre/yerleşime geçmek için kullanılabildiğini açıkça gösterir ve 2:36’daki ‘ihbitû’nun tek başına gökten dünyaya inişi kanıtlamadığını destekler. Ayetin sonundaki zillet ve gazabın gerekçesi yiyecek istemeleri değildir; metin sebebi açıkça Allah’ın ayetlerini örtme, nebîleri haksız yere öldürme, isyan ve sınır aşma olarak verir.
+Üzerlerine aşağılanmışlık (zillet) ve düşkünlük (meskenet) çöktü; Allah’ın öfkesini ve kınamasını (gazap) üzerlerine aldılar. Bunun gerekçesi, Allah’ın gerçeği gösteren bildirimlerini (ayetlerini) örtüp reddetmeleri (küfür), O’nun haberini ileten nebîleri haksız yere öldürmeleriydi. İsyan ediyor ve sınırları aşmayı sürdürüyorlardı.
 
+Ayet, bu ağır sonucun gerekçesini yiyecek talebine bağlamaz; gerekçeyi açıkça hakikatin reddedilmesi, nebîlerin öldürülmesi, isyan ve sürekli sınır aşılması olarak belirtir.
 
 ## Bakara 2:62
 
@@ -909,14 +628,12 @@ Musa’ya, ‘Aynı yiyecek düzenine artık dayanamıyoruz. Rabbine dua et de t
 
 Şüphesiz iman edenler, hâdû olanlar, Nasârâ ve Sâbiîler; bunlardan kim Allah’a ve âhiret gününe iman eder ve salih amel işlerse, onların ecirleri Rableri katındadır. Onlara korku yoktur ve onlar üzülmeyeceklerdir.
 
-**Sade/kavramsal çeviri**
+**Tefsirli çeviri**
 
-İman edenler, Yahudiler, Hristiyanlar ve Sâbiîler arasında kim Allah’a güvenip son hesap gününü ciddiye alır ve doğru, yapıcı işler yaparsa, karşılığını Rabbi katında bulacaktır. Böyleleri için korku yoktur ve onlar üzülmeyeceklerdir.
+Şüphesiz iman edenler, Yahudiler (hâdû olanlar), Hristiyanlar (Nasârâ) ve Sâbiîler arasından kim Allah’a ve sonunda hesap vereceği güne (âhiret günü) gerçekten güvenip bağlanır (iman), doğru, yararlı ve iyileştirici işler yaparsa (salih amel), onların karşılığı (ecir), kendilerini gözetip yöneten Allah’ın (Rabb) katındadır. Onlar için korku yoktur ve onlar üzülmeyeceklerdir.
 
-**Tefsir**
+Sayılan toplulukların her biri aynı ölçüyle değerlendirilir: Allah’a güvenip bağlanmak, son hesabı gözetmek ve bunu doğru davranışlarla birlikte taşımak. Bir topluluğun adını taşımak, bu ölçülerin yerine geçmez. Bu, bugün kendisine “Müslüman” diyen kişi için de geçerlidir.
 
-Ayet kurtuluşu herhangi bir dinî kimlik etiketine bağlamaz. Gruplar sayıldıktan sonra ortak ölçü ‘kim Allah’a ve âhiret gününe iman eder ve salih amel işlerse’ diye verilir. Bu ilke kendisine bugün ‘Müslüman’ diyen kişi için de geçerlidir: isim veya topluluk üyeliği tek başına kurtuluş güvencesi değildir. Kur’an’daki muslim, bir kimlik etiketinden önce Allah’a teslim olan kişiyi ifade eder; İbrahim’in 3:67’de ‘hanîf ve muslim’ diye tanımlanması bunun güçlü örneğidir.
+Allah’a gerçekten güvenip teslim olan kişinin yönelişi, kendisine ulaşan ve Allah’tan geldiğini anladığı rehberliği kabul etmeye açık olmasını gerektirir. Kendi kimliğini korumak uğruna anladığı hakikati bilerek reddetmesi bu bağlılıkla uyuşmaz. İnsanın anlayışı zamanla gelişebilir; kendisine açıklık kazanan hakikati benimsemesi ve davranışlarına taşıması önemlidir.
 
-Bu ayeti yalnız Muhammed’den önce yaşamış Yahudi ve Hristiyanlarla sınırlayan bir zaman kaydı 2:62’de yoktur; aynı yapı 5:69’da yeniden gelir. Bununla birlikte Allah’a gerçek teslimiyet, kişinin kendisine ulaşan ve Allah’tan olduğunu tanıdığı hidayeti sırf mevcut kimliğini korumak için bilerek reddetmesiyle bağdaşmaz. Mesele Kur’an’ın tamamını ilk karşılaşmada yüzde yüz çözmek değildir; mesele anlaşılan hakikati kabul edip onun peşinden gitmektir. Kur’an insanı zaman içinde eğiten bir rehberlik olarak işler: anlaşılan sınırlar uygulandıkça takvâ, davranış ve kavrayış gelişir; insan düşünmeye, gözleme, tarihten ders almaya ve bilgi aramaya yöneldikçe metnin daha geniş bağlantılarını görür.
-
-Bu nedenle ayetin ana ölçüsü ‘kimlik’ değil, iman, âhiret bilinci ve salih davranıştır. Allah’a gerçekten güvenip teslim olmak isteyen insan, hangi toplumsal kimlikten gelirse gelsin hakikate açık olmalıdır. Kime ne ölçüde hidayet ulaştığını ve kişinin neyi gerçekten anlayabildiğini Allah bilir; dış etiketten nihai hüküm veremeyiz. Daha geniş Kur’an çerçevesinde amaç dinî etiket üretmek değil; yalnız Allah’a teslim olan, sınırını bilen, adaleti ayakta tutan ve bencilliğini aşarak salih davranan insan yetiştirmektir. Özgürlük sınırsızlık değil, sınırlar içinde sorumluluk taşıyan seçim alanıdır.
+Ayet bu ölçüyü yalnız geçmişte yaşamış Yahudi ve Hristiyanlarla sınırlayan bir zaman kaydı koymaz. Kime ne ölçüde rehberlik ulaştığını, kişinin neyi gerçekten anlayabildiğini Allah bilir. Bu nedenle insanlar hakkında yalnız toplumsal veya dinî adlarından hareketle nihai kurtuluş hükmü veremeyiz.
