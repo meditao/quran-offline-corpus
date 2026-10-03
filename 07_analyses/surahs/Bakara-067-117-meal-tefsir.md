@@ -603,7 +603,13 @@ Allah’a yönelişi, bağlılığı ve bunun düzenli/pratik ifadesini kurup i�
 
 “Cennete ancak Yahudi olanlar veya Hristiyan olanlar girebilir” dediler. Bunlar, sağlam bilgi ve delile dayanmayan beklenti, temenni ve kabulleridir (emânî). De ki: “Eğer iddianızda doğru sözlüyseniz (sâdıklar), bunu açık ve kesin bir delille ortaya koyun (burhan).”
 
-Ölçü: iddia → burhan.
+Burada 2:78’deki **emânî** yeniden karşımıza çıkıyor. Orada Kitabı bilmeyenlerin “emânîlere” dayandıkları söylenmişti; burada ise **grup kimliğine dayalı kurtuluş beklentisi** aynı kelimeyle ifade ediliyor.
+
+Ölçü de açık:
+
+**iddia → burhan.**
+
+“Biz şu gruba aidiz, dolayısıyla kurtuluş bizimdir” iddiası kendi başına delil değildir.
 
 ---
 
@@ -615,9 +621,27 @@ Hayır! Kim vechini Allah’a teslim eder ve muhsin olursa, onun ecri Rabbi kat�
 
 **Tefsirli çeviri**
 
-Hayır! Kim bütün yönelişini, benliğini ve hayatındaki temel istikametini Allah’a teslim eder (vechini Allah’a teslim etmek / islâm) ve bunu iyiliği doğru, güzel ve nitelikli biçimde gerçekleştirerek yaşayan biri olursa (muhsin), yaptığına karşılık hak ettiği karşılık (ecr) kendisini yetiştirip yöneten Rabbi katındadır. Böyle kimseler için gelecek konusunda korku yoktur; geçmişlerinden dolayı da sürekli üzüntü içinde kalmayacaklardır.
+Hayır! Kim bütün yönelişini, benliğini ve hayatındaki temel istikametini Allah’a teslim eder (vechini Allah’a teslim etmek / islâm) ve bunu iyiliği doğru ve güzel biçimde gerçekleştirerek yaşayan biri olursa (muhsin), yaptığına karşılık hak ettiği karşılık (ecr) kendisini yetiştirip yöneten Rabbi katındadır. Böyle kimseler için gelecek konusunda korku yoktur; geçmişlerinden dolayı da sürekli üzüntü içinde kalmayacaklardır.
 
-111’deki grup kimliğine dayalı kurtuluş iddiasına 112’de etnik veya mezhebî etiketle değil, Allah’a teslimiyet + ihsan ölçüsüyle cevap verilir.
+Bu ayet 111’in cevabıdır ve çok önemlidir.
+
+111:
+
+**“Kurtuluş bizim grubumuza aittir.”**
+
+112:
+
+**“Hayır.”**
+
+Ardından herhangi bir etnik veya mezhebî etiket verilmiyor. İki ölçü veriliyor:
+
+**Allah’a teslimiyet + ihsan.**
+
+Buradaki **“esleme vechehû lillâh”** yalnız “yüzünü Allah’a çevirdi” demekten daha geniştir. `Vech`, kişinin yöneldiği tarafı ve kendisini ortaya koyan yüzünü temsil eder. İfade, kişinin **bütün yönünü Allah’a teslim etmesi** anlamına açılıyor.
+
+**Muhsin** de yalnız “iyilik yapan” diye daraltılmamalı. `H-s-n` alanında **iyi, güzel, uygun ve nitelikli biçimde yapmak** vardır. Dolayısıyla burada teslimiyetin yalnız iddia olarak kalmaması, davranışta iyi ve doğru biçimde gerçekleştirilmesi söz konusudur.
+
+111–112 birlikte Kur’an'ın kurtuluş konusunda **etiket yerine yönelim ve davranış ölçüsü koyduğu** güçlü bölümlerden biridir.
 
 ---
 
@@ -631,6 +655,18 @@ Yahudiler, “Hristiyanlar hiçbir şey üzerinde değildir” dediler. Hristiya
 
 Yahudiler, “Hristiyanların dayanabileceği gerçek bir temel yoktur” dediler; Hristiyanlar da “Yahudilerin dayanabileceği gerçek bir temel yoktur” dediler. Oysa her iki taraf da ilahî metni okuyup aktarıyor (Kitap). Bilgi sahibi olmayanlar da aynı dışlayıcı dili kullandılar. Ayrılığa düşüp birbirleriyle çekiştikleri konularda (ihtilaf) nihai hükmü diriliş ve hesap gününde (kıyamet) Allah verecektir.
 
+Buradaki **“leyset alâ şey’in”** kelimesi kelimesine “hiçbir şey üzerinde değildir”dir. Türkçede anlamı:
+
+**“Sağlam bir temele dayanmıyor / hak üzere değil.”**
+
+111–113 art arda okununca mesele daha net:
+
+Önce her grup **kurtuluşu kendisine tahsis ediyor**, sonra diğer grubun **hiçbir hakikat üzerinde olmadığını** söylüyor.
+
+Kur’an ise nihai hüküm yetkisini gruplara bırakmıyor:
+
+**Allah hükmedecek.**
+
 ---
 
 ## Bakara 2:114
@@ -643,7 +679,13 @@ Allah’ın mescidlerinde O’nun adının anılmasına engel olan ve onların h
 
 Allah’a yönelmek, secde etmek ve O’nu anmak için ayrılmış yerlerde (mescidler) Allah’ın adının anılmasını engelleyen ve bu yerlerin işlevsizleşmesi, yıkılması veya bozulması için çalışan kimseden daha büyük bir haksızlık yapan kim olabilir (zulüm)? Böylelerinin oralara hâkim ve engelleyici biçimde değil, ancak çekinerek girmeleri gerekirdi. Onlar için dünyada aşağılanma; kalıcı gelecek hayatta (âhiret) ise büyük bir karşılık/azap vardır.
 
-Mescid, s-c-d kökünden gelir; yalnız bugünkü mimarî anlamdaki “cami binası”na indirgenmez.
+Burada **mescid** kelimesini yalnız bugünkü mimarî anlamdaki “cami binası”na indirgememek gerekir. `S-c-d` kökünden gelir; **secde edilen / Allah’a yönelinen yer** anlam alanındadır.
+
+Ayetin odağı binanın kendisinden çok:
+
+**Allah’ın adının anılmasının engellenmesi + o yerlerin işlevsizleştirilmesi/yıkıma götürülmesi.**
+
+`Harâb`, fiziksel yıkımı içerebilir; fakat bir yerin **işlevini kaybetmesi, boş ve kullanılamaz hâle gelmesi** anlamı da vardır.
 
 ---
 
@@ -657,7 +699,15 @@ Doğu da batı da Allah’ındır. Nereye yönelirseniz Allah’ın vechi oradad
 
 Doğu da batı da, bütün yönler de Allah’a aittir. Bu nedenle hangi tarafa dönerseniz dönün, Allah’ın yönelinen huzuru ve varlığının işaretleriyle karşılaşırsınız (vechullah). Çünkü Allah hiçbir yönle ve mekânla sınırlandırılamayacak kadar kuşatıcı ve geniştir (Vâsi‘); her şeyi bütün boyutlarıyla bilendir (Alîm).
 
-“Vechullah” fiziksel yüz tasavvuruna indirgenmez; bağlam yön ve mekândır.
+Burada **“vechullah” = Allah’ın yüzü** diye fiziksel bir yüz tasavvuru yapmak gerekmez.
+
+Aynı `vech` kelimesi 112’de insan için kullanılmıştı:
+
+**“vechini Allah’a teslim etmek.”**
+
+Burada ise Allah’a nispet ediliyor. Bağlam mekân ve yön olduğu için, ifade **Allah’ın bir yöne hapsedilemeyeceğini ve insan hangi tarafa yönelirse Allah’ın egemenlik alanının dışında kalamayacağını** gösteriyor.
+
+Bu ayet özellikle Allah’ı belirli bir fiziksel mekâna yerleştiren anlayışlara karşı önemli bir okuma anahtarıdır.
 
 ---
 
@@ -671,7 +721,15 @@ Doğu da batı da, bütün yönler de Allah’a aittir. Bu nedenle hangi tarafa 
 
 “Allah kendisine bir çocuk edindi” dediler. O, kendisine yakıştırılan bu tür eksiklik ve benzetmelerden bütünüyle uzaktır (subhân). Aksine göklerde ve yerde bulunan her şey O’na aittir. Hepsi O’nun karşısında bağlı, boyun eğmiş ve O’nun kurduğu düzene tâbi durumdadır (kânitûn).
 
-Subhân burada yalnız kalıp bir tesbih ifadesi değil; Allah’ı kendisine isnat edilen eksik tasavvurlardan tenzih eder.
+**Subhân** burada yalnız “Allah’ı tesbih ederim” şeklinde bir kalıp değildir. Temel işlevi Allah’ı kendisine isnat edilen yanlış ve eksik tasavvurlardan **tenzih etmektir**:
+
+**“Allah bundan uzaktır.”**
+
+**Kânitûn** da yalnız “itaat ederler” diye daraltılmamalı. `K-n-t` alanında **bağlılık, boyun eğme, süreklilik gösteren itaat ve yönelme** vardır.
+
+Mantık şu:
+
+Her şey Allah’a ait ve O’na bağımlıysa → Allah’ın varlığını devam ettirmek, soyunu sürdürmek veya mülkünü devralmak için bir çocuğa ihtiyacı yoktur.
 
 ---
 
@@ -683,9 +741,31 @@ O, göklerin ve yerin Bedî‘idir. Bir işe hükmettiğinde ona yalnızca “Ol
 
 **Tefsirli çeviri**
 
-Allah, gökleri ve yeri daha önce mevcut bir örneği kopyalamadan özgün biçimde var eden yaratıcıdır (Bedî‘). Bir şeyin gerçekleşmesini kesin olarak belirlediğinde ve hükme bağladığında (kadâ), onun için yalnızca “Ol!” der; böylece belirlediği şey gerçekleşir/oluşur.
+Allah, gökleri ve yeri daha önce mevcut bir örneği kopyalamadan özgün biçimde var eden yaratıcıdır (Bedî‘). Bir şeyin gerçekleşmesini kesin olarak belirlediğinde ve hükme bağladığında (kadâ), onun için yalnızca “Ol!” der; böylece belirlediği süreç gerçekleşmeye başlar ve olur.
 
-**Kun fe-yekûn notu:** Ayette “anında” anlamına gelen ayrı bir kelime yoktur. Vurgu Allah’ın hükmünün gerçekleşmesine engel bağımsız bir güç bulunmamasıdır. Gerçekleşmenin Allah’ın koyduğu yasalar içinde bir süreç gerektirmesi ayetin lafzıyla çelişmez.
+**Bedî‘** önemli bir kelime: var olan bir modeli taklit etmek değil, **örneksiz ve özgün biçimde ortaya çıkarmak** anlam alanındadır.
+
+**“Kun fe-yekûn”** ise çoğu zaman “Ol der ve anında olur” şeklinde anlaşılır. Fakat ayette **“anında”** anlamına gelen ayrı bir kelime yoktur. İfade esas olarak Allah’ın iradesinin önünde bağımsız bir engel bulunmadığını anlatır.
+
+Allah bir şeyi hükme bağladığında:
+
+**“Ol” → “olur / oluşur.”**
+
+Bunun gerçekleşmesi Allah’ın koyduğu yasalar içinde bir süreç gerektiriyorsa, ayet bu süreci dışlamaz. Vurgu **Allah’ın hükmünün gerçekleşeceği** üzerindedir.
+
+---
+
+## 2:111–117 arasındaki bütünlük
+
+**“Kurtuluş yalnız bizim grubumuzundur” iddiası → reddediliyor.**  
+**Ölçü → Allah’a teslimiyet ve ihsan.**  
+**Grupların birbirlerini dışlaması → nihai hüküm Allah’a bırakılıyor.**  
+**Allah’ın anılmasını engellemek → ağır zulüm.**  
+**Allah belirli yön ve mekânla sınırlandırılamaz.**  
+**Allah’ın çocuğa ihtiyacı yoktur.**  
+**Çünkü bütün varlığın sahibi ve özgün yaratıcısı O’dur.**
+
+Yani bölüm, insanın **Allah adına sınırlar koymasını** tekrar tekrar kırıyor: Kim kurtulacak, Allah nerede bulunabilir, kim Allah’a ait olabilir ve Allah nasıl yaratır gibi konularda belirleyici merci insan grupları değil, Allah’ın kendisidir.
 
 ---
 
