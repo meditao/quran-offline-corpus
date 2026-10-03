@@ -20,7 +20,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 ### Sûre ve pasaj analizleri
 
 - [Âsr Suresi (103) — Kur'an içi analiz ve tefsirli meal](surahs/Asr-103-analysis.md)
-- [Bakara 2:2–2:62 — terimleri koruyan çeviri ve tefsirli çeviri](surahs/Bakara-002-062-meal-tefsir.md) — her ayette terimleri koruyan çeviri ile kavramları bağlam içinde açan tefsirli çeviriyi birlikte sunan, sürümlenen bir yorum/çalışma kaydıdır. Kavram çalışmalarında ikincil referans olarak kullanılabilir; ham korpus ve morfoloji kaynak katmanlarından ayrıdır. Yeni bulgularla gerekçesi kaydedilerek güncellenebilir.
+- [Bakara 2:2–2:66 — terimleri koruyan çeviri ve tefsirli çeviri](surahs/Bakara-002-066-meal-tefsir.md) — her ayette terimleri koruyan çeviri ile kavramları bağlam içinde açan tefsirli çeviriyi birlikte sunan, sürümlenen bir yorum/çalışma kaydıdır. Kavram çalışmalarında ikincil referans olarak kullanılabilir; ham korpus ve morfoloji kaynak katmanlarından ayrıdır. Yeni bulgularla gerekçesi kaydedilerek güncellenebilir.
 - [Bakara 2:67–2:117 — terimleri koruyan çeviri ve tefsirli çeviri](surahs/Bakara-067-117-meal-tefsir.md) — bu çalışma oturumunda geliştirilen çeviri, kavram notları ve tartışmalı ayet açıklamalarını; iman, ibadet/kulluk, velî, ikâme, salât ve kalp-mühür/perde gibi ortak okuma anahtarlarıyla birlikte içerir.
 
 Aynı klasördeki TSV/CSV türü dosyalar manuel kontrol, sınıflandırma ve falsifikasyon kayıtlarıdır. Bunlar teknik kanıt katmanıdır; nihai okuyucu metninin yerine geçmez.
