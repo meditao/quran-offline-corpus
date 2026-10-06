@@ -1,72 +1,60 @@
-# Kur'an Araştırma Masası
+# Yûnus — sade meal okuma denemesi
 
-Türkçe, tamamen offline çalışan okuma ve araştırma uygulaması. Ana depo kaynak/veri arşividir; uygulama ayrı bir sunum katmanıdır. Araştırma dosyalarını, Tanzil metnini ve QAC verisini değiştirmez.
+Şimdilik yalnız Yûnus sûresinin 109 ayeti hazırlanır. Bütün ayetler tek sayfada alt alta gösterilir; ayet numarasına gitmek sayfa içinde kaydırır. Diğer sûrelerde boş hazırlık görünümü bulunur.
 
-## Tek komutla başlatma
+Ayetin üstünde mevcut tezgah motorunun Türkçe okunuşu, altında Mehmet Okuyan, Erhan Aktaş ve bizim tefsirli çevirimiz için ayrı alanlar bulunur. Arapça, morfoloji, kök araması ve terimleri koruyan çeviri bu denemenin ekranında gösterilmez. Tefsirli çevirimizdeki parantezli kavramlar kaynak dosyadan aynen korunur.
 
-Gereksinim: **Python 3.10 veya üstü**. Ek paket, npm, framework veya internet bağlantısı gerekmez. Önce deponun tamamını bilgisayara indirin; yalnız bu klasörü indirmek veri kaynakları için yeterli değildir.
+## Tek komutla açma
 
-Deponun kök dizininde:
+Deponun kökünde Python 3.10+ ile:
 
 ```sh
 python 10_arastirma_web/serve.py
 ```
 
-Windows'ta hazır başlatıcı da kullanılabilir:
+Windows'ta:
 
 ```powershell
 .\10_arastirma_web\baslat.cmd
 ```
 
-Başlatıcı `py`, `python` veya Codex'in bu bilgisayardaki Python çalışma ortamını bulur. Python komutu `py` olarak kurulmuşsa doğrudan `py -3 10_arastirma_web/serve.py` de kullanılabilir. Komut yerel kaynakları doğrular, statik uygulamayı üretir ve tarayıcıda **http://127.0.0.1:8765/** adresini açar. Terminal açık kalmalıdır. Kapatmak için Ctrl+C kullanın. Port doluysa `--port 8766`; tarayıcı açılmasın istiyorsanız `--no-browser` ekleyin. Üretimi tekrar etmeden açmak için `--no-build` kullanılabilir; kaynak dosyaları değiştiğinde normal komutla yeniden üretin.
+Başlatıcı py, python veya Codex'in bilgisayardaki Python ortamını bulur. Tarayıcıda http://127.0.0.1:8765/ açılır. Terminal açık kalır; Ctrl+C ile kapatılır. Port doluysa --port 8766; tarayıcı otomatik açılmasın istiyorsanız --no-browser ekleyin. Ek paket ve internet bağlantısı gerekmez.
 
-## Kullanım
+## Mevcut içerik
 
-- Sol taraftan sûre seçin; sûre listesinde isim veya numara ile filtreleyin. Ayet numarası ve önceki/sonraki düğmeleriyle gezin.
-- Arapça kelimeye tıklayın: QAC kelime konumu, kök, lemma, ön ek/gövde/son ek segmentleri ve ham morfoloji etiketleri açılır. Kök veya lemma bağlantısı bütün korpusta arama yapar.
-- Aramada kök, lemma, kelime, metin veya ayet referansı seçin. Örneğin kök `Amn`, `أ م ن`; ayet `2:3`. Buckwalter büyük/küçük harf duyarlıdır: `Slw` ve `slw` ayrı köklerdir.
-- Çevirilerde iki ayrı yorum bölümü bulunur: **Terimleri koruyan çeviri** ve **Tefsirli çeviri**. Mevcut kapsam Bakara **2:2–117** ve Yûnus **10:1–109**. Başka ayetlerde çeviri uydurulmaz; kaydın bulunmadığı belirtilir.
-- Kavram ve analiz dosyaları uygulama içinden okunur. Âsr analizi, İman/Mümin kartları, Amn aşamaları, mevcut türetilmiş raporlar ve yöntem dosyaları yerel olarak bulunur.
+Bizim tefsirli çevirimiz Yûnus 1–109 için 07_analyses/surahs/Yunus-001-109-meal-tefsir.md dosyasından alınır. Okunuşlar ve bu çeviri offline çalışır.
 
-## Veri, aktarım ve yorum
+Mehmet Okuyan ve Erhan Aktaş'ın tam metinleri ve açıklamaları henüz pakete eklenmemiştir. Açık Kuran'ın yazılım lisansı, dış veritabanındaki yazar metinleri için açık yeniden kullanım izni olarak kabul edilmemiştir. Kaynak bağlantıları internet gerektirir. Boş meal alanına çeviri veya not uydurulmaz.
 
-**Veri:** Tanzil Uthmani v1.1 Arapça metni ve QAC v0.4 morfoloji annotationları. Arapça metin aynen korunur. Morfoloji etiketleri bir annotation kaynağıdır; kelimenin Türkçe anlamı olarak sunulmaz.
+Doğrulanan kayıtlar Mehmet Okuyan (107) ve tam adı Erhan Aktaş olan sürümdür (105). Eski Baskı (50) ve 10. Baskı (115) alınmaz. Kaynaklar: [Açık Kuran](https://acikkuran.com/10), [API projesi](https://github.com/acik-kuran/acikkuran-api).
 
-**Aktarım:** Okunuş mevcut `tezgah.okunus` motorundan üretilir. Kuralları ve belirsizlikleri kaynak okunuş belgesine dayanır; ses kaydı veya bağımsız bir meal değildir.
+Kullanıcının sağladığı veya açık kullanım izni bulunan meal dosyaları yerel olarak alınabilir. Kaynak notlarının [1], [2] işaretleri ekranda yıldız düğmelerine dönüşür; ayeti ve yazarı korunur. Açıklama başka yazarın notuyla birleştirilmez.
 
-**Yorum/tefsir:** Depodaki Markdown çeviriler ve araştırma kayıtları. Çeviri, kök veya sayısal veri yerine geçmez. Her kaydın kaynak dosyası uygulamada görünür.
+## Kullanıcı meal dosyalarını içe aktarma
 
-Tanzil ve QAC tokenizasyonu her ayette birebir değildir. Uygulama `tezgah.okuma.hizala` ve mevcut hizalama tablosunu kullanır. Besmele öneki ve çoklu Tanzil tokenları dikkate alınır; eşleşmeyen tokenlara sahte kök atanmaz. Hizalama/yazım farkları kelime ayrıntısında belirtilir. Kök araması sayım birimi **QAC kelime konumu**dur; ayet ve sûre sayıları ayrıca gösterilir.
+```sh
+python 10_arastirma_web/import_meals.py --okuyan OKUYAN.json --aktas AKTAS.json --source "Kullanıcının sağladığı dosyalar"
+python 10_arastirma_web/serve.py
+```
 
-## Offline çalışma ve statik taşıma
+Dosya biçimi Açık Kuran'ın data.verses listesi veya doğrudan ayet listesi olabilir. Her satırda verse_number (veya ayah) ve translation: {author: {id, name}, text, footnotes: [{id, number, text}]} bulunur. Her meal dosyası 109 Yûnus ayetini içermelidir; yanlış yazar/sürüm ve eksik dipnot reddedilir. İçe aktarım ağ kullanmaz. Yerel kayıt yerel/acikkuran-yunus.json altında tutulur ve Git'e eklenmez. Mevcut kayıt otomatik üzerine yazılmaz.
 
-Başlatma, okuma, arama ve analiz görüntüleme yerel dosyalarla çalışır; uzak API, CDN, harici font veya paket indirme yoktur. İlk sayfa açılışında tarayıcı uygulamanın tüm dosyalarını offline önbelleğine alır. Durum göstergesi tamamlandığında aynı adres, yerel sunucu kapalıyken de destekleyen tarayıcılarda açılabilir. Tarayıcı depolamayı temizler/boşaltırsa veya service worker desteklenmiyorsa sunucuyu yeniden çalıştırın. İlk açılışı `file://` ile yapmayın; JSON yükleme ve service worker için yerel HTTP adresini kullanın.
+## Offline ve statik çıktı
 
-Yalnız statik çıktı üretmek için:
+Başlatma ve mevcut içerik yerel dosyalarla çalışır. Uzak API, CDN veya harici font yoktur. Tarayıcı offline kopyayı tamamladığında aynı adres destekleyen tarayıcılarda sunucu kapalıyken de açılır. Depolama temizlenirse sunucuyu tekrar çalıştırın. İlk açılışta file:// yerine yerel HTTP adresini kullanın.
 
 ```sh
 python 10_arastirma_web/build.py
 ```
 
-Çıktı `10_arastirma_web/dist/` altındadır; Git'e eklenmez. Bu dizinin **tamamı** GitHub Pages veya başka bir statik hosta taşınabilir. Sunucuda Python/API gerekmez. Dosya adresleri göreli, ayet/analiz adresleri hash tabanlıdır; `/quran-offline-corpus/` gibi bir alt dizinde de çalışır. Başka çıktı dizini için `python 10_arastirma_web/build.py --output YOL` kullanın. Bu komut burada belirtilen taşıma çıktısını hazırlar; kendiliğinden yayın yapmaz.
+Dist dizininin tamamı statik hosta taşınabilir; göreli yollar ve hash tabanlı sûre/ayet adresleri alt dizinlerde çalışır. Bu komut kendi kendine yayın yapmaz. Dış meal metinlerinin yayın izni ayrıca doğrulanmalıdır.
 
-## Mimari ve kaynaklar
+Ana korpus ve araştırma kaynakları değişmez. Mevcut veri hazırlama ve kaynak bütünlüğü altyapısı korunur; sade ekran yalnız data/reader/ dosyalarını kullanır. Okunuş, metnin kurallı aktarımıdır; tefsirli çeviri yorum katmanıdır. Tanzil/QAC bildirimleri üretim çıktısında korunur. [Lisanslar](../LICENSES.md) ve [Kaynaklar](../SOURCES.md) geçerlidir.
 
-- `build.py`: salt okunur kaynaklardan JSON, arama indeksi ve kaynak belgeleri üretimi; `09_calisma_masasi/tezgah` yeniden kullanılır.
-- `static/`: bağımlılıksız HTML/CSS/JavaScript arayüzü, arama worker'ı, offline service worker.
-- `serve.py`: Python standart kütüphanesiyle yalnız `127.0.0.1` üzerinde statik sunucu.
-- `testler/`: tam metin, kapsam, hizalama, kök sayımı ve kaynak bütünlüğü kontrolleri.
-- `dist/`: yeniden üretilebilir dağıtım çıktısı; kaynak arşivinin yerine geçmez.
-
-Lisans ve atıflar kaynak bazındadır: [Lisanslar](../LICENSES.md), [Kaynaklar](../SOURCES.md). Tanzil ve QAC'ın özgün bildirimleri dağıtımda korunur. Repo için tek bir genel lisans varsayılmaz. Çekirdek üretim lisansı belirsiz `yerel/` katmanlarını, üçüncü taraf meal veya sözlükleri içermez.
-
-## Testler
-
-Deponun kökünde:
+## Kontroller
 
 ```sh
 python -m unittest discover -s 10_arastirma_web/testler -v
-python -m unittest discover -s 09_calisma_masasi/testler -v
 ```
 
-Tarayıcıda Arapça kelime tıklama, Amn/Slw araması, Bakara/Yûnus kapsam uçları, analiz bağlantıları, mobil görünüm ve offline önbellek ayrıca doğrulanmalıdır.
+Kontroller 109 ayeti, diğer sûrelerin boş durumunu, tefsir ve parantezli kavramların korunmasını, doğru yazar sürümlerini, dipnot eşleştirmesini ve offline kopyayı doğrular. Kullanıcı dosyası yoksa iki dış mealin açıkça eksik gösterilmesi de kontrol edilir.

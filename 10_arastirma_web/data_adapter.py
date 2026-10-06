@@ -79,7 +79,8 @@ def source_paths() -> list[Path]:
     selected.update((REPO / "07_analyses").rglob("*.tsv"))
     selected.update((REPO / "09_calisma_masasi" / "tezgah").rglob("*.py"))
     selected.update((WEB / "static").rglob("*"))
-    selected.update({Path(__file__), WEB / "build.py", veri.QAC_YOLU,
+    selected.update({Path(__file__), WEB / "build.py", WEB / "reader_data.py",
+                     WEB / "yerel/acikkuran-yunus.json", veri.QAC_YOLU,
                      veri.ROOT_INDEX_YOLU, veri.LEMMA_INDEX_YOLU,
                      okuma.HIZALAMA_YOLU, okunus.TANZIL_YOLU,
                      okunus.DURAK_YOLU, okunus.MANIFEST_YOLU,
@@ -355,6 +356,7 @@ def export(stage: Path, input_hashes: dict[str, str], build_id: str) -> dict:
     surahs = []
     search_words = []
     search_verses = []
+    reader_readings = {}
     alignment_counts: Counter = Counter()
     unmatched_words = 0
     for meta in chapter_meta:
@@ -371,6 +373,8 @@ def export(stage: Path, input_hashes: dict[str, str], build_id: str) -> dict:
         for ayah in range(1, verse_count + 1):
             verse = verse_data(surah, ayah, arabic[(surah, ayah)], translations, documents)
             verses.append(verse)
+            if surah == 10:
+                reader_readings[ayah] = (verse["reading"], verse["readingNotes"])
             alignment_counts[verse["alignmentStatus"]] += 1
             for word in verse["words"]:
                 unmatched_words += int(not word["tanzilIndices"])
@@ -413,6 +417,8 @@ def export(stage: Path, input_hashes: dict[str, str], build_id: str) -> dict:
                               "translationSources": list(TRANSLATION_FILES),
                               "generator": "10_arastirma_web/build.py", "networkUsed": False}}
     write_json(stage / "data/catalog.json", catalog)
+    from reader_data import export_reader
+    export_reader(stage, build_id, surahs, translations, reader_readings, write_json)
     # Büyük korpuslar dahil her dosya önbellek manifestindedir. Service worker
     # manifest.json'u ayrıca okuyarak kendi önbelleğine koyar.
     files = sorted(path.relative_to(stage).as_posix() for path in stage.rglob("*")

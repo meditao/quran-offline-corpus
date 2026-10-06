@@ -3,35 +3,30 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#254d3f">
-  <meta name="description" content="Kur’an metni, kelimeler ve araştırma dosyaları için çevrimdışı çalışma masası.">
-  <title>Kur’an Araştırma Masası</title>
+  <meta name="theme-color" content="#faf9f5">
+  <meta name="description" content="Yûnus sûresini Türkçe okunuşu ve tefsirli çevirimizle tek sayfada okuyun. Mehmet Okuyan ve Erhan Aktaş için çeviri alanları hazırdır. Çevrimdışı kullanılabilir.">
+  <title>Yûnus Sûresi · Kur’an Meal</title>
   <link rel="stylesheet" href="style.css">
   <script src="app.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#content">İçeriğe geç</a>
   <header class="app-header">
-    <a class="brand" href="#/ayet/2/2" aria-label="Kur’an Araştırma Masası ana sayfa"><span class="brand-mark" aria-hidden="true">ق</span><span><strong>Kur’an</strong><small>Araştırma Masası</small></span></a>
-    <form id="global-search" class="global-search" role="search">
-      <label class="visually-hidden" for="search-type">Arama türü</label>
-      <select id="search-type" name="type"><option value="root">Kök</option><option value="lemma">Lemma</option><option value="word">Kelime</option><option value="text">Metin</option><option value="ref">Ayet</option></select>
-      <label class="visually-hidden" for="search-query">Arama</label>
-      <input id="search-query" name="q" placeholder="Kök, kelime veya ayet ara…" autocomplete="off" required>
-      <button type="submit" aria-label="Ara"><span aria-hidden="true">⌕</span><span class="search-button-label">Ara</span></button>
-    </form>
-    <div class="header-end"><span class="offline-badge" id="offline-status" role="status">Yerel çalışma</span><a class="plain-link" href="#/kaynaklar">Kaynaklar</a></div>
+    <div class="header-inner">
+      <a class="brand" href="#/sure/10" aria-label="Kur’an Meal — Yûnus sûresi"><span class="brand-mark" aria-hidden="true">K</span><span>Kur’an <strong>Meal</strong></span></a>
+      <span class="offline-status" id="offline-status" role="status">Yerel kullanım</span>
+    </div>
   </header>
-  <div class="app-layout">
-    <aside class="surah-sidebar" aria-label="Sûreler">
-      <div class="sidebar-heading"><h2>Sûreler</h2><span id="surah-count">114</span></div>
-      <label class="visually-hidden" for="surah-filter">Sûre filtrele</label><input id="surah-filter" class="surah-filter" type="search" placeholder="Sûre adı veya numarası…">
-      <nav id="surah-list" aria-label="Sûre listesi"><p class="subtle">Veriler yükleniyor…</p></nav>
-      <footer class="sidebar-footer"><span class="legend-dot data-dot"></span> Metin ve morfoloji <span class="legend-dot interpretation-dot"></span> Araştırma ve yorum</footer>
-    </aside>
-    <main id="content" tabindex="-1" aria-live="polite"><div class="initial-loading"><span class="eyebrow">ÇEVRİMDIŞI KÜTÜPHANE</span><h1>Çalışma masası açılıyor</h1><p>Metin, kelimeler ve araştırma dosyaları hazırlanıyor.</p></div></main>
-  </div>
-  <aside id="word-panel" class="word-panel" aria-label="Kelime çözümlemesi" hidden></aside>
-  <div id="toast" class="toast" role="status" hidden></div>
+  <nav class="reader-toolbar" aria-label="Sûre ve ayet seçimi">
+    <div class="toolbar-inner">
+      <div class="surah-control"><label for="surah-select">Sûre</label><select id="surah-select" disabled><option value="10">10 · Yûnus</option></select></div>
+      <form class="verse-jump" id="verse-jump"><label for="ayah-number">Ayete git</label><div class="jump-input"><input id="ayah-number" name="ayah" type="number" min="1" max="109" value="1" inputmode="numeric" required aria-label="Ayet numarası"><button type="submit" aria-label="Seçili ayete git">Git <span aria-hidden="true">↓</span></button></div></form>
+      <button class="font-button" id="font-toggle" type="button" aria-pressed="false" aria-label="Yazıyı büyüt">A<span aria-hidden="true">a</span></button>
+    </div>
+  </nav>
+  <main id="content" tabindex="-1"><div class="loading-state"><span class="eyebrow">MEAL OKUMA</span><h1>Yûnus sûresi</h1><p>Çeviriler hazırlanıyor…</p></div></main>
+  <footer class="app-footer" id="app-footer" hidden></footer>
+  <a class="back-to-top" href="#/sure/10" id="back-to-top" aria-label="Sûrenin başına dön" hidden>↑ <span>Başa dön</span></a>
+  <div class="update-notice" id="update-notice" role="status" hidden><span>Yeni sürüm hazır.</span><button id="reload-button" type="button">Yenile</button><button class="dismiss-button" id="dismiss-update" type="button" aria-label="Bildirimi kapat">×</button></div>
 </body>
 </html>

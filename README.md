@@ -53,7 +53,7 @@ Opsiyonel yardımcı kaynak Açık Kuran'dır. Eski REST API çekirdek workflow'
 
 ## Offline araştırma web uygulaması
 
-Sûre/ayet gezintisi, Tanzil Arapça metni, mevcut okunuş, kelimeye tıklayarak QAC kök/lemma/morfoloji, kök ve kelime araması, terimleri koruyan/tefsirli çeviriler ve yerel analiz belgeleri yeni, ayrı bir katmanda bulunur: [`10_arastirma_web/`](10_arastirma_web/README.md).
+Yeni, ayrı web katmanı şimdilik yalnız Yûnus sûresinin 109 ayetini tek sayfada sunan sade bir meal okuma denemesidir: [`10_arastirma_web/`](10_arastirma_web/README.md). Türkçe okunuş ayetin üstünde, çeviriler alt alta yer alır; diğer sûreler boştur. Bizim tefsirli çevirimiz hazırdır. Mehmet Okuyan ve yalnız “Erhan Aktaş” adlı sürüm için yerel dosya ve yıldızlı dipnot desteği bulunur; bu iki dış mealin metinleri henüz eklenmemiştir. Ayrıntılar uygulama README'sindedir.
 
 Python 3.10+ ile deponun kökünde tek komut:
 
