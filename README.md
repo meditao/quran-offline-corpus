@@ -51,6 +51,18 @@ Kur'an çalışma masası (`09_calisma_masasi/`, `python -m tezgah`) tamamlanmı
 
 Opsiyonel yardımcı kaynak Açık Kuran'dır. Eski REST API çekirdek workflow'un parçası değildir.
 
+## Offline araştırma web uygulaması
+
+Sûre/ayet gezintisi, Tanzil Arapça metni, mevcut okunuş, kelimeye tıklayarak QAC kök/lemma/morfoloji, kök ve kelime araması, terimleri koruyan/tefsirli çeviriler ve yerel analiz belgeleri yeni, ayrı bir katmanda bulunur: [`10_arastirma_web/`](10_arastirma_web/README.md).
+
+Python 3.10+ ile deponun kökünde tek komut:
+
+```sh
+python 10_arastirma_web/serve.py
+```
+
+Tarayıcıda `http://127.0.0.1:8765/` açılır. İnternet veya ek paket gerekmez. Statik çıktısı ileride GitHub Pages gibi bir hosta taşınabilir. Ayrıntılar: [uygulama README'si](10_arastirma_web/README.md).
+
 ## Temel ilke
 
 Ham kaynak verisi, türetilmiş indeksler, sözlük katmanı ve yorum/analiz katmanı birbirinden ayrıdır. Kaynağı ve lisansı doğrulanmamış veri ham korpusa eklenmez. Yorum, ham veri gibi sunulmaz; çıkarımın dayandığı ayet ve veri açıkça gösterilir.
