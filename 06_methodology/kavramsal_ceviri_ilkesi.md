@@ -8,13 +8,17 @@ Her ayet mümkün olduğunda iki katmanda verilir:
 
 ### A. Terimleri koruyan çeviri
 
-İman, küfür, takvâ, ibadet, hidayet, salât, zekât, mîsak, tasdik, velî, ikâme, fısk, zulüm, fitne gibi anlam alanı geniş ve Türkçede tek kelimeyle eksiksiz karşılanamayan kavramlar mümkün olduğunca terim olarak korunur.
+İlk çeviri **sade, anlaşılır ve akıcı Türkçe** ile yazılır. Lafzın Türkçede anlamsız duran mekanik dizimini kopyalamak yerine, Arapça cümlenin bağlamda kurduğu anlam aktarılır. Ancak çeviriye metinde olmayan kesin hüküm, ayrıntı veya yorum eklenmez.
 
-Amaç, Türkçe karşılığın kavramı erken aşamada daraltmasını önlemektir.
+İman, küfür, takvâ, ibadet, hidayet, salât, zekât, mîsak, tasdik, velî, ikâme, fısk, zulüm ve fitne gibi geniş veya tartışmalı kavramlar **her ayette otomatik olarak Arapça bırakılmaz**. Bağlamda açık olan Türkçe karşılık kullanılır; kavramın özgün biçimi gerektiğinde ilgili ifadenin sonunda **parantez içinde** gösterilir. Türkçede anlaşılabilen yerleşik kavramları zorla değiştirmek de doğru değildir.
+
+Bir kavramın mevcut Türkçe karşılıklarının her biri önemli bir anlam ihtimalini dışarıda bırakıyorsa terim aslıyla korunabilir veya iki anlam kısa biçimde birlikte verilebilir. Bu kararın dayanağı çeviriden önceki dilsel analizde yer almalıdır.
+
+Amaç, kavramı Türkçe tek bir anlamla erken aşamada daraltmadan **okunabilir** bir metin üretmektir. Terimin sözlük anlamı, bağlamsal açılımı ve normatif sonucu birbirine karıştırılmaz.
 
 ### B. Tefsirli çeviri
 
-Terimli çeviride korunan kavram, tefsirli çeviride tek Türkçe kelimeye zorla indirgenmez. Kökün çekirdek anlamı, Kur'an içi kullanım alanı, bağlam ve ilişkili ayetler birlikte değerlendirilerek anlam birkaç tamamlayıcı Türkçe ifadeyle açılır. Ardından özgün terim parantez içinde gösterilir.
+İlk çeviride Türkçeye aktarılan veya aslıyla korunan bir kavram, tefsirli çeviride bağlamın gerektirdiği ölçüde açıklanabilir. Kökün anlam alanı, cümle yapısı, Kur'an içi kullanım ve gerçekten ilgili ayetler birlikte değerlendirilir. Açıklayıcı ekleme, metnin gerçekten anlattığı anlamı açmalıdır; delilsiz çıkarım ayetin lafzıymış gibi eklenmez. Önemli özgün terim veya kalıp gerektiğinde parantez içinde gösterilir.
 
 Örnek yöntem:
 
@@ -105,4 +109,6 @@ Bir mesele yalnız tekrar eden kavramsal bir başlık değil, ayetin anlamını 
 
 ## 8. Kısa ilke
 
-**Terimli çeviri kavramı korur; tefsirli çeviri kavramın anlam alanını Türkçede açar.**
+**Terimleri koruyan çeviri doğal Türkçeyle anlamı aktarır ve gerektiğinde özgün terimi gösterir; tefsirli çeviri ise yalnız delille desteklenen bağlamsal anlamı açar.**
+
+Sûre ve pasaj ölçeğinde uygulamanın tek çalışma döngüsü, bağlantı denetimi ve sunum düzeni için [sûre meal–tefsir protokolü](./sure_meal_tefsir_protokolu.md) esas alınır.
