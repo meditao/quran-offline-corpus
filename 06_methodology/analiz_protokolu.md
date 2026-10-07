@@ -24,6 +24,8 @@ Arşiv, kavram kartı, versiyon defteri, hipotez defteri ve periyodik bakım bu 
 9. **Sonuçtan önce kapsam yazılır.** Bir önerme hangi ayetler, hangi biçimler ve hangi bağlamlar için geçerliyse o sınır belirtilir.
 10. **Analiz aşamalıdır.** Sohbet ortamında varsayılan çalışma biçimi her ana aşamanın sonunda durmak ve kullanıcıdan `devam` onayı almaktır. Kullanıcı açıkça kesintisiz çalışma isterse bu kural kaldırılır.
 
+**Sûre çevirisi özel kuralı:** Sûre ve bağlantılı pasajların meal–tefsirinde [sûre meal–tefsir bütünleşik protokolü](./sure_meal_tefsir_protokolu.md) uygulanır. Teknik aşamalar içeride eksiksiz işlenir; kullanıcıdan her aşama sonrası ayrı onay istenmez. Bu istisna analiz, karşı delil ve kaynak kontrollerini gevşetmez.
+
 ---
 
 ## 1. İki veri kaynağı
