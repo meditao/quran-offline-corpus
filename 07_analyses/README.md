@@ -26,6 +26,10 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 
 Aynı klasördeki TSV/CSV türü dosyalar manuel kontrol, sınıflandırma ve falsifikasyon kayıtlarıdır. Bunlar teknik kanıt katmanıdır; nihai okuyucu metninin yerine geçmez.
 
+## Sûre meal–tefsirleri için özel uygulama
+
+[Sûre Meal–Tefsir Bütünleşik Çalışma Protokolü](../06_methodology/sure_meal_tefsir_protokolu.md) esas alınır. Sûrenin bütünü ve pasaj sınırları önce incelenir; **her ayet ayrı dilsel analizden** geçer, ancak ayetler iki çevirisiyle birlikte gösterildikten sonra bağlantılı pasaj için **tek kısa bütünleşik tefsir** yazılır. Ayetler arası bağlantı yalnız aynı kök/tema üzerinden değil, açık metinsel gerekçe ile kurulur. Çeviriye eklenen yorumlar delil düzeyine göre ayrılır; çözülmemiş belirsizlikler nihai sonuç gibi yazılmaz.
+
 ## Standart analiz düzeni
 
 Yeni ve tamamlanmış her kavram çalışması mümkün olduğunca şu yapıda tutulacaktır:
