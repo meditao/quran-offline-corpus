@@ -18,6 +18,7 @@ Klasör listelerine erişemeyen tarayıcılar ve yapay zekâ araçları için ö
 - [Amn — Aşama 5: muʾmin profili](07_analyses/roots/Amn-quran-internal-stage5-mumin-profile.md)
 - [Analiz katmanı ve kayıt standardı](07_analyses/README.md)
 - [Metodoloji](06_methodology/README.md)
+- [Bütünleşik sûre meal–tefsir protokolü — tek çalışma döngüsü](06_methodology/sure_meal_tefsir_protokolu.md)
 - [Sayım birimleri](06_methodology/counting_units.md)
 - [Kök sayım politikası](06_methodology/root_count_policy.md)
 - [Kaynak politikası](06_methodology/source_policy.md)
