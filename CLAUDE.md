@@ -6,6 +6,8 @@ Bu dosya `quran-offline-corpus` deposunun kökünde durur. Claude Code her oturu
 
 Kavramları Kur'an'ın kendi verisinden tanımlamak için tek bir çalışma ortamı: tarama, okuma, kavram dosyası ve tez sınama. Hedef doğruyu bulmaktır. Geleneksel okumayı doğrulamak da çürütmek de hedef değildir; bulgular "lehine/aleyhine" diye çerçevelenmez.
 
+**Sûre ve pasaj meal–tefsiri özel akışı:** [06_methodology/sure_meal_tefsir_protokolu.md](06_methodology/sure_meal_tefsir_protokolu.md) uygulanır. İç işlemler tek çalışma talebinde tamamlanır; her ayet ayrı dilsel çözümlemeden geçer, ayetler arası metinsel bağlantılar sınanır, iki çeviri verilir ve pasaj sonunda bütünleşik kısa tefsir yazılır. Kavram ve tez incelemelerinde aşağıdaki ana araştırma ve denetim ilkeleri aynen korunur.
+
 Çalışma masası depoya **yeni bir katman** olarak eklenir, mevcut katmanlara dokunmaz:
 
 ```
