@@ -1,12 +1,12 @@
 # Kavramsal Çeviri İlkesi
 
-Bu belge, Kur'an çalışmasında terimli çeviri ile tefsirli çeviri arasındaki ayrımı kalıcı yöntem kuralına bağlar.
+Bu belge, Kur'an çalışmasında her ayette verilen ana çeviri ile yalnız gerektiğinde kullanılan tefsirli çeviri arasındaki ayrımı kalıcı yöntem kuralına bağlar.
 
-## 1. İki katmanlı çeviri
+## 1. Ana çeviri ve ihtiyaç halinde tefsirli çeviri
 
-Her ayet mümkün olduğunda iki katmanda verilir:
+Her ayette **tek, doğal, metne sadık ana çeviri** verilir. Açıklama gerekmeyen ayette ikinci bir çeviri üretilmez; tefsirli çeviri yalnız ana çevirinin anlamı tek başına yeterince aktaramadığı durumlarda kullanılabilir.
 
-### A. Terimleri koruyan çeviri
+### A. Ana çeviri (terimleri gerektiğinde koruyan)
 
 İlk çeviri **sade, anlaşılır ve akıcı Türkçe** ile yazılır. Lafzın Türkçede anlamsız duran mekanik dizimini kopyalamak yerine, Arapça cümlenin bağlamda kurduğu anlam aktarılır. Ancak çeviriye metinde olmayan kesin hüküm, ayrıntı veya yorum eklenmez.
 
@@ -16,9 +16,9 @@ Bir kavramın mevcut Türkçe karşılıklarının her biri önemli bir anlam ih
 
 Amaç, kavramı Türkçe tek bir anlamla erken aşamada daraltmadan **okunabilir** bir metin üretmektir. Terimin sözlük anlamı, bağlamsal açılımı ve normatif sonucu birbirine karıştırılmaz.
 
-### B. Tefsirli çeviri
+### B. Tefsirli çeviri (seçmeli)
 
-İlk çeviride Türkçeye aktarılan veya aslıyla korunan bir kavram, tefsirli çeviride bağlamın gerektirdiği ölçüde açıklanabilir. Kökün anlam alanı, cümle yapısı, Kur'an içi kullanım ve gerçekten ilgili ayetler birlikte değerlendirilir. Açıklayıcı ekleme, metnin gerçekten anlattığı anlamı açmalıdır; delilsiz çıkarım ayetin lafzıymış gibi eklenmez. Önemli özgün terim veya kalıp gerektiğinde parantez içinde gösterilir.
+Ana çevirinin okuyucuya yeterince aktaramadığı bağlamsal anlam varsa, o ayet için ayrıca tefsirli çeviri sunulabilir. Ana çeviriyi başka kelimelerle tekrar etmek veya ayete açıklama katmak için gerekçe icat etmek yeterli değildir. İlk çeviride Türkçeye aktarılan veya aslıyla korunan bir kavram, ancak gerekli olduğunda tefsirli çeviride bağlamın gerektirdiği ölçüde açıklanabilir. Kökün anlam alanı, cümle yapısı, Kur'an içi kullanım ve gerçekten ilgili ayetler birlikte değerlendirilir. Açıklayıcı ekleme, metnin gerçekten anlattığı anlamı açmalıdır; delilsiz çıkarım ayetin lafzıymış gibi eklenmez. Önemli özgün terim veya kalıp gerektiğinde parantez içinde gösterilir.
 
 Örnek yöntem:
 
@@ -109,6 +109,6 @@ Bir mesele yalnız tekrar eden kavramsal bir başlık değil, ayetin anlamını 
 
 ## 8. Kısa ilke
 
-**Terimleri koruyan çeviri doğal Türkçeyle anlamı aktarır ve gerektiğinde özgün terimi gösterir; tefsirli çeviri ise yalnız delille desteklenen bağlamsal anlamı açar.**
+**Her ayette tek ana çeviri doğal Türkçeyle anlamı aktarır ve gerektiğinde özgün terimi gösterir. Tefsirli çeviri yalnız anlamı açıklamak için gerçekten gerekli olduğunda ve delille desteklendiğinde eklenir. Tartışmalı anlam ihtimalleri gerektiğinde dikkat noktasında ele alınır; pasaj tamamlanınca tek, kısa bütünleşik tefsir verilir.**
 
 Sûre ve pasaj ölçeğinde uygulamanın tek çalışma döngüsü, bağlantı denetimi ve sunum düzeni için [sûre meal–tefsir protokolü](./sure_meal_tefsir_protokolu.md) esas alınır.
