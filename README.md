@@ -52,6 +52,18 @@ Kur'an çalışma masası (`09_calisma_masasi/`, `python -m tezgah`) tamamlanmı
 
 Opsiyonel yardımcı kaynak Açık Kuran'dır. Eski REST API çekirdek workflow'un parçası değildir.
 
+## Offline araştırma web uygulaması
+
+Yeni, ayrı web katmanı şimdilik yalnız Yûnus sûresinin 109 ayetini tek sayfada sunan sade bir meal okuma denemesidir: [`10_arastirma_web/`](10_arastirma_web/README.md). Türkçe okunuş ayetin üstünde, çeviriler alt alta yer alır; diğer sûreler boştur. Bizim tefsirli çevirimiz hazırdır. Mehmet Okuyan ve yalnız “Erhan Aktaş” adlı sürüm için yerel dosya ve yıldızlı dipnot desteği bulunur; bu iki dış mealin metinleri henüz eklenmemiştir. Ayrıntılar uygulama README'sindedir.
+
+Python 3.10+ ile deponun kökünde tek komut:
+
+```sh
+python 10_arastirma_web/serve.py
+```
+
+Tarayıcıda `http://127.0.0.1:8765/` açılır. İnternet veya ek paket gerekmez. Statik çıktısı ileride GitHub Pages gibi bir hosta taşınabilir. Ayrıntılar: [uygulama README'si](10_arastirma_web/README.md).
+
 ## Temel ilke
 
 Ham kaynak verisi, türetilmiş indeksler, sözlük katmanı ve yorum/analiz katmanı birbirinden ayrıdır. Kaynağı ve lisansı doğrulanmamış veri ham korpusa eklenmez. Yorum, ham veri gibi sunulmaz; çıkarımın dayandığı ayet ve veri açıkça gösterilir.
