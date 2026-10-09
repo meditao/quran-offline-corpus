@@ -1,8 +1,8 @@
-# Sûre Meal–Tefsir Bütünleşik Çalışma Protokolü — v1.0
+# Sûre Meal–Tefsir Bütünleşik Çalışma Protokolü — v1.1
 
-**Tarih:** 2026-10-08  
+**Tarih:** 2026-10-09  
 **Konum:** 06_methodology/sure_meal_tefsir_protokolu.md  
-**Kapsam:** Bir sûrenin veya kendi içinde bağlantılı pasajın, tek çalışma talebiyle dilsel analizi, iki katmanlı Türkçe çevirisi, Kur'an içi ilişkileri ve bütünleşik tefsiri.
+**Kapsam:** Bir sûrenin veya kendi içinde bağlantılı pasajın, tek çalışma talebiyle dilsel analizi, her ayet için tek ana çevirisi, yalnız gereken ayetlerde tefsirli çevirisi, Kur'an içi ilişkileri ve bütünleşik tefsiri.
 
 Bu belge **uygulama protokolüdür**. Ana araştırma standardı olan [analiz_protokolu.md](./analiz_protokolu.md) ve [kavramsal_ceviri_ilkesi.md](./kavramsal_ceviri_ilkesi.md) yürürlükte kalır. Kaynak politikası, sayım birimleri, hipotez sınaması, falsifikasyon ve delil dereceleri bu belgelerden devralınır. Çatışmada kaynak/doğrulama disiplininden taviz verilmez; sûre çalışmasının **iş ritmi ve çıktı biçimi** için bu belge uygulanır.
 
@@ -70,9 +70,9 @@ Bir ayetin ötekini açıklaması **kanıtlanması gereken bağlantı iddiasıd�
 - Delil yetersizse tek anlama zorlama yapılmaz. Birden fazla makul karşılık **gerçekten** kalıyorsa çeviride ikisini temsil etme (örneğin «Kur'an/okuyuş») veya kısa notla alternatif belirtme mümkündür. Buna karşılık kararı mümkün olan yerde gereksiz ikileme yapılmaz.
 - Karar kaydı: tercih edilen karşılık; elenen/rakip karşılık; hangi dilsel ve iç bağlamsal kanıt; açık karşı delil; sonucun sağlam/muhtemel/spekülatif derecesi. Açık ihtimal kesin tefsire dönüştürülmez.
 
-### E. Çeviri: iki ayrı fakat tutarlı katman
+### E. Çeviri: zorunlu ana çeviri, gerekirse tefsirli çeviri
 
-**1 — Terimleri koruyan çeviri**
+**1 — Ana çeviri (her ayette; terimleri gerektiğinde koruyan)**
 
 - Sade, açık, akıcı, **doğal Türkçe** kullanılır. Mekanik kelime sırası, Türkçede anlaşılmayan harfî deyim ve gereksiz Arapça bırakma tercih edilmez.
 - Anlamı tartışma yaratmayan kelimeler Türkçeye çevrilir. Geniş anlamlı veya tartışmalı kavram mümkünse bağlamdaki Türkçe karşılığıyla verilir; **özgün Arapça kavramın Türkçe okunuşu gerektiğinde ilgili ifadenin sonunda parantez içinde** gösterilir. Türkçede yerleşik ve anlamı zaten anlaşılır bir terim sırf Arapça olduğu için zorla değiştirilmez.
@@ -80,14 +80,17 @@ Bir ayetin ötekini açıklaması **kanıtlanması gereken bağlantı iddiasıd�
 - Açıklanmayan yeni olay, muhatap, kesin sonuç, tarih ve hüküm eklenmez; lafzın gerektirdiği Türkçe tamamlama ile yorum ekleme karıştırılmaz.
 - Bir ayetin şartı, olumsuzluğu, istisnası ve kapsamı çeviride mutlaka görünür kalır.
 
-**2 — Tefsirli çeviri**
+**2 — Tefsirli çeviri (yalnız ihtiyaç varsa)**
+
+- **Her ayet için ikinci çeviri zorunlu değildir.** Ana çeviri zaten açık ve doğal Türkçeyle anlamı karşılıyorsa tefsirli çeviri üretilmez. Aynı cümleyi birkaç eşanlamlı sözcükle yeniden söylemek tefsirli çeviri gerekçesi sayılmaz.
+- Ancak deyim, önemli bağlamsal gönderim, çok anlamlı terim veya açıklama gerektiren yapı sebebiyle ana çeviri tek başına yetersiz kalıyorsa, **anlamı gerçekten aydınlatan** ayrı bir tefsirli çeviri eklenebilir. Sadece dilsel alternatifleri karşılaştırmak gerekiyorsa bunlar kısa **dikkat noktasında** gösterilebilir.
 
 - Aynı Arapça cümlenin **gerekçelendirilebilen bağlamsal anlamını** doğal Türkçeyle açar; önemli terim/ifade parantezle gösterilebilir.
 - Tefsirli çeviriye açıklayıcı kelime/cümle eklenebilir; **yalnızca ilgili ayetin veya güçlü bağlantılı pasajın gerçekten anlattığı anlama dayanıyorsa**. Yazarın çıkarımı ayetin ağzından kesin bilgi diye söyletilmez.
 - Açıklama ayrı bir çıkarımsa, tefsirli ayet cümlesine gizlice sokulmaz; pasaj sonu tefsirinde delil seviyesiyle verilir.
 - Ayetler farklı görünse de paralel ifadelerde terim tutarlılığı denetlenir; bağlamın gerçekten gerekçelendirdiği değişken karşılıklar korunur. Tekdüzelik uğruna anlam bozulmaz.
 
-Çeviriler sonradan **karşılıklı lafız denetiminden** geçirilir: atlanan, fazladan eklenen, kapsamı daraltılan veya genişletilen unsur ve dildeki doğallık gözden geçirilir.
+Ana çeviri her ayette **lafız ve doğallık denetiminden** geçirilir; seçmeli tefsirli çeviri varsa ayrıca ana çeviriyle karşılıklı denetlenir: atlanan, fazladan eklenen, kapsamı daraltılan veya genişletilen unsurlar gözden geçirilir.
 
 ### F. Bağlantılı pasajın tek bütünleşik tefsiri
 
@@ -109,11 +112,11 @@ Bir ayetin ötekini açıklaması **kanıtlanması gereken bağlantı iddiasıd�
 
 **Her doğal pasajda:**
 
-1. Ayet numaraları korunur; her ayet için **terimleri koruyan çeviri** ve hemen altında **tefsirli çeviri** sunulur.
+1. Ayet numaraları korunur; her ayette **tek, doğal, metne sadık ana çeviri** verilir. **Tefsirli çeviri**, yalnız anlamı açıklığa kavuşturmaya gerçekten ihtiyaç varsa ana çevirinin altında sunulur; gerekmiyorsa yazılmaz.
 2. Pasaj sonunda yalnız bir **kısa bütünleşik tefsir** verilir. Gerçek anlam farkı yaratan tartışmalı kelime/bağlantı için ayrıca **dikkat noktası** eklenebilir.
 3. İstenmediği sürece tüm morfoloji tabloları, kök frekansları ve karar fişleri ana sunuma dökülmez. Ancak kritik çeviri tercihi kullanıcıca sorgulanınca delili ve alternatifleri denetlenebilir biçimde açıklanır.
 
-**Sûre sonunda:** Ayet atlaması, pasaj bütünlüğü ve terim uyumu kontrol edilir; sûrenin ana düşüncesi kısa ve **delil sınırını aşmayan** bir sentezle yazılır. Bütün çeviriler istenirse tek yerde toplanabilir; iki katman ayrı korunur.
+**Sûre sonunda:** Ayet atlaması, pasaj bütünlüğü ve terim uyumu kontrol edilir; sûrenin ana düşüncesi kısa ve **delil sınırını aşmayan** bir sentezle yazılır. Ana çevirilerin tamamı istenirse tek yerde toplanabilir; ihtiyaç üzerine yazılmış tefsirli çeviriler ayrı etiketlenir.
 
 **Özel istek önceliği:** Kullanıcı yalnız çeviri, okunuş, ayrıntılı analiz veya sırf devam istediğinde görünür çıktı buna göre uyarlanır; **iç kontrol disiplini değişmez**.
 
@@ -130,6 +133,7 @@ Aşağıdaki kontrollerden biri kritik düzeyde başarısızsa ilgili ayet/pasaj
 - [ ] Karşı örnek ve rakip okuma sınandı; «uyumlu» ile «kanıtlayıcı» ayrıldı mı?
 - [ ] Birden fazla ciddi anlam kalıyorsa çeviri bunları dürüstçe temsil ediyor mu?
 - [ ] Terimleri koruyan çeviride ayetin söylemediği yorum kesin söz olarak eklendi mi?
+- [ ] Tefsirli çeviri yalnız ihtiyaç duyulan ayette mi verildi; ana çeviriyi tekrar etmekten öte anlam katkısı sağlıyor mu?
 - [ ] Tefsirli çevirideki açıklamalar gerçekten lafız ve güçlü bağlama dayanıyor mu?
 - [ ] İki çeviri doğal Türkçe mi; bütün önemli ifadeler çevrilmiş ve gereksiz tekrarlar temizlenmiş mi?
 - [ ] Sentezde veri, dilsel çözümleme, çıkarım ve spekülasyon karıştırıldı mı?
@@ -146,4 +150,4 @@ Aşağıdaki kontrollerden biri kritik düzeyde başarısızsa ilgili ayet/pasaj
 
 ## 7. Kısa uygulama komutu
 
-> «[Sûre adı] sûresini bütünleşik sûre meal–tefsir protokolüyle incele. Metni ve pasaj sınırlarını önce bütün olarak değerlendir; her ayeti ayrı dilsel çözümle; gerektiğinde bütün Kur'an'daki ilgili kullanımları, alternatifleri ve karşı delilleri denetle. Bir istek içinde tüm iç aşamaları yürüt. Her ayetin terimleri koruyan doğal Türkçe çevirisini ve tefsirli çevirisini alt alta ver; pasaj bağlamı tamamlandığında kısa, tek bir bütünleşik tefsir yaz. Kritik belirsizlikleri gerekçelendir; yorumları lafız gibi sunma. Ulaşamadığın kaynak veya incelemediğin kapsamı açıkça belirt.»
+> «[Sûre adı] sûresini bütünleşik sûre meal–tefsir protokolüyle incele. Metni ve pasaj sınırlarını önce bütün olarak değerlendir; her ayeti ayrı dilsel çözümle; gerektiğinde bütün Kur'an'daki ilgili kullanımları, alternatifleri ve karşı delilleri denetle. Bir istek içinde tüm iç aşamaları yürüt. Her ayetin tek, doğal ve metne sadık ana çevirisini ver; yalnız ana çeviri anlamı yeterince aydınlatmıyorsa gerekçeli tefsirli çeviri ekle. Tartışmalı kelimeleri gerektiğinde dikkat noktalarında delille ele al; pasaj bağlamı tamamlandığında kısa, tek bir bütünleşik tefsir yaz. Kritik belirsizlikleri gerekçelendir; yorumları lafız gibi sunma. Ulaşamadığın kaynak veya incelemediğin kapsamı açıkça belirt.»
