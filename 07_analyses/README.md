@@ -8,6 +8,14 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 
 ### Kök ve kavram analizleri
 
+- [Allah — denetlenmiş kavram kartı (v2)](roots/Allah-concept-card.md) — özel ad ile ilâh genel ismi ayrımı, açık etimoloji ve çeviri sınırları.
+- [Rabb — denetlenmiş kavram kartı (v4)](roots/Rabb-concept-card.md) — efendilik/yönetim ilişkisi, insan kullanımları ve mutlak tamlama iddiasının karşı örnekleri.
+- [İlâh — denetlenmiş kavram kartı (v3)](roots/Ilah-concept-card.md) — gerçek/iddia edilen ilahlık, hevâ, ibadet, Rabb edinme ve mutlak itaat sınırları.
+- [Âyet — denetlenmiş kavram kartı (v2)](roots/Ayet-concept-card.md) — gösterge, yaratılış işaretleri ve vahyedilmiş metinsel âyet ayrımı.
+- [Kitâb — denetlenmiş kavram kartı (v2)](roots/Kitab-concept-card.md) — kitap, kayıt, mektup, sözleşme, hüküm; isim/fiil ayrımı.
+- [Hidayet — denetlenmiş kavram kartı (v2)](roots/Hidayet-concept-card.md) — yönlendirme ve doğru yol, hedefe göre anlam değişimi.
+- [Dalâlet — denetlenmiş kavram kartı (v2)](roots/Dalalet-concept-card.md) — sapma, yanılma, kayıp ve boşa çıkma.
+
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
 - [İman–tevekkül–vekîl–tafvîz — karşılaştırma kaydı](roots/Tawakkul-Wakil-analysis.md) — 3:159'un karar/danışma yapısı, Uhud tefsir çerçevesi, 106:4 ve 12:17 düzeltmeleri, görev ile sorumluluk ayrımı; [yeniden üretilebilir QAC denetimi](generated/tawakkul_comparison/report.md) ile bağlantılıdır.
