@@ -2,6 +2,8 @@
 
 **Durum:** Ara sonuç. Nihai sözlük tanımı değildir.
 
+**Sürüm:** v1.1 — 2026-10-11. İman artışının yorumu ve birlikte geçişten çıkarılabilecek sonuçlar sınırlandı.
+
 Kaynak zinciri: sabit QAC v0.4 → `<iyma`n` lemması → 45 isim kullanımı → otomatik occurrence audit → kritik ayetlerin manuel kontrolü.
 
 ## 1. Sabit veri
@@ -46,13 +48,13 @@ Artışların ortak noktası dikkat çekicidir:
 - **8:2:** Allah'ın ayetlerinin okunması.
 - **9:124:** yeni bir sûrenin inmesi.
 - **33:22:** yaşanan olayın Allah ve elçinin daha önce verdiği sözü doğrulaması.
-- **3:173:** dış tehdit karşısında Allah'ı yeterli vekil kabul ederek güveni koruma.
+- **3:173:** tehdit haberi karşısında iman artışı ve Allah'ın yeterliliği/vekîlliği beyanı.
 - **48:4:** müminlerin kalplerine sekînet indirilmesi.
 - **74:31:** yeni bir işaret/bilginin yakin oluşturması ve şüpheyi azaltması.
 
-Dolayısıyla artan şey, yeni bir 'inanç maddesi sayısı' olmak zorunda değildir. Verinin ortak yönü daha çok **güvenin, doğrulamanın ve bağlılığın güçlenmesi**dir.
+Artışın **güvenin, doğrulamanın ve bağlılığın güçlenmesi** olarak açıklanması bağlamla desteklenen bir yorumdur. Her örnekte artan boyutun aynı olduğu veya yeni öğrenilen içeriğin katkısının bulunmadığı ayrıca gösterilmiş değildir.
 
-Bu, `īmān = güven bağlama` hipotezini güçlü biçimde destekler; fakat tek başına nihai tanım oluşturmaz.
+Bu yorum `īmān = güven bağlama` eşitliğini tek başına doğrulamaz. Özellikle 8:2'de iman artışıyla tevekkülün, 3:173'te iman artışıyla vekîl beyanının birlikte bulunması ilişkiyi araştırmaya yarar; eşanlamlılık, kesin ayrılık veya nedenselliğin tek başına kanıtı değildir.
 
 ## 4. İman kalple ilişkili ama yalnız duygu değildir
 
@@ -96,6 +98,8 @@ Bu kullanım, imanı salt sözlü veya zihinsel bir etiket olarak bırakmaz. İm
 
 Aynı yön 33:22'de `īmānan wa-taslīman`, 8:2'de ayetlerin okunması + iman artışı + tevekkül, 49:14'te iman + itaat bağlarında da görülür.
 
+Bu sıralamalar davranışların ve içsel durumların nasıl ilişkilendirildiğini gösterir; her sıralanan özelliğin *īmān* kelimesinin sözlük anlamının zorunlu parçası olduğu sonucunu vermez.
+
 ## 7. 42:52 — iman öğrenilebilir/biçimlenebilir bir içerik mi?
 
 42:52:
@@ -119,11 +123,11 @@ Bu da imanın salt toplumsal etiket veya kimlik adı olmadığını destekler.
 
 ## 9. Şimdiki toplam sonuç
 
-Fiil sentaksı, kök ailesi ve `īmān` isim kullanımları birlikte düşünüldüğünde çalışma hipotezi daha da daralıyor:
+Fiil sentaksı ve isim bağlamlarından hareketle **olumlu dinî iman çağrısı için** çalışma hipotezi:
 
 > **`īmān`, güvenilir/doğru kabul edilen bir merciye, mesaja veya gerçeklik iddiasına içsel güven bağlayıp bu güven doğrultusunda sadakat ve yönelim geliştirme durumudur.**
 
-Bu yapının üç boyutu Kur'an içinde birlikte görünür:
+Bu bağlamlarda üç boyutun ilişkisi incelenebilir; her kullanımın üçünü birden zorunlu olarak içerdiği ileri sürülmez:
 
 1. **Bilişsel:** doğru/güvenilir kabul etme.
 2. **İlişkisel-duygusal:** güven, kalp istikrarı, şüphenin azalması.
@@ -135,7 +139,7 @@ Bu nedenle:
 - `īmān = yalnız duygusal güven` → veriyi eksik açıklar.
 - `īmān = yalnız amel` → veriyi eksik açıklar.
 
-En iyi açıklama şimdilik **güvenilir kabul etme + güven bağlama + bu güvene uygun bağlılık** birleşimidir.
+Çalışma önerisi **güvenilir kabul etme + güven bağlama + bu güvene uygun bağlılık** ilişkisidir. **Durum: Destekleniyor, belirtilen bağlamlarda; derece: Muhtemel.** Bu, tasdik okumasının güçlü biçimlerini dışlamaz; davranış beklentisi ile kelimenin sözlük kapsamı ayrıca ayrılmalıdır.
 
 ## 10. Falsifikasyon için sonraki adım
 
@@ -145,3 +149,7 @@ Bir sonraki aşamada `muʾmin / muʾminūn / muʾmināt` isimleri incelenecek. A
 - Sadece `āmana` fiilini kullanmış olmak yeterli mi?
 - `muʾmin` sıfatı güvenilir kişi anlamını koruyor mu?
 - 23:1–11, 8:2–4, 49:15 gibi tanımlayıcı pasajlar çalışma hipotezini doğruluyor mu, yoksa bozuyor mu?
+
+## v1.1 sınır düzeltmesi — 2026-10-11
+
+Artışın her örnekte aynı boyuta indirgenmesi ve birlikte geçişin anlam eşitliği/ayrılığına delil yapılması önlendi; sentez olumlu dinî iman bağlamıyla sınırlandı. Mevcut 45 isim kelime konumu ile 6 ayetteki 7 artış ifadesi yeni bir semantik sınıflandırma değildir. Denetim: [QAC karşılaştırma raporu](../generated/tawakkul_comparison/report.md). Kavram ilişkisi: [Tevekkül–Vekîl analizi](Tawakkul-Wakil-analysis.md).

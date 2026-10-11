@@ -10,6 +10,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
+- [İman–tevekkül–vekîl–tafvîz — karşılaştırma kaydı](roots/Tawakkul-Wakil-analysis.md) — 3:159'un karar/danışma yapısı, Uhud tefsir çerçevesi, 106:4 ve 12:17 düzeltmeleri, görev ile sorumluluk ayrımı; [yeniden üretilebilir QAC denetimi](generated/tawakkul_comparison/report.md) ile bağlantılıdır.
 - [Mümin — kısa kavram kartı](roots/Mumin-concept-card.md)
 - [Amn — Aşama 1](roots/Amn-quran-internal-stage1.md)
 - [Amn — Aşama 2: sentaks](roots/Amn-quran-internal-stage2-syntax.md)

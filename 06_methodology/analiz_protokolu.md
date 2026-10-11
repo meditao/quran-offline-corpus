@@ -1,4 +1,4 @@
-# Kur'an Analiz Protokolü — v2.1
+# Kur'an Analiz Protokolü — v2.2
 
 **Konumu:** `06_methodology/analiz_protokolu.md`  
 **Kapsamı:** tek bir kavram, kök, ayet, pasaj veya tezin Kur'an merkezli ve denetlenebilir biçimde nasıl analiz edileceği.
@@ -6,6 +6,8 @@
 Bu belge, çalışmanın **ana analiz protokolüdür**. Amaç bir anlamı baştan doğru kabul edip ona delil toplamak değil; Kur'an içi veriden hareketle anlamı kurmak, karşı örneklerle sınamak ve veri ile yorumu açıkça ayırmaktır.
 
 **Sürüm notu (v2.1):** Protokol, `f-r-d` kökü üzerinde uçtan uca pilot olarak sınandı. Pilot sonucunda kapalı örneklemin hipotezden önce kilitlenmesi, aynı kök altında ayrı sözlüksel dalların mümkün olması ve “kanıtlayıcı örnek / yalnız uyumlu örnek” ayrımı açık kurala dönüştürüldü.
+
+**Sürüm notu (v2.2 — 11.10.2026):** İman–tevekkül karşılaştırmasında biçim ile anlam kümesi, ortak geçişin kanıt sınırı, yerel sıra ile genel zaman kuralı, görev ile ahlaki sorumluluk, metinsel bağlam ile tarihsel çerçeve ve Kur'an öncesi tanıklık ayrımları somutlaştırıldı. Uygulama ve kaynaklar: [İman–tevekkül–vekîl–tafvîz kaydı](../07_analyses/roots/Tawakkul-Wakil-analysis.md).
 
 Arşiv, kavram kartı, versiyon defteri, hipotez defteri ve periyodik bakım bu belgenin konusu değildir. Tamamlanmış analizler `07_analyses/` altında durur. Ham veri, yorum ve yayımlanmış sonuç birbirine karıştırılmaz.
 
@@ -327,6 +329,10 @@ Nihai dosya şunları içermelidir:
 - **Boş komut çıktısı yokluk delili değildir.** Önce komut, kök yazımı ve etiket denetlenir.
 - **Sıklık anlam değildir.** Çok tekrar bir tanımı otomatik olarak güçlendirmez; az tekrar da bir kullanımı otomatik olarak tali yapmaz.
 
+**Morfolojik küme semantik küme değildir.** QAC'ta 106:4'ün `āmana` biçimi IV. bâb fiildir, fakat bağlamda güvenlik sağlama anlatır. Bu nedenle “IV. bâb fiil toplamı” doğrudan “dinî iman kullanımı toplamı” diye adlandırılamaz. 12:17'deki `muʾmin` IV. bâb ism-i fâildir; çekimli fiil toplamına eklenmez. Anlam sınıflaması yapılacaksa her konum gerekçeli semantik etiketiyle ayrıca incelenir; biçim gruplarına sonradan anlam adı vererek sayısal sonuç üretilmez. İlgili tam sorgular ve kaynak hashleri [denetim raporunda](../07_analyses/generated/tawakkul_comparison/report.md) bulunur.
+
+**Birlikte geçiş yalnız aday ilişki bulur.** Pencere (aynı ayet / komşu ayet / pasaj), kök veya tam lemma seçimi ve sayım birimi yazılır. Birlikte geçiş, tek başına eşanlamlılık, mutlak kavramsal ayrılık, nedensellik veya zorunlu aşama sırası kanıtı değildir. Kök düzeyindeki ʾ-m-n + w-k-l kesişiminde 17:68'in güvenlik kullanımı da vardır; bütün sonuçlar “iman–tevekkül ilişkisi” diye etiketlenemez. Ayrı kelimeler olduklarını görmek de kesin bir semantik sınır kurmaya yetmez; sentaks ve bağlam ayırıcı olmalıdır.
+
 ---
 
 ## 6. Bağlam ve anlam kararı için özel kurallar
@@ -340,6 +346,14 @@ Nihai dosya şunları içermelidir:
 **Aynı konu = aynı kavram değildir:** İki kelimenin aynı ibadet, hukuk veya ahlak bağlamında bulunması eşanlamlı olduklarını göstermez.
 
 **Öz anlam ile kurumsal terim ayrılır:** Sonraki dönemlerde teknik bir terime dönüşen kelime, Kur'an'da aynı teknik sistemi zorunlu olarak taşımaz.
+
+**Yerel sıra ile genel zaman kuralı ayrılır:** 3:159'daki danışma → karar → tevekkül düzeni bu cümlenin yapısıdır. “Tevekkül yalnız bütün düşünme ve eylem bittikten sonra başlar” genellemesi için başka kullanımlar da sınanır; 12:67 tedbir ve tevekkülü birlikte içerir. Bir emir, davranışın normatif olarak beklendiğini gösterebilir; her kişide otomatik gerçekleşen psikolojik bir yasa olduğunu göstermez.
+
+**Görev devri ile ahlaki sorumluluk ayrılır:** `wkl` ailesinin görevlendirme fiilleri (6:89, 32:11), vekîl ismi ve tevekkül fiili aynı anlamda sayılmaz. Bir işi yürütmek üzere görevlendirilme, başka kişinin tercihinin hesabını üstlenme ve Allah'a dayanma ayrı ilişkiler olarak incelenir. 10:108 ve 39:41'deki sorumluluk sınırı her türlü pratik görevlendirmeye genel yasak olarak taşınmaz. 40:44'te “işim” nesnesi “sonuç” diye değiştirilmez; “sonucu Allah'a bırakmak” açıklayıcı özet olarak etiketlenir.
+
+**Metinsel bağlam ile tarihsel çerçeve ayrılır:** Bir pasajın kendi içindeki savaş, hata, bağışlama ve hitap bağları doğrudan metinden incelenir. “Bu Uhud'dur” gibi tarihsel adlandırma kullanılırsa tefsir/tarih kaynağı ayrıca gösterilir; metinde geçmeyen ad, tarih, sayı veya ayrıntı ayetin lafzına eklenmez. Tarihsel çerçeve olmadan hangi çıkarımın sürdüğü açıkça yazılır.
+
+**Benzetme kanıt değildir:** Bir kavramı açıklamak için kullanılan köprü, yolculuk vb. örnekler öğretici araç olarak etiketlenir. Benzetmenin gerektirdiği kusursuzluk, mutlak kesinlik veya zorunlu zaman sırası, ayetlerin ve kullanım dağılımının gerektirdiği anlam gibi kaydedilmez.
 
 ---
 
@@ -416,6 +430,10 @@ Madde içinde `Bd`/`Jel` tefsir, "It is said in a trad." hadis kaynaklıdır; ak
 İşlevi bir kelimenin Kur'an'daki anlamını tayin etmek değil, önerilen anlamın dil-tarihsel olarak makul olup olmadığını ve olası eski semantik alanı kontrol etmektir.
 
 Ortak ünsüz dizisi yalnız ortak köken **adayıdır**; ortak anlam değildir. Tek dildeki benzerlik tek başına delil sayılmaz. İbranice ile Süryanice de tamamen bağımsız iki tanık gibi sayılmaz.
+
+### Kur'an öncesi kullanım iddiası
+
+“Kur'an öncesinde bu biçim şu anlama geliyordu” iddiası, tarihlenmiş ve aidiyeti tartışılmış bağımsız metin, şiir veya yazıt tanığı gerektirir. Sonraki sözlüklerin bir anlam kaydetmesi veya Sâmî dillerde benzer bir kök bulunması tek başına Kur'an öncesi Arapça tanıklık değildir. Tanık gösterilmiyorsa “ilk/asıl anlam” diye kesin hüküm kurulmaz; tarihsel ihtimal veya araştırılmamış konu olarak yazılır. Sonraki teknik terim, Kur'an'daki aynı köklü fiilin nesne ve bağlamından ayrı incelenir.
 
 Depo tarafında `04_lexicons/semitic/cognates.tsv` henüz filolojik olarak incelenmiş kayıtlarla dolu değilse bu durum açıkça yazılır.
 

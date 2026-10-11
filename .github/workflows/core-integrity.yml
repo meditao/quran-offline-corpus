@@ -27,6 +27,8 @@ jobs:
         run: python 08_scripts/build_qac_indices.py
       - name: Rebuild Tanzil-QAC alignment audit
         run: python 08_scripts/build_tanzil_qac_alignment.py
+      - name: Rebuild iman-tawakkul comparison audit
+        run: python 08_scripts/analyze_tawakkul_comparison.py
       - name: Require byte-identical generated core outputs
         run: |
           git diff --exit-code -- \
@@ -35,4 +37,5 @@ jobs:
             03_indices/generated/lemma_index.csv \
             03_indices/generated/pos_index.csv \
             03_indices/generated/tanzil_qac_alignment.csv \
-            03_indices/audits/tanzil_qac_alignment.md
+            03_indices/audits/tanzil_qac_alignment.md \
+            07_analyses/generated/tawakkul_comparison

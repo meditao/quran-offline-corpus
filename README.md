@@ -10,6 +10,7 @@ Klasör listelerine erişemeyen tarayıcılar ve yapay zekâ araçları için ö
 
 - [İman — ayrıntılı, aşamalı ana analiz](07_analyses/roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](07_analyses/roots/Amn-concept-card.md)
+- [İman–tevekkül–vekîl–tafvîz — 3:159, Uhud bağlamı ve anlam sınırları](07_analyses/roots/Tawakkul-Wakil-analysis.md)
 - [Mümin — kısa kavram kartı](07_analyses/roots/Mumin-concept-card.md)
 - [Amn / أ م ن — Aşama 1: kök ve ilk Kur'an içi profil](07_analyses/roots/Amn-quran-internal-stage1.md)
 - [Amn — Aşama 2: fiil sentaksı](07_analyses/roots/Amn-quran-internal-stage2-syntax.md)

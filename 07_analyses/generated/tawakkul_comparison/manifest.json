@@ -1,0 +1,11 @@
+{
+  "betik_surumu": "1.0.0",
+  "dosyalar": {
+    "summary.json": "1890bc5f764671d7e2eda00c5b36cf24765c22090b3ec27d38731702f4d6a8e9",
+    "occurrences.csv": "757973b35c7b4159bd2e44f9cf232ef336230fa3f0316cee8c57195143ec330a",
+    "selected_segments.csv": "48e8f9b7eebcb99d34dde2115d924311affe175eaeac1425f8f292e7db995aaa",
+    "verse_lookup.csv": "61c7e1da5b487842570113e11cc90e8ed10c2b6e8bb739c90dcd7cfdbb893107",
+    "report.md": "4d6a7324dc6c3e531de33c24c8a35363248a7068172052cd7ddade15da66898f",
+    "source_notice.txt": "514cd81a99511950db134d261d4b6cbde412d7ec6bf578edb9eaa4ee5c38eb4d"
+  }
+}

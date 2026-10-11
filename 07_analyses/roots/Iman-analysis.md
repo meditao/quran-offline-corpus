@@ -1,16 +1,18 @@
 # İMAN — Kur’an İçi Aşamalı Analiz
 
+**Sürüm:** v1.1 — 2026-10-11. Bu sürüm biçim sayımı ile anlam sınıflandırmasını ayırır; önceki genellemelerin düzeltme kaydı sondadır.
+
 ## Kısa sonuç
 
-İman, Kur’an’da yalnızca “bir şeyin var olduğuna inanmak” değildir. Amn kök ailesi, fiilin sentaksı, iman isim kullanımları, kalp bağlamları ve karşı örnekler birlikte değerlendirildiğinde en iyi çalışan anlam şudur:
+İman, Kur’an’ın olumlu dinî çağrısında yalnızca “bir şeyin var olduğuna inanmak” ile açıklanamaz. Fiilin sentaksı, iman isim kullanımları, kalp bağlamları ve karşı örneklerden hareketle bu çalışmanın kapsamı sınırlı anlam önerisi şudur:
 
 **İman, bir şeyi veya bir mercii doğru ve güvenilir kabul ederek ona güven bağlamak ve bu güven doğrultusunda yönelim/sadakat geliştirmektir.**
 
 Kur’an’ın olumlu iman çağrısında bu ilişkinin merkezi Allah ve O’ndan gelen rehberliktir. En sade ifadeyle:
 
-**İman = Allah’a ve O’ndan gelen rehberliğe güven bağlamak.**
+**Olumlu dinî iman çağrısı: Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul edip bunlara bağlanmak.**
 
-Bu sonuç tek bir sözlük anlamından değil, aşağıdaki aşamalı incelemeden çıkarılmıştır.
+Bu, bütün ʾ-m-n kök ailesinin sözlük tanımı veya her kullanımda bütün bileşenleri zorunlu olan bir eşitlik değildir. Haber tasdiki/kişinin sözünü doğru kabul etme okuması da bağlama göre geçerlidir; “güven” ile “tasdik” birbirini dışlayan seçenekler değildir. Kök akrabalığı ve morfoloji anlam önerisine tek başına yeterli olmaz.
 
 ---
 
@@ -30,17 +32,17 @@ Kaynak ve lisans ayrıntıları için: [SOURCES.md](../../SOURCES.md) ve [LICENS
 
 # Aşama 1 — Kök ailesi ne söylüyor?
 
-İman, Arapça أ م ن (Amn) kök ailesindedir.
+İman, ʾ-m-n (QAC Buckwalter: `Amn`) kök ailesindedir.
 
 QAC v0.4 verisinde bu kök etiketi 879 kelime konumunda görülür; 723 ayete ve 77 sûreye dağılır. Başlıca biçimler arasında āman(a) fiil ailesi, īmān, muʾmin, amina, amīn, amn ve amāna türevleri vardır.
 
-Kök ailesinde üç ana damar görülür:
+Kök ailesini incelemek için üç anlam alanı ayırt edilebilir; aşağıdaki biçim örnekleri tek anlamlı, birbirini dışlayan sınıflar değildir:
 
-1. Birine/bir şeye güven bağlama: āman(a), īmān, muʾmin.
+1. Doğru/güvenilir kabul etme, inanma ve bağlanma: āman(a), īmān, muʾmin kullanımları.
 2. Güvenlik ve emniyet: amina, amn, āmin.
 3. Güvenilirlik ve emanet: amīn, amāna.
 
-Bu nedenle kök ailesinin ortak ekseni “salt zihinsel inanma” değil, daha geniş bir **güven – güvenilirlik – güvenlik** alanıdır.
+Kök ailesi geniş bir **güven – güvenilirlik – güvenlik** alanına ilişkin hipotez üretir. Fakat aynı biçim farklı anlamlarda çalışabilir: 106:4’te IV. bâb *āmanahum* güvenlik sağlamayı anlatır. Kök ailesinin genişliği, *īmān* kelimesinin tek tek kullanımlarında haber tasdiki anlamını dışlamaz.
 
 Bu aşama tek başına “iman = güven” sonucunu kanıtlamaz. Kök akrabalığı yalnız hipotez üretir. Hipotezin Kur’an’daki fiil kullanımlarıyla sınanması gerekir.
 
@@ -50,11 +52,11 @@ Teknik ayrıntı: [Amn — Aşama 1](Amn-quran-internal-stage1.md).
 
 # Aşama 2 — Āmana fiili nasıl çalışıyor?
 
-QAC’ta āman(a) lemma ailesinin 537 fiil kullanımı vardır.
+QAC’ta āman(a) lemma ailesinin IV. bâb **537 fiil kelime konumu** vardır. Bu morfolojik toplam, “537 dinî inanma kullanımı” değildir: 106:4:5’te *wa-āmanahum* korkuya karşı güvenlik sağlamadır. Biçimin IV. bâb olması anlamı otomatik belirlemez. [QAC 106:4:5](https://corpus.quran.com/wordmorphology.jsp?location=(106:4:5))
 
 Yüzey taramasında fiilden hemen sonra 163 açık bi- adayı ve 18 li- adayı bulunmuştur. Li- adaylarının manuel kontrolünde 15 gerçek tamamlayıcı belirlenmiş; bunların 14’ünün kişi hedefli olduğu görülmüştür.
 
-Bu veri, fiilin yalnız “bir önermeyi zihnen doğru saymak” anlamında çalışmadığını gösterir. İnsanların sözüne güvenme/itimat etme ilişkisi de açıkça vardır.
+Bu veri, fiilin kişi ve bildirimlerle kurduğu ilişkiyi incelemeye yarar. Bir kişinin sözünü doğru kabul etme (tasdik) ile ona itimat etme burada rakip olmak zorunda değildir; kişi hedefli tamamlayıcı tek başına bilişsel tasdik okumasını çürütmez.
 
 ## Kritik ayet: Tevbe 9:61
 
@@ -65,6 +67,8 @@ Bu veri, fiilin yalnız “bir önermeyi zihnen doğru saymak” anlamında çal
 **Bu ayet neyi gösteriyor?** Aynı özne ve aynı fiil iki farklı yapıda kullanılıyor: “Allah’a iman eder” ve “müminlere güvenir.” İkinci kullanım, müminlerin var olduğuna zihinsel olarak inanmak değildir; bağlam açık biçimde onların sözünü güvenilir bulma/itimat etme ilişkisidir. Böylece āman(a) fiilinin güven boyutu Kur’an’ın kendi içinde görünür hale gelir.
 
 Ancak buradan “bi- her zaman şu, li- her zaman bu demektir” şeklinde mekanik bir kural çıkarılamaz. Bi- yapısı da insan, elçi, vahiy, ayet, gayb, ahiret ve başka hedeflerle kullanılabilir.
+
+Yûsuf 12:17’de *bi-muʾminin lanā* kardeşlerin anlatısına inanılmasıyla ilgilidir. Bu, dinî bağlılığın bütün kullanımlara yüklenemeyeceği bir karşı örnektir. QAC 12:17:14’ü IV. bâbdan **ism-i fâil (`N`)** olarak işaretler; bu kelime yukarıdaki 537 çekimli fiile eklenmez. [QAC 12:17](https://corpus.quran.com/wordbyword.jsp?chapter=12&verse=17)
 
 Teknik ayrıntı: [Amn — Aşama 2: sentaks](Amn-quran-internal-stage2-syntax.md).
 
@@ -100,7 +104,7 @@ Teknik ayrıntı: [Amn — Aşama 3: bi- kullanımları](Amn-quran-internal-stag
 
 Evet. QAC’ta īmān isim lemması 45 kez geçer. Manuel kontrolde 6 ayette 7 açık “iman artışı” ifadesi bulunur.
 
-Bu ayetler önemlidir; çünkü iman sabit bir kimlik etiketi olsaydı “artması”nın ne anlama geldiğini açıklamak zorlaşır. Bağlamlara bakıldığında artan şey yeni “inanç maddelerinin sayısı” değil; güvenin, doğrulamanın ve bağlılığın güçlenmesiyle daha iyi açıklanır.
+Bu ayetler, imanın artışla nitelenebildiğini gösterir. Artışı güvenin, doğrulamanın ve bağlılığın güçlenmesi olarak okumak bağlamla desteklenen bir yorumdur; her bağlamda artan boyutun aynı olduğu veya yeni öğrenilen içeriğin hiçbir katkısı olmadığı sonucu çıkmaz.
 
 ## Âl-i İmrân 3:173
 
@@ -108,7 +112,7 @@ Bu ayetler önemlidir; çünkü iman sabit bir kimlik etiketi olsaydı “artmas
 
 **Sade/kavramsal çeviri:** İnsanlar onlara, “İnsanlar size karşı toplandı; onlardan korkun” dediklerinde bu onların imanını artırdı ve “Allah bize yeter; O ne güzel vekildir” dediler.
 
-**Gösterdiği şey:** Tehdit, iman sahibi kişiyi zorunlu olarak çökertecek yerde Allah’a güvenini güçlendirebiliyor. Ayetin hemen ardından “Allah bize yeter” ve vekil olarak Allah’a dayanma geliyor.
+**Gösterdiği şey:** Tehdit haberi karşısında imanın artması ve “Allah bize yeter; O ne güzel vekîldir” cevabı birlikte anlatılır. Bunu güvenin güçlenmesi olarak okumak bağlamsal bir yorumdur; birlikte geçiş *īmān* ile *vekîl* kelimelerinin eşanlamlı olduğunu göstermez.
 
 ## Enfâl 8:2
 
@@ -116,7 +120,7 @@ Bu ayetler önemlidir; çünkü iman sabit bir kimlik etiketi olsaydı “artmas
 
 **Sade/kavramsal çeviri:** Müminler, Allah anıldığında kalpleri duyarlılıkla ürperen; O’nun ayetleri kendilerine okunduğunda imanları artan ve Rablerine güvenip dayanan kimselerdir.
 
-**Gösterdiği şey:** Ayetlerin okunması imanı artırıyor ve aynı cümlenin devamında tevekkül geliyor. İman ile güven/dayanma aynı kelime değildir; fakat aynı ilişkisel eksende birbirini destekler.
+**Gösterdiği şey:** Ayetlerin okunmasıyla iman artışı ve Rabbe tevekkül aynı müminlerin özellikleri olarak sıralanır. Birlikte geçiş anlam ilişkisini araştırmaya yarar; tek başına eşanlamlılık, kesin anlam ayrılığı veya nedensellik kanıtı değildir. Ayrım için ayrıca fiilin tamlayıcısı ve eylem bağlamı incelenir.
 
 ## Tevbe 9:124
 
@@ -132,7 +136,7 @@ Bu ayetler önemlidir; çünkü iman sabit bir kimlik etiketi olsaydı “artmas
 
 **Sade/kavramsal çeviri:** Müminler birleşmiş düşman gruplarını gördüklerinde, “Bu, Allah’ın ve Elçisi’nin bize vaat ettiği şeydir; Allah ve Elçisi doğru söyledi” dediler. Bu durum onların yalnız imanını ve teslimiyetini artırdı.
 
-**Gösterdiği şey:** Yaşanan olayın daha önce verilen sözü doğrulaması, iman artışıyla ilişkilendiriliyor. Burada “doğrulanma → güvenin güçlenmesi” zinciri açık biçimde görülüyor.
+**Gösterdiği şey:** Yaşanan olayın daha önce verilen sözü doğrulaması, iman artışıyla ilişkilendiriliyor. Bunu “doğrulanmayla güvenin güçlenmesi” diye açıklamak bağlamsal yorumdur; ayet bütün iman kullanımlarını tanımlayan bir sözlük eşitliği kurmaz.
 
 ## Fetih 48:4
 
@@ -148,7 +152,7 @@ Bu ayetler önemlidir; çünkü iman sabit bir kimlik etiketi olsaydı “artmas
 
 **Sade/kavramsal çeviri:** Ateşin görevlilerini yalnız melekler yaptık; sayılarını da inkâr edenler için bir sınama yaptık ki kendilerine Kitap verilenler kesinlik kazansın, iman edenlerin imanı artsın, Kitap verilenler ve müminler kuşkuya düşmesin; kalplerinde hastalık bulunanlar ve kâfirler ise “Allah bununla ne demek istedi?” desinler. Allah dileyeni böylece sapmada bırakır, dileyeni rehberliğe yöneltir. Rabbinin ordularını O’ndan başkası bilmez. Bu, insanlar için bir hatırlatmadan başka bir şey değildir.
 
-**Gösterdiği şey:** Kesinlik kazanma, kuşkunun azalması ve imanın artması aynı bağlamda bulunur. Bu da imanın bilgiyle ilişkili olduğunu, fakat salt bilgi olmadığını gösterir: yeni bilgi/gösterge mevcut güven bağını güçlendirebilir.
+**Gösterdiği şey:** Kesinlik kazanma, kuşkunun azalması ve imanın artması aynı bağlamda bulunur. Bu, bilgi/kesinlik ile iman arasındaki ilişkinin incelenmesini destekler; birlikte sıralanma tek başına bunların tam eşanlamlı veya kesinlikle ayrı olduğunu kanıtlamaz. Yeni bilgi/göstergenin güven bağını güçlendirmesi mümkün bir açıklamadır.
 
 ### Ara sonuç
 
@@ -215,7 +219,7 @@ Kur’an’ın cevabı “yalnız biri” değildir. İman kalple ilişkilidir; 
 Kur’an içindeki iman:
 
 - kalpte yerleşebilir,
-- kalpte güven/sekînet oluşturabilir,
+- kalpteki sekînetle artışı birlikte anlatılabilir,
 - sözlü iddiadan farklı olabilir,
 - davranış ve sadakat üretebilir,
 - vahiy ile güçlenebilir ve içerik kazanabilir.
@@ -242,11 +246,11 @@ Hayır. Kur’an iman ile küfür arasında yön değişimini açıkça anlatabi
 
 # Aşama 7 — Sami dilleri karşılaştırması
 
-Kur’an içi analizden bağımsız bir kontrol olarak, aynı Sami kök ailesinin İbranice, Aramice ve Süryanice karşılıklarında da sağlamlık, güvenilirlik, doğrulama ve güvenme alanları görülür.
+Sâmî karşılaştırma bu dosyada **ikincil hipotez katmanıdır**. İbranice, Aramice ve Süryanice için kaydedilen sağlamlık, güvenilirlik, doğrulama ve güvenme alanları Arapça kullanımlar hakkında soru üretir; Kur’an’daki anlamın bağımsız doğrulaması sayılmaz.
 
-Bu veri sonucu belirlemez. Yöntem gereği önce Kur’an içindeki amina / amīn / amāna / amn / āman(a) ağı incelenmiş, Sami karşılaştırması daha sonra destekleyici kontrol olarak kullanılmıştır.
+İbranice ile Aramice/Süryanice ortak dil tarihine sahiptir; benzerlikler bağımsız iki tanık gibi toplanamaz. Kognat adaylığı anlam özdeşliği veya anlamın hangi yönde değiştiği demek değildir. Bu sürümde yeni bir Sâmî tarama ya da tarihlenmiş Kur’an öncesi Arapça tanık incelemesi yapılmamıştır.
 
-Bu yüzden “İbranice böyle, o halde Kur’an’da da mutlaka böyledir” denmemektedir. Söylenebilecek daha dar şey şudur: Kur’an içinde bulunan güven/güvenilirlik ekseni tarihsel Sami karşılaştırmasıyla çelişmemekte, tersine onunla uyum göstermektedir.
+“Kur’an öncesinde iman kesinlikle şu demekti” veya “Kur’an anlamı ilk kez değiştirdi” sonucu burada kurulamaz. Böyle bir iddia için tarihlenmiş, aidiyeti ve aktarımı incelenmiş bağımsız tanık gerekir. Sonraki sözlükler ve onların derlemesi olan Lane, kendiliğinden Kur’an öncesi kullanım belgesi değildir.
 
 ---
 
@@ -260,7 +264,11 @@ Yetersizdir. 9:61’de fiil kişiler arası güven ilişkisi kurar; 49:14 ve 5:4
 
 ### “Āmana fiili her zaman hakikati kabul etmek demektir.”
 
-Yanlıştır. 29:52 açıkça bâtıla iman etmekten söz eder.
+Nesnel hakikat garantisi anlamında yanlıştır: 29:52 bâtıla iman etmekten söz eder. Kişinin yanlış bir bildirimi doğru **sayması** anlamındaki tasdik okuması bu karşı örnekle çürütülmez. Ayrıca 106:4, IV. bâbın bütün örneklerinin inanma anlamında olduğunu dışlar.
+
+### “İnsan hedefli iman kullanımı tasdik olamaz.”
+
+Desteklenmez. 9:61 ve 12:17 kişinin sözünü doğru/güvenilir kabul etme okumalarına açıktır. İmanı salt varlık kabulüne indirgememek, haber tasdikini anlam alanından çıkarmayı gerektirmez.
 
 ### “İman = yalnız kalpteki duygu.”
 
@@ -280,37 +288,43 @@ Yanlıştır. 3:173, 8:2, 9:124, 33:22, 48:4 ve 74:31 imanın arttığını aç�
 
 ---
 
-# Nihai sentez
+# Kapsamı sınırlı sentez
 
-Bütün katmanlar birlikte değerlendirildiğinde üç boyut birbirinden koparılamaz:
+Olumlu dinî iman bağlamlarında şu boyutların ilişkisi incelenebilir; bunların tamamının her ʾ-m-n kelimesinde zorunlu olduğu ileri sürülmez:
 
 1. **Doğrulama:** Bir mercii, bildirimi veya gerçeklik iddiasını doğru/güvenilir/geçerli kabul etmek.
 2. **Güven:** Ona içsel güven bağlamak; kuşku ve tehdit karşısında bu bağın güçlenebilmesi.
 3. **Sadakat/yönelim:** Kurulan güven doğrultusunda yönelmek ve davranış geliştirmek.
 
-Bu nedenle çalışma sonucunda ulaşılan en kapsayıcı tanım şudur:
+Bu nedenle olumlu dinî iman çağrısı için çalışma tanımı şudur:
 
 **İman, bir şeyi veya bir mercii doğru ve güvenilir kabul ederek ona güven bağlamak ve bu güven doğrultusunda sadakat/yönelim geliştirmektir.**
 
 Kur’an’ın olumlu iman çağrısında bunun merkezi Allah ve O’ndan gelen rehberliktir:
 
-**İman = Allah’a ve O’ndan gelen rehberliğe güven bağlamak; bu güveni kişinin temel yönelimi haline getirmek.**
+**Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul etmek, bunlara güvenip bağlanmak.**
 
-Bu tanım “inanmak” kelimesini tamamen reddetmez; fakat Türkçedeki “zihnen var saymak/doğru saymak” anlamının Kur’an’daki kullanım alanını tek başına karşılamadığını söyler.
+Bu tanım “inanmak/tasdik etmek” karşılıklarını reddetmez. Salt varlık kabulünün olumlu iman çağrısını bütünüyle karşılamadığını söyler; güven, yönelim ve sadakatin her kullanımda aynı ölçüde sözlük anlamına mı yoksa bağlamsal beklentiye mi ait olduğu ayrıca incelenmelidir. **Durum: Destekleniyor, bu sınırlı bağlamda; derece: Muhtemel.** Alternatif tasdik okumasının bütün güçlü biçimleri elenmiş değildir.
+
+## İman, eylem ve tevekkül ilişkisi
+
+3:159’da danışma ve karar verme, Allah’a tevekkülle birlikte korunur. Tevekkül bu eylemlerin yerine geçmez; fakat “önce iman tamamen biter, sonra eylem, en son tevekkül başlar” şeklinde zorunlu zaman dilimleri de metinden çıkmaz. 3:122 tevekkülü mücadele bağlamında gösterir; ayet sırası tek başına psikolojik veya tarihsel zaman çizelgesi değildir. 12:67–68'de tevekkül beyanı ile daha sonra uygulanan kapı talimatı, tevekkül için eylemin bütünüyle bitmiş olmasının gerekmediğini destekler; düşünmenin veya kararın henüz tamamlanmadığını ayrıca kanıtlamaz. İman, eylem ve tevekkül kavramsal olarak ayrıştırılabilir; aralarındaki ilişki mekanik bir aşama şeması değildir.
+
+“Sonucu Allah’a bırakmak” yararlı bir açıklama olabilir; 3:159’un kelimesi kelimesine tercümesi veya tevekkülün bütün anlamını tüketen tanım değildir. Sorumluluk, vekîl ve 40:44’teki tafvîz ilişkisi için [Tevekkül–Vekîl karşılaştırması](Tawakkul-Wakil-analysis.md) esas alınır; bu dosyaya bütün ayrıntıları taşınmaz.
 
 ---
 
 # Kısa kavram kartı
 
-**İman:** Allah’a ve O’ndan gelen rehberliğe güven bağlamak.
+**Olumlu dinî iman çağrısı:** Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul edip bunlara bağlanmak.
 
 Daha açık hali:
 
-**Doğru/güvenilir kabul et → güven bağla → bu güvene sadakat göster.**
+**Doğru/güvenilir kabul etme, güven ve bağlılık:** ilişkili boyutlar; bütün kullanımlar için zorunlu sıra veya eşanlamlılık iddiası değil.
 
 İman yalnız söz değildir; 5:41 ve 49:14.
 
-İman yalnız bilgi değildir; yanlış hedefe de iman ilişkisi kurulabilir; 29:52.
+İnanma fiili, kabul edilen hedefin nesnel hakikatini garanti etmez; 29:52.
 
 İman artabilir; 3:173, 8:2, 9:124, 33:22, 48:4, 74:31.
 
@@ -334,3 +348,13 @@ Bu kamuya açık ana analiz, aşağıdaki teknik/ara denetim dosyalarının sonu
 - [iman artışı manuel denetimi](Amn-iman-increase-manual-review.tsv)
 
 Bu dosyalar, ana metindeki sayısal ve sentaktik sonuçların nasıl üretildiğini denetlemek isteyen okuyucu içindir.
+
+## v1.1 düzeltme kaydı — 2026-10-11
+
+- **537 “iman etme” kullanımı → 537 IV. bâb fiil kelime konumu:** 106:4’ün güvenlik sağlama anlamı morfolojik kümenin içindedir; yeni bir semantik toplam ileri sürülmedi.
+- **Kişi hedefi tasdiki dışlar → sözün tasdiki ve güven birlikte mümkün:** 12:17’nin ism-i fâil olduğu, çekimli fiil olmadığı açıklandı.
+- **Kök/biçimden genel tanım → bağlamla sınırlı anlam önerisi:** olumlu dinî çağrı ile kök ailesinin tamamı ayrıldı.
+- **Birlikte geçişten anlam/nedensellik → ilişkiyi araştırma işareti:** 3:173 ve 8:2 üzerinden iman–tevekkül özdeşliği ya da kesin ayrılığı ispatlanmadığı belirtildi.
+- **Sâmî bağımsız kontrol → ikincil hipotez:** Kur’an öncesi kullanım hakkında tarihlenmiş tanık bulunmadan sonuç kurulmayacağı kaydedildi.
+
+Yeni sayım ve ayet denetimi: [QAC karşılaştırma raporu](../generated/tawakkul_comparison/report.md). Morfoloji gözlemleri ile semantik yorumun derecesi ayrıdır: biçim/konum tespiti doğrudan annotation bulgusudur; yukarıdaki geniş iman sentezi bağlamsal ve **muhtemel** bir okumadır. Mevcut diğer aşamaların sayım ve yorumları bu sürümde baştan bütünüyle yeniden incelenmiş sayılmaz.

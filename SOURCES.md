@@ -100,6 +100,14 @@ Bu dosya repoda gerçekten bulunan kaynaklarla yalnız aday/yardımcı kaynaklar
 - **Şema var, veri yok:** `cognates.tsv` kognat kayıtları, QuranMorph, çeviri katmanı, analiz katmanı.
 - **Online/opsiyonel:** Açık Kuran, CAL, SEDRA.
 
+## İman–tevekkül karşılaştırması — ayet ve tefsir başvuruları (11.10.2026)
+
+Bu başvurular [karşılaştırma kaydında](07_analyses/roots/Tawakkul-Wakil-analysis.md) kullanıldı. Offline dayanak sabit Tanzil ve QAC dosyalarıdır; web sayfaları yeni veya bağımsız bir morfoloji korpusu sayılmaz.
+
+- QAC [3:159 kelime çözümlemesi](https://corpus.quran.com/wordbyword.jsp?chapter=3&verse=159), [106:4:5 morfolojisi](https://corpus.quran.com/wordmorphology.jsp?location=(106:4:5)), [12:17](https://corpus.quran.com/wordbyword.jsp?chapter=12&verse=17), [40:44](https://corpus.quran.com/wordbyword.jsp?chapter=40&verse=44): ayet/segment başvurusu; annotation insan yapımıdır, anlam kararı yerine geçmez.
+- İbn Kesîr, *Tafsīr Ibn Kathīr (Abridged)*, Quran.com İngilizce sunumu: [3:121 açıklaması](https://quran.com/ali-imran/121/tafsirs/en-tafisr-ibn-kathir), [3:159 açıklaması](https://quran.com/ali-imran/159/tafsirs/en-tafisr-ibn-kathir). **Rol:** pasajın Uhud'la ilişkilendirilmesine dair tefsirî/tarihsel çerçeve. Kur'an içi delil veya bağımsız çağdaş olay tanıklığı değildir. Tam tefsir metni depoya kopyalanmadı.
+- [Üretici ve sayım raporu](07_analyses/generated/tawakkul_comparison/report.md): sayım birimleri, seçilmiş ayetler, kaynak/üretim hashleri ve sınırlar; bütün iddiaları otomatik doğrulayan semantik kaynak değildir.
+
 ## Metodolojik sıra
 
 Kur'an metni → QAC morfoloji/kök/lemma → kendi yeniden üretilebilir dağılım hesaplarımız → mevcutsa bağımsız annotation/sözlük kontrolü → filolojik olarak incelenmiş Sami kognatlar → yorum/sentez.

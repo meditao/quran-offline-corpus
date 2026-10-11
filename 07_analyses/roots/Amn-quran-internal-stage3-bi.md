@@ -2,11 +2,13 @@
 
 **Durum:** Ara sonuç. Nihai sözlük tanımı değildir.
 
+**Sürüm:** v1.1 — 2026-10-11. Morfoloji, birlikte geçiş ve anlam önerisi sınırları güncellendi.
+
 Kaynak zinciri: sabit QAC v0.4 → `analyze_amn_verb_syntax.py` → `analyze_amn_bi_targets.py` → manuel zamir ve sıra-dışı vaka kontrolü.
 
 ## 1. Otomatik tarama ne buldu?
 
-537 adet `'aAmana` fiil kullanımının **163** tanesinde fiilden hemen sonra morfolojik olarak açık bir `bi-` yapısı gelir.
+537 adet IV. bâb `'aAmana` fiil kelime konumunun **163** tanesinde fiilden hemen sonra morfolojik olarak açık bir `bi-` yapısı gelir. **537 morfolojik toplamdır**; 106:4:5'teki güvenlik sağlama kullanımı da bu kümededir ve toplamın tamamı “inanma” anlamında sayılamaz.
 
 İlk yüzey sınıfları:
 
@@ -65,7 +67,7 @@ Manuel zamir kaydı: `Amn-bi-pronoun-manual-review.tsv`.
 - `āmana bi-rabbihim`
 - 67:29 — `al-Raḥmān; āmannā bihi wa-ʿalayhi tawakkalnā`
 
-Bu grupta ilişki yalnız bir önermenin doğru olduğunu kabul etmek değildir; Allah bir güven/bağlanma merciidir. 67:29 aynı ayette `āmanna bihi` ile `tawakkalnā ʿalayhi`yi yan yana getirir. İki fiil eş anlamlı değildir fakat güven ekseninde birbirini destekleyen bir ilişki kurar.
+67:29, `āmannā bihi` ve `tawakkalnā ʿalayhi` ifadelerinde aynı ilahî merciye farklı fiiller ve tamlayıcılarla yönelir. Bu, inanma ve dayanma ilişkisini araştırmaya yarar; birlikte geçiş ve farklı edatlar tek başına ne eşanlamlılığı ne kesin anlam ayrılığını kanıtlar. Allah'a güven/bağlanma yorumu bağlamla değerlendirilir; tasdik okuması yalnız bu yapıya dayanılarak dışlanmaz.
 
 ### Vahiy / bildirim / önerme
 
@@ -145,13 +147,13 @@ Aşama 2 ve 3 birlikte değerlendirildiğinde:
 - `yuʾminu bi-llāh`
 - `wa-yuʾminu li-l-muʾminīn`
 
-Burada `li-` özellikle müminlerin sözünü/kişilerini güvenilir bulma yönünü açığa çıkarırken, `bi-` daha kapsamlı bir bağlılık/doğrulama ilişkisi kurar.
+Burada `li-` müminlerin sözünü doğru/güvenilir bulma okumasına açıktır. `Bi-` için bağlılık/doğrulama boyutları bağlamda değerlendirilebilir; bu karşılaştırma “li- tasdik olamaz” veya “bi- her zaman daha güçlü bağlılıktır” şeklinde genel bir kural vermez.
 
 ## 9. Çalışma tanımının güncellenmesi
 
-Üç aşamanın sonunda en iyi çalışan geçici tanım:
+Üç aşamanın sonunda, **inanma/tasdik bağlamlarıyla sınırlı** geçici anlam önerisi:
 
-> **`āmana / īmān`: bir merciyi, kişiyi, bildirimi veya gerçeklik iddiasını güvenilir/doğru/geçerli kabul ederek ona güven ve bağlılık yöneltmek.**
+> **Bir merciyi, kişiyi, bildirimi veya gerçeklik iddiasını doğru/güvenilir kabul etmek; güven ve bağlılık boyutlarını bağlamın desteklediği ölçüde değerlendirmek.**
 
 Bu tanımın avantajı:
 
@@ -162,9 +164,9 @@ Bu tanımın avantajı:
 - `āmana bi-` = Allah'a, elçiye, vahye, ayete, ahirete veya başka bir hedefe güven/doğrulama bağı kurma,
 - yanlış hedefe `āmana bi-l-bāṭil` gibi kullanımlar
 
-aynı semantik ağ içinde açıklanabilir.
+aynı anlam ağı içinde araştırılabilir. Kök ortaklığı her biçime bütün anlamları yüklemez; 106:4'ün güvenlik sağlama anlamı yukarıdaki inanma alt anlamının dışındadır.
 
-Ama hâlâ **nihai sözlük tanımı değildir**.
+Bu hâlâ **nihai sözlük tanımı değildir**. **Durum: Destekleniyor, bu sınırlı kapsamda; derece: Muhtemel.** Haber tasdiki okumasının güçlü biçimleri elenmiş değildir.
 
 ## 10. Sonraki falsifikasyon
 
@@ -181,4 +183,8 @@ Bir sonraki aşamada `īmān` isim formunun 45 kullanımı ve `kufr` karşıtlı
 
 üzerinden şu soru test edilecek:
 
-**Artıp azalabilen `īmān`, zihinsel 'inanma miktarı' mı; yoksa güven/bağlılık durumunun güçlenmesi mi?**
+**İman artışı bağlamlarında yeni bilgi, doğrulama, güven ve bağlılığın katkıları ayrılabiliyor mu?** Bunlar peşinen birbirini dışlayan seçenekler sayılmaz.
+
+## v1.1 sınır düzeltmesi — 2026-10-11
+
+537 toplamı anlam sayımı olmaktan ayrıldı; 67:29'daki birlikte geçiş eşanlamlılık/ayrılık kanıtı olarak kullanılmadı; çalışma tanımı inanma bağlamlarıyla sınırlandı ve tasdik alternatifi korundu. Kaynak ve denetim: [QAC 106:4:5](https://corpus.quran.com/wordmorphology.jsp?location=(106:4:5)), [karşılaştırma raporu](../generated/tawakkul_comparison/report.md), [Tevekkül–Vekîl analizi](Tawakkul-Wakil-analysis.md). Bu güncelleme bütün örneklerin semantik olarak yeniden kodlandığı anlamına gelmez.
