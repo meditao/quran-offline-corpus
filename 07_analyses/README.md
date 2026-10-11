@@ -12,6 +12,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
 - [İman–tevekkül–vekîl–tafvîz — karşılaştırma kaydı](roots/Tawakkul-Wakil-analysis.md) — 3:159'un karar/danışma yapısı, Uhud tefsir çerçevesi, 106:4 ve 12:17 düzeltmeleri, görev ile sorumluluk ayrımı; [yeniden üretilebilir QAC denetimi](generated/tawakkul_comparison/report.md) ile bağlantılıdır.
 - [Mümin — kısa kavram kartı](roots/Mumin-concept-card.md)
+- [Vahiy — kök ve kavram analizi (v3)](roots/Vahiy-concept-card.md) — 78 kelime konumu, fiil–isim kapsam ayrımı, bağlamlar, karşı örnekler ve delil dereceleri. 9 Ekim 2026 dış kaynak denetimi kaydıdır; depo-içi yeniden üretim ve ayrı denetim eki henüz açık.
 - [Amn — Aşama 1](roots/Amn-quran-internal-stage1.md)
 - [Amn — Aşama 2: sentaks](roots/Amn-quran-internal-stage2-syntax.md)
 - [Amn — Aşama 3: bi- kullanımları](roots/Amn-quran-internal-stage3-bi.md)
