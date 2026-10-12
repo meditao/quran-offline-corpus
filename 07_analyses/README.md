@@ -15,6 +15,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [Kitâb — denetlenmiş kavram kartı (v2)](roots/Kitab-concept-card.md) — kitap, kayıt, mektup, sözleşme, hüküm; isim/fiil ayrımı.
 - [Hidayet — denetlenmiş kavram kartı (v2)](roots/Hidayet-concept-card.md) — yönlendirme ve doğru yol, hedefe göre anlam değişimi.
 - [Dalâlet — denetlenmiş kavram kartı (v2)](roots/Dalalet-concept-card.md) — sapma, yanılma, kayıp ve boşa çıkma.
+- [Zikir (ẕ-k-r) — kavram kartı (v1, çalışma kaydı)](roots/Zikir-concept-card.md) — 274 kelime konumluk zikir ailesi (292'den *ẕakar* "erkek" ayrıldı), iç–dış spektrum, *zikr* isminin vahiy kullanımı, II./V. bab işbölümü, karşıt kavramlar; [önceden kayıt](roots/Zikir-onceden-kayit.md) ve [kapalı örneklem kodlaması (69 ayet)](roots/Zikir-kapali-orneklem.tsv) ile birlikte. QAC kök/lemma/bab sayımları depoda yeniden üretildi; elle sınıflandırmalar ve birlikte geçiş oranları henüz yeniden üretilmedi.
 
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
