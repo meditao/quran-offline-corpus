@@ -471,6 +471,7 @@ def ayet_komutu(kor: veri.Korpus, girdiler: list[str], eser: str | None = None):
 
 
 def ara_komutu(ifade: str, eser: str | None = None, limit: int = 30):
+    """--limit 0 = tümü (paketin ortak kuralı)."""
     from ..tara import GirdiHatasi
     if not any("؀" <= ch <= "ۿ" for ch in ifade):
         raise GirdiHatasi("Arama ifadesi Arapça olmalı (harekesiz, hemze-normal eşleşir).")
@@ -484,9 +485,9 @@ def ara_komutu(ifade: str, eser: str | None = None, limit: int = 30):
         for b in anlam_birimleri(m["metin"]):
             if n in norm(b):
                 say += 1
-                if say <= limit:
+                if not limit or say <= limit:
                     satirlar.append(f"[{ESER_AD[m['eser']]} · madde {baslik_latin(m['baslik'])}] {_kirp(b, 220)}")
-    satirlar += ["", f"{say} anlam birimi bulundu" + ("" if say <= limit else f" (ilk {limit} gösterildi, --limit)")
+    satirlar += ["", f"{say} anlam birimi bulundu" + ("" if not limit or say <= limit else f" (ilk {limit} gösterildi; --limit 0 = tümü)")
                  + ". Bulunmaması yokluk delili değildir."]
     return _sonuc(None, k, satirlar, ["anlam birimi"], {"bulunan": say})
 

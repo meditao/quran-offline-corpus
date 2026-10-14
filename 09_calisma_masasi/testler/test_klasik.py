@@ -225,6 +225,15 @@ class KurulumdanSonra(unittest.TestCase):
         self.assertEqual(kod, 0)
         self.assertIn("Bulunmaması yokluk delili değildir", c)
 
+    def test_ara_limit_sifir_tumunu_gosterir(self):
+        # Paketin ortak kuralı: --limit 0 = tümü (arayüzün "tümünü göster" kutusu bunu gönderir).
+        kod, c = calistir(["klasik", "ara", "الصلاة", "--eser", "ragib", "--limit", "0"])
+        self.assertEqual(kod, 0)
+        bulunan = int(re.search(r"(\d+) anlam birimi bulundu", c).group(1))
+        self.assertGreater(bulunan, 1)
+        self.assertEqual(sum(1 for s in c.splitlines() if "· madde " in s), bulunan)
+        self.assertNotIn("gösterildi", c)
+
 
 if __name__ == "__main__":
     unittest.main()

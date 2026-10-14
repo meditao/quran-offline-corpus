@@ -150,9 +150,11 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("metin", nargs="?", help="verilirse yeni sürüm olarak eklenir")
     s.set_defaults(islev=lambda k, n: okuma.ceviri_komutu(n.ayet, n.metin), korpus_gerekmez=True)
 
-    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal, quran-morphology, lane, sedra, klasik)")
-    s.add_argument("ne", choices=["meal", "quran-morphology", "lane", "sedra", "klasik"])
-    s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne), korpus_gerekmez=True)
+    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal, meal-okuyan, quran-morphology, lane, sedra, klasik)")
+    s.add_argument("ne", choices=["meal", "meal-okuyan", "quran-morphology", "lane", "sedra", "klasik"])
+    s.add_argument("--dosya", help="yalnız meal-okuyan: kullanıcının verdiği meal dosyası "
+                                   "(JSON ya da her satırda sûre|ayet|metin)")
+    s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne, n.dosya), korpus_gerekmez=True)
 
     s = alt.add_parser("lane", help="Lane sözlüğü (hipotez): kok / kapsam / sigla")
     la = s.add_subparsers(dest="lane_komut", required=True, metavar="işlem")

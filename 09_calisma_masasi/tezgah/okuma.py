@@ -5,6 +5,7 @@ Katmanlar ve statüleri (CLAUDE.md §3):
     okunuş               Tanzil'den kurallı aktarım  aktarım, delil değil
     çalışma çevirisi     kullanıcı (kavramlar/)     kullanıcının yorumu
     meal                 yerel/ (varsayılan kapalı)  kurumsal okuma — sınanan, delil değil
+                         Diyanet İşleri (fawazahmed0) ve Mehmet Okuyan (kullanıcının verdiği dosya)
 
 Tanzil ↔ QAC kelime eşlemesi yalnız 03_indices/generated/tanzil_qac_alignment.csv üzerinden
 yapılır: count_match (ofset 0) ve basmala_offset (besmele öneki okunuşta zaten ayrılır). Kalan
@@ -15,6 +16,7 @@ birebir tutarsa birleştirilir; tutmazsa kelime "hizalanamadı" diye gösterilir
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import unicodedata
 from dataclasses import dataclass
@@ -41,6 +43,14 @@ MEAL_PARMAK_IZI = {
     (1, 1): "Rahman ve Rahim olan Allah'ın adıyla",
     (107, 4): "Vay o namaz kılanların haline ki",
 }
+# Mehmet Okuyan meali: telifli; açık lisanslı makinece okunur kaynağı bulunamadı (fawazahmed0'da yok,
+# Açık Kuran robots.txt ile otomatik erişimi yasaklıyor). Bu yüzden kullanıcının verdiği dosyadan kurulur:
+# python -m tezgah kur meal-okuyan --dosya <yol>. Dosyanın gerçekten Okuyan meali olduğu araçla doğrulanamaz
+# (ezberden ayet metni yazılmaz); parmak izi kurulan dosyadan okunur ve sonraki değişiklikleri yakalar.
+OKUYAN_ADI = "Mehmet Okuyan"
+OKUYAN_YOLU = MEAL_DIZINI / "okuyan.json"
+OKUYAN_MANIFEST = MEAL_DIZINI / "okuyan.manifest.json"
+OKUYAN_PARMAK_IZI_AYETLERI = ((1, 1), (2, 3), (107, 4))
 CEVIRI_ETIKETI = "kullanıcının yorumu"
 
 _HEMZE = set("ءأإؤئٱآ")
@@ -235,6 +245,124 @@ def meal() -> dict[tuple[int, int], str] | None:
     return meal_dogrula(json.loads(MEAL_YOLU.read_text(encoding="utf-8")))
 
 
+# --- Okuyan meali (kullanıcı dosyası; yerel/, depoya işlenmez) ----------------------------------
+
+def _meal_satiri(satir: str) -> tuple[int, int, str] | None:
+    """'2|3|metin', '2<TAB>3<TAB>metin', '2:3<TAB>metin', '2,3,metin' biçimlerinden birini çözer."""
+    import re
+    m = re.match(r"^\s*(\d{1,3})\s*[|\t,;:]\s*(\d{1,3})\s*[|\t,;]\s*(.*?)\s*$", satir) \
+        or re.match(r"^\s*(\d{1,3})\s*:\s*(\d{1,3})\s*[|\t]\s*(.*?)\s*$", satir)
+    if not m:
+        return None
+    metin = m.group(3)
+    if len(metin) >= 2 and metin[0] == metin[-1] == '"':
+        metin = metin[1:-1].replace('""', '"')
+    return int(m.group(1)), int(m.group(2)), metin
+
+
+def meal_dosyasi_oku(ham: bytes) -> dict[tuple[int, int], str]:
+    """Kullanıcının verdiği meal dosyasını çözer: JSON ({"quran": [{chapter, verse, text}]} ya da
+    [{sure|chapter, ayet|verse, metin|text}]) veya her satırda bir ayet olan metin (sûre|ayet|metin,
+    sekmeyle ya da virgülle ayrılmış; 'sûre:ayet<TAB>metin'). '#' ile başlayan satırlar ve boş satırlar atlanır;
+    ilk satır başlıksa ('sure', 'chapter' ...) atlanır. Çözülemeyen satır VeriHatasi verir (sessizce atlanmaz)."""
+    try:
+        metin = ham.decode("utf-8-sig")
+    except UnicodeDecodeError as e:
+        raise veri.VeriHatasi(f"Meal dosyası UTF-8 değil: {e}") from e
+    sonuc: dict[tuple[int, int], str] = {}
+
+    def ekle(s: int, a: int, t: str) -> None:
+        if (s, a) in sonuc:
+            raise veri.VeriHatasi(f"Meal dosyasında aynı ayet iki kez var: {s}:{a}")
+        sonuc[(s, a)] = " ".join(str(t).split())
+
+    govde = metin.lstrip()
+    if govde.startswith(("{", "[")):
+        try:
+            d = json.loads(govde)
+        except json.JSONDecodeError as e:
+            raise veri.VeriHatasi(f"Meal dosyası geçerli JSON değil: {e}") from e
+        kayitlar = d.get("quran") if isinstance(d, dict) else d
+        if not isinstance(kayitlar, list):
+            raise veri.VeriHatasi("JSON meal: 'quran' listesi ya da kayıt listesi bekleniyordu")
+        for r in kayitlar:
+            try:
+                s = r.get("chapter", r.get("sure", r.get("sura")))
+                a = r.get("verse", r.get("ayet", r.get("aya")))
+                t = r.get("text", r.get("metin", r.get("meal")))
+                ekle(int(s), int(a), t)
+            except (AttributeError, TypeError, ValueError) as e:
+                raise veri.VeriHatasi(f"JSON meal kaydı çözülemedi: {r!r}") from e
+        return sonuc
+    for no, satir in enumerate(metin.splitlines(), 1):
+        if not satir.strip() or satir.lstrip().startswith("#"):
+            continue
+        c = _meal_satiri(satir)
+        if c is None:
+            if not sonuc and not satir.lstrip().lstrip('"')[:1].isdigit():
+                continue          # veri başlamadan önceki başlık satırı ('sure,ayet,metin')
+            raise veri.VeriHatasi(f"Meal dosyası satır {no} çözülemedi: {satir[:80]!r}")
+        ekle(*c)
+    return sonuc
+
+
+def meal_ayetleri_dogrula(metinler: dict[tuple[int, int], str], ad: str) -> None:
+    """Ayet kümesi Tanzil ile birebir aynı olmalı, boş metin olmamalı."""
+    tanzil = set(okunus.tanzil())
+    eksik, fazla = sorted(tanzil - set(metinler)), sorted(set(metinler) - tanzil)
+    if eksik or fazla:
+        ornek = lambda xs: ", ".join(f"{s}:{a}" for s, a in xs[:5]) + (" …" if len(xs) > 5 else "")
+        raise veri.VeriHatasi(f"{ad} meali: ayet kümesi Tanzil ile aynı değil ({len(metinler)} ayet; "
+                              f"eksik {len(eksik)}: {ornek(eksik) or '—'}; fazla {len(fazla)}: {ornek(fazla) or '—'})")
+    bos = sorted(k for k, t in metinler.items() if not t.strip())
+    if bos:
+        raise veri.VeriHatasi(f"{ad} meali: {len(bos)} ayetin metni boş (ilki {bos[0][0]}:{bos[0][1]})")
+
+
+def okuyan_kur(dosya: str | Path) -> dict[str, object]:
+    yol = Path(dosya).expanduser()
+    if OKUYAN_YOLU.exists():
+        raise FileExistsError(f"Okuyan meali zaten kurulu: {OKUYAN_YOLU}")
+    if not yol.is_file():
+        raise veri.VeriHatasi(f"Dosya bulunamadı: {yol}")
+    ham = yol.read_bytes()
+    metinler = meal_dosyasi_oku(ham)
+    meal_ayetleri_dogrula(metinler, OKUYAN_ADI)
+    duzgun = {"quran": [{"chapter": s, "verse": a, "text": metinler[(s, a)]} for s, a in okunus.tanzil()]}
+    icerik = (json.dumps(duzgun, ensure_ascii=False, indent=0) + "\n").encode("utf-8")
+    MEAL_DIZINI.mkdir(parents=True, exist_ok=True)
+    OKUYAN_YOLU.write_bytes(icerik)
+    bilgi = {
+        "file": OKUYAN_YOLU.name, "kaynak": "kullanıcının verdiği dosya", "kaynak_dosya": yol.name,
+        "kaynak_sha256": hashlib.sha256(ham).hexdigest(), "sha256": veri.sha256(OKUYAN_YOLU),
+        "bytes": len(icerik), "fetched": date.today().isoformat(), "ayet": len(metinler),
+        "parmak_izi": {f"{s}:{a}": metinler[(s, a)] for s, a in OKUYAN_PARMAK_IZI_AYETLERI},
+        "kimlik": "kullanıcı beyanı — dosyanın Okuyan meali olduğu araçla doğrulanmadı",
+        "lisans": "telifli — yalnız kişisel çalışma; depoya işlenmez (CLAUDE.md §9)",
+        "statu": MEAL_ETIKETI,
+    }
+    OKUYAN_MANIFEST.write_text(json.dumps(bilgi, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
+    return bilgi
+
+
+@lru_cache(maxsize=1)
+def okuyan_meal() -> dict[tuple[int, int], str] | None:
+    if not OKUYAN_YOLU.exists():
+        return None
+    if not OKUYAN_MANIFEST.exists():
+        raise veri.VeriHatasi(f"{OKUYAN_MANIFEST.name} yok; Okuyan mealini yeniden kurun.")
+    bilgi = json.loads(OKUYAN_MANIFEST.read_text(encoding="utf-8"))
+    if veri.sha256(OKUYAN_YOLU) != bilgi["sha256"]:
+        raise veri.VeriHatasi("Okuyan meal dosyasının sha256'sı yerel manifest ile uyuşmuyor.")
+    metinler = meal_dosyasi_oku(OKUYAN_YOLU.read_bytes())
+    meal_ayetleri_dogrula(metinler, OKUYAN_ADI)
+    for ref, beklenen in bilgi.get("parmak_izi", {}).items():
+        s, a = map(int, ref.split(":"))
+        if metinler[(s, a)] != beklenen:
+            raise veri.VeriHatasi(f"Okuyan meali parmak izi tutmadı: {ref}")
+    return metinler
+
+
 # --- görünüm ----------------------------------------------------------------
 
 def _kelime_satiri(e: Eslesme, o: okunus.AyetOkunus) -> list[str]:
@@ -298,6 +426,15 @@ def ayet_komutu(ref: str, meal_goster: bool = False, arapca: bool = False):
             satirlar.append(f"  {m[(s, a)]}")
             kaynak += " | + meal (kurumsal okuma — sınanan, delil değil)"
             iz += f" | {veri.sha256(MEAL_YOLU)[:12]}"
+        o_m = okuyan_meal()
+        satirlar += ["", f"Meal — {MEAL_ETIKETI} ({OKUYAN_ADI}, kullanıcının verdiği dosya — kimliği araçla "
+                         f"doğrulanmadı; yerel/):"]
+        if o_m is None:
+            satirlar.append("  — Okuyan meali kurulu değil (python -m tezgah kur meal-okuyan --dosya <yol>)")
+        else:
+            satirlar.append(f"  {o_m[(s, a)]}")
+            kaynak += f" | + meal {OKUYAN_ADI} (kullanıcı dosyası; sınanan, delil değil)"
+            iz += f" | {veri.sha256(OKUYAN_YOLU)[:12]}"
     veri_ = {"ayet": f"{s}:{a}", "qac": len(qac), "tanzil": len(o.kelimeler), "durum": durum,
              "hizalanamayan": sum(1 for e in eslesmeler if not e.tanzil)}
     return Sonuc(satirlar, ["kelime konumu"], veri_, kaynak=kaynak, veri_izi=iz)
@@ -318,18 +455,29 @@ def ceviri_komutu(ref: str, metin: str | None):
     return Sonuc(satirlar, [], {"surum": len(gecmis)}, kaynak="çalışma çevirisi (kullanıcı)", veri_izi="—")
 
 
-def kur_komutu(ne: str):
+def kur_komutu(ne: str, dosya: str | None = None):
     from .tara import GirdiHatasi, Sonuc
     from . import qm
     from .ikincil import klasik, lane, sami
     kurucular = {"meal": meal_kur, "quran-morphology": qm.kur, "lane": lane.kur, "sedra": sami.kur,
-                 "klasik": klasik.kur}
+                 "klasik": klasik.kur, "meal-okuyan": lambda: okuyan_kur(dosya)}
     if ne not in kurucular:
         raise GirdiHatasi("Kurulabilecek katman: " + ", ".join(kurucular))
+    if ne == "meal-okuyan" and not dosya:
+        raise GirdiHatasi("Okuyan meali kullanıcının verdiği dosyadan kurulur: "
+                          "python -m tezgah kur meal-okuyan --dosya <yol> (JSON ya da sûre|ayet|metin satırları).")
+    if ne != "meal-okuyan" and dosya:
+        raise GirdiHatasi("--dosya yalnız meal-okuyan ile kullanılır; diğer katmanlar sabitlenmiş kaynaktan iner.")
     try:
         bilgi = kurucular[ne]()
     except FileExistsError as e:
         raise GirdiHatasi(str(e)) from e
+    if ne == "meal-okuyan":
+        satirlar = [f"{OKUYAN_ADI} meali kuruldu (yerel/, depoya işlenmez; {MEAL_ETIKETI}):",
+                    *[f"  {k}: {v}" for k, v in bilgi.items() if k != "parmak_izi"],
+                    f"  parmak izi ayetleri: {', '.join(bilgi['parmak_izi'])} (metinleri manifestte)"]
+        return Sonuc(satirlar, ["ayet"], bilgi, kaynak=f"{OKUYAN_ADI} meali (kullanıcı dosyası)",
+                     veri_izi=str(bilgi["sha256"])[:12])
     if ne in {"lane", "sedra", "klasik"}:
         return Sonuc([f"{ne} kuruldu (yerel/, depoya işlenmez):", *[f"  {k}: {v}" for k, v in bilgi.items()]], [],
                      bilgi, kaynak=ne, veri_izi="—")
