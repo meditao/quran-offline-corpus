@@ -103,7 +103,7 @@ Analiz metninin başına dört satır yazılır. Eksiksiz doldurulamıyorsa anal
 Kaynak      : depo QAC v0.4 (hash a1d129…) | beceri | ikisi
 Sayım birimi: kelime konumu | segment | ayet | sûre
 Sorgu       : çalıştırılan tam komut veya script
-Klasik      : asl + isaret + ayet çalıştırıldı | çalıştırılmadı (gerekçe) | salt sayım, gerekmez
+Klasik      : asl + isaret + ayet çalıştırıldı, anlam→dayanak tablosu yazıldı | çalıştırılmadı (gerekçe) | salt sayım, gerekmez
 Durum       : çalıştırıldı | önceki çıktı kullanıldı | çalıştırılmadı
 ```
 
@@ -290,7 +290,9 @@ Sonra üçlü karşılaştırma yazılır:
 2. sözlükte olup korpusta desteği olmayan,
 3. korpusta olup sözlükte eksik kalan.
 
-**Gelenek-içi anlamın ayrılması.** Sözlük cümleleri tanık türüne göre işaretlenir: Arapların kullanımı ve şiir **dil-içi**; hadis, şer'î ıstılah ("şeriatın getirdiği", "mahsus ibadet") ve sahabe/müfessir nakli **gelenek-içi**; hiçbir tanık göstermeyen cümle **tanıksız beyan**. Yalnız gelenek-içi tanıklı bir anlam dil anlamı diye aktarılmaz. Tanık göstermeden tefsirden alınmış (örtük) anlam işaretle yakalanamaz; ona üç sınav uygulanır:
+**Gelenek-içi anlamın ayrılması — birim cümle değil, anlamdır.** Soru "bu cümlede hadis var mı" değil, "bu anlam neye dayanıyor"dur. Sözlük maddesi anlam birimlerine bölünür (bir anlam beyanı + ona getirilen tanıklar) ve her birim dayanağına göre bir statü alır: Arap kullanımı ve şiir **dil-içi**; Peygamber'e açıkça nisbet edilen söz (**hadis**) ile sahibi yazılmamış rivayet ("el-hadîs", "ruviye": **rivayet**) ayrı tutulur, ikisi de **gelenek-içi**; şer'î ıstılah ("şeriatın getirdiği", "mahsus ibadet") ve sahabe/müfessir nakli **gelenek-içi**; hiçbir tanık göstermeyen birim **tanıksız**. Yalnız rivayetle tanıklı ya da şer'î bir anlam dil anlamı diye aktarılmaz.
+
+Araç ayırır, karar analizde verilir: biçimsel işaret bir birimde iki anlamı birlikte bırakabilir (Râgıb'ın virgül zincirleri) ve "yukâl" kelimesi her zaman gerçek bir kullanım örneği değildir. Bu yüzden her analizde araç çıktısından sonra Türkçe bir **anlam → dayanak** tablosu yazılır (anlam · dayanak · statü · araçtan sapma notu); her satır tek anlamdır. Tanık göstermeden tefsirden alınmış (örtük) anlam işaretle yakalanamaz; ona üç sınav uygulanır:
 
 - **asl sınavı:** sözlükçünün kendi verdiği asldan türetilebiliyor mu?
 - **tanık sınavı:** dil-içi tanığı var mı; yoksa Sâmî katmanı ve Lane'in şiir tanıkları aranır;
@@ -470,7 +472,7 @@ Kaynak: OpenITI külliyatı (CC BY-NC-SA 4.0), commit'e sabit iki dosya — *Mek
 - **Zayıf eşleşme elle denetlenir.** Zayıf kural yanlış madde de bulabilir (`ʿ-v-n` → İbn Fâris `(عن)`).
 - **Aynı madde birden çok kökü kapsayabilir.** Râgıb'ın *salâ* maddesi hem `ṣ-l-v` (salât) hem `ṣ-l-y` (ateşe girmek) köklerini anar; korpusta bunlar ayrı köktür.
 - **Dijital metnin kusuru.** Râgıb'ın OpenITI metninde madde başlıkları kaymıştır; madde, başlıktan değil tanım satırından başlatılır (1.662 maddenin 120'si). Kaymış maddenin ilk ve son satırı ayrıca okunur.
-- **İşaret etiketi biçimsel ipucudur.** `[HADİS]`, `[ŞER]`, `[NAKİL]` cümlenin dayandığı tanığı gösterir, cümlenin doğruluğunu değil.
+- **İşaret biçimseldir.** `[HADİS]` (Peygamber'e açık nisbet), `[RİVAYET]` (sahibi yazılmamış), `[ŞER]`, `[NAKİL]` bir anlamın dayandığı tanığı gösterir, anlamın doğruluğunu değil. Kararı analizdeki anlam → dayanak tablosu verir.
 
 ### Kur'an öncesi kullanım iddiası
 
