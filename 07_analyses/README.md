@@ -16,6 +16,8 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [Hidayet — denetlenmiş kavram kartı (v2)](roots/Hidayet-concept-card.md) — yönlendirme ve doğru yol, hedefe göre anlam değişimi.
 - [Dalâlet — denetlenmiş kavram kartı (v2)](roots/Dalalet-concept-card.md) — sapma, yanılma, kayıp ve boşa çıkma.
 
+- [Hicret — kök ve kavram analizi (v1, ara sonuç)](roots/Hicret-concept-card.md) — h-c-r: 31 kelime konumu (QAC), I. bab *hacara* “terk etmek” ile III. bab *hâcara* “hicret etmek” ayrımı, kavram ağı, falsifikasyon ve kapalı örneklem sınaması. Anlam önerisi ara sonuçtur; Türkçe anlamlar taslak, Lane/Sâmî çalıştırılmadı.
+
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
 - [İman–tevekkül–vekîl–tafvîz — karşılaştırma kaydı](roots/Tawakkul-Wakil-analysis.md) — 3:159'un karar/danışma yapısı, Uhud tefsir çerçevesi, 106:4 ve 12:17 düzeltmeleri, görev ile sorumluluk ayrımı; [yeniden üretilebilir QAC denetimi](generated/tawakkul_comparison/report.md) ile bağlantılıdır.
