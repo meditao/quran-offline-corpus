@@ -43,7 +43,7 @@ Kognat eşlemesi otomatik biçim benzerliğiyle yapılmaz; düzenli ses denklikl
 
 İbn Fâris'in *Mekâyîs*'i ve Râgıb'ın *Müfredât*'ı OpenITI külliyatından (CC BY-NC-SA 4.0) commit'e sabitlenmiş iki dosyayla kullanılır; sağlama toplamı tutmazsa kurulum durur. Statüleri **hipotezdir**: anlam önerisi kurulan her analizde bakılır (`analiz_protokolu.md` Aşama 7a), ama hiçbir cümleleri delil sayılmaz. Hadis, şer'î ıstılah ve müfessir nakli taşıyan cümleler gelenek-içi diye işaretlenir.
 
-Metin şimdilik depoya işlenmez; beceri her oturumda kurar (`python3 scripts/kur.py`). Depo çalışma masasına taşınırsa Lane gibi `09_calisma_masasi/yerel/` altında tutulur; yayımlanan metinde OpenITI ve tahkik baskısı anılır.
+Metin depoya işlenmez. Çalışma masasında Lane gibi `09_calisma_masasi/yerel/klasik/` altında tutulur (`python -m tezgah kur klasik`; kaynak dosyalar commit'e ve sha256'ya sabit, kurulan `klasik.json` manifestle doğrulanır); beceri aynı kaynakları her oturumda kurar (`python3 scripts/kur.py`). Yayımlanan metinde OpenITI ve tahkik baskısı anılır.
 
 ## 7. Ham veri ve yorum ayrımı
 

@@ -20,7 +20,7 @@ Kavramları Kur'an'ın kendi verisinden tanımlamak için tek bir çalışma ort
     tez.py           tez sınama kaydı
     kayit.py         her sorgunun kaynak / birim / komut kaydı
     arayuz.py        yerel web arayüzü (python -m tezgah arayuz; yalnız standart kütüphane, kendi mantığı yok)
-    ikincil/         lane.py, sami.py — yalnız hipotez katmanı
+    ikincil/         lane.py, sami.py, klasik.py (+ klasik_ayristir.py) — yalnız hipotez katmanı
   testler/           sağlama testleri (§6) — her değişiklikten sonra çalışır
   kavramlar/         ara çalışma dosyaları (olgunlaşınca 07_analyses'e taşınır); tezler/ alt klasörü tez kayıtları
   yerel/             .gitignore — lisansı doğrulanmamış veya dağıtılamaz veri
@@ -53,7 +53,7 @@ Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. �
 | durak işaretleri | Tanzil Uthmani v1.1 `marks=true` (`08_scripts/fetch_tanzil_marks.py`) | `01_raw/tanzil/quran-uthmani-durak.txt` | okunuşta yalnız sekte; diğerleri "geleneksel — yorum içerebilir" |
 | kurumsal meal | fawazahmed0/quran-api `tur-diyanetisleri` (`python -m tezgah kur meal`) | `yerel/meal/` (depoya işlenmez) | sınanan okuma, delil değil |
 | çalışma çevirisi | kullanıcı | `kavramlar/` | kullanıcının yorumu |
-| klasik sözlükler | İbn Fâris *Mekâyîs* + Râgıb *Müfredât*, OpenITI (commit'e sabit; CC BY-NC-SA 4.0) | şimdilik yalnız beceride (`kuran-kok-analizi` §12); çalışma masasına taşınması Aşama 7 | hipotez — anlam önerisinde zorunlu denetim (`analiz_protokolu.md` Aşama 7a) |
+| klasik sözlükler | İbn Fâris *Mekâyîs* + Râgıb *Müfredât*, OpenITI (commit'e sabit; CC BY-NC-SA 4.0) | `yerel/klasik/` (`python -m tezgah kur klasik`; depoya işlenmez; beceride de aynı kaynaklar, `kuran-kok-analizi` §12) | hipotez — anlam önerisinde zorunlu denetim (`analiz_protokolu.md` Aşama 7a) |
 | Lane | LexiconDatabase v1.0.9, commit `b371ab1` (`python -m tezgah kur lane`) | `yerel/lane/` (265 MB; depoya işlenmez) | hipotez |
 | İbranice | Open Scriptures Hebrew Lexicon dizini (BDB atıflı) | `04_lexicons/generated` (yerinde okunur; incelenmiş kayıtlar `04_lexicons/semitic/cognates.tsv`) | hipotez |
 | Süryanice | SEDRA 3, sedrajs commit `ba6684a` (`python -m tezgah kur sedra`) | `yerel/sedra/` (değiştirilmemiş; dağıtılamaz) | hipotez |
@@ -122,13 +122,15 @@ Anlam önerisi kaydedilirken şu alanlar boş bırakılamaz:
 
 **ikincil/** — Lane ve Sâmî çıktıları her satırda "hipotez" etiketi taşır. Tek dilde kognat vuruşu tek başına raporlanmaz. Lane'in ك harfinden sonraki bölgesinde "Lane'de yok" argümanı üretilmez. Ölçümler (Lane eşleşmesi, bölge yoğunluğu, Sâmî gürültü tabanı) QAC köklerine göre yapılır: `03_indices/audits/ikincil_katmanlar.md` (`08_scripts/measure_secondary_layers.py`). Sâmî son-harf-zayıf kuralı (İbranice ה / Süryanice Alef) gerçek/rastgele oranını düşürdüğü için varsayılan kapalıdır; `sami kok --zayif-son` ile açılır. Lane kısaltma kategorileri ve dayanakları `09_calisma_masasi/lane_kisaltmalari.tsv` dosyasındadır; `lane sigla` kategori dayanağını her çalıştırmada ölçer.
 
+**ikincil/klasik.py** — İbn Fâris ve Râgıb (`klasik kok | asl | isaret | ayet | ara | kapsam | etiketler`). Her satır "hipotez · klasik" etiketi taşır. Birim cümle değil **anlamdır**: madde anlam birimlerine bölünür, her birim dayanağına göre etiketlenir (KUR, HADİS, RİVAYET, ŞER, NAKİL, ŞİİR, DİLCİ, KULLANIM, ASL) ve statü alır; statü tanığa göredir, doğruluğa değil. Etiket biçimseldir, örtük etkiyi yakalamaz (`analiz_protokolu.md` Aşama 7a'daki üç sınav). Kök ve madde başlığı `harf.py` tablosuyla kayıpsız Latin yazılır; sözlük cümleleri harekesiz olduğundan kurallı okunuş üretilemez, özgün Arapça metin olarak ve etiketli verilir, analizde Türkçeye çevrilir. Girdi QAC envanterine karşı çözülür (Latin reddedilir). "Madde yok" yokluk delili değildir. Kapsam ölçümü QAC'ın 1.642 köküne göredir (beceri envanterinin 1.651 köküyle toplanmaz). `klasik ayet` sözlüğün ayet atıflarını QAC'ta denetler. Veri `klasik.json` sha256'sı manifestle doğrulanır; kaynak dosyalar commit'e ve sha256'ya sabittir.
+
 ## 8. Kayıt satırı
 
 Her sorgu çıktısının ve her kavram dosyası bölümünün sonunda:
 
 ```
 Kaynak      : QAC v0.4 | + quran-morphology | + klasik | + Lane | + Sâmî
-Sayım birimi: kelime konumu | segment | ayet | sûre | kök (yalnız envanter ölçümlerinde) | atıf geçişi (yalnız Lane kısaltma ölçümünde)
+Sayım birimi: kelime konumu | segment | ayet | sûre | kök (yalnız envanter ölçümlerinde) | atıf geçişi (yalnız Lane kısaltma ölçümünde ve klasik sözlük ayet atıflarında) | madde | anlam birimi (ikisi yalnız klasik sözlük sorgularında)
 Sorgu       : çalıştırılan tam komut
 Veri izi    : kaynak dosyanın sha256'sının ilk 12 hanesi
 Durum       : çalıştırıldı | çalıştırılmadı
@@ -153,8 +155,7 @@ Durum       : çalıştırıldı | çalıştırılmadı
 | 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`); sayısı farklı kökte otomatik uyarı | tamam |
 | 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`; Sâmî son-harf-zayıf kuralı varsayılan kapalı; Lane kısaltmaları `lane_kisaltmalari.tsv`) | tamam |
 | 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı; "tümünü göster"; hemze/ayn hücre işaretlemesi) | tamam (kullanıcı onayı; PR #1 birleştirildi. Kullanıcı doğrulaması, Türkçe Windows 11 + Python 3.14.7: 153 test çalıştı, 132 geçti, 0 başarısız, 0 hata, 21 atlandı; arayüzde Slw ve Ans aramaları, tez liste ve hemze/ayn işaretleri doğru) |
-
-| 7 | `ikincil/klasik.py`: İbn Fâris + Râgıb; `python -m tezgah kur klasik` (`yerel/klasik/`), cümle işaretleme, ayet atfı denetimi, QAC köklerine göre kapsam ölçümü ve sağlama testleri | önerildi — onay bekliyor (yöntem v2.3'te; araç şimdilik beceride) |
+| 7 | `ikincil/klasik.py` + `klasik_ayristir.py`: İbn Fâris + Râgıb; `python -m tezgah kur klasik` (`yerel/klasik/`), anlam birimi işaretleme (HADİS/RİVAYET ayrımı), ayet atfı denetimi, QAC köklerine göre kapsam ölçümü ve sağlama testleri (`testler/test_klasik.py`) | kod ve testler tamam; kullanıcı doğrulaması bekleniyor (yöntem v2.3'te). Claude Code ölçümü, Linux + Python 3.13.16: 178 test çalıştı, 157 geçti, 0 başarısız, 0 hata, 21 atlandı; kapsam (QAC, kök): İbn Fâris 1.560 kesin / 33 zayıf / 49 yok, Râgıb 1.522 / 16 / 104; kurulum 4.649 + 1.662 madde |
 
 Her aşama sonunda: testler çalışır, sonuç kullanıcıya sayılarla raporlanır, bir sonraki aşama için onay alınır.
 
