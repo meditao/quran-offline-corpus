@@ -30,7 +30,7 @@ Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. �
 
 ## 2. Değişmez ilkeler
 
-1. **Yalnız Kur'an verisi delildir.** Hadis, tefsir, meal, Lane ve Sâmî katmanı delil değildir; anılırlarsa ekranda ve raporda "hipotez / ikincil" etiketi taşırlar. Zincir tek yönlüdür: dış katman hipotez üretir, korpus sınar, sonuç korpus bulgusuyla yazılır.
+1. **Yalnız Kur'an verisi delildir.** Hadis, tefsir, meal, klasik sözlükler (İbn Fâris, Râgıb), Lane ve Sâmî katmanı delil değildir; anılırlarsa ekranda ve raporda "hipotez / ikincil" etiketi taşırlar. Zincir tek yönlüdür: dış katman hipotez üretir, korpus sınar, sonuç korpus bulgusuyla yazılır.
 2. **Hafızadan sayı ve ayet yazılmaz.** Her sayı ve her ayet referansı bir sorgunun çıktısıdır. Sorgu çalışmadıysa rapor bunu söyler.
 3. **Her sayının birimi yazılır:** ayet / sûre / kelime konumu / segment. Farklı birimler ve farklı korpusların sayıları aynı tabloda toplanmaz.
 4. **Boş çıktı yokluk delili değildir.** "Kur'an'da X yok" için eşanlamlı kökler ve kavramı kelimesiz kuran ayetler de taranmış olmalıdır; aksi hâlde "şu sorguyla bulunmadı" yazılır.
@@ -53,6 +53,7 @@ Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. �
 | durak işaretleri | Tanzil Uthmani v1.1 `marks=true` (`08_scripts/fetch_tanzil_marks.py`) | `01_raw/tanzil/quran-uthmani-durak.txt` | okunuşta yalnız sekte; diğerleri "geleneksel — yorum içerebilir" |
 | kurumsal meal | fawazahmed0/quran-api `tur-diyanetisleri` (`python -m tezgah kur meal`) | `yerel/meal/` (depoya işlenmez) | sınanan okuma, delil değil |
 | çalışma çevirisi | kullanıcı | `kavramlar/` | kullanıcının yorumu |
+| klasik sözlükler | İbn Fâris *Mekâyîs* + Râgıb *Müfredât*, OpenITI (commit'e sabit; CC BY-NC-SA 4.0) | şimdilik yalnız beceride (`kuran-kok-analizi` §12); çalışma masasına taşınması Aşama 7 | hipotez — anlam önerisinde zorunlu denetim (`analiz_protokolu.md` Aşama 7a) |
 | Lane | LexiconDatabase v1.0.9, commit `b371ab1` (`python -m tezgah kur lane`) | `yerel/lane/` (265 MB; depoya işlenmez) | hipotez |
 | İbranice | Open Scriptures Hebrew Lexicon dizini (BDB atıflı) | `04_lexicons/generated` (yerinde okunur; incelenmiş kayıtlar `04_lexicons/semitic/cognates.tsv`) | hipotez |
 | Süryanice | SEDRA 3, sedrajs commit `ba6684a` (`python -m tezgah kur sedra`) | `yerel/sedra/` (değiştirilmemiş; dağıtılamaz) | hipotez |
@@ -126,7 +127,7 @@ Anlam önerisi kaydedilirken şu alanlar boş bırakılamaz:
 Her sorgu çıktısının ve her kavram dosyası bölümünün sonunda:
 
 ```
-Kaynak      : QAC v0.4 | + quran-morphology | + Lane | + Sâmî
+Kaynak      : QAC v0.4 | + quran-morphology | + klasik | + Lane | + Sâmî
 Sayım birimi: kelime konumu | segment | ayet | sûre | kök (yalnız envanter ölçümlerinde) | atıf geçişi (yalnız Lane kısaltma ölçümünde)
 Sorgu       : çalıştırılan tam komut
 Veri izi    : kaynak dosyanın sha256'sının ilk 12 hanesi
@@ -152,6 +153,8 @@ Durum       : çalıştırıldı | çalıştırılmadı
 | 4 | ikinci annotation katmanı (`qm.py`, `--capraz`) ve çapraz denetim raporu (`08_scripts/crosscheck_qac_quranmorphology.py`); sayısı farklı kökte otomatik uyarı | tamam |
 | 5 | `ikincil/` (`lane.py`, `sami.py`; ölçüm raporu `03_indices/audits/ikincil_katmanlar.md`; Sâmî son-harf-zayıf kuralı varsayılan kapalı; Lane kısaltmaları `lane_kisaltmalari.tsv`) | tamam |
 | 6 | yerel web arayüzü `arayuz.py` (`python -m tezgah arayuz`; yalnız 127.0.0.1; her form `main(argv)` ile çalışır, çıktı süzülmez; kayıt satırı sabit panelde; meal varsayılan kapalı; "tümünü göster"; hemze/ayn hücre işaretlemesi) | tamam (kullanıcı onayı; PR #1 birleştirildi. Kullanıcı doğrulaması, Türkçe Windows 11 + Python 3.14.7: 153 test çalıştı, 132 geçti, 0 başarısız, 0 hata, 21 atlandı; arayüzde Slw ve Ans aramaları, tez liste ve hemze/ayn işaretleri doğru) |
+
+| 7 | `ikincil/klasik.py`: İbn Fâris + Râgıb; `python -m tezgah kur klasik` (`yerel/klasik/`), cümle işaretleme, ayet atfı denetimi, QAC köklerine göre kapsam ölçümü ve sağlama testleri | önerildi — onay bekliyor (yöntem v2.3'te; araç şimdilik beceride) |
 
 Her aşama sonunda: testler çalışır, sonuç kullanıcıya sayılarla raporlanır, bir sonraki aşama için onay alınır.
 
