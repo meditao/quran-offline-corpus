@@ -3,7 +3,7 @@
 Talimat ve ilkeler: depo kökündeki [`CLAUDE.md`](../CLAUDE.md). Kanonik korpus **QAC v0.4**.
 Bu katman `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` klasörlerinden yalnız okur.
 
-Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri), **Aşama 2a** (`harf.py`, `okunus.py`) **Aşama 2b** (`okuma.py`, `kavram.py`) **Aşama 3** (`tez.py`), **Aşama 4** (`qm.py`, `--capraz`), **Aşama 5** (`ikincil/lane.py`, `ikincil/sami.py`) ve **Aşama 6** (`arayuz.py`). Python 3.10+; dış bağımlılık yok.
+Durum: **Aşama 1** (`veri.py`, `tara.py`, `kayit.py`, sağlama testleri), **Aşama 2a** (`harf.py`, `okunus.py`) **Aşama 2b** (`okuma.py`, `kavram.py`) **Aşama 3** (`tez.py`), **Aşama 4** (`qm.py`, `--capraz`), **Aşama 5** (`ikincil/lane.py`, `ikincil/sami.py`), **Aşama 6** (`arayuz.py`) ve **Aşama 7** (`ikincil/klasik.py`; kod ve testler tamam, kullanıcı doğrulaması bekleniyor). Python 3.10+; dış bağımlılık yok.
 
 ## Çalıştırma
 
@@ -57,10 +57,11 @@ python -m tezgah arayuz --port 8766 --tarayici-acma
 | `birlikte` | `birlikte Amn Eml --pencere 3` | ayet (pencerede ayrıca kelime konumu çifti) |
 | `kalip` | `kalip "ROOT:Amn&POS:V PRON:3MP bi+"` | segment dizisi |
 | `okunus` | `okunus 2:3 30:30` · `okunus 1:1 --arapca` · `okunus --mukattaa` · `okunus 2:3 --durak` | — (Tanzil Uthmani v1.1; aktarım, delil değil); `--mukattaa`: ayet / sûre |
-| `ayet` | `ayet 2:3` · `ayet 2:3 --meal` | kelime konumu (okunuş + QAC çözümlemesi + çalışma çevirisi; meal isteğe bağlı) |
+| `ayet` | `ayet 2:3` · `ayet 2:3 --meal` | kelime konumu (okunuş + QAC çözümlemesi + çalışma çevirisi; meal isteğe bağlı: kurulu her meal ayrı başlıkla — Diyanet, Okuyan) |
 | `ceviri` | `ceviri 2:3 "..."` · `ceviri 2:3` | — (kullanıcının yorumu) |
 | `arayuz` | `arayuz` · `arayuz --port 8766 --tarayici-acma` | — (yerel web arayüzü; aynı komutlar) |
-| `kur` | `kur meal` · `kur quran-morphology` · `kur lane` · `kur sedra` | — (yerel/, depoya işlenmez) |
+| `kur` | `kur meal` · `kur meal-okuyan --dosya okuyan.txt` · `kur quran-morphology` · `kur lane` · `kur sedra` · `kur klasik` | — (yerel/, depoya işlenmez). Okuyan meali telifli: kendi dosyanızdan kurulur (JSON ya da her satırda `sûre\|ayet\|metin`; sekme/virgül de olur); 6.236 ayet Tanzil ile birebir tutmazsa kurulmaz |
+| `klasik` | `klasik kok Slw` · `klasik isaret Slw --eser ragib` · `klasik asl Slw` · `klasik ayet Slw` · `klasik ara "العبادة المخصوصة"` · `klasik kapsam --liste` · `klasik etiketler` | hipotez; madde / anlam birimi; `ayet`: atıf geçişi + ayet; `kapsam`: kök (QAC'ın 1.642 köküne göre) |
 | `lane` | `lane kok Slw` · `lane kok Slw --madde 2 --tam` · `lane kapsam` · `lane sigla` | hipotez; `kapsam`: kök; `sigla`: atıf geçişi (tablo: [`lane_kisaltmalari.tsv`](lane_kisaltmalari.tsv)) |
 | `sami` | `sami kok Slw` · `sami kok Slw --zayif-son` · `sami kok Elm --tek-dil` · `sami gurultu` · `sami denklik` · `sami atif` | hipotez; `gurultu`: kök |
 | `--capraz` | `kok Slw --capraz` · `sayim --kok nws --capraz` | kelime konumu / ayet / sûre; QAC ve quran-morphology ayrı tablolar + kök ataması farklı konumlar |
@@ -96,6 +97,6 @@ Her çıktı §8 kayıt bloğuyla biter (kaynak, sayım birimi, tam komut, veri 
 - `tezgah/` — Python paketi
 - `testler/` — sağlama testleri (`unittest`; CI'da `core-integrity.yml` içinde de çalışır)
 - `kavramlar/` — çalışma çevirisi ve kavram dosyaları
-- `yerel/` — depoya işlenmeyen yerel veri (`.gitignore`): meal, quran-morphology, lane, sedra
+- `yerel/` — depoya işlenmeyen yerel veri (`.gitignore`): meal, quran-morphology, lane, sedra, klasik
 - `okunus_kurallari.md` — okunuş ve kök gösteriminin ortak harf tablosu ve kuralları
 - `lane_kisaltmalari.tsv` — Lane kaynak kısaltmaları: kategori, eser, kimlik ve kategori dayanağı (hipotez katmanı)

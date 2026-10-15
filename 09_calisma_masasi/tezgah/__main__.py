@@ -14,7 +14,7 @@ import unittest
 from pathlib import Path
 
 from . import kavram, okuma, okunus, qm, tara, tez, veri
-from .ikincil import lane, sami
+from .ikincil import klasik, lane, sami
 from .kayit import CALISTIRILMADI, Kayit, komut_metni
 
 TESTLER = Path(__file__).resolve().parents[1] / "testler"
@@ -150,9 +150,11 @@ def parser_kur() -> argparse.ArgumentParser:
     s.add_argument("metin", nargs="?", help="verilirse yeni sürüm olarak eklenir")
     s.set_defaults(islev=lambda k, n: okuma.ceviri_komutu(n.ayet, n.metin), korpus_gerekmez=True)
 
-    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal, quran-morphology, lane, sedra)")
-    s.add_argument("ne", choices=["meal", "quran-morphology", "lane", "sedra"])
-    s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne), korpus_gerekmez=True)
+    s = alt.add_parser("kur", help="yerel/ katmanı kur (meal, meal-okuyan, quran-morphology, lane, sedra, klasik)")
+    s.add_argument("ne", choices=["meal", "meal-okuyan", "quran-morphology", "lane", "sedra", "klasik"])
+    s.add_argument("--dosya", help="yalnız meal-okuyan: kullanıcının verdiği meal dosyası "
+                                   "(JSON ya da her satırda sûre|ayet|metin)")
+    s.set_defaults(islev=lambda k, n: okuma.kur_komutu(n.ne, n.dosya), korpus_gerekmez=True)
 
     s = alt.add_parser("lane", help="Lane sözlüğü (hipotez): kok / kapsam / sigla")
     la = s.add_subparsers(dest="lane_komut", required=True, metavar="işlem")
@@ -183,6 +185,41 @@ def parser_kur() -> argparse.ArgumentParser:
     x.set_defaults(islev=lambda k, n: sami.denklik_komutu(), korpus_gerekmez=True)
     x = sa.add_parser("atif", help="SEDRA atıf metni")
     x.set_defaults(islev=lambda k, n: sami.atif_komutu(), korpus_gerekmez=True)
+
+    s = alt.add_parser("klasik", help="klasik kök sözlükleri (hipotez): kok / asl / isaret / ayet / ara / kapsam / etiketler")
+    ka = s.add_subparsers(dest="klasik_komut", required=True, metavar="işlem")
+
+    def _eser(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--eser", choices=list(klasik.ESER_AD), help="yalnız bu eser (varsayılan: ikisi)")
+
+    x = ka.add_parser("kok", help="maddeler, anlam birimi birimi etiketli")
+    x.add_argument("kok", nargs="+", help="Arapça harf veya Buckwalter (Latin okunuş reddedilir)")
+    x.add_argument("--tam", action="store_true", help="kısaltmadan")
+    _eser(x)
+    x.set_defaults(islev=lambda k, n: klasik.kok_komutu(k, n.kok, n.eser, n.tam))
+    x = ka.add_parser("asl", help="yalnız 'asl' beyanları")
+    x.add_argument("kok", nargs="+")
+    _eser(x)
+    x.set_defaults(islev=lambda k, n: klasik.asl_komutu(k, n.kok, n.eser))
+    x = ka.add_parser("isaret", help="anlam → dayanak: her anlam biriminin tanığı ve statüsü")
+    x.add_argument("kok", nargs="+")
+    x.add_argument("--tam", action="store_true")
+    _eser(x)
+    x.set_defaults(islev=lambda k, n: klasik.isaret_komutu(k, n.kok, n.eser, n.tam))
+    x = ka.add_parser("ayet", help="sözlüğün andığı ayetler + QAC denetimi")
+    x.add_argument("kok", nargs="+")
+    _eser(x)
+    x.set_defaults(islev=lambda k, n: klasik.ayet_komutu(k, n.kok, n.eser))
+    x = ka.add_parser("ara", help="tam metin araması (Arapça ifade; harekesiz, hemze-normal)")
+    x.add_argument("ifade")
+    x.add_argument("--limit", type=int, default=30)
+    _eser(x)
+    x.set_defaults(islev=lambda k, n: klasik.ara_komutu(n.ifade, n.eser, n.limit), korpus_gerekmez=True)
+    x = ka.add_parser("kapsam", help="QAC köklerinin kaçı sözlükte karşılanır (ölçüm)")
+    x.add_argument("--liste", action="store_true", help="yok ve zayıf köklerin listesi")
+    x.set_defaults(islev=lambda k, n: klasik.kapsam_komutu(k, n.liste))
+    x = ka.add_parser("etiketler", help="işaret etiketleri ve statüler")
+    x.set_defaults(islev=lambda k, n: klasik.etiketler_komutu(), korpus_gerekmez=True)
 
     kavram.parser_ekle(alt)
     tez.parser_ekle(alt)

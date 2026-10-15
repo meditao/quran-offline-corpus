@@ -32,7 +32,7 @@ AYRAC = "-" * 60
 VARSAYILAN_PORT = 8765
 # Arayüzden çalıştırılabilen üst komutlar. test ve kur burada yok: komut satırından çalıştırılır.
 IZINLI = {"denetim", "kokler", "kok", "lemma", "sayim", "dagilim", "etiket", "birlikte", "kalip",
-          "okunus", "ayet", "ceviri", "lane", "sami", "kavram", "tez"}
+          "okunus", "ayet", "ceviri", "lane", "sami", "klasik", "kavram", "tez"}
 
 
 # --- form tanımları (yalnız argv kurmak için; anlam denetimi paketin kendisindedir) --------------
@@ -70,6 +70,10 @@ def _limit(v="50"):
 
 def _bw():
     return Alan("--bw", "bayrak", "Buckwalter biçim/lemma ek sütun (--bw; varsayılan Latin okunuş)")
+
+
+def _eser():
+    return Alan("--eser", "secim", "Eser (boş = ikisi)", "", False, ("", "ibnfaris", "ragib"))
 
 
 def _ad(etiket="Ad"):
@@ -111,7 +115,7 @@ def ekranlar() -> dict[str, tuple[str, list[Form]]]:
         "ayet": ("Ayet okuma", [
             Form("ayet", "Ayet görünümü", ["ayet"], [
                 Alan("ayet", "poz", "Sûre:ayet (ör. 2:3)", zorunlu=True),
-                Alan("--meal", "bayrak", f"Meal göster ({okuma.MEAL_ETIKETI}) — varsayılan kapalı"),
+                Alan("--meal", "bayrak", f"Meal göster: Diyanet + Okuyan (kuruluysa) — {okuma.MEAL_ETIKETI}; varsayılan kapalı"),
                 Alan("--arapca", "bayrak", "Denetim için Tanzil kelimesi")],
                 "Okunuş + kelime çözümlemesi (QAC) + çalışma çevirisi."),
             Form("okunus", "Okunuş", ["okunus"], [
@@ -199,6 +203,22 @@ def ekranlar() -> dict[str, tuple[str, list[Form]]]:
             Form("sami_gurultu", "Sâmî — gürültü tabanı", ["sami", "gurultu"], []),
             Form("sami_denklik", "Sâmî — denklik tablosu", ["sami", "denklik"], []),
             Form("sami_atif", "SEDRA atıf metni", ["sami", "atif"], []),
+            Form("klasik_kok", "Klasik sözlükler — maddeler (İbn Fâris, Râgıb)", ["klasik", "kok"], [
+                Alan("kok", "poz_coklu", "Kök(ler) — Arapça ya da Buckwalter, boşlukla (ör. Slw)", zorunlu=True),
+                _eser(), Alan("--tam", "bayrak", "Kısaltmadan")],
+                "Hipotez kaynağı, delil değil. Birim cümle değil anlamdır; her birim dayanağıyla etiketlenir."),
+            Form("klasik_isaret", "Klasik sözlükler — anlam → dayanak (statü)", ["klasik", "isaret"], [
+                Alan("kok", "poz_coklu", "Kök(ler)", zorunlu=True), _eser(), Alan("--tam", "bayrak", "Kısaltmadan")],
+                "Statü tanığa göredir, doğruluğa değil. 'YALNIZ rivayetle' ve 'şer'î' birimler dil anlamı diye aktarılmaz."),
+            Form("klasik_asl", "Klasik sözlükler — asl beyanları", ["klasik", "asl"], [
+                Alan("kok", "poz_coklu", "Kök(ler)", zorunlu=True), _eser()]),
+            Form("klasik_ayet", "Klasik sözlükler — ayet atıfları + QAC denetimi", ["klasik", "ayet"], [
+                Alan("kok", "poz_coklu", "Kök(ler)", zorunlu=True), _eser()]),
+            Form("klasik_ara", "Klasik sözlükler — tam metin araması", ["klasik", "ara"], [
+                Alan("ifade", "poz", "Arapça ifade (harekesiz, hemze-normal)", zorunlu=True), _eser(), _limit("30")]),
+            Form("klasik_kapsam", "Klasik sözlükler — kapsam ölçümü (QAC kökleri)", ["klasik", "kapsam"], [
+                Alan("--liste", "bayrak", "Yok ve zayıf köklerin listesi")]),
+            Form("klasik_etiketler", "Klasik sözlükler — etiketler ve statüler", ["klasik", "etiketler"], []),
         ]),
     }
 
@@ -432,7 +452,7 @@ def form_html(f: Form, belirtec: str, degerler: dict[str, str], acik: bool) -> s
             f'<button type="submit">Çalıştır</button></form></details>')
 
 
-ILKE = ("Yalnız Kur'an verisi delildir. Lane, Sâmî ve meal hipotez / ikincil katmandır. Her sayının birimi "
+ILKE = ("Yalnız Kur'an verisi delildir. Klasik sözlükler, Lane, Sâmî ve mealler hipotez / ikincil katmandır. Her sayının birimi "
         "kayıt satırında yazılıdır; boş çıktı yokluk delili değildir. Okunuş aktarımdır, delil değildir.")
 
 
