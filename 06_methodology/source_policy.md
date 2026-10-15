@@ -39,6 +39,12 @@ Ayrım: çalışma masasının ikinci annotation katmanı QuranMorph değil, `mu
 
 Kognat eşlemesi otomatik biçim benzerliğiyle yapılmaz; düzenli ses denklikleri, tarihsel ilişki ve semantik süreklilik aranır.
 
+## 6b. Klasik kök sözlükleri
+
+İbn Fâris'in *Mekâyîs*'i ve Râgıb'ın *Müfredât*'ı OpenITI külliyatından (CC BY-NC-SA 4.0) commit'e sabitlenmiş iki dosyayla kullanılır; sağlama toplamı tutmazsa kurulum durur. Statüleri **hipotezdir**: anlam önerisi kurulan her analizde bakılır (`analiz_protokolu.md` Aşama 7a), ama hiçbir cümleleri delil sayılmaz. Hadis, şer'î ıstılah ve müfessir nakli taşıyan cümleler gelenek-içi diye işaretlenir.
+
+Metin şimdilik depoya işlenmez; beceri her oturumda kurar (`python3 scripts/kur.py`). Depo çalışma masasına taşınırsa Lane gibi `09_calisma_masasi/yerel/` altında tutulur; yayımlanan metinde OpenITI ve tahkik baskısı anılır.
+
 ## 7. Ham veri ve yorum ayrımı
 
 - `01_raw`: dış kaynaktan aynen alınmış metin/veri
@@ -63,7 +69,7 @@ Kritik bir kavram için çekirdek akış:
 1. Tanzil üzerinden ayet metnini sabitle.
 2. QAC üzerinden kök/lemma/morfoloji adaylarını çıkar.
 3. Kendi scriptlerimizle dağılımı yeniden hesapla.
-4. Mevcutsa bağımsız kaynaklarla (QuranMorph, Açık Kuran, sözlükler) çapraz kontrol yap.
+4. Mevcutsa bağımsız kaynaklarla (QuranMorph, Açık Kuran) çapraz kontrol yap; anlam önerisinde klasik sözlük denetimini (Aşama 7a) çalıştır.
 5. Uyuşmazlığı karantinaya al ve elle incele.
 6. Sonucu kanıt gücünü belirterek raporla.
 

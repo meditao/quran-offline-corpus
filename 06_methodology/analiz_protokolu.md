@@ -1,4 +1,4 @@
-# Kur'an Analiz Protokolü — v2.2
+# Kur'an Analiz Protokolü — v2.3
 
 **Konumu:** `06_methodology/analiz_protokolu.md`  
 **Kapsamı:** tek bir kavram, kök, ayet, pasaj veya tezin Kur'an merkezli ve denetlenebilir biçimde nasıl analiz edileceği.
@@ -6,6 +6,8 @@
 Bu belge, çalışmanın **ana analiz protokolüdür**. Amaç bir anlamı baştan doğru kabul edip ona delil toplamak değil; Kur'an içi veriden hareketle anlamı kurmak, karşı örneklerle sınamak ve veri ile yorumu açıkça ayırmaktır.
 
 **Sürüm notu (v2.1):** Protokol, `f-r-d` kökü üzerinde uçtan uca pilot olarak sınandı. Pilot sonucunda kapalı örneklemin hipotezden önce kilitlenmesi, aynı kök altında ayrı sözlüksel dalların mümkün olması ve “kanıtlayıcı örnek / yalnız uyumlu örnek” ayrımı açık kurala dönüştürüldü.
+
+**Sürüm notu (v2.3 — 14.10.2026):** İki klasik kök sözlüğü — İbn Fâris'in *Mekâyîs*'i ve Râgıb'ın *Müfredât*'ı — anlam önerisi kurulan her analizde zorunlu denetim adımı oldu (Aşama 7a, §10). Sözlüğe Kur'an içi hipotez kurulduktan sonra bakılır; hadis, şer'î ıstılah ve müfessir nakli taşıyan cümleler işaretlenir; sözlükçünün Kur'an kullanımı hakkındaki genellemeleri korpusla sayılır. Araç şimdilik beceride (`kuran-kok-analizi` §12); depo çalışma masasına taşınması ayrı bir aşamadır (CLAUDE.md §10).
 
 **Sürüm notu (v2.2 — 11.10.2026):** İman–tevekkül karşılaştırmasında biçim ile anlam kümesi, ortak geçişin kanıt sınırı, yerel sıra ile genel zaman kuralı, görev ile ahlaki sorumluluk, metinsel bağlam ile tarihsel çerçeve ve Kur'an öncesi tanıklık ayrımları somutlaştırıldı. Uygulama ve kaynaklar: [İman–tevekkül–vekîl–tafvîz kaydı](../07_analyses/roots/Tawakkul-Wakil-analysis.md).
 
@@ -19,7 +21,7 @@ Arşiv, kavram kartı, versiyon defteri, hipotez defteri ve periyodik bakım bu 
 2. **Geleneksel anlam başlangıç varsayımı değildir.** Ne otomatik doğru ne otomatik yanlıştır; en güçlü biçimiyle ayrıca sınanır.
 3. **Kesin veri ile yorum ayrılır.** Sayım, biçim ve cümle yapısı veri; bunlardan çıkarılan anlam hipotezdir.
 4. **Karşı örnek anlamı daraltır.** Bir aykırı kullanım açıklanıp geçilmez; gerekirse tanım revize edilir.
-5. **Dış dil verileri destekleyici kontroldür.** Lane, klasik sözlükler, İbranice ve Süryanice anlamı tayin etmez; yalnız hipotez üretir veya tarihsel olasılığı kontrol eder.
+5. **Dış dil verileri destekleyici kontroldür.** Klasik sözlükler (İbn Fâris, Râgıb), Lane, İbranice ve Süryanice anlamı tayin etmez; yalnız hipotez üretir veya tarihsel olasılığı kontrol eder. İki klasik sözlüğe bakmak anlam önerisi kurulan her analizde zorunludur; delil sayılmaları değil, gözden kaçanı göstermeleri için (Aşama 7a).
 6. **Yokluk iddiası ağır bir iddiadır.** Tek kök taramasıyla "Kur'an'da yok" denmez.
 7. **Anlam ile işlev ayrılır.** Bir kavramın sonucu, etkisi veya hükmü kelimenin sözlük anlamı yerine konmaz.
 8. **Tek ayetten genel tanım kurulmaz.** Tanım bütün dağılımı karşılamalıdır.
@@ -39,7 +41,7 @@ Arşiv, kavram kartı, versiyon defteri, hipotez defteri ve periyodik bakım bu 
 | kelime konumu | 77.429 | 77.429 |
 | benzersiz `ROOT` | 1.642 | 1.651 |
 | kök yazımı | Buckwalter | Arapça |
-| yan katman | Tanzil, Açık Kuran, İbranice indeks | Lane (47.919 madde), BDB + SEDRA |
+| yan katman | Tanzil, Açık Kuran, İbranice indeks | İbn Fâris (4.649 madde) + Râgıb (1.662 madde), Lane (47.919 madde), BDB + SEDRA |
 | üretim | script + CI (`core-integrity.yml`) | her oturumda yeniden kurulur |
 
 ### 1a. Ölçülmüş ilişki
@@ -61,7 +63,7 @@ Sonuç: **beceri kurulumunun "1.651 kök" denetim satırı, depo sayısını do�
 ### 1c. Kaynak kuralı
 
 1. **Yayımlanan her sayı depodan gelir.** Depo hash sabitli, script ile yeniden üretilebilir ve CI ile denetlenir. `07_analyses/` altına yazılan bir rakamın dayanağı `08_scripts/` altındaki bir çalıştırma olmalıdır.
-2. **Beceri hızlı çalışma katmanıdır.** Keşif, ilk döküm, Lane ve Sâmî sorgusu için kullanılır. Beceriden çıkan bir sayı yayımlanacaksa depoda yeniden üretilir.
+2. **Beceri hızlı çalışma katmanıdır.** Keşif, ilk döküm, klasik sözlük, Lane ve Sâmî sorgusu için kullanılır. Beceriden çıkan bir sayı yayımlanacaksa depoda yeniden üretilir.
 3. **İkisinin uyuşması bağımsız doğrulama değildir.** Her ikisi de QAC soyundan gelir; uyuşma boru hattını doğrular, kök atamasını değil. Gerçek bağımsız katman QuranMorph'tur ve depoda henüz yoktur (`source_policy.md` §5). Tartışmalı bir kök ataması için "iki araç da aynı diyor" yazılmaz.
 4. **Sayım birimi her tabloda yazılır:** kelime konumu / segment / ayet / sûre (`counting_units.md`). Birimsiz sayı kanıt değildir.
 5. Tanzil ile QAC arasında **kelime düzeyinde doğrudan join yapılmaz**; ortak anahtar `(sûre:ayet)`tir, kelime eşlemesi için `tanzil_qac_alignment.csv` kullanılır.
@@ -101,8 +103,11 @@ Analiz metninin başına dört satır yazılır. Eksiksiz doldurulamıyorsa anal
 Kaynak      : depo QAC v0.4 (hash a1d129…) | beceri | ikisi
 Sayım birimi: kelime konumu | segment | ayet | sûre
 Sorgu       : çalıştırılan tam komut veya script
+Klasik      : asl + isaret + ayet çalıştırıldı, anlam→dayanak tablosu yazıldı | çalıştırılmadı (gerekçe) | salt sayım, gerekmez
 Durum       : çalıştırıldı | önceki çıktı kullanıldı | çalıştırılmadı
 ```
+
+`Klasik` satırı anlam önerisi kurulan her analizde doldurulur (Aşama 7a).
 
 **Durum satırı zorunludur ve gerçeği yazar.** Korpus kurulamadıysa, sorgu çalıştırılmadıysa veya sayı başka bir analizden hatırlandıysa öyle yazılır. Bir önceki sonucu hatırlamak doğrulama değildir. Hafızadan kök listesi, ayet numarası veya sayı yazılmaz.
 
@@ -268,11 +273,38 @@ Sonra iki okuma aynı veri üzerinde karşılaştırılır:
 
 Bizim okuma muhalif okumayı kanıtla geçemiyorsa "geleneksel yorum yanlış" denmez. Sonuç "iki okuma rekabette" veya "mevcut veri karar vermeye yetmiyor" olabilir.
 
-### Aşama 7 — Dış dil katmanı: Lane ve Sâmî diller
+### Aşama 7 — Dış dil katmanı: klasik sözlükler, Lane ve Sâmî diller
 
-Bu aşama **Kur'an içi anlam hipotezi kurulduktan sonra** çalıştırılır.
+Bu aşama **Kur'an içi anlam hipotezi kurulduktan sonra** çalıştırılır. Önce bakılırsa çapa etkisi yapar: ayetler sözlüğün verdiği anlamla okunur ve sözlüğün görmediği kullanımlar görünmez olur.
 
-- Lane ve klasik sözlükler: olası tarihsel anlam alanlarını ve klasik geleneğin kayıtlarını gösterir.
+#### 7a. Klasik kök sözlükleri — zorunlu
+
+Anlam önerisi kurulan her analizde iki sözlüğe bakılır:
+
+- **İbn Fâris, *Mu'cemü Mekâyîsi'l-luga*** — kökün *asl*ı: bütün türevlerin dayandığı bir-üç çekirdek anlam. Kelime kelime ilerlerken kaybolan kök ailesi damarını denetler.
+- **Râgıb el-İsfahânî, *el-Müfredât*** — kelimenin Kur'an kullanımları ve yakın anlamlılar arası ayrım. Sayımın hiç göstermediği komşu kavram sınırını denetler.
+
+Sonra üçlü karşılaştırma yazılır:
+
+1. Kur'an içi hipotezle örtüşen,
+2. sözlükte olup korpusta desteği olmayan,
+3. korpusta olup sözlükte eksik kalan.
+
+**Gelenek-içi anlamın ayrılması — birim cümle değil, anlamdır.** Soru "bu cümlede hadis var mı" değil, "bu anlam neye dayanıyor"dur. Sözlük maddesi anlam birimlerine bölünür (bir anlam beyanı + ona getirilen tanıklar) ve her birim dayanağına göre bir statü alır: Arap kullanımı ve şiir **dil-içi**; Peygamber'e açıkça nisbet edilen söz (**hadis**) ile sahibi yazılmamış rivayet ("el-hadîs", "ruviye": **rivayet**) ayrı tutulur, ikisi de **gelenek-içi**; şer'î ıstılah ("şeriatın getirdiği", "mahsus ibadet") ve sahabe/müfessir nakli **gelenek-içi**; hiçbir tanık göstermeyen birim **tanıksız**. Yalnız rivayetle tanıklı ya da şer'î bir anlam dil anlamı diye aktarılmaz.
+
+Araç ayırır, karar analizde verilir: biçimsel işaret bir birimde iki anlamı birlikte bırakabilir (Râgıb'ın virgül zincirleri) ve "yukâl" kelimesi her zaman gerçek bir kullanım örneği değildir. Bu yüzden her analizde araç çıktısından sonra Türkçe bir **anlam → dayanak** tablosu yazılır (anlam · dayanak · statü · araçtan sapma notu); her satır tek anlamdır. Tanık göstermeden tefsirden alınmış (örtük) anlam işaretle yakalanamaz; ona üç sınav uygulanır:
+
+- **asl sınavı:** sözlükçünün kendi verdiği asldan türetilebiliyor mu?
+- **tanık sınavı:** dil-içi tanığı var mı; yoksa Sâmî katmanı ve Lane'in şiir tanıkları aranır;
+- **korpus sınavı:** sözlükçünün anmadığı ayetlerde de tutuyor mu? Anılmayan ayetler Aşama 5'in kapalı örneklemidir.
+
+**Genelleme denetimi.** Sözlükçünün Kur'an kullanımı hakkındaki "hep / hiç / yalnız" hükümleri sayılabilir iddialardır; aktarılmadan önce korpusta sayılır. Örnek: Râgıb, övgü yerinde hep *ikâme* lafzının geldiğini, *el-musallîn*'in yalnız münafıklar için kullanıldığını söyler. *Musallîn* 3 ayette geçer (70:22, 74:43, 107:4); 70:22 *illâ'l-musallîn* övgü bağlamıdır (70:23-34 nitelikleri sayar, 70:35 ödülü bildirir). Genelleme bu kapsamda çelişiyor.
+
+Aynı sertlik, Kur'an içi hipotezi destekler görünen sözlük cümlesine de uygulanır. "İbn Fâris de Râgıb da Lane de böyle diyor" üç bağımsız tanık değildir; aynı geleneğin birbirinden nakleden kayıtlarıdır.
+
+#### 7b. Lane ve Sâmî diller — isteğe bağlı
+
+- Lane: olası tarihsel anlam alanlarını ve klasik geleneğin kayıtlarını gösterir.
 - İbranice, Aramice/Süryanice ve diğer Sâmî veriler: ortak köken veya eski semantik alan için kontrol sağlar.
 
 Bunların hiçbiri tek başına Kur'an'daki anlamı belirlemez.
@@ -430,6 +462,17 @@ Madde içinde `Bd`/`Jel` tefsir, "It is said in a trad." hadis kaynaklıdır; ak
 İşlevi bir kelimenin Kur'an'daki anlamını tayin etmek değil, önerilen anlamın dil-tarihsel olarak makul olup olmadığını ve olası eski semantik alanı kontrol etmektir.
 
 Ortak ünsüz dizisi yalnız ortak köken **adayıdır**; ortak anlam değildir. Tek dildeki benzerlik tek başına delil sayılmaz. İbranice ile Süryanice de tamamen bağımsız iki tanık gibi sayılmaz.
+
+### Klasik kök sözlükleri
+
+Kaynak: OpenITI külliyatı (CC BY-NC-SA 4.0), commit'e sabit iki dosya — *Mekâyîs* Hârûn tahkiki (`0395IbnFarisQazwini.MucjamMaqayis.Shamela0021710-ara1`), *Müfredât* Dâvûdî tahkiki (`0502RaghibIsbahani.Mufradat.Shamela0023636-ara1`). Künye, sağlama toplamı ve ayrıştırma kuralları becerinin `references/klasik-notlari.md` dosyasındadır.
+
+- **Kapsam (QAC v0.4, 1.642 kök; birim: kök):** İbn Fâris 1.560 kesin + 33 zayıf eşleşme, 49 kök yok (49.968 kelime konumunun 141'i). Râgıb 1.522 kesin + 16 zayıf, 104 kök yok (935 kelime konumu). Beceri envanterine göre ölçülen sayılar bunlarla aynı tabloda toplanmaz.
+- **"Sözlükte yok" bulgu değildir.** İbn Fâris'te yok olanların çoğu dörtlü kök veya alıntı kelimedir; birkaç üçlü kökün maddesi dijital metinde bulunamadı. Râgıb bütün kökleri işlemez, bazılarını başka maddede anar (*mâl* → *m-y-l*).
+- **Zayıf eşleşme elle denetlenir.** Zayıf kural yanlış madde de bulabilir (`ʿ-v-n` → İbn Fâris `(عن)`).
+- **Aynı madde birden çok kökü kapsayabilir.** Râgıb'ın *salâ* maddesi hem `ṣ-l-v` (salât) hem `ṣ-l-y` (ateşe girmek) köklerini anar; korpusta bunlar ayrı köktür.
+- **Dijital metnin kusuru.** Râgıb'ın OpenITI metninde madde başlıkları kaymıştır; madde, başlıktan değil tanım satırından başlatılır (1.662 maddenin 120'si). Kaymış maddenin ilk ve son satırı ayrıca okunur.
+- **İşaret biçimseldir.** `[HADİS]` (Peygamber'e açık nisbet), `[RİVAYET]` (sahibi yazılmamış), `[ŞER]`, `[NAKİL]` bir anlamın dayandığı tanığı gösterir, anlamın doğruluğunu değil. Kararı analizdeki anlam → dayanak tablosu verir.
 
 ### Kur'an öncesi kullanım iddiası
 
