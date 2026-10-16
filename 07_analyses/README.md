@@ -27,6 +27,11 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [Amn — Aşama 4: īmān isim kullanımı](roots/Amn-quran-internal-stage4-iman-noun.md)
 - [Amn — Aşama 5: muʾmin profili](roots/Amn-quran-internal-stage5-mumin-profile.md)
 
+### Dua envanteri
+
+- [Kur’an’daki dualar — envanter ve denetim notu](prayers/README.md) — paylaşılan envanterin referans kontrolü, eksik dua pasajları ve kapsam sınırları. Kesin toplam henüz belirlenmedi.
+- [Paylaşılan dua envanteri](prayers/KURAN_DUALAR.md) — kaynak kayıt; “tam envanter” iddiası için önce denetim notunu okuyunuz.
+
 ### Sûre ve pasaj analizleri
 
 - [Âsr Suresi (103) — Kur'an içi analiz ve tefsirli meal](surahs/Asr-103-analysis.md)
