@@ -29,8 +29,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 
 ### Dua, hamd ve tesbih derlemesi
 
-- [Derlemenin kapsamı ve sürüm notu](prayers/README.md) — kullanıcının son seçkisi, gruplama ve seçilmiş bölüm sınırları.
-- [Kur’an’daki dualar, hamd ve tesbih sözleri](prayers/KURAN_DUALAR.md) — genel dualar, hamd/tesbih sözleri ve belirli durumlarda kullanılabilecek dualar; kaynak madde numaraları korunmuştur.
+- [Kur’an’daki dualar, hamd ve tesbih sözleri](prayers/KURAN_DUALAR.md) — kullanıcının ayıkladığı metinler.
 
 ### Sûre ve pasaj analizleri
 
