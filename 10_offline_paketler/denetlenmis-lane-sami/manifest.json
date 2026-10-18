@@ -1,0 +1,2234 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-10-18",
+  "archive": {
+    "archive_name": "kuran-kok-analizi-offline-DENETLENMIS-LANE-SAMI.zip",
+    "archive_bytes": 102168413,
+    "archive_sha256": "b433682212ca92b59a6a08192eb5533c98c29e2955ae23c8d9e9c25a41b33026",
+    "file_count": 427,
+    "uncompressed_bytes": 190236193
+  },
+  "repository_comparison": {
+    "main_commit": "a65d2d98baf1e5aab8146fa418349b460044319b",
+    "refs": [
+      "origin a65d2d98baf1e5aab8146fa418349b460044319b",
+      "origin/asama-7-klasik 16a6d05a83cf2eb372ef3e9c6e07062c8ecb7865",
+      "origin/claude/belgeler-durum-guncelleme f3f3854d194e883d36d412fe9318dc869f822bb2",
+      "origin/claude/qac-v0.4-phase-1-5fpbzk 92daca14802bb93ff5c520867c38bf97fed5e4a8",
+      "origin/codex/offline-arastirma-web 6f0d0d2c20e524f30f7da21483eaf921b7bc5655",
+      "origin/hicret-kavram-karti b64fa545a4b4bab9014b779de53207756afc5e08",
+      "origin/klasik-sozlukler 583ed5059cb5efd68590694c88a5ea2d3ed56d7c",
+      "origin/main a65d2d98baf1e5aab8146fa418349b460044319b",
+      "origin/tevekkul-v1.1-denetim 9690d58e0bb6254122bdaf19cbd0b0275cfa3b20",
+      "origin/zikir-kavram-analizi 3b90d9178bb4a3487c4d048e3f204d28365c55a6"
+    ],
+    "history_commit_count": 199,
+    "main_file_count": 177,
+    "archive_exact_history": [],
+    "main_exact_file_matches": [],
+    "history_exact_file_matches": [],
+    "history_name_candidates": []
+  },
+  "verification": {
+    "manifest_verification": {
+      "DOSYA-SHA256.json": {
+        "checked_files": 426,
+        "failed": []
+      },
+      "veri/manifest.json": {
+        "checked_files": 402,
+        "failed": []
+      }
+    },
+    "archive_morphology": {
+      "sha256": "742bfac59941b2cb09736d5b7aae694af50792261fb8450cbf6afafcc340645f",
+      "segments": 130030,
+      "word_positions": 77429,
+      "verses": 6236,
+      "distinct_root_tags": 1651
+    },
+    "repository_morphology": {
+      "sha256": "a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46",
+      "segments": 128219,
+      "word_positions": 77429,
+      "verses": 6236,
+      "distinct_root_tags": 1642
+    },
+    "sqlite_checks": {
+      "lane.sqlite": {
+        "integrity_check": "ok",
+        "table_rows": {
+          "root": 5160,
+          "entry": 47919,
+          "ft": 47919,
+          "ft_data": 3378,
+          "ft_idx": 1826,
+          "ft_docsize": 47919,
+          "ft_config": 1
+        }
+      },
+      "sami.sqlite": {
+        "integrity_check": "ok",
+        "table_rows": {
+          "sozluk": 1836,
+          "kaynak_ref": 1836
+        }
+      }
+    },
+    "shared_upstream_sources": {
+      "lane_same_source_commit": true,
+      "lane_same_original_sqlite_hash": true,
+      "bdb_same_source_commit": true,
+      "sedra_same_source_commit": true,
+      "sedra_file_hashes_match_repo_installer": {
+        "ROOTS.TXT": true,
+        "LEXEMES.TXT": true,
+        "ENGLISH.TXT": true,
+        "SEDRA3.DOC": true
+      }
+    },
+    "credential_pattern_scan_paths": [],
+    "limits": [
+      "No package code executed.",
+      "Manifest and SQLite integrity checks do not establish accuracy of translations or legal redistribution rights.",
+      "No claim is made about deleted or inaccessible GitHub objects, expired workflow artifacts, or other accounts."
+    ]
+  },
+  "files": [
+    {
+      "path": "kuran-kok-analizi/DENETIM_RAPORU.md",
+      "bytes": 14441,
+      "sha256": "f5359a1f23decd41021f023ccfb7e882c88e01ede62105dff97df161c22d301e"
+    },
+    {
+      "path": "kuran-kok-analizi/EK_KATMANLAR_RAPORU.md",
+      "bytes": 8731,
+      "sha256": "73cedf8baebc532261510ebcdc56b7ceb079ce4d5e8e9e2ea0db00556c563f6f"
+    },
+    {
+      "path": "kuran-kok-analizi/KURULUM.md",
+      "bytes": 5589,
+      "sha256": "386b26aa42f77698dd6b746d02d1cb7db9e5abebe82f64658f826167ea8293f7"
+    },
+    {
+      "path": "kuran-kok-analizi/LINUX_MAC_KUR.sh",
+      "bytes": 74,
+      "sha256": "69d005671303f59db59f4ba849c549a880ca84b46cc9fc451a120aa9af5297dd"
+    },
+    {
+      "path": "kuran-kok-analizi/SKILL.md",
+      "bytes": 45114,
+      "sha256": "d91be647d2976cde82335e3eaf363f08cf9e1dc3252f03c198d19ce0315b51e4"
+    },
+    {
+      "path": "kuran-kok-analizi/WINDOWS_KONTROL.bat",
+      "bytes": 169,
+      "sha256": "df13ab5b33bd3e601e4ccd94301ee456a21a63eb5b22036d8912ba0c4ac49d53"
+    },
+    {
+      "path": "kuran-kok-analizi/WINDOWS_KUR.bat",
+      "bytes": 1533,
+      "sha256": "394f5a6be2dca669f002d2f52f51408d805d2bbee1942373f2cf481fa749d2a8"
+    },
+    {
+      "path": "kuran-kok-analizi/kolay_kurulum.py",
+      "bytes": 1805,
+      "sha256": "0c17b23b5e5641b41f55b26d61d356f9daabec1d496222cc1f67ec041e61afd6"
+    },
+    {
+      "path": "kuran-kok-analizi/offline.py",
+      "bytes": 3584,
+      "sha256": "217ef9a0ef0e8864615f622819e8f6b006117ad0251b8b1a28f87af711c5fbe3"
+    },
+    {
+      "path": "kuran-kok-analizi/offline_paketle.py",
+      "bytes": 2619,
+      "sha256": "d46f72050d7ce3c31ee6126c5133c3120871f37349e7de4cc93d3cb26e7c7070"
+    },
+    {
+      "path": "kuran-kok-analizi/references/etiketler.md",
+      "bytes": 5823,
+      "sha256": "f106bf82452595835848c0ccba879e54d9e9db39b20f4eb6e9a1d743a099fe6f"
+    },
+    {
+      "path": "kuran-kok-analizi/references/kaynaklar.md",
+      "bytes": 8540,
+      "sha256": "1f5c9e642022c7d8a576831e16cbf08e5659d3296049dac4ec878d21505b353a"
+    },
+    {
+      "path": "kuran-kok-analizi/references/klasik-notlari.md",
+      "bytes": 9730,
+      "sha256": "61369abfadf7bc73518a23c9346e6801a8c98ed3753b71936f7c114646baddfe"
+    },
+    {
+      "path": "kuran-kok-analizi/references/lane-notlari.md",
+      "bytes": 5030,
+      "sha256": "a64eaca621455fc5ac06bccc2a593c54e83ee7c427c41f2c20bbce9c7bd2eb32"
+    },
+    {
+      "path": "kuran-kok-analizi/references/sami-notlari.md",
+      "bytes": 5644,
+      "sha256": "62f838c75bfd1bea51f1ff8a7b458ed6866b45d5287777b0b56b224d3fc6398e"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/ek_katmanlar.py",
+      "bytes": 8622,
+      "sha256": "a7e8062ba59b4efe90615d63237845dc4b9a68390e5494e7e6affe707114e0ca"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/klasik.py",
+      "bytes": 19797,
+      "sha256": "19cfa1234f8b8f91f453feb8ccdd293a9bd50c48b32b9dd25912554d85248d40"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/klasik_ayristir.py",
+      "bytes": 12083,
+      "sha256": "efed7ffe3538ca590338986045d53d79ae3aa6e04c74526b9ea4cca1a6434b24"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/kur.py",
+      "bytes": 2269,
+      "sha256": "e6ec3393b4c22fc8c097a00b6f825a4c40ed50c874d767284f21ff0b27eda7b5"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/lane.py",
+      "bytes": 7752,
+      "sha256": "2e61a498c822a575f622d087ffcaab563df222b317191075398ca2b30f0390bf"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/meal_denetim.py",
+      "bytes": 8403,
+      "sha256": "f842536f18fa7b038a6e0a89daec30829dc6d21e5b49eb1e96345cd6068dfe21"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/sami.py",
+      "bytes": 9379,
+      "sha256": "2498327790ab2aecfb16031363d98d346af044775126dfad981e4f512d93f275"
+    },
+    {
+      "path": "kuran-kok-analizi/scripts/tara.py",
+      "bytes": 14415,
+      "sha256": "6d97cb681b7feca5b6b97a8c4bb8c93f7443f96d71d9caba6a0ad7732be0334f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis-katmanlar.json",
+      "bytes": 6315,
+      "sha256": "0628a3976f4f994a94175c8e44b80b327253e62e85c18c01199f1b369c2ab0cf"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/TEST_SONUCLARI.json",
+      "bytes": 5930,
+      "sha256": "fc9ffc86754a1cee1b16cc55b197127c1ee90c5ab27eded1603b774aadcc9e71"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/bdb-ayristirma-farklari.json",
+      "bytes": 3211,
+      "sha256": "05683113f159ec1e48bc5325f8bde9cc1d1955095c40df3a9b9dbbc097888010"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/dosya-degisiklikleri.json",
+      "bytes": 113725,
+      "sha256": "cdf0eabe0d02c6b4e949f2f4da4fc92c3093e12175cda0330c149bb5d2e1a4b9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/KURULUM.md",
+      "bytes": 4059,
+      "sha256": "f7db661da6381e2af9fd5b0b87d9c50856b804a8125a9ef8ed2d6ca3d3d065aa"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/SKILL.md",
+      "bytes": 44760,
+      "sha256": "3920606484457f4c4ffd9b4955e04b3376e63a840c489f79a9c501912395c118"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/offline.py",
+      "bytes": 3102,
+      "sha256": "947525e134f23dafd1be95141b4867bdf79f2741ea8e9e49c895fc399fa9e025"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/offline_paketle.py",
+      "bytes": 2611,
+      "sha256": "38a8af2121c6adaf45e59c408a4a9f5e9fedaab4c8eddb889044223819440c9d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/references/kaynaklar.md",
+      "bytes": 7983,
+      "sha256": "0500ed2201e95dac40711f3c02fdcbf58d4623e68000353a9d3c8333b9698c72"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/references/sami-notlari.md",
+      "bytes": 4979,
+      "sha256": "1671ce29761cc3e7bf76aade1327a6caad01fbb3fb672b23e61d1208f31216af"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/scripts/kur.py",
+      "bytes": 2272,
+      "sha256": "03497632ac14cda00ab09b10b634c471ee95579f767526a6555332c5c1789e69"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/scripts/lane.py",
+      "bytes": 7366,
+      "sha256": "6acd392f9a8181ad1068074db9c2834aa61cc503ac705ff0c56185102f2a5af1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/scripts/meal_denetim.py",
+      "bytes": 7915,
+      "sha256": "dbbaf5c999cdb21975d4e1c9a1c13b9a4844829d4b308d69e8588dd970eb3e18"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/onceki-araclar/scripts/sami.py",
+      "bytes": 8088,
+      "sha256": "2e545a875482f4ff294e7db87c0ec9f1353b6d2b6906ddef52fe3c3c06eb662a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/dis_katman_denetimi/sedra-kaynak-baglari.json",
+      "bytes": 22938,
+      "sha256": "e7516c2271b9c8addbacae7f58a47af6a328f39e4622ab12a1a5b27777795666"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/bdb-BrownDriverBriggs.xml",
+      "bytes": 2911253,
+      "sha256": "2b52658a4323d91674cda4090ab8b3ebddfff640f4f18143c28300e80b2c38f8"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/bdb-commit.json",
+      "bytes": 4620,
+      "sha256": "920ed183fe654b9abdae71037102e0ea9e50310d155be3a9dc6a0920b4d3c15f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/bdb-commit.json.source.json",
+      "bytes": 368,
+      "sha256": "6b7a3f36374361894e4a4249809824a168d012a1a9556ebb1440f092b566ece3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/bdb-readme.md",
+      "bytes": 2503,
+      "sha256": "9a129c25674387c494571c3828aa3a8eb78459c165e275c313ae26994ce8ff22"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/bdb.zip",
+      "bytes": 4079858,
+      "sha256": "07cc8854dbe01548c2f5268ad41c9d630501fe9c632fb3d46e45e2ef84a4b40a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/bdb.zip.source.json",
+      "bytes": 421,
+      "sha256": "bebe1f0504f368052b171283f95aaf47151a9f9ed4e6b22fb03300e36de65e62"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/lane-LICENSE",
+      "bytes": 35147,
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/lane-README.md",
+      "bytes": 1385,
+      "sha256": "30b81ae98bb3e7d0fe2c48a019ad4a75546e597ee50043278ba1ed8f4914d955"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/lane-Versions.md",
+      "bytes": 1347,
+      "sha256": "82ee363a7ddbc4404c6063359c5062b61e9ed20b1a3ea880e913f3eeaf786eda"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/lane-commit.json",
+      "bytes": 5182,
+      "sha256": "28ca68dad3d34573b45e138af9e0a07f39dd063cc74a01d3f6ea70e7ce4a7a24"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/lane-commit.json.source.json",
+      "bytes": 369,
+      "sha256": "332d5e989f106c02c489275f871e76c8b3957ff5963ac53a33acc1bd04013609"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/lane.zip",
+      "bytes": 61565710,
+      "sha256": "c4f7950c7298dcfb184de58d68521ab58b5ff4e2cf6782ce3cf50cdadd2a68f6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/lane.zip.source.json",
+      "bytes": 375,
+      "sha256": "33d9d01c128306a09307d00cb7d92cf635018e4c90b8b525bfc3eb664b82d6e4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-ENGLISH.TXT",
+      "bytes": 243900,
+      "sha256": "43ca8e0a0b3c66823cb9dbf2a6f029adf03384c02f69a00a0fcc9e9723df41d4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-LEXEMES.TXT",
+      "bytes": 106171,
+      "sha256": "30ee106f62237d5279f088c1c98c56460b9ae43db77b3752220b839d3813b5e4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-LICENSE",
+      "bytes": 2634,
+      "sha256": "cdfa113e890191e6aee26de91a1479a37f83b749c77922741b4bd3b0ec6b52f4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-README.md",
+      "bytes": 8982,
+      "sha256": "74644067100622887f6e87e6f7e855eefeb910329f2a68500e82908e8443e496"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-ROOTS.TXT",
+      "bytes": 70519,
+      "sha256": "f90fbf51a3deb03ed94f86ddacaea341304180af00dd893d7d58507ae993169a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-SEDRA3.DOC",
+      "bytes": 10848,
+      "sha256": "f316c01596555d4c725a1ea819f18afc256e547bfc902955f4ad23d64b3cd4d6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-commit.json",
+      "bytes": 19419,
+      "sha256": "e85b34abc9ac2c6e163159a904a76a513d4b4d777a689e7394a0b98177e25e7b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra-commit.json.source.json",
+      "bytes": 347,
+      "sha256": "23874fae2e1a426d392ccd565b8b52d7b5f437eba1d6a948520752010f3a1dff"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra.zip",
+      "bytes": 1358100,
+      "sha256": "871f4aa5f141a3612cf2a6991638ba296e72fb12b04f5eabe956431c73f54855"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ek_kaynaklar/sedra.zip.source.json",
+      "bytes": 399,
+      "sha256": "ce062c2f2df4e069f14a3887859f45f9dea4be624ebd4ecd59a520bff0f1de51"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ibnfaris-openiti.txt",
+      "bytes": 3768378,
+      "sha256": "7f71af0dfe056cb84e7da24657fa13edc6e8061ca1980eed7f6c196bd18b5689"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/morfoloji.txt",
+      "bytes": 6322866,
+      "sha256": "742bfac59941b2cb09736d5b7aae694af50792261fb8450cbf6afafcc340645f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/okunus.json",
+      "bytes": 1211383,
+      "sha256": "a6e3c0c6bcfaa1971d66aac5e871e38cdf03d72e229989755ee82679c6a23598"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/ragib-openiti.txt",
+      "bytes": 2232195,
+      "sha256": "721da9e2168f8dcd6dd6876a73b4a304496656e57ba9b2e26a07d7f871a78e19"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/ham_kaynaklar/turkce-meal.json",
+      "bytes": 1564554,
+      "sha256": "c6468b9a49622118cd07861ab6c64eff712164611a31aa036532e68d0d88aff4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/klasik.json",
+      "bytes": 6380495,
+      "sha256": "9eb81b5799672f764e11cf0442815ec213dde04ef20a91a3aa54479b2cc57e6e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/korpus.json",
+      "bytes": 21579782,
+      "sha256": "89c5103dc1d8e30d69d2e7004cfb95498b37c2c2338681b739e33779e9762e4c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/lane.sqlite",
+      "bytes": 52346880,
+      "sha256": "5c53f1fdd08137a7f58b9b7d67dfe786c39f61d5f9f4403de99c6e4ac9ca8e47"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/manifest.json",
+      "bytes": 49789,
+      "sha256": "6bb1e747c218dd0566542125607a1cb75599a91054525b91ea6fdf9abf77d84b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal-denetlenmis.json",
+      "bytes": 3602909,
+      "sha256": "580f8a0b7fbd9ad5aea32fb767d3c78a936c75dbe9547e73805f84504215067a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/TEST_SONUCLARI.json",
+      "bytes": 6503,
+      "sha256": "1f6a9a20c382e703a5ca11a5e2c11e4a9b5344ea35f8cb4d208cd4ebba4a586f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/acik-sorunlar.json",
+      "bytes": 5392,
+      "sha256": "4d3e16dd9f1e735d156cc5ff61095519140cb33385b0a2f3c3908f8ec32a2ff6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/araliklar.json",
+      "bytes": 410705,
+      "sha256": "aac9e5cbd7e5ad6a64f0b92a81914755289090cfd77755a5b2467f8e573b0831"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/ayet-denetimi.jsonl",
+      "bytes": 4910847,
+      "sha256": "7ec2d50134e1bb546700e49fe2161bbbbd1e8440429880464b6e9d8e62e83603"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/dogal-tekrarlar.json",
+      "bytes": 3519,
+      "sha256": "e16b4aae0ab8e0aab2e984d0601e35a86cb32103360aa483cc4c02bd443779bf"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/dosya-degisiklikleri.json",
+      "bytes": 33168,
+      "sha256": "f81dcb623f40767102ebf3748407c602e0c8c243837844d9e218b057fbebec4f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/icerik-duzeltmeleri.json",
+      "bytes": 6336,
+      "sha256": "e1deadc278fe3312ca0b906b5bb0403cf0728adfa3652e0c5fedc661ed00c9a6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/ikinci-kaynak-ayristirma.json",
+      "bytes": 2046731,
+      "sha256": "206af7fab01ae46a4b990bcd1afd1556b513b9efbe1149bce266b2629d06b479"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/ikinci-kaynak-farklari.json",
+      "bytes": 18308,
+      "sha256": "1b64f5fada782d55e8fcb320e1f525894b24f54a5b0bb73e3f9e797fcd53fc66"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/ilk-ardisik-tekrarlar.json",
+      "bytes": 161965,
+      "sha256": "c9bbd9092d6b6de7f0ebfcaf5a2b69246312cc67c6227cce36b4abf22288c9bb"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/ilk-tum-metin-tekrarlari.json",
+      "bytes": 164909,
+      "sha256": "84a2165bb9e26c088ee4a7af791580bff6a040534df323fb09a2a631ed0a1b87"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynak-dizini.json",
+      "bytes": 74649,
+      "sha256": "2ae6aa653efef17d379420d118c30ef0a75f171859d5337b6223b6b7c258a629"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynak-varyantlari.json",
+      "bytes": 835,
+      "sha256": "e2737e3acaf55245f71d82af08b1d805b2e59758962ca60bec4c299ba68f6d2b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/001.html",
+      "bytes": 19277,
+      "sha256": "9b021dc0c2da22e593b9d8e35896e9816c7a07b3dda1ca1a01b0a35df40bf01e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/001.html.source.json",
+      "bytes": 365,
+      "sha256": "4c5aed52a2d9d666762cc3e29531e14d6a1717c124782211699139acc4253eec"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/002.html",
+      "bytes": 110750,
+      "sha256": "ce2c0328faf535b9832258d5113120e38a298a3783b4fe97b08d723c6ef504d1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/002.html.source.json",
+      "bytes": 366,
+      "sha256": "eb9471443b2958c954675274c3518364d6110cdce92c83ba047e3c6d1b1c11aa"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/003.html",
+      "bytes": 74285,
+      "sha256": "4a70c5925bd668af5d8a8b67d09a91da5beffa31c9986bc35fe899d2f96dfdb1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/003.html.source.json",
+      "bytes": 365,
+      "sha256": "bc9d0e02f0651c3d82c5e3fff049880878950404f474ca895a657aba5247f31c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/004.html",
+      "bytes": 73791,
+      "sha256": "7174db307f87ba93aab0d308c627d96369147f94852a2493652e2b7722130324"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/004.html.source.json",
+      "bytes": 365,
+      "sha256": "f62c33de8eca0e48d398ea4a28293bea0735d21f3ffb5d3c8c69e38930a635df"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/005.html",
+      "bytes": 58280,
+      "sha256": "3bbc05b9819d0c2d71667fd9c42d9e6fbfb3a983f9c790ca2b525332c38d69f5"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/005.html.source.json",
+      "bytes": 365,
+      "sha256": "528422ed96f2455855609c4dc7aa28c4ee207afb75f5c87e5a81fe4bf40a2156"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/006.html",
+      "bytes": 66222,
+      "sha256": "4c1c919a3e650cbd90fadc0d10efbfa8ec1bb29e671e3a4a77e035e345d315dc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/006.html.source.json",
+      "bytes": 365,
+      "sha256": "d83441e2e9c6ea32c52d31e4170c509e187bcdd4d42ca483833e1b1cb7fa8bd7"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/007.html",
+      "bytes": 74913,
+      "sha256": "28453125d1e08038f3a2970bb0dce06f26e011a93d159fd4d45783f385e42c6f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/007.html.source.json",
+      "bytes": 365,
+      "sha256": "4773a94112bdeeef69263d877e3efd671f729d7a7b6d942b6b3264a6501b8759"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/008.html",
+      "bytes": 38833,
+      "sha256": "fd66168e12bc3d65e435be29f6916a04f1518a17cf4ee98a3b3ff04d5ab4f9fe"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/008.html.source.json",
+      "bytes": 365,
+      "sha256": "42aca2539b6a74b8f8dfb1cf20a5520d334dabf65483016d3b9cd4ddca370b8c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/009.html",
+      "bytes": 57965,
+      "sha256": "53d025b8c4913435fe872b62e73752d1a9036ed134190f3819a2cd2f74880412"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/009.html.source.json",
+      "bytes": 365,
+      "sha256": "a1f43a259a5c68971b3c52383381937a4b241e0940d1ea795b34aa3fbe5b6c27"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/010.html",
+      "bytes": 48162,
+      "sha256": "bc9a79d65e1019d1e3f8a057f47b745a7344ef01e64f3296c552fa77f570026b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/010.html.source.json",
+      "bytes": 367,
+      "sha256": "212a2f3712a047b95a77b1b440d33c810d1114d0a8ae9767fcdbd51c1464c35e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/011.html",
+      "bytes": 51224,
+      "sha256": "ff046b505932f020a8ce15b48bb6c6573405a91ff52fa4cd575910f141539ce1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/011.html.source.json",
+      "bytes": 367,
+      "sha256": "29bd73ec7fd4dcc49603477e709118cc0f9a6ce306fe0c8f13764448d8dc065e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/012.html",
+      "bytes": 48613,
+      "sha256": "b0e2cedb4569d6efb31bce8a97ed8359ea2d144363df0f6bc121f523914809fc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/012.html.source.json",
+      "bytes": 367,
+      "sha256": "c748eac086043e41e418fe644b674f5a213302fa42b52dd99afca16c10f82e90"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/013.html",
+      "bytes": 31675,
+      "sha256": "dae7ab21b1687eaa5461aecd6a50bc0840ae9bc61e501c5dc00bae095ffe10fc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/013.html.source.json",
+      "bytes": 367,
+      "sha256": "b8553a22e332462168bbb33ed53db4c2258df4f2559a252167bac39d9842b54c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/014.html",
+      "bytes": 31935,
+      "sha256": "a4a64161a2542ac444f4efdc51f4b6ea13b5963f9899db24af27d7bac4679b94"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/014.html.source.json",
+      "bytes": 367,
+      "sha256": "d8de1994607d5a99336fd0250cd27416111c8140b3356c220713fc992c06e190"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/015.html",
+      "bytes": 35588,
+      "sha256": "46bbe2cb7e3f575cec58703643672354c0a7c30b3fb02c52eb9968489eea6130"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/015.html.source.json",
+      "bytes": 367,
+      "sha256": "39f41cb859faa47ffc6d2ceae129840242c8102e6442b5693e1cfbee7080488f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/016.html",
+      "bytes": 50904,
+      "sha256": "b4bfacf511de1eb8ab9ac193c392625b097f8242a5a044d74ecc3dbd76a87b19"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/016.html.source.json",
+      "bytes": 367,
+      "sha256": "c095238457ef60a31eaffb25ef037358a520d0a1a9d0d0ff1295c3b45e8c3ad3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/017.html",
+      "bytes": 46826,
+      "sha256": "bd551aa28721069663c7b65cee93c1c8c346ca7664bb10b27edbe087b5138e25"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/017.html.source.json",
+      "bytes": 367,
+      "sha256": "b03757b87b41fe9d813566b208da834df06e9bf14da259dfa82a5bd6602f3ed2"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/018.html",
+      "bytes": 46266,
+      "sha256": "d606eedc0d9477bd9d66c927baf1323fffef2eeaeb2dba8e7f14185912ce4087"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/018.html.source.json",
+      "bytes": 367,
+      "sha256": "04e07ff5f25fce2abcaf701659ce608779de5e25b2c608c39324d55f8e9f591b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/019.html",
+      "bytes": 39164,
+      "sha256": "b58f447b6c4937a638b9dd41424f86fd66e7e49eeafe56218bdd5dba4db1c404"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/019.html.source.json",
+      "bytes": 367,
+      "sha256": "2d1b5854f8d71cad895aa0f61e84481f078364b3ab99f302fc7de350647be338"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/020.html",
+      "bytes": 45971,
+      "sha256": "7d484d7940551f3367a14a5126b8235b8aca98edd388580ffb6a33f32e3916c2"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/020.html.source.json",
+      "bytes": 367,
+      "sha256": "86c86114a9c57e7681bf3191c4c05878bda01757623ada7645b4fdf7a39b9ccd"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/021.html",
+      "bytes": 43459,
+      "sha256": "9da3a6f1af6aa1727720719a76a461d00a97dfee23f18f938c778b2b182100ba"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/021.html.source.json",
+      "bytes": 367,
+      "sha256": "3efcd202ed1d96e363a786baff5efb17412209223c8d50ce66c25c2bcf4ae732"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/022.html",
+      "bytes": 39365,
+      "sha256": "5d9aa99e8b4735a92f8d1b3d43acbbdcad4a2494727cba2ea8514e1ab8cc5948"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/022.html.source.json",
+      "bytes": 367,
+      "sha256": "22e9e5520e45bedb5f0b798179aca1970e547ff5a78b4b182efa02413f6014a7"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/023.html",
+      "bytes": 41505,
+      "sha256": "2017bbbb6878b734e92b9735d8ddd03e35f4f46535fb1b09d76f8413f3898471"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/023.html.source.json",
+      "bytes": 367,
+      "sha256": "72d4f4d2bf3c32b3b32180d0462a6e1fb7687ffc3787fa3723980dbad88b4151"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/024.html",
+      "bytes": 38540,
+      "sha256": "4d9ac09c32e700ceb2f12f610bb7d1cb3104ecb2789695716c60c1576fd9ffc3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/024.html.source.json",
+      "bytes": 367,
+      "sha256": "9e9897592144e4802a703c693b8e6d2f93fd10abbba1093d6afc06eea3e44791"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/025.html",
+      "bytes": 35919,
+      "sha256": "7667e884a412bcd338988053a04c61a5c4ac0f7d8ef9266581ad9a9c9cf94f5b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/025.html.source.json",
+      "bytes": 367,
+      "sha256": "20afa9f276f02212362b603e9db419142dbf469f5c8b9e807fce7839d9a8a688"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/026.html",
+      "bytes": 53895,
+      "sha256": "86fd9da3301c3768af081f3975b6d8e351694330dcdc5f46ce15ec7e20f79c21"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/026.html.source.json",
+      "bytes": 367,
+      "sha256": "c2c386c809063cb6637b2cfb642bbdbd21ba961676896ee2d388a4cf4f03c22e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/027.html",
+      "bytes": 40300,
+      "sha256": "058987e749289b069c6d65afb6e5f1a0f3173665dd7517805e37b8fd6682047e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/027.html.source.json",
+      "bytes": 367,
+      "sha256": "82b6c79d4744cef4832e087d1dcf760ea58b743909d93ebd26d8839e0e7389fc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/028.html",
+      "bytes": 42397,
+      "sha256": "2232f2385e90f40508648554fa361365f6a16447fc3ed36bcb78f8e944447d7c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/028.html.source.json",
+      "bytes": 367,
+      "sha256": "0f9ffaa747709f1708de11a4a32fb47604547740be112a6bd09f2fce56c26c40"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/029.html",
+      "bytes": 35954,
+      "sha256": "9d7a3f161b0c4beda04a88263d5fe99e4256eca25d36bd9b01f0f56f04b7c4bd"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/029.html.source.json",
+      "bytes": 367,
+      "sha256": "13881495ca75ebba195423ca970961a012578fa5a89b05bf482d1306815cd7b6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/030.html",
+      "bytes": 33148,
+      "sha256": "a6939a4172bb614301a3eee77f72fff9a3502f723aa84b0f6509ed4432fdf366"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/030.html.source.json",
+      "bytes": 367,
+      "sha256": "bfd48426c6a9b85d637b72faf83da6b5c5f6bc03196fa16b55bd595aff3bdbcb"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/031.html",
+      "bytes": 27501,
+      "sha256": "22e789c97aa94baa1feaa737aa39881f7d894481f2c59be12de231fde6815de3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/031.html.source.json",
+      "bytes": 367,
+      "sha256": "c2cf97a1818be19e98048dcfbf9fbaa53367e5649d1682e6658040bc6d0a674d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/032.html",
+      "bytes": 25235,
+      "sha256": "b77cfbd04115abcc237e6fbb528e96a9920bf59a8aa1e6cf4b5f9b64695a5384"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/032.html.source.json",
+      "bytes": 367,
+      "sha256": "26b9647e743513addd7dd62ee61ad4f8782fbfa29efd764523b2d2852fd25961"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/033.html",
+      "bytes": 39559,
+      "sha256": "8c96c8ce8dea2f27fb06f6db885612deb120abf45effb672d796da2acebcba77"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/033.html.source.json",
+      "bytes": 367,
+      "sha256": "55c613fbea48d300b67a14291f896e327549bff30a7bc5fe73d8da2348e7d032"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/034.html",
+      "bytes": 33366,
+      "sha256": "a84da1baa0bed59a854e119b17b94fdeb4c106243243d5d94986d8b8a66b3981"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/034.html.source.json",
+      "bytes": 367,
+      "sha256": "6056e20baee1751631b7b6bcd206d08563ba06eac59693eb68fd34bcedfebcba"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/035.html",
+      "bytes": 30948,
+      "sha256": "bd4b141b05afa4053a0847c41f126d2d80b54a841f6df000e73c12ce272b374e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/035.html.source.json",
+      "bytes": 367,
+      "sha256": "39a42a4886fe0b00a354831ff36917e2112198f2a9165536d1f0a95335ccb137"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/036.html",
+      "bytes": 34533,
+      "sha256": "8da9f350d6bb62d25e1ad8304444f5f6a4c712f1a695fb2445476b8fe33ad97d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/036.html.source.json",
+      "bytes": 367,
+      "sha256": "fecb03fb191dd69fbdf2d73544c0769b7e0481f247e0e2f63a317ec598badcaf"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/037.html",
+      "bytes": 47863,
+      "sha256": "2b84a9b9c605d26e70a9a4f691b097a7061a3f33dd90754c46eb848562796207"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/037.html.source.json",
+      "bytes": 367,
+      "sha256": "2c98264ca3b5f085d2c6cb4fdacb5badb790b534341d8fa1e94367aaa9ae5a44"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/038.html",
+      "bytes": 35716,
+      "sha256": "a0344e15daace3e94139d1d759829b6b35e9ba7019e1517ad459793b51fbdaff"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/038.html.source.json",
+      "bytes": 367,
+      "sha256": "31ebdbe9537d1a2b49059a19a8495c17b176e2860307a5a5f6cf745417b48446"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/039.html",
+      "bytes": 38499,
+      "sha256": "e9d21cb12b1687c0d77b54f74ba42c9b4189e1f4dbecb32679dd8b3afc7b2c8f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/039.html.source.json",
+      "bytes": 367,
+      "sha256": "32731f0abbf4861be2916c179974fc1516f1c52173e2c6efaddca4ae3fa43985"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/040.html",
+      "bytes": 40092,
+      "sha256": "a1678907e4792d17e4bffe2bbb5628eee4a446d0ac3d99edc7e9d240abba7559"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/040.html.source.json",
+      "bytes": 367,
+      "sha256": "00eed826b523a1641e53907f1d100a5e569eec9124bb17f92fc87d7a5d252230"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/041.html",
+      "bytes": 32519,
+      "sha256": "a604226fa2b97178951fbdeebd945da201f1656ff62edaf0e2d5e518f6700502"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/041.html.source.json",
+      "bytes": 367,
+      "sha256": "553bd9fa5716fec4459099a7bba119c21471cc5a643d025299a7a009a43017c4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/042.html",
+      "bytes": 32596,
+      "sha256": "bf0af787589b6645221e31b4465fd1968338010989ae64b9d75aca0198f143c2"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/042.html.source.json",
+      "bytes": 367,
+      "sha256": "f67dbfde4673158ec45c12d8e9685b19caee0f2515832d40c33120fcc5657ccc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/043.html",
+      "bytes": 37351,
+      "sha256": "406dd9daa548728f558845f481568ff81d84f2be5fa5b6a09c5374cb8294546d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/043.html.source.json",
+      "bytes": 367,
+      "sha256": "4f2f3e590a973ab2f794c72a3ce894bfb7bcb408d5576a75481d7511d53c0518"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/044.html",
+      "bytes": 28045,
+      "sha256": "ac997ef31a6f3d015862cdb48f4247b550cdd9927c30af5e3483fe5938e167ca"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/044.html.source.json",
+      "bytes": 367,
+      "sha256": "03451edc93fed91f747dba4d91d0c56493a86f91b0c9c2e124b20246ed25ea4d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/045.html",
+      "bytes": 27432,
+      "sha256": "7ac8902a57942dc206fb8d3d26cc1f0a96475a16d8d76d6950be5fc94a2d3420"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/045.html.source.json",
+      "bytes": 367,
+      "sha256": "77fed5b7e099b2be4fb07201244b1b38e6885659965082824850f4219efe60d3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/046.html",
+      "bytes": 29165,
+      "sha256": "f342786aaaebe3c31f46a0b0bf28333b3b77c895ecaa1072e2d9205a575485b6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/046.html.source.json",
+      "bytes": 367,
+      "sha256": "da28943021328ca259d135f517d056c7452251026d734d11ea8412573118d089"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/047.html",
+      "bytes": 28486,
+      "sha256": "3e6eedaaf6a3f15beeddff05cb44f1b383e6fad3e4f1ee4564f86c2d59343245"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/047.html.source.json",
+      "bytes": 367,
+      "sha256": "d4d88736417b33afec9ea82b987026ee23f3acdaee0a26ca0bbb8c93add99c71"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/048.html",
+      "bytes": 27707,
+      "sha256": "38dd9197377066bc71f5f61ba0d1eb370120c5fca91f285d84968b8c2161f57d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/048.html.source.json",
+      "bytes": 367,
+      "sha256": "e68c0f6e1df0611c74c2b4940b1a94fd78ca8b1ed8da41da633a51ff93be633e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/049.html",
+      "bytes": 23873,
+      "sha256": "f4dbac973b7bba7c51ddda6abf9098b6b2318a18a1e600ee18ee6cf5dab8ec31"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/049.html.source.json",
+      "bytes": 367,
+      "sha256": "a39d9447ef6d8d2b56fe5b4d613f71e3e9901ccbee28305f64441a30581b752c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/050.html",
+      "bytes": 26669,
+      "sha256": "c624f42af5f893d29309004827730666396537aa2575f58ff41a31ea05a75982"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/050.html.source.json",
+      "bytes": 367,
+      "sha256": "e76d4236c955b12c6930a22d02c65e460a476727ae94003e97943ba0e217f9e3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/051.html",
+      "bytes": 28773,
+      "sha256": "301c4647894dea43acbdbb5952f860d87ae9e13646b659916e46d705bc062406"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/051.html.source.json",
+      "bytes": 367,
+      "sha256": "2bdaaf1d74c506c02b5b5fbf2557bc892c630fefb276124b8c28d35a5298d575"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/052.html",
+      "bytes": 26490,
+      "sha256": "a5b48167843446e33096ca2da526ae0edcfdd25509a6511747d6bc6c43bad60b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/052.html.source.json",
+      "bytes": 367,
+      "sha256": "f8c05f7699243c6ef29d0390b23c46411f7ed4ac296277a9912db33f97002d7f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/053.html",
+      "bytes": 28682,
+      "sha256": "feefee384c61e0c07ae4f6e8dd9b60c66c38cb633e10f7a250d8e52f6fb9b6a9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/053.html.source.json",
+      "bytes": 367,
+      "sha256": "5941c716ba1aafd6737abdcbb101f529849dce1b5724c37ab40065e79178c61c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/054.html",
+      "bytes": 28623,
+      "sha256": "35d5374dfbaa5b3be87817e9aa4b7da2b3e774faa0deb52fdbc13e3ea50430c6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/054.html.source.json",
+      "bytes": 367,
+      "sha256": "54285559a491f936850567d445262f6163019394b6485c0996b7c782a6072781"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/055.html",
+      "bytes": 31856,
+      "sha256": "5fa12590d5ca25398b30fac575781df896bf79019a0c7a13419466c216cde826"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/055.html.source.json",
+      "bytes": 367,
+      "sha256": "a1abe308b78e64c99e71b6a3112496a98bb9cda4087e6cdc732e4cff294e43d3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/056.html",
+      "bytes": 31805,
+      "sha256": "d24be3697105730b8662a473ef896cf1dae928d0ac7d4c88c3bc19776b32e365"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/056.html.source.json",
+      "bytes": 367,
+      "sha256": "3e8a05c0282b84772aadb4eb9012a12d9ebff4ed7b28bb4c3567f46abd6d01e0"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/057.html",
+      "bytes": 27600,
+      "sha256": "191b2f1151e3e5a9eb40548b5b9a099795cdbaae0e9f5155abd94f9dd8756f00"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/057.html.source.json",
+      "bytes": 367,
+      "sha256": "36cd116a024c7f8d699be81537f11ca815179f05f9421bcf8e9361b4375322b5"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/058.html",
+      "bytes": 25834,
+      "sha256": "906abebfd92ec02a80e33c11fac5082502d5b594d8160aad3e27d5a91279f664"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/058.html.source.json",
+      "bytes": 367,
+      "sha256": "3a71c266a0c0d98a58d9cc0d7dd4469b272edb975bab0759ad89ea9b3a2f6d5d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/059.html",
+      "bytes": 25888,
+      "sha256": "b330c3d5a83ad8d8d43c9b460d7ea446a330f237e57f339d00fad6a777e25f49"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/059.html.source.json",
+      "bytes": 367,
+      "sha256": "bbc7670c1b88eff757215e677aa0006e3939e0ce5f4ce414822627a7c125ad48"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/060.html",
+      "bytes": 23602,
+      "sha256": "3d467535e6a0c9bd2283dd3de28658234f829b76b33e82667d7a6d5f4e194ebc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/060.html.source.json",
+      "bytes": 367,
+      "sha256": "92c1ec7b8ecb05988c2c0040ce2f8ecec2cb02b0c6042d28f005c290d5ad097e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/061.html",
+      "bytes": 22110,
+      "sha256": "32d71bf2f67807459c1651ffde138294bed75f4c22a5e6f39b822a3f8a1a0c02"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/061.html.source.json",
+      "bytes": 367,
+      "sha256": "f20e0c996dcd7bf68cb169e3e909b56fcf77aa0f8d4cc6d0f7770c036f433dc1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/062.html",
+      "bytes": 21251,
+      "sha256": "b7e4e0a32fc3d13c53627954fe7656831bcea90135d66058afbbc7c6b70318ff"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/062.html.source.json",
+      "bytes": 367,
+      "sha256": "c47f1954b788dd75c564d5782498c9e60971a0a679e2a03327f3af23b49dd9dc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/063.html",
+      "bytes": 21416,
+      "sha256": "e6ee7e78f2485c2190fd5d92e995b071e432c7b8b93dcf151a6c77757f8be226"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/063.html.source.json",
+      "bytes": 367,
+      "sha256": "531561747510572d460423e41c5ba066b0c1a3ce7998ef5c09224aba29bf32dd"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/064.html",
+      "bytes": 23047,
+      "sha256": "662103a5a32878bc620a812515927042da0b04d0ad16f095b8f0a81740c030df"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/064.html.source.json",
+      "bytes": 367,
+      "sha256": "8d24501a1a1f0801af7db39feaa3891c015aa86dbd15b1be82129be141bc9f29"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/065.html",
+      "bytes": 22576,
+      "sha256": "67bd352ddfc593117f8ab4afd0fac2aa925feedc9798ae79fa3f0862061f2246"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/065.html.source.json",
+      "bytes": 367,
+      "sha256": "6668f2a22456fee74a1045cff357b14f6c29af8f88e291c1f55e0236d518b969"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/066.html",
+      "bytes": 22444,
+      "sha256": "55f89f4c869aef254b1827c94352989753c56d5ed7d5f03215dd0794d9f327de"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/066.html.source.json",
+      "bytes": 367,
+      "sha256": "a7d3dd658994557a3335ab5bc40a57ba847fc97c928164a24d5f36f29851b9f3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/067.html",
+      "bytes": 25110,
+      "sha256": "03fe2e24234f1fc38a27efa7c64b3d30607055002bafd479c02f1e323700ef27"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/067.html.source.json",
+      "bytes": 367,
+      "sha256": "3dd7c38e161891e44fda49f0a8841e4e020ec3840fba3f6c0420468da147197a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/068.html",
+      "bytes": 27278,
+      "sha256": "cb7ca72339609b55930d42f43f1766171517f70c9e354a04bb447320987999e2"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/068.html.source.json",
+      "bytes": 367,
+      "sha256": "80594c999508845725efee2fb25918314507a401218f438ff761ca076b1c80c8"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/069.html",
+      "bytes": 26384,
+      "sha256": "3a75ecf4e557f18cf225c2236955282f1874a9eef558fe847f8ddb2e9f096e34"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/069.html.source.json",
+      "bytes": 367,
+      "sha256": "29cb5e1b9479017e50eb76142ef30828075a6dae75159f311ba238700c4be65f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/070.html",
+      "bytes": 24736,
+      "sha256": "e5f3cdc7d68d9eab42ab7c4849ff692c007fceb7365df4e075a4f009bc77355b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/070.html.source.json",
+      "bytes": 367,
+      "sha256": "5160cf633838d316666e7c59521da6d45d262ec193760c81db3b0235f1bab345"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/071.html",
+      "bytes": 23742,
+      "sha256": "b758767f7d2f1f2c4c3004362c8b49916b2f4e0fba9cf6fac5e7bab9d995cacd"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/071.html.source.json",
+      "bytes": 367,
+      "sha256": "636e1a1db8216e92d965fefa121dbc2ee91516ba69abf98761a2d63754114daf"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/072.html",
+      "bytes": 24555,
+      "sha256": "89a7bccc23a1493ba2c050e8e4b691f77889b75707d757193c5697624b7d0674"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/072.html.source.json",
+      "bytes": 367,
+      "sha256": "8418ed6733ebd6a2bbe10e390310240b4e7216ae71b808357710b240f8231d97"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/073.html",
+      "bytes": 22475,
+      "sha256": "257261d180761202dd0d51d91a295b6c298f82796e55959563d8d989a434816a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/073.html.source.json",
+      "bytes": 367,
+      "sha256": "073b19c6c6d03ae3d9443bcbeac94686955aba0e4b8bd2f7a251da5f724f601d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/074.html",
+      "bytes": 26757,
+      "sha256": "15868b19880b3685af788e5b4fb3040471203caa9367ccc2c62003f16646bbce"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/074.html.source.json",
+      "bytes": 367,
+      "sha256": "9e09ffa90093df1922652ec979a9edd7a7d266638a20e5948f2851c2e616fac5"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/075.html",
+      "bytes": 24382,
+      "sha256": "534769a562fe6dd4ad391c989ab5070f294a3ebfae2bbe45e5fbf7de40425e04"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/075.html.source.json",
+      "bytes": 367,
+      "sha256": "21f65632543a9f2997f4acdaa92b2745c13e3eff2c7d4e3f89e0a709933cd40b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/076.html",
+      "bytes": 24347,
+      "sha256": "92d8cc796a8d00f8b07a95ab62e1976bab2b4c126425dfc44554787cd89b64d6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/076.html.source.json",
+      "bytes": 367,
+      "sha256": "c7224fc55e4b593f2ef3fa275a8ce565c94fb4e4f970e99151c15e228a846596"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/077.html",
+      "bytes": 25796,
+      "sha256": "e0bac1498b0201b1563a24a82e3404ac8e78ef3273a089ca6210dce97720e372"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/077.html.source.json",
+      "bytes": 367,
+      "sha256": "efe42a00ab8c19d6cf449728372b9cdf3e017c8497d3b3118d1b283401025ab2"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/078.html",
+      "bytes": 24355,
+      "sha256": "7e91484b52f6d501d195e0c2e06ad1a23855573f1a00fce74096554513a6de28"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/078.html.source.json",
+      "bytes": 367,
+      "sha256": "79c85661e61402f3e777e857176fe3926443aba0dbab66dbbebbf1403de78010"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/079.html",
+      "bytes": 25391,
+      "sha256": "e0edab616e439cf1355ca29facff7e0cf5d1e4b9f95bca60d41c57fc8485d296"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/079.html.source.json",
+      "bytes": 367,
+      "sha256": "f79dd1c4404ce0192d1bd7b33b6207d5f9223e1691600abbb8bea14df1c2cd26"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/080.html",
+      "bytes": 23966,
+      "sha256": "306714609858d638df5d6f78d65fd031a13719bf27b15ce6ebf548da1a8147a9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/080.html.source.json",
+      "bytes": 367,
+      "sha256": "dff08d5da4d6d473d9dc9ff5144e6c09b99ceb29dd58c2a60a9db6fed601528a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/081.html",
+      "bytes": 22540,
+      "sha256": "f8e31f9ce1710e21cf879e361cb4b2fd6845f9bd2d7f2a6d904658913f97d6bb"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/081.html.source.json",
+      "bytes": 367,
+      "sha256": "186e33064664945c9cca1e51c719da3a70cad45fe84bf9ab2ca9d8cf8ac05b0a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/082.html",
+      "bytes": 21095,
+      "sha256": "7e8d50743e75658c15f28c51a4504598663e0ac19f76d1ebe6e2a9dd72d5b775"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/082.html.source.json",
+      "bytes": 367,
+      "sha256": "917c809836b17355f67b6848f5dfd5481e97853350ecb968874c4ff8a7f7f56f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/083.html",
+      "bytes": 23881,
+      "sha256": "ed9be9fcabecfa5629d3ba5a12957b2047e2bdad87939585f7d047f394562842"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/083.html.source.json",
+      "bytes": 367,
+      "sha256": "ef2e68cd4f9a680dbbc17066c575a255665969f0e35aff81924d8cbda5bae846"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/084.html",
+      "bytes": 22056,
+      "sha256": "204d72cad380d973bb0c3a459d01b8d21a4f0529f90f56647715d0f79469dde2"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/084.html.source.json",
+      "bytes": 367,
+      "sha256": "f0be15e40a02da2bda6c0c94d17ac639384ebe4ceda04e178bc238131b0b8d94"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/085.html",
+      "bytes": 21733,
+      "sha256": "6f6035d44c7f230b730d46f56f3117d2fef68e56ea6553cfb815a43aa328824a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/085.html.source.json",
+      "bytes": 367,
+      "sha256": "cab0e45bdfa144160f7da08bec2eb81a034a47d0602437fc0c695e1e8430d1de"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/086.html",
+      "bytes": 20761,
+      "sha256": "9ce127ab849cea5d9891acf704a9ff88448e6872876f860bfbd59c6e50ebb321"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/086.html.source.json",
+      "bytes": 367,
+      "sha256": "f35cc4674502192c5e4ab538c000725c1939df499dc5eae67b1cabb4a895ed65"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/087.html",
+      "bytes": 21162,
+      "sha256": "595101eba9a38318f7e67a5f2d1134e55d5dd19f165d59393b37b90e8cfda4f3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/087.html.source.json",
+      "bytes": 367,
+      "sha256": "1bbcd9b1463dacb5193bb3a7cf6af1cc167adce250a650f71af6e939bb9845ed"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/088.html",
+      "bytes": 22187,
+      "sha256": "c9614673e21990ad60726a0d1f58f83629a9ecf5c4115d9d6b58ee5e670d3b27"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/088.html.source.json",
+      "bytes": 367,
+      "sha256": "094320abe20913e5523d34d18a476eeccc63ae2af9036a59f3c94a11a3facf24"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/089.html",
+      "bytes": 22938,
+      "sha256": "5af797ed04bd08054a561ae01a4d9cfcc92f6e96cee29902c990e333dc268101"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/089.html.source.json",
+      "bytes": 367,
+      "sha256": "fd0fe18942305ad5a47d15241fd5c630568cb3729c4504667f992d4402939f05"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/090.html",
+      "bytes": 21308,
+      "sha256": "77eebeec9947e65acbc4aad90f6419ae8326895687415060ec66e91342b93cce"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/090.html.source.json",
+      "bytes": 367,
+      "sha256": "dd9b0f9ec6a5d74a26a4aada3fcc6ac4a260762634937e5e6f4ee43d3c4057ad"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/091.html",
+      "bytes": 20682,
+      "sha256": "36d5ac8f7cfcdb472c40faec8f96f72a55f85b92ba8826ac6e63e3fbebb2a045"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/091.html.source.json",
+      "bytes": 367,
+      "sha256": "3f12f3e4d0509dd11b8ce63b0e5dcdbf87fe8345c84bd9121d05241ff5f5e67b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/092.html",
+      "bytes": 21339,
+      "sha256": "493782663a5fdbd1c69c928ad10b80fbd39161efdc6bc63889889f91d7eb6cb0"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/092.html.source.json",
+      "bytes": 367,
+      "sha256": "6dc468d2f92dd82ca77accbfe289a58aad65a1435f874483d07e17e40f24677e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/093.html",
+      "bytes": 19983,
+      "sha256": "f132a48727e9c5b5ecc4a64b2eaf5dde31cb03910f1dd0d75cd99247f653d6c1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/093.html.source.json",
+      "bytes": 367,
+      "sha256": "48b88ec4b0548cf1dd6ca6b4d974940e40d90c6d546bb27eba010b3ee546e459"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/094.html",
+      "bytes": 19422,
+      "sha256": "48d9d01152fb9b26ff2ff02bb302a72fb54f2776f1f6a2e38eac8ccc2e23664c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/094.html.source.json",
+      "bytes": 367,
+      "sha256": "f0dcf8c29c327b206b86ed303b17328abebebef55b0b404d6096a45e96c3fa9d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/095.html",
+      "bytes": 19524,
+      "sha256": "a4522dd1a23c44e6e5deedfd0e1918fe2c84e329efcbbdd60a45701053a69053"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/095.html.source.json",
+      "bytes": 367,
+      "sha256": "8750ebb721f04f9184d3cf6317cb032dd6a7528901f97ea4ebbf58e76d756cf3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/096.html",
+      "bytes": 20928,
+      "sha256": "87d743c1bd6e032f3e1f14d6a53ba6e1b8abc48ad55136ff75423e0199804913"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/096.html.source.json",
+      "bytes": 367,
+      "sha256": "df307b4a5d7d893b39f65ca68d52b812d349577e86e96929c7b4cd9e5a97d8f0"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/097.html",
+      "bytes": 19073,
+      "sha256": "972c82d5ba1c584c507169170d81675c706182849e7ec6bc0508716055aef4d8"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/097.html.source.json",
+      "bytes": 367,
+      "sha256": "0dbe2240294c2d58176d912fadf37ed98054d94b8f1a03e0b59e0057fcdd66ac"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/098.html",
+      "bytes": 20031,
+      "sha256": "30fb3fd8c09de3309db3a250f39c65d0e114be607d7226e2b551e35f1028e04f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/098.html.source.json",
+      "bytes": 367,
+      "sha256": "b68ef42121e8b8f03d287e017d194f0059bc3de281880ee2a958395d8b6c8b49"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/099.html",
+      "bytes": 19406,
+      "sha256": "e93f055d3d81a434ba71ba382bc90b1c78b6cf761ff286e1930eed390ccf30e9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/099.html.source.json",
+      "bytes": 367,
+      "sha256": "4b10cd5a9da314041ad17368989ef7c306693a4c4c7cdf8cf4ddad9b055b5cea"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/100.html",
+      "bytes": 20027,
+      "sha256": "c720ea37519ad0cda474797e597ecd0d4601175cf62dadeccf0cdba851250b12"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/100.html.source.json",
+      "bytes": 369,
+      "sha256": "2a8b888b3f2fc17ae531db56478166b20852958b9e8e3288520942fd69d3027b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/101.html",
+      "bytes": 19960,
+      "sha256": "ddbde448d7f2c4b994330313edb39668b661e7d04b6907d3a401600b94752cd6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/101.html.source.json",
+      "bytes": 369,
+      "sha256": "48930163984080ddac7cf27922d37168087cd09fe44c5fa2f51179985a46fc80"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/102.html",
+      "bytes": 19622,
+      "sha256": "62947ce4cc1240cb3c8e11de024883d21fb3585faee13ac4c6614ff9f83b2748"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/102.html.source.json",
+      "bytes": 369,
+      "sha256": "03290a6eff6491ffbfb8944504d8af87bb06b2eae8851e883aa4d2059b38d512"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/103.html",
+      "bytes": 18857,
+      "sha256": "24cd7fee6d1bce3dd47bd5c57ef33d1262c7baa02ff5e1bc6c5739b2a6e53255"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/103.html.source.json",
+      "bytes": 369,
+      "sha256": "b1d408f53923bf989bff90ff1bfaad0220efc5a31733b590fec02a145458ac67"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/104.html",
+      "bytes": 19559,
+      "sha256": "189e6916c37f11d56dbee700fcb6a37f29664699f631bf225709a2578e08a0cf"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/104.html.source.json",
+      "bytes": 369,
+      "sha256": "ba5a1ef635efb747148ca1c4ee57a48accfc8f21af6dd3deb06f37b61b10eb87"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/105.html",
+      "bytes": 19023,
+      "sha256": "1bfc519fe51cb5063f8012d1401f15675d117e58b5bcb2563902b8edb7a079de"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/105.html.source.json",
+      "bytes": 369,
+      "sha256": "55d878c677b68759314d54a84f1ed91c95a4879d20f49d3bbfb3d0604a8cce20"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/106.html",
+      "bytes": 18862,
+      "sha256": "7fcbc230b8217ff1c12540e379c5df2123f07a032711978665a2dce8888e1e27"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/106.html.source.json",
+      "bytes": 369,
+      "sha256": "431152ac010cb91debd4d1a75e87d8f6a6e58daee0d0ce904c056e4a41bc4e00"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/107.html",
+      "bytes": 19296,
+      "sha256": "c89791ecb8c467c876f1b5d981ae8e876dbe229ba98ce765adb0bc2e65c1e910"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/107.html.source.json",
+      "bytes": 369,
+      "sha256": "d650ba01677aa1620891284375a07eddbee42f0ffeec3ff3c44dd983425af619"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/108.html",
+      "bytes": 18791,
+      "sha256": "350913b82b65bf6a01f3f5d324e9cd721139a59d71df88fbb4f7ee586dcc2c08"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/108.html.source.json",
+      "bytes": 369,
+      "sha256": "fee478b8696a85d8ae7af235b23df2feae0a1a09b25d5290af72b5f43d04a995"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/109.html",
+      "bytes": 19231,
+      "sha256": "23db666194473fe92a3457ff6e0825819495d9dcc649201b24ab060dfc172f5c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/109.html.source.json",
+      "bytes": 369,
+      "sha256": "8a3210f6cbee715146076e3ce01883826de0f17aa2b5be4322163e358117b3db"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/110.html",
+      "bytes": 18738,
+      "sha256": "790c4d94a5f20b23c7685d630a46168bc56480a50419c3bece391409b4a3f761"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/110.html.source.json",
+      "bytes": 369,
+      "sha256": "4a3d07f09f7a7ebc6c0e9ce08c70383efab347fa0575e2e5e713a1c425c5ca75"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/111.html",
+      "bytes": 19001,
+      "sha256": "3e063fa70f942884a22d485115110489d024af7869cc1016229cf42c42ae8c73"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/111.html.source.json",
+      "bytes": 369,
+      "sha256": "a6ac24df3f064bbd510a8d16a8e0996a10e318b28af1af91bf5f4c9d8de5badf"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/112.html",
+      "bytes": 18906,
+      "sha256": "cd8e953dbf4ba936c2b0a3f9c7afb44ad9e1fcc57a272fe8652acbbf128e7612"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/112.html.source.json",
+      "bytes": 369,
+      "sha256": "f251f5a7434a4ee8b1805ecf760747ef93305d5db26f586cadfdeb3e25891ddf"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/113.html",
+      "bytes": 18889,
+      "sha256": "e5f5b28401f0975a243441b56f538b28492475103228a76b371db38b966c9036"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/113.html.source.json",
+      "bytes": 369,
+      "sha256": "389659fd616e5e5d35a434e4be614fe9d0c12e973a75460b7a9b23c9a7b57328"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/114.html",
+      "bytes": 18941,
+      "sha256": "a05b538f2f88c0437442f0aa30ffe5760b4fa3f05ee36461e6401388f0ded835"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/chapters/114.html.source.json",
+      "bytes": 369,
+      "sha256": "e0c0de779611f731f6fb59ddadd99b5d5eed1535f229bb76b4d566440b337b46"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/002-019.html",
+      "bytes": 54005,
+      "sha256": "23b8af8f99f1978d6e0c763de8bcc224103c1641cbfe5427d27d1f07af093c52"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/002-019.html.source.json",
+      "bytes": 369,
+      "sha256": "e65f31a9f69e108fcc3253a184fd313084acde42192ffda19dc9ceb1030c4f5f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/002-065.html",
+      "bytes": 48884,
+      "sha256": "f749fe2449f0892800b4db5eac6e30d12d210864b8cce7571866e618a3bfe3e8"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/002-065.html.source.json",
+      "bytes": 369,
+      "sha256": "bd120b6be106808e2b6070af27712253a88011309e03071de229b52790547909"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/004-095.html",
+      "bytes": 59823,
+      "sha256": "ca2c76ca090df3e490a95a09e8ac572f8e05627edab2cb25e45487d7d9ff32f3"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/004-095.html.source.json",
+      "bytes": 369,
+      "sha256": "71570ae70bb04a593e1395b1a98254e3d8db0472c618a2f4e3e789dcd421cef4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/004-160.html",
+      "bytes": 45630,
+      "sha256": "7c5ef72995d037c2c7be1c96183178d4dcf47b83711dc1a1781b57fbea85e2f7"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/004-160.html.source.json",
+      "bytes": 371,
+      "sha256": "853d0bcb48f9ee34c4473e50debd52168f05161154b31fa96fb45b9b7e6f7358"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/006-095.html",
+      "bytes": 48503,
+      "sha256": "7eafe1efa5c7ac2c1d1bd0bf364dcd9a90fb2697b9b165859bd2ea88f5789401"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/006-095.html.source.json",
+      "bytes": 369,
+      "sha256": "c6420cf8131897dc8223c0e92ac1c867f3645d1fb6b0fc5ecf1ee57af8315083"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/007-099.html",
+      "bytes": 45899,
+      "sha256": "4e922d52833b9f84ea60f464b6c849fb16199fc4d8d6d7d764aecf2db1f41115"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/007-099.html.source.json",
+      "bytes": 369,
+      "sha256": "b8bb44845d6d776109489d02f3db44940dd4b628b61338ca0963e4ee25aab260"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/007-100.html",
+      "bytes": 47482,
+      "sha256": "c0ab3a958cc37c3b0c0311a93e8d38b59fe58c66ffa2db0387569cb7506b3cc6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/007-100.html.source.json",
+      "bytes": 371,
+      "sha256": "5fe05445e98860f2081cdc2e7f22b864362b293d783abafa174558936261873c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/009-021.html",
+      "bytes": 38956,
+      "sha256": "5db8b8fddde59a19b899f8d1932498c63a45bb75d147b5efd03e2ff36286c418"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/009-021.html.source.json",
+      "bytes": 369,
+      "sha256": "94c613d3f07780a83261d9e6ca832173a32637a7abd7a46d3e3793e9c14041c9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/009-038.html",
+      "bytes": 52339,
+      "sha256": "32a6ffc39cb2c53452ad0dafd93144ef565a77ec448b648edda1a12304ba4a76"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/009-038.html.source.json",
+      "bytes": 369,
+      "sha256": "17708d13901c5e69f2e68c3f47623f2d16a59809e73bce07df799c83178cb26e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/009-114.html",
+      "bytes": 51874,
+      "sha256": "0155cd9e2d37e29d8494910591f7c7ef3cc08876721dc10852482fbde954cb0e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/009-114.html.source.json",
+      "bytes": 371,
+      "sha256": "553dcbd55a67abc0b4ee4b134e12e8fe6ffa6413a83178785815784850665b67"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/010-055.html",
+      "bytes": 41454,
+      "sha256": "e8b41f67f50fa5e716fec64bc9b0db576e2c5f16b8cc43726c90498662eecc1d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/010-055.html.source.json",
+      "bytes": 371,
+      "sha256": "755e5d62c11df0cc62267548351936e049fc27856b8303e310abd9f6105979f7"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/010-093.html",
+      "bytes": 53091,
+      "sha256": "17e643e04249e5fad49a52c0084cac1f94da598681d3af621ed601e4f2a3ce1f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/010-093.html.source.json",
+      "bytes": 371,
+      "sha256": "ba9b2dfed9c95a42490954a5f943abcee54addba11bb9a535d38684d9b02a110"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/012-080.html",
+      "bytes": 57270,
+      "sha256": "f25f89e7e53cba2f3f67cff24a6dc8c4cee256d9ba110176a2cca6d1e175afd1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/012-080.html.source.json",
+      "bytes": 371,
+      "sha256": "757ab356d1d4954406979d6d1dc277f12afccad97427e791e73bcae85b110676"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/012-081.html",
+      "bytes": 46024,
+      "sha256": "1294616fe7c306f3707f2ea96230df5e32c5ad98bf2f124a14853033da5b0338"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/012-081.html.source.json",
+      "bytes": 371,
+      "sha256": "ad79f269a36f472f2696240ece882d6e4767b10a196e8e2542dcfbd1fc1c6294"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/012-083.html",
+      "bytes": 50073,
+      "sha256": "100572526aa677d836018fb9e9a8ae6ab443012cac89bb76b99c02997416b735"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/012-083.html.source.json",
+      "bytes": 371,
+      "sha256": "42f27f2807ae97c1ea2e99a400d25b0d87e1945822c571a8c6eaa7d27706bb04"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/018-067.html",
+      "bytes": 36333,
+      "sha256": "3e53a42a338d6943ec57915b517c211aa61b6dde14e2f8696a9446c7b2288e65"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/018-067.html.source.json",
+      "bytes": 371,
+      "sha256": "55996c09d0f09db801decbeb2806951f3c197a6a40dded4dd7a764f538c3ccec"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/018-069.html",
+      "bytes": 38391,
+      "sha256": "c5eb8cc8bb48d229eb012513f5a6268a06b27f3bed13c8c8d1f3a1aef1854a2b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/018-069.html.source.json",
+      "bytes": 371,
+      "sha256": "874cf4d5213ceca6e2c64622f31b5ed36bba09971fda0730248929aef90f6835"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/020-099.html",
+      "bytes": 43160,
+      "sha256": "c475575015ac3d0c73e78bef1863986cf366e5506c5c4235d017cd63d27924fc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/020-099.html.source.json",
+      "bytes": 371,
+      "sha256": "b6b576fa8279cb5d1a35a2e8f6c5cd94f6a7def62cc920b9af31528d408bd6ac"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/020-115.html",
+      "bytes": 43496,
+      "sha256": "1ef166356ebd87fd018a1904f741b6887c4b7834885dffd48ddcf8024b843b92"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/020-115.html.source.json",
+      "bytes": 373,
+      "sha256": "f1907bcdcb3f199d076b2cdc44a36cf7131364b77c30307c31291c6a1ce8dcfe"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/020-116.html",
+      "bytes": 41471,
+      "sha256": "acc146ea4cc02770561df44bc9b470def2edb30904ff54ca2c402d10dd696f2a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/020-116.html.source.json",
+      "bytes": 373,
+      "sha256": "f3a9e53749d270723245e3e2258af433bcd408b97cfadd05d9fa765f5691d466"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/027-067.html",
+      "bytes": 39344,
+      "sha256": "f8021d05e39fe8ed777d51e24b6aa8953f960b5ffea8fe52f7413b0437925ed8"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/027-067.html.source.json",
+      "bytes": 371,
+      "sha256": "d2ed9477dd6bce8fc32be6960a213bbc61f6985db7a30ca4a729ae6a941aeee9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/034-001.html",
+      "bytes": 46877,
+      "sha256": "bfaea20d1924ba9239f0905e0b101c90f37bd4a8bc9cebf23bae001d1dc4d909"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/034-001.html.source.json",
+      "bytes": 369,
+      "sha256": "97d59ce4ad486b6a2b080900efa713b989747037e8c25b8c42c29bf89357312f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/042-025.html",
+      "bytes": 39250,
+      "sha256": "18f790147e3452d879fdb008d755273c09c6ed7f5fd2bbe517af7882205e81c5"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/042-025.html.source.json",
+      "bytes": 371,
+      "sha256": "9371ebb8d1fa51eb0447f7c790c0563c1d083bd61e3bbc2138a2a235044ea638"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/046-024.html",
+      "bytes": 49873,
+      "sha256": "40be2a46bb563f5cc1328723de05ab1c99f2b219e0e83e1ade3405bce94b86d0"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/046-024.html.source.json",
+      "bytes": 371,
+      "sha256": "2c3966fb257e217194ad1d03aa4d2dab03b64cc2281966c1a80f419cca929940"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/048-008.html",
+      "bytes": 38890,
+      "sha256": "42ccdcefa6226d2257ed22bfa24163a9d8227102d286b090758368ee126fd4ce"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/048-008.html.source.json",
+      "bytes": 369,
+      "sha256": "a799a8eed467d8f4315c1fde6b5947cb16373c5eb6fb09912b16ef2317a90f8e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/056-025.html",
+      "bytes": 35784,
+      "sha256": "9fa0119f1a552b2ac79a8bb908251930b2eeec8ba480fecf1f5b9d2bc0fd726b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/056-025.html.source.json",
+      "bytes": 371,
+      "sha256": "bb5bc6305307473368b1631529e6db041996beb45ce36cae11ec7132f51a7c30"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/056-027.html",
+      "bytes": 37483,
+      "sha256": "b2127076dde940c3923de7f9581f0947461086ae34fb4907e62b08d92d29d20b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/056-027.html.source.json",
+      "bytes": 371,
+      "sha256": "7ef9f7d230e2da0591e14eca2e66e27a62907049509744ac4a4cb7a6f6c72aba"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/070-022.html",
+      "bytes": 37000,
+      "sha256": "8ae3620e408a9123f42c083647ce6c7bdbc476d9a351b2b7aa6f38b43ca5b033"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/070-022.html.source.json",
+      "bytes": 371,
+      "sha256": "5718d27ec6157279d2984a01562cf6d8f533822575a1d20e3d4922c470662ffb"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/074-039.html",
+      "bytes": 37055,
+      "sha256": "7996204989d1a7f00816711f54be74a55249c16a72371bc3b07a4aeae1114ae2"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/074-039.html.source.json",
+      "bytes": 371,
+      "sha256": "a0f1b4aac0b08af64007afe571f57a2a2ead63e27082d49e65774c18232d8b33"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/081-003.html",
+      "bytes": 34322,
+      "sha256": "0e3b2cdf1c52d8a83b1b379210d30b25eaaa224ed6c71a875abc2b5567c41d47"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/081-003.html.source.json",
+      "bytes": 369,
+      "sha256": "7c9871ff9d6350a57ef459097a47567ba35860ee680f4754e91ed06775ec91ca"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/083-027.html",
+      "bytes": 35483,
+      "sha256": "6ce8898759ae419ad75f87aeb92d1c1fc3c6f9f70b2cc3f33b7f63c3bd8f3bbd"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/checks/083-027.html.source.json",
+      "bytes": 371,
+      "sha256": "d91c85ef53de82bb3c0f6d18f1770084d751e9a68b4fd964f6ce53303a6376a0"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/comparison-bilgi.html",
+      "bytes": 102790,
+      "sha256": "5aa7ec116889476e62ea1a5d1902c5f425eda5d4d1747ed07bfcbb652e1c525a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/comparison-bilgi.html.source.json",
+      "bytes": 310,
+      "sha256": "995b8d845d9d307105ccea4fe81b48e24cb0fc54e36f74dd910c97162b1418d1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/editions.json",
+      "bytes": 239987,
+      "sha256": "062fd8bda98e95e224e1955331aebd4c7e11c4c2d0f2becab39458dbee2cb365"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/editions.json.source.json",
+      "bytes": 352,
+      "sha256": "2a9a208d698b1a339e89ac40e5de75697fb72d902b9ec3e8c0c5e68a7299fd6f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/002-019.html",
+      "bytes": 56316,
+      "sha256": "add47e06deb50088369ebf44c652c510b04cedb69f34eac6f23e649b1a405a87"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/002-019.html.source.json",
+      "bytes": 366,
+      "sha256": "5c2ad4aebb3a220257ac67e15b0fc8c5821c9f3c844a0972343e32bd5e4073cd"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/002-175.html",
+      "bytes": 44282,
+      "sha256": "dca2d9e68452b966216dc9f16e3b0441c7abd9b4581b8fac87d52695b5b9fa48"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/002-175.html.source.json",
+      "bytes": 368,
+      "sha256": "9148b22f5e3cf3903103f4f961167f228a3cac1ed0f031cc570eb707652499b4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/003-199.html",
+      "bytes": 55238,
+      "sha256": "f46f0a2af00344561ad23e6529756045b112e95011a6a06c971cd7c9c834a645"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/003-199.html.source.json",
+      "bytes": 368,
+      "sha256": "da87652ab3c2408822d0dca6a68520882387b6d4670a3679c6b47fa16f822bb4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/004-095.html",
+      "bytes": 65783,
+      "sha256": "15d293c0cba79e3abe790e26f422075139383e87d3e815d0795183060063ba1f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/004-095.html.source.json",
+      "bytes": 366,
+      "sha256": "1e2e6ba603d370f7d128566768c43853b11e2f57c7ca15d1a5d6d2836136b04e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/006-095.html",
+      "bytes": 47074,
+      "sha256": "22975a181519561d52e1021b87def2101e055add4ff03055ef6019d7319ddb52"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/006-095.html.source.json",
+      "bytes": 366,
+      "sha256": "6f084b1a5776c2927a5ca8cf7bfa8b981c31a5d6fb2eef78e36181d422d4a20a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/009-114.html",
+      "bytes": 52385,
+      "sha256": "051ca4b46371e681a34b87d649b2f5d2ffa6168272815982e1bf132a2ef86a70"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/009-114.html.source.json",
+      "bytes": 368,
+      "sha256": "1ef5282dba628bfa6eb50546bc029db1399d2ee54044b6de7dc424da27877e53"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/020-115.html",
+      "bytes": 39740,
+      "sha256": "6768ea1ec33c935f4429cec26dda674ef23f55991fcbad8728a1f58d93ca869e"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/020-115.html.source.json",
+      "bytes": 370,
+      "sha256": "45c6c5e68bc592d4ae96137634f6d9006088333c386509718675668ce23565c5"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/035-007.html",
+      "bytes": 44595,
+      "sha256": "82da3f44c476609effcb88aa6c0fb5c2c0b59ab776774ca0bf2ec24f572c73e9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/035-007.html.source.json",
+      "bytes": 366,
+      "sha256": "0180a0064aa518bcbaa49d887176014d27e35cc18c65b5f89f146d90d00497ba"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/042-029.html",
+      "bytes": 45018,
+      "sha256": "cf7a44f07a13c6ba46787f930032988f98d7e4a11bdd70cade87c4354ce1814a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/042-029.html.source.json",
+      "bytes": 368,
+      "sha256": "a360992f09f85e10fba10d4563d979fc65e98226e3b8cc8c67c19d1e01b1fd8a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/056-025.html",
+      "bytes": 35123,
+      "sha256": "467e2cf369c526ee9dc327fb6b4a9a15963880bd5ebe917450113a9073d08296"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/056-025.html.source.json",
+      "bytes": 368,
+      "sha256": "47abd9249fc3c7fd8cb2c1d95f8a3b61ae5abd24a76690ad73f695c4cce04bcb"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/070-022.html",
+      "bytes": 33714,
+      "sha256": "bd2758a81df1610167047801069e795d869a5c285399722a6ddb3f270ec027bc"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/070-022.html.source.json",
+      "bytes": 368,
+      "sha256": "17444859f4a6951ee746a183853f9c6031551575eb8a9815ba16285dc32d0f5f"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/081-003.html",
+      "bytes": 33895,
+      "sha256": "de02c64d9fcb06d592c659e6920f99409742e4aab7d8d33c207ee8c9c36eb4a9"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/extra/081-003.html.source.json",
+      "bytes": 366,
+      "sha256": "3c997371ad55e71c62b78710079ce953a75ec53634841010dcec2c4c01e9d77d"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/info.json",
+      "bytes": 2322156,
+      "sha256": "99c654caeea7c63bf9634703167ea0f806d90c55f98d23e2e82d3e3d1b74075c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/info.json.source.json",
+      "bytes": 341,
+      "sha256": "fffafff508abd08e5e9b42dfd0526d15b2d31082936d46d66c7b33e3f6f230cd"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/tanzil-diyanet.txt",
+      "bytes": 1013354,
+      "sha256": "a9be7b4f291d8cf6f72dbd22dbc4b58f4716c137e56dbdc562aee3fc8c4bc4af"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/tanzil-diyanet.txt.source.json",
+      "bytes": 298,
+      "sha256": "4c9b806aba80e1ffe50a75e1fa0cafb0adede23c62d5af97f11c92a58a9839ff"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/tanzil-trans.html",
+      "bytes": 55455,
+      "sha256": "9f45cd090fa164ab37a64c5ed1cd5076e46fa6ba0e11c877cf347b63850c24a5"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/tanzil-trans.html.source.json",
+      "bytes": 275,
+      "sha256": "699662ecbe23e97f0dd0742d3630ed79854c906a327f2bcb34d20e55523bc2c8"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/upstream-meal.json",
+      "bytes": 1564554,
+      "sha256": "c6468b9a49622118cd07861ab6c64eff712164611a31aa036532e68d0d88aff4"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/upstream-meal.json.source.json",
+      "bytes": 394,
+      "sha256": "f8e053abcff295cc5eabf1b4879894611b09ddbac2772e4f255971e75de7fa03"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/upstream-original.txt",
+      "bytes": 970018,
+      "sha256": "3704cc5f185c0bbd0dc5ca7f28691eff3200781337b17379082898026e497799"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/kaynaklar/upstream-original.txt.source.json",
+      "bytes": 426,
+      "sha256": "7499cbc7c27de8d425977d5da45677b1901ddff8abb46437a2e9f91a647215d6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/KURULUM.md",
+      "bytes": 3755,
+      "sha256": "a3218485246c55bee59d3e02e9b03e38218942127d28a2e6ffc29ab17c30b35a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/KURULUM_KAYDI.txt",
+      "bytes": 778,
+      "sha256": "28b8d60ec8bbec2cba6324fb0c92921235c37e9ec73e9bcfd950fea209747506"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/SKILL.md",
+      "bytes": 44670,
+      "sha256": "0e86088ad6e69fa6370b1d67c065b769208f9e6f7cc937435be020ebc898f3a1"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/kolay_kurulum.py",
+      "bytes": 1732,
+      "sha256": "fefc272b40a6736af3a65adca2d6b756db1035e350ef9c92195b8406fe8ccdec"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/offline.py",
+      "bytes": 4275,
+      "sha256": "5dbbac3840b1fe0fc2133cdbd0ed85d45de9b6de79924c4f81c691da50f0e9f6"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/offline_paketle.py",
+      "bytes": 6808,
+      "sha256": "92cfdb4037e1ab666011e941ede3716ef44692b0b65f874f3ba030163250234c"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/references/kaynaklar.md",
+      "bytes": 7240,
+      "sha256": "779a76065ba284374a1f7a863ec19e9d447764f26752dac3fa20fabf5fbc3942"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/scripts/klasik.py",
+      "bytes": 19344,
+      "sha256": "7fb69c9381d63d79f57e0aa9d1c0bf5eaeb2212874ce29259a52a34514ba888a"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/scripts/kur.py",
+      "bytes": 19150,
+      "sha256": "d1f1b45074477fc0633134de0697aacb9930cd030808286c01d96a5310fb2fab"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/scripts/lane.py",
+      "bytes": 7123,
+      "sha256": "375c5a13e28f80261e015e7f562b1256c5fc5ad326f844e50e6412a28223418b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/scripts/sami.py",
+      "bytes": 7847,
+      "sha256": "e3e019668a2abd3d8fa9c0b734e6c88c34ed564d24db58491eef292ada9e95ad"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/onceki-araclar/scripts/tara.py",
+      "bytes": 12835,
+      "sha256": "68ffad19bb3f5b8e9416906d99b9f851d3a4493572331859ef23634fa80e207b"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/meal_denetimi/ozet.json",
+      "bytes": 1599,
+      "sha256": "6e3881bf0697bd528cde464855494d5c1825df59196fe70421dc01cc4a306f50"
+    },
+    {
+      "path": "kuran-kok-analizi/veri/sami.sqlite",
+      "bytes": 458752,
+      "sha256": "1b3d34c26adf08826a10c886bbc5683754881672174993ca06de6eb0606a363f"
+    },
+    {
+      "path": "kuran-kok-analizi/DOSYA-SHA256.json",
+      "bytes": 52490,
+      "sha256": "b34f19cfcfe66faa0b5907a0f17e68b15201e247f0c8f64d952e007256ab5472"
+    }
+  ]
+}

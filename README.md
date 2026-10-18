@@ -25,6 +25,7 @@ Klasör listelerine erişemeyen tarayıcılar ve yapay zekâ araçları için ö
 - [Kaynak politikası](06_methodology/source_policy.md)
 - [Kaynak envanteri](SOURCES.md)
 - [Lisanslar](LICENSES.md)
+- [Denetlenmiş Lane–Sâmî çevrimdışı paket kaydı](10_offline_paketler/denetlenmis-lane-sami/README.md)
 
 ## Analizler nasıl yazılır?
 
