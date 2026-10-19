@@ -17,6 +17,7 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [Dalâlet — denetlenmiş kavram kartı (v2)](roots/Dalalet-concept-card.md) — sapma, yanılma, kayıp ve boşa çıkma.
 - [Sırât–Sebîl — denetlenmiş kavram kartı (v2)](roots/Sirat-Sebil-concept-card.md) — sırâtın doğru/yanlış yol kullanımları, sebîlin çoğulları, 6:153 ile 37:23 karşı örnekleri ve çeviri sınırları.
 - [Takvâ — kapsamlı kavram kartı (v2)](roots/Takva-concept-card.md) — koruma/sakınma kökü, korku–haşyet ayrımı, adalet ve muttakî davranış portreleri, v2.3 doğrulama kuyruğu.
+- [Muttakî — denetlenmiş kavram kartı (v2)](roots/Muttaki-concept-card.md) — müttakînin doğrudan Kur’an portreleri, hata sonrası tutum, mümin/muhsin ilişkisi ve sorumluluk–ödül ayrımı.
 
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
