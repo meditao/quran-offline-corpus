@@ -1,9 +1,11 @@
-# Kur'an Analiz Protokolü — v2.3
+# Kur'an Analiz Protokolü — v2.4
 
 **Konumu:** `06_methodology/analiz_protokolu.md`  
 **Kapsamı:** tek bir kavram, kök, ayet, pasaj veya tezin Kur'an merkezli ve denetlenebilir biçimde nasıl analiz edileceği.
 
 Bu belge, çalışmanın **ana analiz protokolüdür**. Amaç bir anlamı baştan doğru kabul edip ona delil toplamak değil; Kur'an içi veriden hareketle anlamı kurmak, karşı örneklerle sınamak ve veri ile yorumu açıkça ayırmaktır.
+
+**Sürüm notu (v2.4 — 19.10.2026):** Kur'an içi kullanım birincil ölçüt olarak korunarak anlam önerisi kurulan kavram/kök analizlerinde İbn Fâris ve Râgıb'a ek olarak Lane çapraz denetimi ve Sâmî dil taraması zorunlu kılındı. Zorunlu tarama olumlu anlam eşleşmesi veya dış kaynağın hüküm üstünlüğü anlamına gelmez. Kur'an öncesi Arapça anlam iddiaları tarihlenebilir bağımsız Arapça tanık gerektirir. Kaynak bağımsızlığı, rivayet/tefsir ayrımı ve negatif tarama kayıtları Aşama 7, §10 ve kontrol listesinde açıklanır.
 
 **Sürüm notu (v2.1):** Protokol, `f-r-d` kökü üzerinde uçtan uca pilot olarak sınandı. Pilot sonucunda kapalı örneklemin hipotezden önce kilitlenmesi, aynı kök altında ayrı sözlüksel dalların mümkün olması ve “kanıtlayıcı örnek / yalnız uyumlu örnek” ayrımı açık kurala dönüştürüldü.
 
@@ -21,7 +23,7 @@ Arşiv, kavram kartı, versiyon defteri, hipotez defteri ve periyodik bakım bu 
 2. **Geleneksel anlam başlangıç varsayımı değildir.** Ne otomatik doğru ne otomatik yanlıştır; en güçlü biçimiyle ayrıca sınanır.
 3. **Kesin veri ile yorum ayrılır.** Sayım, biçim ve cümle yapısı veri; bunlardan çıkarılan anlam hipotezdir.
 4. **Karşı örnek anlamı daraltır.** Bir aykırı kullanım açıklanıp geçilmez; gerekirse tanım revize edilir.
-5. **Dış dil verileri destekleyici kontroldür.** Klasik sözlükler (İbn Fâris, Râgıb), Lane, İbranice ve Süryanice anlamı tayin etmez; yalnız hipotez üretir veya tarihsel olasılığı kontrol eder. İki klasik sözlüğe bakmak anlam önerisi kurulan her analizde zorunludur; delil sayılmaları değil, gözden kaçanı göstermeleri için (Aşama 7a).
+5. **Kur'an içi kullanım birincil ölçüttür; dış kaynak denetimi zorunlu, hükmü yardımcıdır.** Anlam önerisi kurulan her kavram/kök analizinde İbn Fâris, Râgıb, Lane ve karşılaştırmalı Sâmî dil kaynakları taranır (Aşama 7, §10). Her anlam iddiası kaynağın türüne, tanığına ve bağımsızlığına göre değerlendirilir; tarihsel köken, sözlük anlamı, Kur'an bağlamı ve sonraki dinî yorum birbirine karıştırılmaz. Dış kaynaklar Kur'an'daki anlamı kendiliğinden tayin etmez; tarama zorunluluğu olumlu sonuç bulma zorunluluğu değildir. Kur'an öncesi Arapça anlam iddiası ayrıca tarihlenebilir bağımsız tanık gerektirir.
 6. **Yokluk iddiası ağır bir iddiadır.** Tek kök taramasıyla "Kur'an'da yok" denmez.
 7. **Anlam ile işlev ayrılır.** Bir kavramın sonucu, etkisi veya hükmü kelimenin sözlük anlamı yerine konmaz.
 8. **Tek ayetten genel tanım kurulmaz.** Tanım bütün dağılımı karşılamalıdır.
@@ -279,7 +281,7 @@ Bu aşama **Kur'an içi anlam hipotezi kurulduktan sonra** çalıştırılır. �
 
 #### 7a. Klasik kök sözlükleri — zorunlu
 
-Anlam önerisi kurulan her analizde iki sözlüğe bakılır:
+Anlam önerisi kurulan her kavram/kök analizinde iki sözlüğe bakılır; Lane ve Sâmî dil katmanları da 7b uyarınca zorunlu taranır:
 
 - **İbn Fâris, *Mu'cemü Mekâyîsi'l-luga*** — kökün *asl*ı: bütün türevlerin dayandığı bir-üç çekirdek anlam. Kelime kelime ilerlerken kaybolan kök ailesi damarını denetler.
 - **Râgıb el-İsfahânî, *el-Müfredât*** — kelimenin Kur'an kullanımları ve yakın anlamlılar arası ayrım. Sayımın hiç göstermediği komşu kavram sınırını denetler.
@@ -302,12 +304,17 @@ Araç ayırır, karar analizde verilir: biçimsel işaret bir birimde iki anlam�
 
 Aynı sertlik, Kur'an içi hipotezi destekler görünen sözlük cümlesine de uygulanır. "İbn Fâris de Râgıb da Lane de böyle diyor" üç bağımsız tanık değildir; aynı geleneğin birbirinden nakleden kayıtlarıdır.
 
-#### 7b. Lane ve Sâmî diller — isteğe bağlı
+#### 7b. Lane ve karşılaştırmalı Sâmî diller — zorunlu denetim
 
-- Lane: olası tarihsel anlam alanlarını ve klasik geleneğin kayıtlarını gösterir.
-- İbranice, Aramice/Süryanice ve diğer Sâmî veriler: ortak köken veya eski semantik alan için kontrol sağlar.
+Anlam önerisi kurulan her kavram/kök analizinde şu taramalar yapılır:
 
-Bunların hiçbiri tek başına Kur'an'daki anlamı belirlemez.
+- **Lane — zorunlu çapraz denetim:** ilgili madde, önceki klasik sözlüklerde bulunmayan açıklamalar, aktarılan Arapça kullanımlar/şiir tanıkları ve Lane'in kaynakları incelenir. Lane çoğunlukla klasik geleneği derlediği için onun teyidi otomatik bağımsız kanıt sayılmaz.
+- **Sâmî dil karşılaştırması — zorunlu tarama:** önce İbranice ile Aramice/Süryanice güvenilir sözlükler ve ulaşılabiliyorsa tarihlenebilir dil tanıkları incelenir. Araştırma sorusu veya bulunan veri gerektiriyorsa Ugaritçe, Akadca ve diğer Sâmî dillere genişletilir. Yalnız ortak ünsüzler eş kök ispatlamaz; ses denklikleri, biçim, anlam, tarih ve kaynak bağımsızlığı ayrıca denetlenir.
+- **Eksik veya olumsuz bulgular raporlanır:** doğrulanmış eş kök ya da tanık yoksa 'doğrulanmış karşılık bulunamadı'; kaynak erişimi mümkün değilse 'denetlenemedi' ve nedeni yazılır. Yapılmayan tarama 'tamamlandı' olarak işaretlenmez.
+
+**7c. Kur'an öncesi Arapça tanık koşulu:** 'Bu biçim Kur'an öncesinde şu anlama geliyordu' veya 'anlam sonradan değişti' iddiası ileri sürüldüğünde tarihlenebilir ve aidiyeti değerlendirilebilen bağımsız Arapça şiir, yazıt ya da metin tanığı aranması zorunludur. Tanık yoksa bu tarihsel iddia kesin hüküm olarak yazılamaz. Tarihsel iddia yoksa tanık aramasına ihtiyaç olup olmadığı açıkça kaydedilir.
+
+**Kanıt hiyerarşisi:** Kur'an içi kullanım birincil ölçüttür. İbn Fâris, Râgıb, Lane ve Sâmî diller farklı soruları aydınlatır; kaynak aktarımı, Arapça dil tanığı, eş kök, hadis/rivayet, tefsir ve sonraki teknik anlam ayrı tutulur. Taramak zorunludur; kaynakta belirli bir anlamı bulmak ya da benimsemek zorunlu değildir.
 
 Tek yönlü kural:
 
@@ -451,17 +458,17 @@ Tek geçiş otomatik olarak spekülatif değildir; çok tekrar otomatik olarak s
 
 ## 10. Dış katmanlar için ayrıntılı kural
 
-### Lane
+### Lane — zorunlu çapraz denetim
 
 Lane kendi gözlemini değil klasik Arap sözlüklerini derler; bu sözlükler de anlamı şiir, hadis ve tefsirle örneklendirebilir. Bu nedenle "Lane de böyle diyor" bağımsız doğrulama değildir.
 
 Madde içinde `Bd`/`Jel` tefsir, "It is said in a trad." hadis kaynaklıdır; aktarılırsa kaynağı yazılır. Lane'in malzemesindeki boşluklardan yokluk argümanı kurulmaz.
 
-### Sâmî katmanı
+### Sâmî katmanı — zorunlu tarama
 
 İşlevi bir kelimenin Kur'an'daki anlamını tayin etmek değil, önerilen anlamın dil-tarihsel olarak makul olup olmadığını ve olası eski semantik alanı kontrol etmektir.
 
-Ortak ünsüz dizisi yalnız ortak köken **adayıdır**; ortak anlam değildir. Tek dildeki benzerlik tek başına delil sayılmaz. İbranice ile Süryanice de tamamen bağımsız iki tanık gibi sayılmaz.
+Ortak ünsüz dizisi yalnız ortak köken **adayıdır**; ortak anlam değildir. Tek dildeki benzerlik tek başına delil sayılmaz. İbranice ile Süryanice de tamamen bağımsız iki tanık gibi sayılmaz. İbranice ile Aramice/Süryanice asgari taraması ve bulunan adayların ses/biçim/anlam denetimi kaydedilir. Gerekirse başka Sâmî dillere genişletilir. Eş kök bulunamaması 'kökte böyle anlam yok' kanıtı değildir; veri ve erişim yetersizliği açıkça raporlanır.
 
 ### Klasik kök sözlükleri
 
@@ -564,7 +571,11 @@ Bir analiz tamamlanmış sayılmadan önce şu soruların tamamı cevaplanır:
 - [ ] Falsifikasyon sorusu açıkça cevaplandı mı?
 - [ ] Kapalı örneklem testi yapıldı mı veya neden yapılamadığı yazıldı mı?
 - [ ] En güçlü alternatif/geleneksel okuma sınandı mı?
-- [ ] Lane ve Sâmî veriler yalnız yardımcı katman olarak kullanıldı mı?
+- [ ] İbn Fâris ve Râgıb maddeleri taranıp anlam → dayanak ayrımı yapıldı mı?
+- [ ] Lane maddesi ve dayandığı klasik kaynaklar çapraz denetlendi mi?
+- [ ] İbranice ve Aramice/Süryanice için güvenilir Sâmî taraması yapıldı mı; bulunamayan/doğrulanamayan eş kökler açıkça kaydedildi mi?
+- [ ] Kur'an öncesi Arapça anlam veya değişim iddiası varsa tarihlenebilir bağımsız tanık gösterildi mi; yoksa kesinlik iddiası sınırlandı mı?
+- [ ] Dış kaynak bağımsızlığı, dil tanığı / rivayet / tefsir ayrımı ve Kur'an içi birincillik ilkesi korundu mu?
 - [ ] Veri / çıkarım / spekülasyon ayrımı yapıldı mı?
 - [ ] Mantıksal durum ve delil derecesi ayrı yazıldı mı?
 - [ ] Kritik ayetler değerlendirmeye yetecek biçimde verildi mi?
