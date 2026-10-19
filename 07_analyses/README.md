@@ -15,6 +15,8 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [Kitâb — denetlenmiş kavram kartı (v2)](roots/Kitab-concept-card.md) — kitap, kayıt, mektup, sözleşme, hüküm; isim/fiil ayrımı.
 - [Hidayet — denetlenmiş kavram kartı (v2)](roots/Hidayet-concept-card.md) — yönlendirme ve doğru yol, hedefe göre anlam değişimi.
 - [Dalâlet — denetlenmiş kavram kartı (v2)](roots/Dalalet-concept-card.md) — sapma, yanılma, kayıp ve boşa çıkma.
+- [Sırât–Sebîl — denetlenmiş kavram kartı (v2)](roots/Sirat-Sebil-concept-card.md) — sırâtın doğru/yanlış yol kullanımları, sebîlin çoğulları, 6:153 ile 37:23 karşı örnekleri ve çeviri sınırları.
+- [Takvâ — kapsamlı kavram kartı (v2)](roots/Takva-concept-card.md) — koruma/sakınma kökü, korku–haşyet ayrımı, adalet ve muttakî davranış portreleri, v2.3 doğrulama kuyruğu.
 
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
