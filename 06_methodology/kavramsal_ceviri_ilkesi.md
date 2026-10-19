@@ -58,6 +58,15 @@ Bu karşılıkların bazı bağlamlarda anlamın bir parçasını karşılaması
 
 Örneğin e-m-n alanında güven/emniyet çekirdektir; iman kavramının Kur'an içindeki güvenerek kabul etme, benimseme, bağlılık ve buna göre konum alma boyutları bu çekirdeğin bağlamsal/kavramsal açılımı olarak incelenir.
 
+### Çeviri birimi: kök değil, kelime
+
+Çeviri kök düzeyinde değil **kelime düzeyinde** yapılır: lemma, kalıp (bab, tür, sayı, hâl) ve bağlam birlikte alınır. Bir kök ailesindeki her kelime kendi Kur'an kullanımına göre incelenir ve ayrı çevrilir.
+
+- **Aileye tek karşılık dayatılmaz.** Ortak bir kök anlamı, yalnız kelimelerin kullanımları onu gösteriyorsa ortak karşılığa yansır; kök anlamı tek başına gerekçe değildir.
+- **Ayrı çeviri de gerekçesiz çoğaltılmaz.** İki kelime ayrı karşılık alıyorsa ayrım kullanım verisine (özne, nesne, bab, bağlam) dayanır; dayanak çeviriden önceki dilsel analizde yer alır (§1.A).
+- **Kök anlamı çıkış hipotezidir.** Klasik sözlüklerin (İbn Fâris'in *asl*ı dâhil) verdiği çekirdek anlam bu çerçevede hipotez olarak kalır. Kök anlamı ile kullanım ayrışırsa kullanım belirler ve ayrışma kayda geçer. Sözlük denetiminin yeri `analiz_protokolu.md` Aşama 7a'dadır; bu ilke onu değiştirmez.
+- **Örnek:** r-v-ḥ ailesinde *rîḥ* ve *rûḥ* aynı kökten ayrı kelimelerdir; her biri kendi kullanımıyla çevrilir, birinin karşılığı diğerine taşınmaz.
+
 ## 4. Ritüel ve geniş kavram ilişkisi
 
 Bir kavram ritüeli içeriyorsa, ritüel kavramın dışına atılmaz; fakat kavram yalnız ritüele de indirgenmez.
