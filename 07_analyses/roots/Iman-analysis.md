@@ -1,18 +1,16 @@
 # İMAN — Kur’an İçi Aşamalı Analiz
 
-**Sürüm:** v1.1 — 2026-10-11. Bu sürüm biçim sayımı ile anlam sınıflandırmasını ayırır; önceki genellemelerin düzeltme kaydı sondadır.
+**Sürüm:** v1.2 — 2026-10-20. v2.4 analiz protokolüne göre Aşama 6–8 denetimleri ve onaylanmış sade nihai kartla uyum sağlandı. Biçim sayımı/semantik sayım ayrımı, tasdik–güven alternatifleri ve delil sınırları korunur.
 
 ## Kısa sonuç
 
-İman, Kur’an’ın olumlu dinî çağrısında yalnızca “bir şeyin var olduğuna inanmak” ile açıklanamaz. Fiilin sentaksı, iman isim kullanımları, kalp bağlamları ve karşı örneklerden hareketle bu çalışmanın kapsamı sınırlı anlam önerisi şudur:
+İman, Kur’an’ın olumlu dinî çağrısında yalnızca “bir şeyin var olduğuna inanmak” ile açıklanamaz. Kök ailesi ile inanma kullanımları ayrılarak şu **kapsamı sınırlı sözlüksel çalışma tanımı** önerilir:
 
-**İman, bir şeyi veya bir mercii doğru ve güvenilir kabul ederek ona güven bağlamak ve bu güven doğrultusunda yönelim/sadakat geliştirmektir.**
+**İnanma bağlamlarında `āmana`: bir kişiyi, mercii, haberi veya bildirimi doğru ya da güvenilir kabul ederek ona inanmak.** Bazı bağlamlarda tasdik, bazılarında bir kişiye/merciye itimat öne çıkar. Hangisinin tüm kullanımlarda öncelikli olduğu gösterilmiş değildir.
 
-Kur’an’ın olumlu iman çağrısında bu ilişkinin merkezi Allah ve O’ndan gelen rehberliktir. En sade ifadeyle:
+**Olumlu dinî iman:** Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul edip bunu içten benimsemek. Kur’an bunun insanın kararlarında, yöneliminde ve davranışlarında karşılık bulmasını ister.
 
-**Olumlu dinî iman çağrısı: Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul edip bunlara bağlanmak.**
-
-Bu, bütün ʾ-m-n kök ailesinin sözlük tanımı veya her kullanımda bütün bileşenleri zorunlu olan bir eşitlik değildir. Haber tasdiki/kişinin sözünü doğru kabul etme okuması da bağlama göre geçerlidir; “güven” ile “tasdik” birbirini dışlayan seçenekler değildir. Kök akrabalığı ve morfoloji anlam önerisine tek başına yeterli olmaz.
+**Anlam–işlev ayrımı:** Güven, sadakat, tevekkül ve salih amel imanla ilişkili olabilir; fakat ilgili davranışların tamamı sırf bu yüzden `īmān` kelimesinin zorunlu sözlük anlamına dahil edilmez. Haber tasdikiyle güven okuması birbirini otomatik dışlamaz. 106:4'teki güvenlik sağlama anlamı yukarıdaki inanma tanımının dışında kalır.
 
 ---
 
@@ -24,7 +22,7 @@ Bu çalışma öncelikle Kur’an’ın kendi kullanımına dayanır.
 - Morfoloji, kök ve lemma verisi: Quranic Arabic Corpus v0.4.
 - Sayımlar: repodaki ham QAC verisinden yeniden üretilebilir scriptlerle çıkarılmıştır.
 - Türkçe çeviriler: bu çalışmaya ait sade/kavramsal çevirilerdir; yayımlanmış bir mealden kopyalanmamıştır.
-- Yöntem: kök ailesi → morfoloji/sentaks → Kur’an içi dağılım → kritik ayetler → karşı örnek/falsifikasyon → sentez.
+- Yöntem: [analiz protokolü v2.4](../../06_methodology/analiz_protokolu.md); Kur’an içi kök/morfoloji/sentaks/bağlam → semantik kümeler → karşı örnekler ve kilitli hipotez sınaması → en güçlü tasdik alternatifi → İbn Fâris/Râgıb/Lane/Sâmî dış kaynak denetimi → delil dereceli sentez. Dış kaynakların taranması zorunludur; Kur’an içi anlamı kendiliğinden tayin ettikleri iddia edilmez.
 
 Kaynak ve lisans ayrıntıları için: [SOURCES.md](../../SOURCES.md) ve [LICENSES.md](../../LICENSES.md).
 
@@ -244,13 +242,34 @@ Hayır. Kur’an iman ile küfür arasında yön değişimini açıkça anlatabi
 
 ---
 
-# Aşama 7 — Sami dilleri karşılaştırması
+# Aşama 7 — Klasik sözlükler, Lane ve Sâmî dil denetimi (v2.4)
 
-Sâmî karşılaştırma bu dosyada **ikincil hipotez katmanıdır**. İbranice, Aramice ve Süryanice için kaydedilen sağlamlık, güvenilirlik, doğrulama ve güvenme alanları Arapça kullanımlar hakkında soru üretir; Kur’an’daki anlamın bağımsız doğrulaması sayılmaz.
+Bu kaynaklar **zorunlu taranır**, fakat anlam kararında Kur’an içi metin birincildir. Her madde dil-içi kullanım, hadis/rivayet, tefsir, sonraki teknik terim ve bağımsız tarihsel tanık bakımından ayrılır.
 
-İbranice ile Aramice/Süryanice ortak dil tarihine sahiptir; benzerlikler bağımsız iki tanık gibi toplanamaz. Kognat adaylığı anlam özdeşliği veya anlamın hangi yönde değiştiği demek değildir. Bu sürümde yeni bir Sâmî tarama ya da tarihlenmiş Kur’an öncesi Arapça tanık incelemesi yapılmamıştır.
+| Kaynak | Kaydedilen anlam alanı / katkı | Kanıt sınırı |
+|---|---|---|
+| **İbn Fâris, Mekâyîs, e-m-n** | Emanet/güvenilirlik ile tasdik için iki yakın asıl anlam; 12:17'nin sözün doğru bulunması bağlamı | Dilsel açıklama; bütün `īmān` kullanımlarını tek başına belirlemez |
+| **Râgıb, Müfredât, e-m-n** | Emniyet, tasdik, güven bağlantısı; 106:4 ve 12:17 örnekleri | Kalp–dil–amel şeklindeki dinî tarifin hadis/rivayet ve şer'î yorumla desteklenen kısımları doğrudan sözlük kanıtı yapılmaz |
+| **Lane, Arabic-English Lexicon, ʾ-m-n** | Güvende olma, güvenme, güvenilirlik, güvenlik sağlama, tasdik ve inanma; `bi-`/`li-` kullanımlarını çapraz kontrol | Klasik Arap sözlüklerini derler; aynı geleneğin üçüncü bağımsız tanığı sayılmaz |
+| **İbranice ʾ-m-n (BDB)** | Sağlamlık, doğrulanmışlık/güvenilirlik, güvenme ve inanma | Akraba dil karşılığı; Kur’an öncesi Arapça anlam sırasını ispatlamaz |
+| **Aramice/Süryanice hymn / hayman- (CAL, SEDRA)** | İnanma, güvenme, güvenilirlik; Süryanice dinî iman terminolojisi | Yüzey biçim farklılıkları ve tarihsel morfoloji ihtiyatla ele alınır; iki dil tam bağımsız kanıt değildir |
 
-“Kur’an öncesinde iman kesinlikle şu demekti” veya “Kur’an anlamı ilk kez değiştirdi” sonucu burada kurulamaz. Böyle bir iddia için tarihlenmiş, aidiyeti ve aktarımı incelenmiş bağımsız tanık gerekir. Sonraki sözlükler ve onların derlemesi olan Lane, kendiliğinden Kur’an öncesi kullanım belgesi değildir.
+Kaynaklar: [İbn Fâris ve Râgıb için protokolün kaynak notları](../../06_methodology/analiz_protokolu.md), [Lane](https://www.arabic-english-dictionary.com/content/01_a/135_amn), [BDB ʾ-m-n](https://biblehub.com/hebrew/539.htm), [CAL hymn](https://cal.huc.edu/JLAentry.php?cits=all&lemma=hymn+V), [Sâmî kognat pilotu](../../04_lexicons/semitic/reviews/Amn.md).
+
+**Üçlü kontrol:**
+1. **Örtüşme:** Güven/güvenilirlik, inanma ve tasdik arasındaki ilişki Kur’an kullanımları ve sözlüklerde görülür.
+2. **Sözlükte olup bağımsız Kur’an tanımı olmayan:** Bütün iman kullanımlarında güvenin zorunlu olması; dinî iman için kalp–dil–amelin üçünün birlikte kelimenin sözlüksel anlamı sayılması; 2:143'teki `īmān`ın genel sözlükte doğrudan salât olması.
+3. **Kur’an'ın özel olarak gösterdiği:** 106:4 IV. bâb güvenlik sağlama; 29:52 bâtıla iman; 49:14 beyan/kalp ayrımı; 9:61 `bi-`/`li-` karşılaştırması; 8:2 iman artışı.
+
+**Tarihsel sınır:** Kur’an öncesi Arapça için tarihlenebilir bağımsız şiir/yazıt/metin üzerinden bu analizde tam ayrı tanık doğrulaması yapılmadı. Bu yüzden kökün kesin ilk anlamı veya anlamların kesin tarihsel gelişim sırası ileri sürülmez. İbranice ve Aramice/Süryanice benzerlikleri destekleyici dil tarihi verisidir; Arapça için doğrudan tarih belgesi değildir.
+
+---
+
+# Aşama 6'nın tamamlayıcı denetimi — Tasdik görüşünün güçlü biçimi
+
+Rakip okuma yalnız “Allah vardır” düşüncesi değildir. Güçlü **kalbî tasdik** yaklaşımı, haberin ve haber veren merciin doğruluğunu içten benimsemeyi ifade eder; sözlü iddia ile gerçek kabulü ayırabilir. 12:17, 9:61, 10:90, 29:52 ve 49:14 gibi bağlamlarda tasdik görüşü doğrudan veya uyumlu açıklama sunar. 8:2, 3:173 gibi iman artışı kullanımlarında da tasdikin kesinliğinin/kuvvetinin artması bir yorum seçeneğidir.
+
+**Rekabet hükmü:** Güçlü tasdik görüşü çürütülemedi. Güven merkezli okuma da elenmedi. Birçok bağlamda örtüşürler; hangi boyutun tarihsel/lexical olarak öncelikli olduğu gösterilemedi. Güçlü tasdik görüşü doğrudan sözlük karşılığı ile imanın ahlaki sonucunu ayrı tutarak daha az ilave unsur gerektirebilir. Buna karşılık güven bağlantısı kök ailesi ve kişiler arası kullanımlarda belirgindir.
 
 ---
 
@@ -288,23 +307,19 @@ Yanlıştır. 3:173, 8:2, 9:124, 33:22, 48:4 ve 74:31 imanın arttığını aç�
 
 ---
 
-# Kapsamı sınırlı sentez
+# Aşama 8 — Kapsamı sınırlı sentez
 
-Olumlu dinî iman bağlamlarında şu boyutların ilişkisi incelenebilir; bunların tamamının her ʾ-m-n kelimesinde zorunlu olduğu ileri sürülmez:
+**Kesin morfolojik/veri düzeyi:** QAC v0.4'te e-m-n kökü 879 kelime konumunda, 723 ayette ve 77 sûrede görünür; IV. bâb çekimli `āmana` fiili 537, `īmān` ismi 45, `muʾmin` biçim ailesi 230 kelime konumundadır. Bunlar **anlam sayısı değildir**. 106:4'te IV. bâb güvenlik sağlama; 12:17'de `muʾmin` dinî olmayan haber kabulü bağlamındadır.
 
-1. **Doğrulama:** Bir mercii, bildirimi veya gerçeklik iddiasını doğru/güvenilir/geçerli kabul etmek.
-2. **Güven:** Ona içsel güven bağlamak; kuşku ve tehdit karşısında bu bağın güçlenebilmesi.
-3. **Sadakat/yönelim:** Kurulan güven doğrultusunda yönelmek ve davranış geliştirmek.
+**Güçlü çıkarım — inanma kullanımının sözlüksel çalışma tanımı:** Bir kişiyi, mercii, haberi veya bildirimi **doğru ya da güvenilir kabul ederek ona inanmak**. Tasdik ve güven bazı bağlamlarda örtüşür; birini bütün kullanımlarda diğerinden önceleyen karar verici delil yoktur.
 
-Bu nedenle olumlu dinî iman çağrısı için çalışma tanımı şudur:
+**Kur’an'ın olumlu dinî iman anlatımı:** Allah'ı ve O'ndan gelen rehberliği doğru/güvenilir kabul ederek içten benimsemek. 49:14 ve 16:106 içsel gerçekliği sözlü beyana indirgememeyi gerektirir. 8:2–4, 49:15, 2:143 ve 3:81 gibi pasajlar güven, tevekkül, yönelim ve davranışı imanla ilişkilendirir; bu, sözlük eşitliği değildir.
 
-**İman, bir şeyi veya bir mercii doğru ve güvenilir kabul ederek ona güven bağlamak ve bu güven doğrultusunda sadakat/yönelim geliştirmektir.**
+**Açık ihtimaller:** İmanın tarihsel olarak önce “güven”, sonra “tasdik” veya tersi yönde geliştiği gösterilmedi. Güvenin her inanma kullanımının zorunlu sözlük bileşeni olduğu, sadakat/itaatin doğrudan `īmān` kelimesine dahil olduğu kanıtlanmadı.
 
-Kur’an’ın olumlu iman çağrısında bunun merkezi Allah ve O’ndan gelen rehberliktir:
+**Karşı örnekler ve yöntem sınırı:** 29:52 yanlış hedefe iman etmeyi gösterir. 67:29 iman ve tevekkülü ayrı sözcüklerle kullanır. 48:25 dışarıdan tanınmayan müminleri anlatır; mümin olmanın daima dışarıdan görünür olduğu iddiası desteklenmez. İncelenen 16 örnek bağımsız kör test değildir; bütün 879 konum tek tek semantik etiketlenmiş değildir. Ayrıca `analyze_amn_verb_syntax.py` betiğinde `POS:P` alt dizesinin `POS:PRO` vb. etiketlerde yanlış eşleşmesi nedeniyle otomatik 'other_prep' sınıfında 31 sahte kayıt bulunmuştur; **kök/lemma toplamları etkilenmez**, bu alt sentaks raporunun düzeltilmesi ayrı teknik iştir.
 
-**Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul etmek, bunlara güvenip bağlanmak.**
-
-Bu tanım “inanmak/tasdik etmek” karşılıklarını reddetmez. Salt varlık kabulünün olumlu iman çağrısını bütünüyle karşılamadığını söyler; güven, yönelim ve sadakatin her kullanımda aynı ölçüde sözlük anlamına mı yoksa bağlamsal beklentiye mi ait olduğu ayrıca incelenmelidir. **Durum: Destekleniyor, bu sınırlı bağlamda; derece: Muhtemel.** Alternatif tasdik okumasının bütün güçlü biçimleri elenmiş değildir.
+**Delil hükmü:** Kur’an içi bağlamlarda “salt varlık kabulü” tanımı yetersizdir. Güçlü kalbî tasdik ile doğru/güvenilir kabul-güven okuması rekabette kalmaktadır; nihai tarihsel üstünlük iddiası **belirsiz**. Sınırlı sözlüksel çalışma tanımı **muhtemel**; sayım, biçim ve açık ayet ilişkileri **sağlam veri** niteliğindedir.
 
 ## İman, eylem ve tevekkül ilişkisi
 
@@ -316,11 +331,11 @@ Bu tanım “inanmak/tasdik etmek” karşılıklarını reddetmez. Salt varlık
 
 # Kısa kavram kartı
 
-**Olumlu dinî iman çağrısı:** Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul edip bunlara bağlanmak.
+**Sözlüksel çalışma tanımı (inanma kullanımları):** Bir kişi, merci, haber veya bildirimi doğru ya da güvenilir kabul ederek ona inanmak.
 
-Daha açık hali:
+**Olumlu dinî iman:** Allah’ı ve O’ndan gelen rehberliği doğru/güvenilir kabul edip içten benimsemek; Kur’an bu kabulün kararlar ve davranışlarda karşılık bulmasını ister.
 
-**Doğru/güvenilir kabul etme, güven ve bağlılık:** ilişkili boyutlar; bütün kullanımlar için zorunlu sıra veya eşanlamlılık iddiası değil.
+**Anlam–işlev sınırı:** Tasdik ve güven birbirini dışlamak zorunda değildir. Tevekkül, itaate yönelme ve salih amel ilişkilidir; zorunlu eşanlamlılar değildir. Güvenin tasdik karşısında tarihsel önceliği kanıtlanmış değildir.
 
 İman yalnız söz değildir; 5:41 ve 49:14.
 
@@ -357,4 +372,6 @@ Bu dosyalar, ana metindeki sayısal ve sentaktik sonuçların nasıl üretildiğ
 - **Birlikte geçişten anlam/nedensellik → ilişkiyi araştırma işareti:** 3:173 ve 8:2 üzerinden iman–tevekkül özdeşliği ya da kesin ayrılığı ispatlanmadığı belirtildi.
 - **Sâmî bağımsız kontrol → ikincil hipotez:** Kur’an öncesi kullanım hakkında tarihlenmiş tanık bulunmadan sonuç kurulmayacağı kaydedildi.
 
-Yeni sayım ve ayet denetimi: [QAC karşılaştırma raporu](../generated/tawakkul_comparison/report.md). Morfoloji gözlemleri ile semantik yorumun derecesi ayrıdır: biçim/konum tespiti doğrudan annotation bulgusudur; yukarıdaki geniş iman sentezi bağlamsal ve **muhtemel** bir okumadır. Mevcut diğer aşamaların sayım ve yorumları bu sürümde baştan bütünüyle yeniden incelenmiş sayılmaz.
+**v1.2 değişiklik kaydı — 2026-10-20:** Aşama 6'nın en güçlü tasdik okuması, v2.4 zorunlu Lane/Sâmî karşılaştırması ve Aşama 8'in kesin veri/güçlü çıkarım/açık ihtimal ayrımı ana metne işlendi. Eski “güven bağlamak ve sadakat geliştirmek” tüm bileşenleriyle sözlüksel eşitlik iddiası daraltıldı. Teknik sentaks sınıflandırmasındaki `POS:P` alt dizesi hatası not edildi; betik değiştirilmedi. Nihai sade kart [Amn-concept-card.md](Amn-concept-card.md) ile uyumlu tutuldu.
+
+Yeni sayım ve ayet denetimi: [QAC karşılaştırma raporu](../generated/tawakkul_comparison/report.md). Morfoloji gözlemleri ile semantik yorumun derecesi ayrıdır; bu dosya bütün 879 kullanımın bağımsız, konum konum semantik sınıflandırmasını içermez.
