@@ -1,9 +1,11 @@
-# Kur'an Analiz Protokolü — v2.4
+# Kur'an Analiz Protokolü — v2.5
 
 **Konumu:** `06_methodology/analiz_protokolu.md`  
-**Kapsamı:** tek bir kavram, kök, ayet, pasaj veya tezin Kur'an merkezli ve denetlenebilir biçimde nasıl analiz edileceği.
+**Kapsamı:** tek bir kavram, kök, ayet, pasaj veya tezin Kur'an merkezli ve denetlenebilir biçimde nasıl analiz edileceği; v2.5'ten itibaren ayrıca kavramların birbirine bağlandığı **kavram alanı** (§7A) ve kavram kartlarından kurulan **dünya görüşü önermeleri** (§7B).
 
 Bu belge, çalışmanın **ana analiz protokolüdür**. Amaç bir anlamı baştan doğru kabul edip ona delil toplamak değil; Kur'an içi veriden hareketle anlamı kurmak, karşı örneklerle sınamak ve veri ile yorumu açıkça ayırmaktır.
+
+**Sürüm notu (v2.5 — 22.10.2026):** Protokol, Izutsu'nun anlam katmanlarına (temel anlam → ilişkisel anlam → anlam alanı → dünya görüşü) göre dört düzeyli bir mimariye bağlandı (§0a). Izutsu'dan alınan, katman yapısıdır; câhiliye şiirine ve sonraki kelâm kullanımına dayanan verisi ve sonuçları delil sayılmaz (§0 ilke 5, Aşama 7c). Eklenenler: kavram alanı düzeyi (§7A) ve ortak ayet denetimi; dünya görüşü önerme defteri (§7B); kartlarda fiilen yapılıp protokolde adı olmayan üç işlemin adlandırılması — dinî olmayan kullanım tanığı (Aşama 1), çerçeve testi (4d), ikame testi (4e); karantina akıbeti (Aşama 0, Aşama 8); bilimsel çağrışım adımı (Aşama 8a); bağımsız tekrar (Aşama 9a). Terim ayrımı: "anlam alanı" bir kelimenin anlam yelpazesidir, "kavram alanı" birden çok kavramın oluşturduğu ağdır (§0a).
 
 **Sürüm notu (v2.4 — 19.10.2026):** Kur'an içi kullanım birincil ölçüt olarak korunarak anlam önerisi kurulan kavram/kök analizlerinde İbn Fâris ve Râgıb'a ek olarak Lane çapraz denetimi ve Sâmî dil taraması zorunlu kılındı. Zorunlu tarama olumlu anlam eşleşmesi veya dış kaynağın hüküm üstünlüğü anlamına gelmez. Kur'an öncesi Arapça anlam iddiaları tarihlenebilir bağımsız Arapça tanık gerektirir. Kaynak bağımsızlığı, rivayet/tefsir ayrımı ve negatif tarama kayıtları Aşama 7, §10 ve kontrol listesinde açıklanır.
 
@@ -29,6 +31,27 @@ Arşiv, kavram kartı, versiyon defteri, hipotez defteri ve periyodik bakım bu 
 8. **Tek ayetten genel tanım kurulmaz.** Tanım bütün dağılımı karşılamalıdır.
 9. **Sonuçtan önce kapsam yazılır.** Bir önerme hangi ayetler, hangi biçimler ve hangi bağlamlar için geçerliyse o sınır belirtilir.
 10. **Analiz aşamalıdır.** Sohbet ortamında varsayılan çalışma biçimi her ana aşamanın sonunda durmak ve kullanıcıdan `devam` onayı almaktır. Kullanıcı açıkça kesintisiz çalışma isterse bu kural kaldırılır.
+
+### 0a. Dört düzeyli mimari
+
+Analiz dört düzeyde yürür. Her düzeyin bir çıktısı ve onu çürütecek önceden yazılmış bir koşulu vardır. Alt düzeyin sonucu üst düzeye **derecesiyle birlikte** girer (§7).
+
+| düzey | Izutsu karşılığı | çıktı | neyle çürür | protokoldeki yeri |
+|---|---|---|---|---|
+| 1. Kelime | temel anlam | kelime profili | kapalı örneklemde çekirdeğin ek kayıt olmadan karşılayamadığı kullanım | Aşama 1–3, 5 |
+| 2. Kavram | ilişkisel anlam, karşıtlık, yakın anlam | kavram kartı | aynı kapsamda dışlayan ayet; ikamede bozulan cümle; rakip okumanın daha az istisnayla açıklaması | Aşama 2–9 |
+| 3. Kavram alanı | anlam alanı (semantic field) | alan haritası | ortak ayette kartlar arası çelişki; çerçevede karşılığı olmayan karşıtlık; metinsel bağı gösterilemeyen üye | §7A |
+| 4. Dünya görüşü | Weltanschauung | önerme defteri | dayandığı kartlardan birinin revizyonu; aynı kapsamda karşı ayet | §7B |
+
+Izutsu'nun diğer iki aşaması ayrı düzey değildir, her düzeyde çalışan denetimdir: **artzamanlı** aşama → karantina ve izdüşüm denetimi (Aşama 0, Aşama 3'teki "sonraki teknik terim" katmanı, Aşama 7c); **eşzamanlı** aşama → Mushaf tek bir eşzamanlı sistem olarak ele alınır, nüzul sırası ve Mekkî/Medenî ayrımı yalnız etiketli filtredir (CLAUDE.md §2 ilke 7). Kaynak ilkesi gereği artzamanlı aşama anlam üretmez; projeksiyonu yakalar.
+
+**Düzeyler sıralı bir zincir gibi uygulanmaz.** Aynı ayet kelime, kavram ve alan düzeyinde ayrı ayrı "destek" diye sayılmaz; her ayet bir kez delil sayılır, diğer düzeylerde ona atıf yapılır. Dünya görüşü her kavramda değil, kartlar biriktikçe kurulur.
+
+**Terimler:**
+
+- **anlam alanı** — tek bir kelimenin veya kök ailesinin anlam yelpazesi (depodaki mevcut kullanım; ör. Dalâlet, Kitâb kartları),
+- **kavram ağı** — tek bir kavramın Aşama 2'de çıkarılan bağlantıları,
+- **kavram alanı** — bir odak kavram etrafında, tiplenmiş metinsel bağlarla birbirine bağlanmış kelimelerin oluşturduğu ağ (§7A). Izutsu'nun *semantic field* kavramının karşılığıdır.
 
 **Sûre çevirisi özel kuralı:** Sûre ve bağlantılı pasajların meal–tefsirinde [sûre meal–tefsir bütünleşik protokolü](./sure_meal_tefsir_protokolu.md) uygulanır. Teknik aşamalar içeride eksiksiz işlenir; kullanıcıdan her aşama sonrası ayrı onay istenmez. Bu istisna analiz, karşı delil ve kaynak kontrollerini gevşetmez.
 
@@ -123,7 +146,7 @@ Bu bölüm protokolün semantik omurgasıdır. Aşamalar sırayla ilerler; gerek
 
 - Araştırma sorusu tek cümleye indirilir.
 - Analiz birimi belirlenir.
-- Başlangıç varsayımları karantinaya alınır.
+- Başlangıç varsayımları karantinaya alınır. Karantina listesi **numaralanır** (K1, K2 …); her madde Aşama 8'de akıbetiyle kapatılır (karantina akıbeti).
 - Hangi verinin "kanıt", hangisinin "yardımcı kontrol" olacağı baştan yazılır.
 - Tez varsa karşı örneğin ne sayılacağı taramadan önce belirlenir.
 
@@ -141,9 +164,17 @@ Bu bölüm protokolün semantik omurgasıdır. Aşamalar sırayla ilerler; gerek
 6. edat ve harf-i cer eşlikleri,
 7. nesne/özne ve tamlama ilişkileri,
 8. tekrar eden sentaktik kalıplar,
-9. ayet ve sûre dağılımı.
+9. ayet ve sûre dağılımı,
+10. **dinî olmayan kullanım tanıkları.**
 
 Bu aşamada **anlam kararı verilmez**; mümkün olduğunca veri dökümü yapılır.
+
+**Dinî olmayan kullanım tanığı.** Kelimenin Kur'an içinde dinî-terimsel bağlam dışında geçtiği yerler ayrı listelenir. İki türü vardır:
+
+- **gündelik kullanım:** alışveriş, borç, emanet, yolculuk, aile içi ilişki gibi bağlamlar (ör. 2:283 *faʾin ʾamina baʿżukum baʿżan* — "biriniz diğerine güvenirse"),
+- **aktarılan söz:** Kur'an'ın başka konuşanlardan aktardığı sözler (ör. 12:17 *vamâ ʾanta bimuʾminil lanâ* — Yûsuf'un kardeşleri: "sen bize inanmazsın"). Konuşan ve muhatap Aşama 2'deki gibi kaydedilir.
+
+İşlevi: Izutsu'nun câhiliye şiirinden aldığı "temel anlam" tanığının Kur'an içindeki karşılığıdır. **Sınırı:** dinî bağlam dışındaki kullanımı gösterir; "ilk anlam" veya "Kur'an öncesi anlam" iddiası kurmaz (o iddia Aşama 7c'nin tanığını ister). Böyle bir kullanım yoksa "dinî olmayan kullanım bulunmadı" diye yazılır; bu, kelimenin anlamı hakkında tek başına bir bulgu değildir.
 
 ### Aşama 2 — Bağlam, pasaj ve Kur'an içi ağ
 
@@ -241,6 +272,36 @@ Her kritik kullanım ayrıca şu üç sınıftan biriyle etiketlenir:
 
 taranır. Bunlar yapılmamışsa yalnız "şu kök/lemma taramasında bulunmadı" denir.
 
+#### 4d. Çerçeve testi — karşıtlık hangi çerçevede?
+
+Karşıtlık kelime çiftine değil **çerçeveye** bağlanır. Çerçeve: kelimenin cümlede aldığı edat, nesne, özne ve kalıp düzeni. Her karşıtlık iddiası için şu tablo yazılır:
+
+| X | Y | çerçeve (edat / nesne / kalıp) | ayetler | not |
+|---|---|---|---|---|
+
+Kurallar:
+
+- Bir kelimenin birden fazla karşıtı olabilir; her biri ayrı çerçevede kaydedilir. "X, Y'nin karşıtıdır" cümlesi çerçeve belirtilmeden tam tanım olarak yazılmaz.
+- Kelimenin değeri nesnesine bağlı olabilir; olumlu ve olumsuz kullanımlar ayrı satırda tutulur.
+- Kök düzeyindeki ortak geçiş karşıtlık delili değildir; her satır lemma düzeyinde denetlenir.
+
+> **Örnek (yöntem gösterimi, kavram sonucu değil):** "Küfür imanın karşıtıdır" önermesi tam tanım olarak sınandı. QAC v0.4'te k-f-r ile ş-k-r 7 ayette birlikte geçer; 5:89'daki kelime *kaffâra*dır (başka lemma). Kalan 6 ayette (2:152, 14:7, 27:40, 31:12, 39:7, 76:3) küfür şükrün karşısındadır — 14:7 *laʾin şakartum laʾazîdannakum valaʾin kafartum ʾinna ʿaẕâbî laşadîd*. 2:256 *faman yakfur biṭṭâgûti vayuʾmim billâhi* ve 60:4 *kafarnâ bikum* küfrün olumlu nesneyle de kullanıldığını gösterir. Sonuç: küfrün en az iki karşıtı vardır (iman, şükür), değeri nesnesine bağlıdır; önerme tam tanım olarak çürür. Bu, "Kur'an'da küfrün şükür ekseni vardır" demeye izin verir; "ilk anlamı nankörlüktür" demeye izin vermez (Aşama 7c).
+
+Kartlarda örnek uygulama: Dalâlet kartı, karşıtlığı "bütün kök ailesinde değil, dinî yol ve rehberlik bağlamında" sınırlar.
+
+#### 4e. İkame testi — biri ötekinin yerine geçebiliyor mu?
+
+Yakın kavram testi (4a) şu işlemle somutlaştırılır:
+
+1. X ve Y'nin geçtiği bütün konumlar listelenir.
+2. Önerilen ortak anlam (veya Y) X'in her konumuna, X de Y'ninkine konur.
+3. Her konum için sonuç kaydedilir: **yerine geçer · anlam kayar · cümle bozulur.**
+4. X ile Y'nin aynı ayette yan yana geldiği yerler ayrıca işaretlenir; tam eşanlamlılık bu yerlerde ifadeyi tekrar veya vurgu hâline getirir. Hangisinin olduğu bağlamdan gerekçelendirilir; ortak geçiş tek başına karar vermez (§5).
+
+Test soruyu kurar, cevabı kendisi vermez: "anlam kayar" sonuçları ayrımın nerede olduğunu gösteren adaylardır ve Aşama 5'te sınanır.
+
+> **Örnek malzeme:** ʿ-d-l ile q-s-ṭ QAC v0.4'te 6 ayette birlikte geçer (2:282, 4:3, 4:135, 5:8, 6:152, 49:9). 49:9 *faʾaṣliḥû baynahumâ bilʿadli vaʾaqsiṭû* iki kelimeyi aynı cümlede kullanır; 4:3'te *tuqsiṭû* yetimler hakkında, *taʿdilû* evlenilen kadınlar arasında geçer. Kartlarda örnek uygulama: Sırât–Sebîl kartı, 6:153'te iki kelimenin aynı ilahî yol için kullanıldığını gösterir.
+
 ### Aşama 5 — Falsifikasyon ve kapalı örneklem
 
 **Falsifikasyon her analizde zorunludur.** Ön-anlam hipotezi kurulunca sorulur:
@@ -332,6 +393,25 @@ Tanım mümkünse şu yapıda verilir:
 
 > **Çekirdek anlam** → **bağlama bağlı alt-anlam(lar)** → **anlam sınırı** → **yakın kavramlardan farkı**.
 
+**Karantina akıbeti.** Aşama 0'da numaralanan her karantina maddesi burada kapatılır:
+
+| madde | varsayım | akıbet | dayanak |
+|---|---|---|---|
+| K1 | … | doğrulandı / reddedildi / açık | ayetler, aşama |
+
+"Açık" kalan madde sonuçta varsayım olarak kullanılmaz.
+
+### Aşama 8a — Bilimsel çağrışım adımı
+
+Anlam Kur'an içinden kurulduktan sonra (Aşama 8) **zorunlu olarak** çalıştırılır; atlanmaz. Ayetin veya kavramın anlattığı olgunun (doğa, biyoloji, insan davranışı, toplum) bilimdeki karşılığı aranır ve gösterilir.
+
+Kurallar:
+
+1. **Yön:** bilim kelimenin anlamını belirlemez. Modern bilimsel kavram Aşama 0'da karantinadadır; sıra tersine dönerse modern terim de, fıkıh terimi gibi metne geri taşınır.
+2. **Mantıksal durum** §9'daki Eksen A ile yazılır. Çoğu durumda doğru etiket **"yalnız uyumlu"**dur. "Metin bunu söylüyor" (destekleniyor) ancak kelimenin Kur'an içi kullanımı o okumayı ek varsayım olmadan taşıyorsa yazılır.
+3. Bilimsel kaynak künyesiyle verilir; tartışmalı bilimsel bulgu kesin bilgi gibi sunulmaz.
+4. Anlamlı bir çağrışım yoksa "belirgin bir bilimsel çağrışım bulunmadı" yazılır; çağrışım kota doldurmak için zorlanmaz.
+
 ### Aşama 9 — Sade anlatım ve nihai dosya
 
 Teknik analiz bittikten sonra ayrıca dışarıdan birinin anlayabileceği sade anlatım hazırlanır. Bu sadeleştirme teknik sonucu değiştiremez.
@@ -343,16 +423,31 @@ Nihai dosya şunları içermelidir:
 - tam dağılım özeti,
 - kritik ayetler,
 - morfoloji ve sentaks bulguları,
+- dinî olmayan kullanım tanıkları,
 - bağlam kümeleri,
 - çekirdek anlam önerisi,
-- yakın kavram ve negatif semantik testleri,
+- yakın kavram, negatif semantik, çerçeve ve ikame testleri,
 - karşı örnekler ve falsifikasyon,
 - en güçlü alternatif okuma,
 - dış dil kontrolü,
 - kesin veri / çıkarım / spekülasyon ayrımı,
+- karantina akıbeti tablosu,
+- bilimsel çağrışım adımı,
+- bağımsız tekrar kaydı (Aşama 9a),
+- ortak ayet denetimi kaydı (§7A),
 - sade sonuç.
 
 **Kritik ayetler eksik parça halinde değil, anlamı değerlendirmeye yetecek bağlamla ve gerektiğinde tam ayet olarak verilir.**
+
+### Aşama 9a — Bağımsız tekrar
+
+Kavram kartının ilk onayından önce aynı araştırma sorusu, ilk sonucu görmeyen ikinci bir uygulayıcıya (başka bir model ailesi ya da bir kişi) aynı protokol ve aynı veriyle verilir. Karşılaştırılan üç şey:
+
+1. kullanım sınıflandırmaları (kümeler, kanıtlayıcı / yalnız uyumlu / karşı etiketleri),
+2. çekirdek anlam önerisi,
+3. bulunan karşı örnekler.
+
+Uyuşmayan her karar **karar kaydına** gerekçesiyle yazılır ve çözülür ya da açık bırakılır. İki uygulayıcının uyuşması doğrulamanın kendisi değildir (aynı soydan modeller bağımsız sayılmaz); işlevi, tek uygulayıcının fark etmediği kararları görünür kılmaktır. Tekrar yapılmadıysa kartta "bağımsız tekrar yapılmadı" yazılır.
 
 ---
 
@@ -410,6 +505,85 @@ Bir kavramdan diğerine taşınan şey tek satırla belirtilir:
 Ortak kök veya ortak tema tek başına aktarım gerekçesi değildir. Bir bağlantının kurulması iki kavramdaki bütün ayrıntıların karşılıklı taşınmasına izin vermez.
 
 Sonraki analiz önceki sonuçla çelişirse çelişki açıkça yazılır; çözülmüyorsa iki olasılık birlikte taşınır. Yumuşatılıp gizlenmez.
+
+---
+
+## 7A. Kavram alanı — Düzey 3
+
+Bir kavram tek başına tam tanımlanamaz; alandaki yeri tanımının parçasıdır. Bu düzey, kavram kartlarını birbirine bağlayan ağı açık, denetlenebilir bir dosyada kurar.
+
+### 7A-1. Alan dosyası
+
+Konumu: `07_analyses/fields/<alan>.md`. İçeriği:
+
+1. **odak kavram** — alanı düzenleyen kavram (bir alanda birden fazla olabilir),
+2. **üyelik ölçütü** — taramadan önce yazılır,
+3. **üye listesi** — her üye **kelime (lemma + kalıp)** düzeyinde; kök düzeyinde üye yazılmaz,
+4. **bağ tablosu** — her bağ türüyle, ayetiyle ve derecesiyle,
+5. **dayandığı kartlar** — kart adı ve sürümü,
+6. **ortak ayet denetimi kaydı**,
+7. kayıt satırı (§3).
+
+### 7A-2. Üyelik
+
+Bir kelime alana ancak **en az bir ayette gösterilmiş, türü belli bir metinsel bağla** girer. Birlikte geçiş yalnız aday üretir (§5). Bir kelime birden çok alana girebilir (ör. küfür hem iman hem şükür alanında; 4d).
+
+**Kök ≠ üye.** Aynı kök iki zıt kutbu taşıyabilir: q-s-ṭ kökünün 25 kelime konumundan 2'si *qâsiṭûn*dur (72:14–15, *vaminnâ lqâsiṭûna* — müslimlerin karşısında), *muqsiṭîn* ise övülür (49:9). Bu yüzden "adalet alanına q-s-ṭ girer" değil, "*qisṭ* ve *muqsiṭ* adalet kutbuna, *qâsiṭ* karşı kutba girer" yazılır.
+
+### 7A-3. Bağ türleri
+
+| tür | ne demek | örnek |
+|---|---|---|
+| karşıtlık | aynı çerçevede zıt kutup (4d) | 14:7 şükür ↔ küfür |
+| paralel yuva | aynı cümle yapısında karşılıklı yerleri dolduran kelimeler | 47:3 *kafarû ttabaʿû lbâṭila* / *ʾâmanû ttabaʿû lḥaqqa* |
+| iç-tanım | metnin bir terimi kendi içinde açması | 2:177 *valâkinna lbirra man ʾâmana billâhi …* |
+| şart–sonuç | bir kavramın ötekinin koşulu veya gereği olarak kurulması | 10:84 *ʾin kuntum ʾâmantum billâhi faʿalayhi tavakkalû* |
+| ikame | aynı göndergeye iki kelime (4e) | 6:153 *ṣirâṭ* / *sabîl* |
+| birlikte geçiş | yalnız aday; tür belirlenmeden bağ sayılmaz | — |
+
+Her bağın derecesi §9 Eksen B ile yazılır. Bağın varlığı, iki kavramdaki bütün ayrıntıların karşılıklı taşınmasına izin vermez (§7).
+
+### 7A-4. Ortak ayet denetimi
+
+Bir kavram kartı onaylandığında veya sürümü değiştiğinde:
+
+1. kartta anılan ayetlerden, başka kartlarda da anılanlar listelenir,
+2. her ortak ayet için kartların okuması yan yana konur,
+3. sonuç kaydedilir: **uyumlu · farklı yönler (çelişki yok) · çelişki,**
+4. çelişki ya çözülür ya da **iki kartta da** açıkça yazılır; sessizce bırakılmaz.
+
+Durum (22.10.2026): `07_analyses/roots` altındaki kavram dosyalarında otomatik atıf taramasıyla 242 farklı ayet bulundu; en az 35'i birden fazla kavramda geçiyor (aralık içleri sayılmadı). 37:23, 42:52 ve 27:14 elle denetlendi: farklı yönler, çelişki yok. Bu denetim için çalışma masasında henüz komut yoktur; araç eklenene kadar elle yapılır ve "elle yapıldı" diye kaydedilir.
+
+### 7A-5. Alan neyle çürür
+
+- ortak ayette kartlar arası çözülmemiş çelişki,
+- çerçeve tablosunda karşılığı gösterilemeyen bir karşıtlık,
+- metinsel bağı gösterilemeyen üye,
+- yeni bir kartın alana ancak alanın tanımını değiştirerek sığması (bu durumda alan revize edilir, eski hâli sürüm defterinde kalır).
+
+---
+
+## 7B. Dünya görüşü — Düzey 4
+
+Kavram kartlarından ve alan dosyalarından Kur'an'ın insan, Allah, sorumluluk, hayat ve ahlak hakkındaki önermeleri kurulur. Bu düzey bütün olarak yanlışlanamaz; **halkaları** yanlışlanır. Bu yüzden her önerme bağımlılıklarıyla birlikte kaydedilir.
+
+### 7B-1. Önerme kaydı
+
+Konumu: `07_analyses/worldview/` (önerme defteri; çalışma masasında `tez.py`'nin sürümlü, zincirli defter yapısı kullanılabilir). Her önerme:
+
+1. **tek cümle** ifade,
+2. **kapsam** — hangi ayet kümeleri, hangi bağlamlar,
+3. **bağımlılıklar** — dayandığı kart ve alan bağları, **sürüm numaralarıyla**,
+4. **doğrudan dayanak** — önermeyi söyleyen ayet; yoksa önerme **"çıkarım"** etiketi taşır,
+5. **karşı ayet taraması** — §8'deki tez akışıyla,
+6. **mantıksal durum ve derece** (§9).
+
+### 7B-2. Kurallar
+
+- **En zayıf halka kuralı:** önermenin derecesi, bağımlılıklarının en düşük derecesini aşamaz. Üç sağlam kart ve bir muhtemel bağ, en fazla muhtemel bir önerme verir.
+- **Otomatik yeniden bakış:** bağımlı olduğu bir kartın veya bağın sürümü değişen önerme "yeniden bak" işareti alır; gözden geçirilene kadar kesin sonuç gibi kullanılmaz.
+- **Yerel dayanak:** tam kartı olmayan kavrama dayanan önerme **"yerel"** etiketi taşır ve kapsamı o yerel analizle sınırlı yazılır (§7). Böylece her kavramı ayrıntılı işlemeden de ilerlenebilir; bedeli görünür kalır.
+- Aynı ayet, önermenin dayandığı kartta zaten delil sayıldıysa önerme düzeyinde ikinci kez bağımsız delil sayılmaz (§0a).
 
 ---
 
@@ -543,6 +717,12 @@ Tamamlanmış analiz `07_analyses/roots/<kok>/` veya `07_analyses/concepts/<kavr
 - Sâmî kognatı doğrudan Kur'an anlamı kabul etme.
 - Kullanıcının vardığı sonucu, veri desteklemiyorken destekliyormuş gibi sunma.
 - Nihai olmayan analizi kesin sonuç gibi depoya yazma.
+- Karşıtlığı çerçevesini yazmadan tam tanım olarak sunma (4d).
+- Kavram alanına kök düzeyinde üye yazma (§7A-2).
+- Aynı ayeti kelime, kavram, alan ve önerme düzeyinde ayrı ayrı bağımsız delil sayma (§0a).
+- Dünya görüşü önermesinin derecesini en zayıf bağımlılığının üstünde yazma (§7B-2).
+- Bilimsel bulguyu kelimenin anlamını belirleyen delil olarak kullanma (Aşama 8a).
+- "Dinî olmayan kullanım"dan "ilk anlam" veya "Kur'an öncesi anlam" sonucu çıkarma (Aşama 1).
 
 ---
 
@@ -576,6 +756,13 @@ Bir analiz tamamlanmış sayılmadan önce şu soruların tamamı cevaplanır:
 - [ ] İbranice ve Aramice/Süryanice için güvenilir Sâmî taraması yapıldı mı; bulunamayan/doğrulanamayan eş kökler açıkça kaydedildi mi?
 - [ ] Kur'an öncesi Arapça anlam veya değişim iddiası varsa tarihlenebilir bağımsız tanık gösterildi mi; yoksa kesinlik iddiası sınırlandı mı?
 - [ ] Dış kaynak bağımsızlığı, dil tanığı / rivayet / tefsir ayrımı ve Kur'an içi birincillik ilkesi korundu mu?
+- [ ] Dinî olmayan kullanım tanıkları listelendi mi veya bulunmadığı yazıldı mı?
+- [ ] Karşıtlıklar çerçeve tablosuyla (4d) yazıldı mı?
+- [ ] Yakın kavramlar için ikame testi (4e) yapıldı mı?
+- [ ] Karantina maddelerinin her biri akıbetiyle kapatıldı mı?
+- [ ] Bilimsel çağrışım adımı (8a) çalıştırıldı ve Eksen A ile etiketlendi mi?
+- [ ] Bağımsız tekrar yapıldı mı veya yapılmadığı kartta yazıldı mı?
+- [ ] Ortak ayet denetimi (§7A-4) yapıldı ve sonucu kaydedildi mi?
 - [ ] Veri / çıkarım / spekülasyon ayrımı yapıldı mı?
 - [ ] Mantıksal durum ve delil derecesi ayrı yazıldı mı?
 - [ ] Kritik ayetler değerlendirmeye yetecek biçimde verildi mi?
