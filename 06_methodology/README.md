@@ -4,7 +4,7 @@ Kur'an içi semantik analiz metodolojisi, veri kullanım kuralları, doğrulama 
 
 ## Ana protokol
 
-- [`analiz_protokolu.md`](./analiz_protokolu.md) — kavram, kök, ayet, pasaj ve tez analizlerinde kullanılacak ana çalışma protokolü.
+- [`analiz_protokolu.md`](./analiz_protokolu.md) — kavram, kök, ayet, pasaj ve tez analizlerinde kullanılacak ana çalışma protokolü. v2.5'ten itibaren dört düzeylidir: kelime → kavram → kavram alanı (§7A, `07_analyses/fields/`) → dünya görüşü önermeleri (§7B, `07_analyses/worldview/`).
 - [`kavramsal_ceviri_ilkesi.md`](./kavramsal_ceviri_ilkesi.md) — terimleri koruyan çeviri ile tefsirli çeviri arasındaki farkı, geniş anlam alanlı kavramların Türkçede tek kelimeye indirgenmemesi kuralını ve sûre girişindeki okuma anahtarları yöntemini tanımlar.
 - [`sure_meal_tefsir_protokolu.md`](./sure_meal_tefsir_protokolu.md) — sûre ve pasajları tek çalışma döngüsünde denetlenebilir dilsel analiz, Kur'an içi bağlantı fişleri, her ayette tek ana çeviri, yalnız gerekirse tefsirli çeviri ve bütünleşik kısa tefsirle işleme yöntemi. Kavram/tez protokolü yerine geçmez; sûre iş ritmi ve çıktı biçimi için özel kuraldır.
 
