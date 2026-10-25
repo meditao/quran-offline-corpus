@@ -19,6 +19,8 @@ Amaç, dışarıdan gelen bir okuyucunun sonucu sadece kabul etmesi değil, sonu
 - [Takvâ — kapsamlı kavram kartı (v2)](roots/Takva-concept-card.md) — koruma/sakınma kökü, korku–haşyet ayrımı, adalet ve muttakî davranış portreleri, v2.3 doğrulama kuyruğu.
 - [Muttakî — denetlenmiş kavram kartı (v2)](roots/Muttaki-concept-card.md) — müttakînin doğrudan Kur’an portreleri, hata sonrası tutum, mümin/muhsin ilişkisi ve sorumluluk–ödül ayrımı.
 
+- [Âlim — Ankebût 29:43 kavram kartı (v1)](roots/Alim-concept-card.md) — *ʿâlim* lemmasının 18 kelime konumu (15 Allah, 3 insan), 29:41'in "bir bilselerdi" kalıbıyla bağlamsal tanım, zümre/bilim insanı okumalarının sınanması ve örümcek misalindeki bilimsel çağrışımların derecelendirilmesi; [yeniden üretilebilir QAC taraması](generated/alim_29_43/report.md) ile bağlantılıdır.
+
 - [İman — ayrıntılı, aşamalı ana analiz](roots/Iman-analysis.md)
 - [İman — kısa kavram kartı](roots/Amn-concept-card.md)
 - [İman–tevekkül–vekîl–tafvîz — karşılaştırma kaydı](roots/Tawakkul-Wakil-analysis.md) — 3:159'un karar/danışma yapısı, Uhud tefsir çerçevesi, 106:4 ve 12:17 düzeltmeleri, görev ile sorumluluk ayrımı; [yeniden üretilebilir QAC denetimi](generated/tawakkul_comparison/report.md) ile bağlantılıdır.

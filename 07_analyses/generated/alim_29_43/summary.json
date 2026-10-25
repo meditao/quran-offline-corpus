@@ -1,0 +1,291 @@
+{
+  "sema_surumu": 1,
+  "betik_surumu": "1.0.0",
+  "komut": "python 08_scripts/analyze_alim_29_43.py",
+  "durum": "çalıştırıldı",
+  "kaynaklar": [
+    {
+      "ad": "QAC v0.4",
+      "yol": "02_morphology/qac/quranic-corpus-morphology-0.4.txt",
+      "sha256": "a1d12923815341face765083805d2148ed2d9f5cc3f7d6665219d887675d8c46",
+      "statü": "kanonik morfoloji anotasyonu"
+    },
+    {
+      "ad": "Tanzil Uthmani v1.1",
+      "yol": "01_raw/tanzil/quran-uthmani.txt",
+      "sha256": "bf4f57b968d03f4131c070b1e285da9be0e0a108a21c910e872801ca273312c8",
+      "statü": "ayet metni; Latin aktarımı delil değildir"
+    },
+    {
+      "ad": "analyze_alim_29_43.py",
+      "yol": "08_scripts/analyze_alim_29_43.py",
+      "sha256": "3038d377b13316cb015b251ce96891d3f99f8bb55df619dcd328c117b6b76dcd",
+      "statü": "üretim kodu"
+    }
+  ],
+  "korpus_denetimi": {
+    "segment": 128219,
+    "kelime_konumu": 77429,
+    "ayet": 6236,
+    "sure": 114,
+    "benzersiz_kok": 1642
+  },
+  "kok_sayimlari": {
+    "Elm": {
+      "kok_latin": "ʿ-l-m",
+      "kelime_konumu": 854,
+      "ayet": 728,
+      "sure": 85
+    },
+    "Eql": {
+      "kok_latin": "ʿ-q-l",
+      "kelime_konumu": 49,
+      "ayet": 49,
+      "sure": 30
+    },
+    "Ax*": {
+      "kok_latin": "ʾ-ḫ-ẕ",
+      "kelime_konumu": 273,
+      "ayet": 244,
+      "sure": 55
+    },
+    "Enkb": {
+      "kok_latin": "ʿ-n-k-b",
+      "kelime_konumu": 2,
+      "ayet": 1,
+      "sure": 1
+    }
+  },
+  "Elm_lemma_dagilimi_kelime_konumu": {
+    "Ealima": 382,
+    "Ealiym": 163,
+    "Eilom": 105,
+    "Ea`lamiyn": 73,
+    ">aEolam": 49,
+    "Eal~ama": 41,
+    "Ea`lim": 18,
+    "m~aEoluwm": 11,
+    "Eal~a`m": 4,
+    "yataEal~amu": 2,
+    "m~aEoluwma`t": 2,
+    ">aEola`m": 2,
+    "Eala`ma`t": 1,
+    "muEal~am": 1
+  },
+  "alim_atif_sinifi": {
+    "Allah": 15,
+    "insan": 3
+  },
+  "ulema_ayetleri": [
+    "26:197",
+    "35:28"
+  ],
+  "aliym_insan_ayetleri_elle": [
+    "7:109",
+    "7:112",
+    "10:79",
+    "12:55",
+    "15:53",
+    "26:34",
+    "26:37",
+    "26:197",
+    "35:28",
+    "51:28"
+  ],
+  "aliym_tartismali": [
+    "12:76"
+  ],
+  "alim_alemin_ortak_iskelet": {
+    "Elmyn": {
+      "alim_konumlari": [
+        "12:44:8",
+        "21:51:9",
+        "21:81:14",
+        "30:22:13"
+      ],
+      "alemin_kelime_konumu_sayisi": 73
+    }
+  },
+  "aql_tur": {
+    "V": 49
+  },
+  "aql_nesneli": [
+    {
+      "kelime_konumu": "2:75:17",
+      "bicim_bw": "Eaqaluwhu",
+      "fiil_kisi": "3MP",
+      "nesne_zamiri": "3MS"
+    },
+    {
+      "kelime_konumu": "29:43:6",
+      "bicim_bw": "yaEoqiluhaA^",
+      "fiil_kisi": "3MS",
+      "nesne_zamiri": "3FS"
+    }
+  ],
+  "lev_kanu_yalemun": [
+    "2:102",
+    "2:103",
+    "16:41",
+    "29:41",
+    "29:64",
+    "39:26",
+    "68:33"
+  ],
+  "utul_ilm": [
+    "16:27",
+    "17:107",
+    "22:54",
+    "28:80",
+    "29:49",
+    "30:56",
+    "34:6",
+    "47:16",
+    "58:11"
+  ],
+  "mesel_darb_nas": [
+    "13:17",
+    "14:25",
+    "22:73",
+    "24:35",
+    "29:43",
+    "30:58",
+    "39:27",
+    "47:3",
+    "59:21"
+  ],
+  "tilkel_emsal": [
+    "29:43",
+    "59:21"
+  ],
+  "ankebut_sinirlama_kalibi": [
+    "29:43",
+    "29:47",
+    "29:49"
+  ],
+  "ittihaz": {
+    "kelime_konumu": 124,
+    "ayet": 118,
+    "birlikte_ayet": {
+      "min_duni": [
+        "2:165",
+        "3:28",
+        "3:64",
+        "3:118",
+        "4:119",
+        "4:139",
+        "4:144",
+        "5:116",
+        "6:70",
+        "7:30",
+        "9:16",
+        "9:31",
+        "13:16",
+        "17:2",
+        "18:15",
+        "18:50",
+        "18:102",
+        "19:17",
+        "19:81",
+        "21:24",
+        "25:3",
+        "25:18",
+        "29:25",
+        "29:41",
+        "36:23",
+        "36:74",
+        "39:3",
+        "39:43",
+        "42:6",
+        "42:9",
+        "45:10",
+        "46:28"
+      ],
+      "veli": [
+        "3:28",
+        "4:89",
+        "4:119",
+        "4:139",
+        "4:144",
+        "5:51",
+        "5:57",
+        "5:81",
+        "6:14",
+        "6:70",
+        "7:30",
+        "9:23",
+        "13:16",
+        "17:111",
+        "18:50",
+        "18:102",
+        "25:18",
+        "29:41",
+        "39:3",
+        "42:6",
+        "42:9",
+        "45:10",
+        "60:1"
+      ],
+      "ilah": [
+        "5:116",
+        "6:74",
+        "9:31",
+        "16:51",
+        "18:15",
+        "19:81",
+        "21:21",
+        "21:24",
+        "21:36",
+        "23:91",
+        "25:3",
+        "25:43",
+        "26:29",
+        "36:23",
+        "36:74",
+        "45:23",
+        "46:28",
+        "73:9"
+      ],
+      "veled": [
+        "2:116",
+        "10:68",
+        "12:21",
+        "17:111",
+        "18:4",
+        "19:35",
+        "19:88",
+        "19:92",
+        "21:26",
+        "23:91",
+        "25:2",
+        "28:9",
+        "39:4",
+        "72:3"
+      ],
+      "beyt": [
+        "2:125",
+        "7:74",
+        "16:68",
+        "29:41"
+      ]
+    },
+    "disil_cekim_ayet": [
+      "16:68",
+      "19:17",
+      "29:41"
+    ]
+  },
+  "ilm_zan_birlikte_ayet": [
+    "4:157",
+    "6:148",
+    "45:24",
+    "53:28"
+  ],
+  "sinirlar": [
+    "Sayımlar kelime konumundadır; ayet sayıları ayrıca verilir. Beceri korpusunun (quran-morphology) segment sayıları bu tabloya katılmaz.",
+    "Allah/insan ayrımı ve insan için ʿalîm listesi elle verilmiş inceleme kararıdır; korpus etiketi değildir.",
+    "Kalıp sorguları yalnız aday bulur; anlam, nedensellik veya eşanlamlılık ispatlamaz.",
+    "ʿâlimîn/ʿâlemîn iskelet eşliği yalnız yazım düzeyindedir; kıraat farkı bu veriden çıkmaz.",
+    "Okunuş aktarımı yorum/delil değildir."
+  ]
+}
