@@ -1,37 +1,57 @@
 # Kavramsal Çeviri İlkesi
 
-Bu belge, Kur'an çalışmasında her ayette verilen ana çeviri ile yalnız gerektiğinde kullanılan tefsirli çeviri arasındaki ayrımı kalıcı yöntem kuralına bağlar.
+Bu belge, Kur'an çalışmasında her ayette verilen iki bağımsız çeviriyi — **kavram merkezli** ve **anlam merkezli** — kalıcı yöntem kuralına bağlar.
 
-## 1. Ana çeviri ve ihtiyaç halinde tefsirli çeviri
+**Sürüm notu (26.10.2026):** Önceki "ana çeviri + gerekirse tefsirli çeviri" düzeni (ve ondan önceki lafzî + açıklamalı düzen) kaldırıldı; yerine iki ayrı, birbirine bağlı olmayan çeviri geldi. Lafzî çevirinin kalkması sınamayı zayıflatmaz: falsifikasyon ve rakip okuma Arapça birim üzerinden yapılır (`analiz_protokolu.md` Aşama 5–6).
 
-Her ayette **tek, doğal, metne sadık ana çeviri** verilir. Açıklama gerekmeyen ayette ikinci bir çeviri üretilmez; tefsirli çeviri yalnız ana çevirinin anlamı tek başına yeterince aktaramadığı durumlarda kullanılabilir.
+## 1. İki ayrı çeviri
 
-### A. Ana çeviri (terimleri gerektiğinde koruyan)
+Her ayet şu sırayla verilir:
 
-İlk çeviri **sade, anlaşılır ve akıcı Türkçe** ile yazılır. Lafzın Türkçede anlamsız duran mekanik dizimini kopyalamak yerine, Arapça cümlenin bağlamda kurduğu anlam aktarılır. Ancak çeviriye metinde olmayan kesin hüküm, ayrıntı veya yorum eklenmez.
+1. **Okunuş**
+2. **Kavram merkezli çeviri**
+3. **Anlam merkezli çeviri**
+4. **Bilimsel kontrol** (`analiz_protokolu.md` Aşama 8a; çağrışım yoksa tek satırla "belirgin bir bilimsel çağrışım bulunmadı")
 
-İman, küfür, takvâ, ibadet, hidayet, salât, zekât, mîsak, tasdik, velî, ikâme, fısk, zulüm ve fitne gibi geniş veya tartışmalı kavramlar **her ayette otomatik olarak Arapça bırakılmaz**. Bağlamda açık olan Türkçe karşılık kullanılır; kavramın özgün biçimi gerektiğinde ilgili ifadenin sonunda **parantez içinde** gösterilir. Türkçede anlaşılabilen yerleşik kavramları zorla değiştirmek de doğru değildir.
+İki çeviri **bağımsızdır ve birleştirilmez.** Biri ötekinin açıklaması ya da düzeltmesi değildir. Aradaki farkı okur kendisi görsün diye yan yana tutulur.
 
-Bir kavramın mevcut Türkçe karşılıklarının her biri önemli bir anlam ihtimalini dışarıda bırakıyorsa terim aslıyla korunabilir veya iki anlam kısa biçimde birlikte verilebilir. Bu kararın dayanağı çeviriden önceki dilsel analizde yer almalıdır.
+### A. Kavram merkezli çeviri
 
-Amaç, kavramı Türkçe tek bir anlamla erken aşamada daraltmadan **okunabilir** bir metin üretmektir. Terimin sözlük anlamı, bağlamsal açılımı ve normatif sonucu birbirine karıştırılmaz.
+- **Birim anahtar kavramdır.** Terimler Kur'an içi ilişki ağından çıkar: karşıtları, kalıpları, eylemsel/tutumsal boyutu.
+- Bağlamdan gelen her ekleme **[ ]** içinde yazılır. Köşeli ayraç dışındaki her kelimenin karşılığı ayette vardır.
+- Çeviriye **kavram tablosu** eşlik eder: kavram, verilen karşılık, dayanak (ayet, kalıp, karşıtlık), derece (sağlam / muhtemel / spekülatif; `analiz_protokolu.md` §9 Eksen B).
+- İman, küfür, takvâ, ibadet, hidayet, salât, zekât, mîsak, tasdik, velî, ikâme, fısk, zulüm ve fitne gibi geniş veya tartışmalı kavramlar **her ayette otomatik olarak Arapça bırakılmaz**. Tablodaki karşılık kullanılır; kavramın özgün biçimi gerektiğinde ilgili ifadenin sonunda **parantez içinde** gösterilir. Bir kavramın mevcut Türkçe karşılıklarının her biri önemli bir anlam ihtimalini dışarıda bırakıyorsa terim aslıyla korunabilir; bu kararın dayanağı tabloda yer alır.
+- Risk: terim tutarlı kalır ama cümle ağırlaşabilir. Bu bedel kabul edilir.
 
-### B. Tefsirli çeviri (seçmeli)
+Kavram tablosu için örnek karşılıklar (sabit sözlük eşitliği değildir; her ayette sentaks ve bağlam yeniden kontrol edilir):
 
-Ana çevirinin okuyucuya yeterince aktaramadığı bağlamsal anlam varsa, o ayet için ayrıca tefsirli çeviri sunulabilir. Ana çeviriyi başka kelimelerle tekrar etmek veya ayete açıklama katmak için gerekçe icat etmek yeterli değildir. İlk çeviride Türkçeye aktarılan veya aslıyla korunan bir kavram, ancak gerekli olduğunda tefsirli çeviride bağlamın gerektirdiği ölçüde açıklanabilir. Kökün anlam alanı, cümle yapısı, Kur'an içi kullanım ve gerçekten ilgili ayetler birlikte değerlendirilir. Açıklayıcı ekleme, metnin gerçekten anlattığı anlamı açmalıdır; delilsiz çıkarım ayetin lafzıymış gibi eklenmez. Önemli özgün terim veya kalıp gerektiğinde parantez içinde gösterilir.
+- iman → "Allah'a ve O'ndan gelen hakikate güvenmek; bu güvenle onu doğru kabul edip benimsemek, ona bağlanmak ve bu bağlılık doğrultusunda konum almak (iman)"
+- ibadet → "yalnız Allah'a kul olmak; kulluk, bağlılık ve boyun eğişi O'na yöneltmek (ibadet)"
+- takvâ → "kendini yanlışın sonuçlarından koruyacak bilinçli dikkatle Allah'ın sınırlarını gözetip sakınmak (takvâ)"
+- hidayet → "doğru yolu gösteren ilahî rehberliği almak ve ona yönelmek (hidayet)"
+- küfür → "kendisine ulaşan hakikati örtmek, reddetmek veya ondan yüz çevirmek (küfür)"
+- salât → "Allah'a yöneliş, bağlılık ve bunun düzenli/pratik ifadesi (salât)"
+- velî → bağlama göre "yakınlık ilişkisi içinde sahiplenen, koruyan, destekleyen ve yanında duran (velî)"
+- ikâme → "kurmak, doğrultmak, işler hâle getirmek ve sürekliliğini sağlamak (ikâme)"
 
-Örnek yöntem:
+### B. Anlam merkezli çeviri
 
-- iman → “Allah’a ve O’ndan gelen hakikate güvenmek; bu güvenle onu doğru kabul edip benimsemek, ona bağlanmak ve bu bağlılık doğrultusunda konum almak (iman)”
-- ibadet → “yalnız Allah’a kul olmak; kulluk, bağlılık ve boyun eğişi O’na yöneltmek (ibadet)”
-- takvâ → “kendini yanlışın sonuçlarından koruyacak bilinçli dikkatle Allah’ın sınırlarını gözetip sakınmak (takvâ)”
-- hidayet → “doğru yolu gösteren ilahî rehberliği almak ve ona yönelmek (hidayet)”
-- küfür → “kendisine ulaşan hakikati örtmek, reddetmek veya ondan yüz çevirmek (küfür)”
-- salât → “Allah’a yöneliş, bağlılık ve bunun düzenli/pratik ifadesi (salât)”
-- velî → bağlama göre “yakınlık ilişkisi içinde sahiplenen, koruyan, destekleyen ve yanında duran (velî)”
-- ikâme → “kurmak, doğrultmak, işler hâle getirmek ve sürekliliğini sağlamak (ikâme)”
+- **Birim cümle ve iletidir.** Ölçüt, okurun tek okumada anlamasıdır.
+- **Sade, anlaşılır ve akıcı Türkçe** ile yazılır. Lafzın Türkçede anlamsız duran mekanik dizimi kopyalanmaz; deyim imgesiyle değil anlamıyla verilir.
+- **Kavram tablosuna bağlı değildir.** Kendi ölçütüyle kurulur; kavram merkezli çevirideki karşılıklardan ayrılabilir.
+- Çeviriye metinde olmayan kesin hüküm, olay, muhatap, tarih veya ayrıntı eklenmez. Ayetin şartı, olumsuzluğu, istisnası ve kapsamı görünür kalır.
+- Risk: yoruma kayabilir, kavram kaybolabilir. Bu yüzden ayrı tutulur ve kavram merkezli çevirinin yerine geçmez.
 
-Bu örnekler sabit sözlük eşitlikleri değildir. Her ayette sentaks ve bağlam yeniden kontrol edilir.
+**Örnek — 68:52** *Ve mâ huve illâ zikrun li'l-âlemîn.*
+
+- Kavram merkezli: "Oysa o [getirdiği], bütün âlemler için bir hatırlatmadan başka bir şey değildir."
+- Anlam merkezli: "Oysa o, bütün insanlığa bir öğütten başka bir şey değil."
+
+Fark bilerek korunur: anlam merkezli çeviri *âlemîn*i "insanlık"a daraltır, *zikr*i "öğüt"e indirir; kavram merkezli çeviri ikisini de korur.
+
+### C. İki çevirinin karşılıklı denetimi
+
+Her ayette iki çeviri yan yana denetlenir: atlanan, fazladan eklenen, kapsamı daraltılan veya genişletilen unsurlar gözden geçirilir. Anlam merkezli çevirinin kavram kararlarından ayrıldığı yer bir hata değildir; ama ayetin söylemediği bir hükmü söylemesi hatadır.
 
 ## 2. Tek kelimelik eşitlemelerden kaçınma
 
@@ -63,8 +83,8 @@ Bu karşılıkların bazı bağlamlarda anlamın bir parçasını karşılaması
 Çeviri kök düzeyinde değil **kelime düzeyinde** yapılır: lemma, kalıp (bab, tür, sayı, hâl) ve bağlam birlikte alınır. Bir kök ailesindeki her kelime kendi Kur'an kullanımına göre incelenir ve ayrı çevrilir.
 
 - **Aileye tek karşılık dayatılmaz.** Ortak bir kök anlamı, yalnız kelimelerin kullanımları onu gösteriyorsa ortak karşılığa yansır; kök anlamı tek başına gerekçe değildir.
-- **Ayrı çeviri de gerekçesiz çoğaltılmaz.** İki kelime ayrı karşılık alıyorsa ayrım kullanım verisine (özne, nesne, bab, bağlam) dayanır; dayanak çeviriden önceki dilsel analizde yer alır (§1.A).
-- **Kök anlamı çıkış hipotezidir.** Klasik sözlüklerin (İbn Fâris'in *asl*ı dâhil) verdiği çekirdek anlam bu çerçevede hipotez olarak kalır. Kök anlamı ile kullanım ayrışırsa kullanım belirler ve ayrışma kayda geçer. Sözlük denetiminin yeri `analiz_protokolu.md` Aşama 7a'dadır; bu ilke onu değiştirmez.
+- **Ayrı çeviri de gerekçesiz çoğaltılmaz.** İki kelime ayrı karşılık alıyorsa ayrım kullanım verisine (özne, nesne, bab, bağlam) dayanır; dayanak kavram tablosunda yer alır (§1.A).
+- **Kök anlamı karşılaştırma hipotezidir, çıkış noktası değil.** Çıkış noktası Kur'an içi kullanımdır. Klasik sözlüklerin (İbn Fâris'in *asl*ı dâhil) verdiği çekirdek anlam, kullanımdan kurulan hipotez yazıldıktan sonra onunla karşılaştırılır. Kök anlamı ile kullanım ayrışırsa kullanım belirler ve ayrışma kayda geçer. Sözlük denetiminin yeri ve sırası `analiz_protokolu.md` Aşama 7'dedir; bu ilke onu değiştirmez.
 - **Örnek:** r-v-ḥ ailesinde *rîḥ* ve *rûḥ* aynı kökten ayrı kelimelerdir; her biri kendi kullanımıyla çevrilir, birinin karşılığı diğerine taşınmaz.
 
 ## 4. Ritüel ve geniş kavram ilişkisi
@@ -89,15 +109,17 @@ Bakara için öne çıkan başlıklar:
 
 İlgili ayette yalnız o bağlama özgü fark ve gerekirse kısa hatırlatma verilir.
 
-## 6. Çağrışım notları
+## 6. Bilimsel kontrol ve çağrışım notları
 
-Nörobilim, psikoloji, sosyoloji veya başka modern disiplinlerle benzerlik kurulacaksa bunun statüsü açıkça belirtilir:
+Bilimsel kontrol **her ayette zorunludur** ve ayrıca istenmesi beklenmez (`analiz_protokolu.md` Aşama 8a). Nörobilim, psikoloji, biyoloji, sosyoloji veya başka modern disiplinlerle kurulan her bağın statüsü açıkça belirtilir:
 
 - “çağrışım”
 - “modern paralellik”
 - “açıklama ihtimali”
 
-Bunlar ayetin doğrudan bilimsel teori anlattığı iddiasına dönüştürülmez.
+Bilimsel tarafın kendi derecesi de yazılır: yerleşik bilgi / tartışmalı / öncü-spekülatif. Künye gerçekten bulunur; doğrulanamadıysa "künye doğrulanamadı" yazılır.
+
+Bunlar ayetin doğrudan bilimsel teori anlattığı iddiasına dönüştürülmez ve kelimenin anlamını belirlemez; bilimsel kontrol çevirinin içine karıştırılmaz, ayrı satırda durur.
 
 Örneğin kalbin mühürlenmesi/perdelenmesi; alışkanlık, dikkat filtreleri, motivasyonel akıl yürütme, bilişsel katılaşma ve nöroplastisite ile karşılaştırılabilir. Bu karşılaştırma tefsirin yerine geçirilmez.
 
@@ -118,6 +140,6 @@ Bir mesele yalnız tekrar eden kavramsal bir başlık değil, ayetin anlamını 
 
 ## 8. Kısa ilke
 
-**Her ayette tek ana çeviri doğal Türkçeyle anlamı aktarır ve gerektiğinde özgün terimi gösterir. Tefsirli çeviri yalnız anlamı açıklamak için gerçekten gerekli olduğunda ve delille desteklendiğinde eklenir. Tartışmalı anlam ihtimalleri gerektiğinde dikkat noktasında ele alınır; pasaj tamamlanınca tek, kısa bütünleşik tefsir verilir.**
+**Her ayet okunuşla, birbirinden bağımsız iki çeviriyle — terimi koruyan kavram merkezli ve iletiyi koruyan anlam merkezli — ve bilimsel kontrolle verilir. İki çeviri birleştirilmez. Tartışmalı anlam ihtimalleri gerektiğinde dikkat noktasında ele alınır; pasaj tamamlanınca tek, kısa bütünleşik tefsir verilir.**
 
 Sûre ve pasaj ölçeğinde uygulamanın tek çalışma döngüsü, bağlantı denetimi ve sunum düzeni için [sûre meal–tefsir protokolü](./sure_meal_tefsir_protokolu.md) esas alınır.

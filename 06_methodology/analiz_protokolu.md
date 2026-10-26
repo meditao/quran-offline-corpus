@@ -1,9 +1,11 @@
-# Kur'an Analiz Protokolü — v2.5
+# Kur'an Analiz Protokolü — v2.6
 
 **Konumu:** `06_methodology/analiz_protokolu.md`  
 **Kapsamı:** tek bir kavram, kök, ayet, pasaj veya tezin Kur'an merkezli ve denetlenebilir biçimde nasıl analiz edileceği; v2.5'ten itibaren ayrıca kavramların birbirine bağlandığı **kavram alanı** (§7A) ve kavram kartlarından kurulan **dünya görüşü önermeleri** (§7B).
 
 Bu belge, çalışmanın **ana analiz protokolüdür**. Amaç bir anlamı baştan doğru kabul edip ona delil toplamak değil; Kur'an içi veriden hareketle anlamı kurmak, karşı örneklerle sınamak ve veri ile yorumu açıkça ayırmaktır.
+
+**Sürüm notu (v2.6 — 26.10.2026) — sızıntı önlemleri:** Geleneksel anlamın çeviriye ve yoruma sessizce sızmasını önlemek için: anlam kurulurken meal okunmaz ve araçlarda meal görünümü varsayılan olarak kapalıdır (Aşama 3); akla gelen hazır karşılık Aşama 0'da karantina maddesi olarak yazılır (görünür önyargı sınanır, görünmeyen sızar); klasik sözlüklerdeki gelenek-içi birimler hipotez havuzuna girmez (Aşama 7a); en güçlü rakip okuma kurulmaya devam eder, ama kullanıcı sormadıkça "geleneksel" diye adlandırılmaz ve kaynağı yazılmaz (Aşama 6). Bilimsel çağrışım adımı ayrıntılandı: ilişki türü, bilimsel tarafın derecesi, künye doğrulama (Aşama 8a). Ayet çevirisi iki bağımsız çeviridir (`kavramsal_ceviri_ilkesi.md` §1). Becerinin klasik sözlük aracı taşıdığı yönündeki eski ifade düzeltildi: İbn Fâris ve Râgıb aracı yalnız çalışma masasındadır.
 
 **Sürüm notu (v2.5 — 22.10.2026):** Protokol, Izutsu'nun anlam katmanlarına (temel anlam → ilişkisel anlam → anlam alanı → dünya görüşü) göre dört düzeyli bir mimariye bağlandı (§0a). Izutsu'dan alınan, katman yapısıdır; câhiliye şiirine ve sonraki kelâm kullanımına dayanan verisi ve sonuçları delil sayılmaz (§0 ilke 5, Aşama 7c). Eklenenler: kavram alanı düzeyi (§7A) ve ortak ayet denetimi; dünya görüşü önerme defteri (§7B); kartlarda fiilen yapılıp protokolde adı olmayan üç işlemin adlandırılması — dinî olmayan kullanım tanığı (Aşama 1), çerçeve testi (4d), ikame testi (4e); karantina akıbeti (Aşama 0, Aşama 8); bilimsel çağrışım adımı (Aşama 8a); bağımsız tekrar (Aşama 9a). Terim ayrımı: "anlam alanı" bir kelimenin anlam yelpazesidir, "kavram alanı" birden çok kavramın oluşturduğu ağdır (§0a).
 
@@ -11,7 +13,7 @@ Bu belge, çalışmanın **ana analiz protokolüdür**. Amaç bir anlamı başta
 
 **Sürüm notu (v2.1):** Protokol, `f-r-d` kökü üzerinde uçtan uca pilot olarak sınandı. Pilot sonucunda kapalı örneklemin hipotezden önce kilitlenmesi, aynı kök altında ayrı sözlüksel dalların mümkün olması ve “kanıtlayıcı örnek / yalnız uyumlu örnek” ayrımı açık kurala dönüştürüldü.
 
-**Sürüm notu (v2.3 — 14.10.2026):** İki klasik kök sözlüğü — İbn Fâris'in *Mekâyîs*'i ve Râgıb'ın *Müfredât*'ı — anlam önerisi kurulan her analizde zorunlu denetim adımı oldu (Aşama 7a, §10). Sözlüğe Kur'an içi hipotez kurulduktan sonra bakılır; hadis, şer'î ıstılah ve müfessir nakli taşıyan cümleler işaretlenir; sözlükçünün Kur'an kullanımı hakkındaki genellemeleri korpusla sayılır. Araç hem beceride (`kuran-kok-analizi` §12) hem çalışma masasında bulunur: `python -m tezgah kur klasik`, ardından `python -m tezgah klasik kok | asl | isaret | ayet | ara | kapsam | etiketler` (CLAUDE.md §7, §10 Aşama 7). Çalışma masasındaki sürüm girdiyi QAC envanterine karşı çözer ve her sorgunun kaydını §8 biçiminde yazar.
+**Sürüm notu (v2.3 — 14.10.2026):** İki klasik kök sözlüğü — İbn Fâris'in *Mekâyîs*'i ve Râgıb'ın *Müfredât*'ı — anlam önerisi kurulan her analizde zorunlu denetim adımı oldu (Aşama 7a, §10). Sözlüğe Kur'an içi hipotez kurulduktan sonra bakılır; hadis, şer'î ıstılah ve müfessir nakli taşıyan cümleler işaretlenir; sözlükçünün Kur'an kullanımı hakkındaki genellemeleri korpusla sayılır. Araç çalışma masasında bulunur (beceride yoktur; v2.6 düzeltmesi): `python -m tezgah kur klasik`, ardından `python -m tezgah klasik kok | asl | isaret | ayet | ara | kapsam | etiketler` (CLAUDE.md §7, §10 Aşama 7). Çalışma masasındaki sürüm girdiyi QAC envanterine karşı çözer ve her sorgunun kaydını §8 biçiminde yazar.
 
 **Sürüm notu (v2.2 — 11.10.2026):** İman–tevekkül karşılaştırmasında biçim ile anlam kümesi, ortak geçişin kanıt sınırı, yerel sıra ile genel zaman kuralı, görev ile ahlaki sorumluluk, metinsel bağlam ile tarihsel çerçeve ve Kur'an öncesi tanıklık ayrımları somutlaştırıldı. Uygulama ve kaynaklar: [İman–tevekkül–vekîl–tafvîz kaydı](../07_analyses/roots/Tawakkul-Wakil-analysis.md).
 
@@ -22,7 +24,7 @@ Arşiv, kavram kartı, versiyon defteri, hipotez defteri ve periyodik bakım bu 
 ## 0. Ana ilkeler
 
 1. **Kur'an içi kullanım birincil delildir.** Kök, morfoloji, sentaks, bağlam, dağılım, iç-tanım, karşıtlık ve kavram ağı birlikte değerlendirilir.
-2. **Geleneksel anlam başlangıç varsayımı değildir.** Ne otomatik doğru ne otomatik yanlıştır; en güçlü biçimiyle ayrıca sınanır.
+2. **Geleneksel anlam başlangıç varsayımı değildir.** Ne otomatik doğru ne otomatik yanlıştır; en güçlü biçimiyle ayrıca sınanır (Aşama 6). Anlam kurulurken meal ve tefsir okunmaz; akla gelen hazır karşılık karantinaya yazılır (Aşama 0).
 3. **Kesin veri ile yorum ayrılır.** Sayım, biçim ve cümle yapısı veri; bunlardan çıkarılan anlam hipotezdir.
 4. **Karşı örnek anlamı daraltır.** Bir aykırı kullanım açıklanıp geçilmez; gerekirse tanım revize edilir.
 5. **Kur'an içi kullanım birincil ölçüttür; dış kaynak denetimi zorunlu, hükmü yardımcıdır.** Anlam önerisi kurulan her kavram/kök analizinde İbn Fâris, Râgıb, Lane ve karşılaştırmalı Sâmî dil kaynakları taranır (Aşama 7, §10). Her anlam iddiası kaynağın türüne, tanığına ve bağımsızlığına göre değerlendirilir; tarihsel köken, sözlük anlamı, Kur'an bağlamı ve sonraki dinî yorum birbirine karıştırılmaz. Dış kaynaklar Kur'an'daki anlamı kendiliğinden tayin etmez; tarama zorunluluğu olumlu sonuç bulma zorunluluğu değildir. Kur'an öncesi Arapça anlam iddiası ayrıca tarihlenebilir bağımsız tanık gerektirir.
@@ -66,7 +68,7 @@ Izutsu'nun diğer iki aşaması ayrı düzey değildir, her düzeyde çalışan 
 | kelime konumu | 77.429 | 77.429 |
 | benzersiz `ROOT` | 1.642 | 1.651 |
 | kök yazımı | Buckwalter | Arapça |
-| yan katman | Tanzil, Açık Kuran, İbranice indeks | İbn Fâris (4.649 madde) + Râgıb (1.662 madde), Lane (47.919 madde), BDB + SEDRA |
+| yan katman | Tanzil, Açık Kuran, İbranice indeks; çalışma masasında İbn Fâris (4.649 madde) + Râgıb (1.662 madde) | Lane (47.919 madde), BDB + SEDRA (İbn Fâris ve Râgıb için çalışma masasının aracı kullanılır) |
 | üretim | script + CI (`core-integrity.yml`) | her oturumda yeniden kurulur |
 
 ### 1a. Ölçülmüş ilişki
@@ -88,7 +90,7 @@ Sonuç: **beceri kurulumunun "1.651 kök" denetim satırı, depo sayısını do�
 ### 1c. Kaynak kuralı
 
 1. **Yayımlanan her sayı depodan gelir.** Depo hash sabitli, script ile yeniden üretilebilir ve CI ile denetlenir. `07_analyses/` altına yazılan bir rakamın dayanağı `08_scripts/` altındaki bir çalıştırma olmalıdır.
-2. **Beceri hızlı çalışma katmanıdır.** Keşif, ilk döküm, klasik sözlük, Lane ve Sâmî sorgusu için kullanılır. Beceriden çıkan bir sayı yayımlanacaksa depoda yeniden üretilir.
+2. **Beceri hızlı çalışma katmanıdır.** Keşif, ilk döküm, Lane ve Sâmî sorgusu için kullanılır; klasik sözlük sorgusu çalışma masasındadır. Beceriden çıkan bir sayı yayımlanacaksa depoda yeniden üretilir.
 3. **İkisinin uyuşması bağımsız doğrulama değildir.** Her ikisi de QAC soyundan gelir; uyuşma boru hattını doğrular, kök atamasını değil. Gerçek bağımsız katman QuranMorph'tur ve depoda henüz yoktur (`source_policy.md` §5). Tartışmalı bir kök ataması için "iki araç da aynı diyor" yazılmaz.
 4. **Sayım birimi her tabloda yazılır:** kelime konumu / segment / ayet / sûre (`counting_units.md`). Birimsiz sayı kanıt değildir.
 5. Tanzil ile QAC arasında **kelime düzeyinde doğrudan join yapılmaz**; ortak anahtar `(sûre:ayet)`tir, kelime eşlemesi için `tanzil_qac_alignment.csv` kullanılır.
@@ -122,7 +124,7 @@ Analize başlamadan önce tek cümlelik bir **araştırma sorusu** yazılır. Ge
 
 ## 3. Veri kaydı — her analizin başında
 
-Analiz metninin başına dört satır yazılır. Eksiksiz doldurulamıyorsa analiz sayısal iddia taşıyamaz.
+Analiz metninin başına beş satır yazılır (sohbet cevabında kayıt sonda durur). Eksiksiz doldurulamıyorsa analiz sayısal iddia taşıyamaz.
 
 ```text
 Kaynak      : depo QAC v0.4 (hash a1d129…) | beceri | ikisi
@@ -146,7 +148,7 @@ Bu bölüm protokolün semantik omurgasıdır. Aşamalar sırayla ilerler; gerek
 
 - Araştırma sorusu tek cümleye indirilir.
 - Analiz birimi belirlenir.
-- Başlangıç varsayımları karantinaya alınır. Karantina listesi **numaralanır** (K1, K2 …); her madde Aşama 8'de akıbetiyle kapatılır (karantina akıbeti).
+- Başlangıç varsayımları karantinaya alınır. Karantina listesi **numaralanır** (K1, K2 …); her madde Aşama 8'de akıbetiyle kapatılır (karantina akıbeti). Akla gelen hazır karşılıklar (kurumsal anlam, meal karşılığı, modern kavram) da buraya yazılır; kaynak adı değil yalnız içerik yazılır. Görünür kılınan önyargı sınanır, görünmeyen önyargı sızar.
 - Hangi verinin "kanıt", hangisinin "yardımcı kontrol" olacağı baştan yazılır.
 - Tez varsa karşı örneğin ne sayılacağı taramadan önce belirlenir.
 
@@ -223,7 +225,7 @@ Kullanımlar benzer morfoloji, sentaks ve bağlam özelliklerine göre kümeleni
 
 Bir üst katman otomatik olarak alt katmanın sözlük anlamı sayılmaz.
 
-**Meal veri değildir.** Meal, analizden sonra karşılaştırılabilecek bir yorum katmanıdır.
+**Meal veri değildir.** Meal, analizden sonra karşılaştırılabilecek bir yorum katmanıdır. **Anlam kurulurken meal okunmaz;** göz ardı etmek yetmez, bağlama giren meal etkisini sürdürür. Bu yüzden çalışma masasında ve becerinin arama aracında meal görünümü varsayılan olarak kapalıdır. Meal yalnız üç durumda açılır: meal karşılığının kendisi sınanıyorsa (§6 kavram daraltma yasağı), sonuç ve çeviriler yazıldıktan sonra karşılaştırma gerekiyorsa, kullanıcı istiyorsa. Açıldıysa kayda geçer.
 
 ### Aşama 4 — Semantik sınır testi
 
@@ -322,9 +324,11 @@ Tanım yalnız açık örneklemden kurulur ve sonra kapalı örneklere uygulanı
 
 Kapalı örneklem daha önce anlam tartışmasında kullanılmışsa bu test sonradan varmış gibi gösterilmez. “Kapalı örneklem yapılamadı; tüm örnekler hipotez kurulurken görülmüştü” diye açıkça yazılır. Küçük örneklemde test anlamsızlaşacaksa neden yapılamadığı kaydedilir.
 
-### Aşama 6 — En güçlü alternatif / geleneksel okuma
+### Aşama 6 — En güçlü rakip okuma
 
-Yaygın veya geleneksel okumanın **en güçlü hali** kurulur; karikatürü kurulmaz.
+Önerilen okumaya karşı **en güçlü rakip okuma** kurulur; karikatürü kurulmaz. Rakip okuma yalnız Kur'an verisiyle kurulur; tefsir, hadis veya meal ona dayanak yapılmaz. En kolay rakip değil en güçlü rakip seçilir: yaygın veya geleneksel okuma çoğu zaman en güçlü rakiptir ve o zaman dışarıda bırakılmaz.
+
+**Adlandırma:** Kullanıcı sormadıkça rakip okuma "geleneksel anlayış" diye adlandırılmaz ve kaynağı yazılmaz; raporda "rakip okuma" olarak geçer. Kullanıcı "geleneksel anlayıştan fark nerede?" diye sorarsa fark o zaman, hipotez etiketiyle ve kaynağı belirtilerek yazılır. Çalışma masasının kavram dosyasındaki "muhalif okumanın en güçlü hâli" alanı bu okumadır.
 
 Sonra iki okuma aynı veri üzerinde karşılaştırılır:
 
@@ -334,7 +338,7 @@ Sonra iki okuma aynı veri üzerinde karşılaştırılır:
 - hangisi yakın kavramları birbirinden daha iyi ayırıyor,
 - hangisi karşı örneklerden sağ çıkıyor?
 
-Bizim okuma muhalif okumayı kanıtla geçemiyorsa "geleneksel yorum yanlış" denmez. Sonuç "iki okuma rekabette" veya "mevcut veri karar vermeye yetmiyor" olabilir.
+Bizim okuma rakip okumayı kanıtla geçemiyorsa "ayrışma" ya da "geleneksel yorum yanlış" denmez. Sonuç "iki okuma rekabette" veya "mevcut veri karar vermeye yetmiyor" olabilir.
 
 ### Aşama 7 — Dış dil katmanı: klasik sözlükler, Lane ve Sâmî diller
 
@@ -354,6 +358,8 @@ Sonra üçlü karşılaştırma yazılır:
 3. korpusta olup sözlükte eksik kalan.
 
 **Gelenek-içi anlamın ayrılması — birim cümle değil, anlamdır.** Soru "bu cümlede hadis var mı" değil, "bu anlam neye dayanıyor"dur. Sözlük maddesi anlam birimlerine bölünür (bir anlam beyanı + ona getirilen tanıklar) ve her birim dayanağına göre bir statü alır: Arap kullanımı ve şiir **dil-içi**; Peygamber'e açıkça nisbet edilen söz (**hadis**) ile sahibi yazılmamış rivayet ("el-hadîs", "ruviye": **rivayet**) ayrı tutulur, ikisi de **gelenek-içi**; şer'î ıstılah ("şeriatın getirdiği", "mahsus ibadet") ve sahabe/müfessir nakli **gelenek-içi**; hiçbir tanık göstermeyen birim **tanıksız**. Yalnız rivayetle tanıklı ya da şer'î bir anlam dil anlamı diye aktarılmaz.
+
+**Gelenek-içi birim hipotez havuzuna girmez** (v2.6). Statüsü "şer'î / ıstılâhî", "YALNIZ rivayetle tanıklı" ya da "yalnız yorumcu nakli" olan birim kendiliğinden aktarılmaz; yalnız kaç tane ayrıldığı yazılır. "Dil-içi tanıklı (+ rivayet)" birimden yalnız dil-içi tanık alınır. "Tanıksız" ve "sözlükçünün ayet okuması" birimleri hipotez olabilir, ama aşağıdaki üç sınavdan geçer. Yaygın okumanın sınanması gerekiyorsa bu Aşama 6'daki rakip okumayla, Kur'an verisiyle yapılır. Kullanıcı sorarsa gelenek-içi birim kaynağıyla ve hipotez etiketiyle verilir. Lane'deki hadis ("It is said in a trad.") ve tefsir (`Bd`, `Jel`) cümlelerine aynı kural uygulanır.
 
 Araç ayırır, karar analizde verilir: biçimsel işaret bir birimde iki anlamı birlikte bırakabilir (Râgıb'ın virgül zincirleri) ve "yukâl" kelimesi her zaman gerçek bir kullanım örneği değildir. Bu yüzden her analizde araç çıktısından sonra Türkçe bir **anlam → dayanak** tablosu yazılır (anlam · dayanak · statü · araçtan sapma notu); her satır tek anlamdır. Tanık göstermeden tefsirden alınmış (örtük) anlam işaretle yakalanamaz; ona üç sınav uygulanır:
 
@@ -403,14 +409,16 @@ Tanım mümkünse şu yapıda verilir:
 
 ### Aşama 8a — Bilimsel çağrışım adımı
 
-Anlam Kur'an içinden kurulduktan sonra (Aşama 8) **zorunlu olarak** çalıştırılır; atlanmaz. Ayetin veya kavramın anlattığı olgunun (doğa, biyoloji, insan davranışı, toplum) bilimdeki karşılığı aranır ve gösterilir.
+Anlam Kur'an içinden kurulduktan sonra (Aşama 8) **zorunlu olarak** çalıştırılır; atlanmaz ve ayrıca istenmesi beklenmez. İşlenen her ayet ve kurulan her kavram için yapılır. Ayetin veya kavramın anlattığı olgunun (doğa, biyoloji, insan davranışı, psikoloji, toplum) bilimdeki karşılığı aranır ve gösterilir.
 
 Kurallar:
 
-1. **Yön:** bilim kelimenin anlamını belirlemez. Modern bilimsel kavram Aşama 0'da karantinadadır; sıra tersine dönerse modern terim de, fıkıh terimi gibi metne geri taşınır.
-2. **Mantıksal durum** §9'daki Eksen A ile yazılır. Çoğu durumda doğru etiket **"yalnız uyumlu"**dur. "Metin bunu söylüyor" (destekleniyor) ancak kelimenin Kur'an içi kullanımı o okumayı ek varsayım olmadan taşıyorsa yazılır.
-3. Bilimsel kaynak künyesiyle verilir; tartışmalı bilimsel bulgu kesin bilgi gibi sunulmaz.
-4. Anlamlı bir çağrışım yoksa "belirgin bir bilimsel çağrışım bulunmadı" yazılır; çağrışım kota doldurmak için zorlanmaz.
+1. **Yön:** bilim kelimenin anlamını belirlemez. Modern bilimsel kavram Aşama 0'da karantinadadır; sıra tersine dönerse modern terim de, fıkıh terimi gibi metne geri taşınır. Bilimsel bir olgu korpusta bakılmamış bir kullanıma dikkat çekerse korpusa dönülür; sonuç yine korpus bulgusuyla yazılır.
+2. **Biçim:** olgu → bilimdeki karşılığı (alan, temel bulgu, künye) → ilişkinin türü: *çağrışım*, *modern paralellik* ya da *açıklama ihtimali* (`kavramsal_ceviri_ilkesi.md` §6) → mantıksal durum.
+3. **Mantıksal durum** §9'daki Eksen A ile yazılır. Çoğu durumda doğru etiket **"yalnız uyumlu"**dur. "Metin bunu söylüyor" (destekleniyor) ancak kelimenin Kur'an içi kullanımı o okumayı ek varsayım olmadan taşıyorsa yazılır.
+4. **Bilimsel tarafın derecesi ayrıca yazılır:** yerleşik bilgi / tartışmalı / öncü-spekülatif. Tartışmalı bilimsel bulgu kesin bilgi gibi sunulmaz.
+5. **Künye gerçekten bulunur** (arama yapılarak); hafızadan künye yazılmaz. Doğrulanamadıysa "künye doğrulanamadı" yazılır.
+6. Anlamlı bir çağrışım yoksa "belirgin bir bilimsel çağrışım bulunmadı" yazılır; bu geçerli bir sonuçtur, çağrışım kota doldurmak için zorlanmaz.
 
 ### Aşama 9 — Sade anlatım ve nihai dosya
 
@@ -428,7 +436,7 @@ Nihai dosya şunları içermelidir:
 - çekirdek anlam önerisi,
 - yakın kavram, negatif semantik, çerçeve ve ikame testleri,
 - karşı örnekler ve falsifikasyon,
-- en güçlü alternatif okuma,
+- en güçlü rakip okuma,
 - dış dil kontrolü,
 - kesin veri / çıkarım / spekülasyon ayrımı,
 - karantina akıbeti tablosu,
@@ -646,7 +654,7 @@ Ortak ünsüz dizisi yalnız ortak köken **adayıdır**; ortak anlam değildir.
 
 ### Klasik kök sözlükleri
 
-Kaynak: OpenITI külliyatı (CC BY-NC-SA 4.0), commit'e sabit iki dosya — *Mekâyîs* Hârûn tahkiki (`0395IbnFarisQazwini.MucjamMaqayis.Shamela0021710-ara1`), *Müfredât* Dâvûdî tahkiki (`0502RaghibIsbahani.Mufradat.Shamela0023636-ara1`). Künye, sağlama toplamı ve ayrıştırma kuralları becerinin `references/klasik-notlari.md` dosyasındadır.
+Kaynak: OpenITI külliyatı (CC BY-NC-SA 4.0), commit'e sabit iki dosya — *Mekâyîs* Hârûn tahkiki (`0395IbnFarisQazwini.MucjamMaqayis.Shamela0021710-ara1`), *Müfredât* Dâvûdî tahkiki (`0502RaghibIsbahani.Mufradat.Shamela0023636-ara1`). Künye ve sağlama toplamları çalışma masasının `09_calisma_masasi/tezgah/ikincil/klasik.py` dosyasında (`ESERLER`), ayrıştırma kuralları `klasik_ayristir.py` dosyasındadır.
 
 - **Kapsam (QAC v0.4, 1.642 kök; birim: kök):** İbn Fâris 1.560 kesin + 33 zayıf eşleşme, 49 kök yok (49.968 kelime konumunun 141'i). Râgıb 1.522 kesin + 16 zayıf, 104 kök yok (935 kelime konumu). Beceri envanterine göre ölçülen sayılar bunlarla aynı tabloda toplanmaz.
 - **"Sözlükte yok" bulgu değildir.** İbn Fâris'te yok olanların çoğu dörtlü kök veya alıntı kelimedir; birkaç üçlü kökün maddesi dijital metinde bulunamadı. Râgıb bütün kökleri işlemez, bazılarını başka maddede anar (*mâl* → *m-y-l*).
@@ -669,7 +677,7 @@ SEDRA kullanılan yayımlanmış bir metinde atıf zorunludur (`sami-notlari.md`
 
 ### 11a. Sunum
 
-- Ayetler Latin harfli okunuş + Türkçe anlam olarak verilebilir; gerekli olduğunda Arapça özgün biçim de gösterilebilir.
+- Ayetler Latin harfli okunuş + iki bağımsız çeviriyle (kavram merkezli, anlam merkezli; `kavramsal_ceviri_ilkesi.md` §1) verilir; gerekli olduğunda Arapça özgün biçim de gösterilebilir.
 - Kökler sunumda Latin harfle ve ayrık yazılır (`s-l-v`, `r-v-h`).
 - Önce sayım ve dağılım, sonra kritik ayetler, sonra anlam yorumu gelir.
 - Teknik bulgu ile sade açıklama birbirinden ayrılır.
@@ -688,7 +696,7 @@ Kullanıcı arada bir yorumu, ihtimali veya alternatif açıklamayı gündeme ge
 
 ### 11c. Depoya yazım
 
-Tamamlanmış analiz `07_analyses/roots/<kok>/` veya `07_analyses/concepts/<kavram>.md` altına yazılır. Dosya başına §3'teki dört satırlık veri kaydı konur. Üretilen ham dökümler `07_analyses/generated/` altında, yorum metninden ayrı durur.
+Tamamlanmış analiz `07_analyses/roots/<kok>/` veya `07_analyses/concepts/<kavram>.md` altına yazılır. Dosya başına §3'teki beş satırlık veri kaydı konur. Üretilen ham dökümler `07_analyses/generated/` altında, yorum metninden ayrı durur.
 
 **Yorum ham veri alanına yazılmaz** (`01_raw`, `02_morphology`, `03_indices`).
 
@@ -750,7 +758,10 @@ Bir analiz tamamlanmış sayılmadan önce şu soruların tamamı cevaplanır:
 - [ ] Yokluk iddiası varsa kavramsal tarama tamamlandı mı?
 - [ ] Falsifikasyon sorusu açıkça cevaplandı mı?
 - [ ] Kapalı örneklem testi yapıldı mı veya neden yapılamadığı yazıldı mı?
-- [ ] En güçlü alternatif/geleneksel okuma sınandı mı?
+- [ ] En güçlü rakip okuma Kur'an verisiyle kuruldu ve sınandı mı; sorulmadıysa "geleneksel" diye adlandırılmadı mı?
+- [ ] Anlam kurulurken meal okunmadı mı; açıldıysa kayda geçti mi?
+- [ ] Akla gelen hazır karşılıklar karantina maddesi olarak yazıldı mı?
+- [ ] Klasik sözlüklerin gelenek-içi birimleri hipotez havuzu dışında tutuldu mu?
 - [ ] İbn Fâris ve Râgıb maddeleri taranıp anlam → dayanak ayrımı yapıldı mı?
 - [ ] Lane maddesi ve dayandığı klasik kaynaklar çapraz denetlendi mi?
 - [ ] İbranice ve Aramice/Süryanice için güvenilir Sâmî taraması yapıldı mı; bulunamayan/doğrulanamayan eş kökler açıkça kaydedildi mi?
@@ -760,7 +771,7 @@ Bir analiz tamamlanmış sayılmadan önce şu soruların tamamı cevaplanır:
 - [ ] Karşıtlıklar çerçeve tablosuyla (4d) yazıldı mı?
 - [ ] Yakın kavramlar için ikame testi (4e) yapıldı mı?
 - [ ] Karantina maddelerinin her biri akıbetiyle kapatıldı mı?
-- [ ] Bilimsel çağrışım adımı (8a) çalıştırıldı ve Eksen A ile etiketlendi mi?
+- [ ] Bilimsel çağrışım adımı (8a) çalıştırıldı mı; ilişki türü, bilimsel tarafın derecesi, doğrulanmış künye ve Eksen A yazıldı mı?
 - [ ] Bağımsız tekrar yapıldı mı veya yapılmadığı kartta yazıldı mı?
 - [ ] Ortak ayet denetimi (§7A-4) yapıldı ve sonucu kaydedildi mi?
 - [ ] Veri / çıkarım / spekülasyon ayrımı yapıldı mı?
