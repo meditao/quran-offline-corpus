@@ -6,7 +6,7 @@ Bu dosya `quran-offline-corpus` deposunun kökünde durur. Claude Code her oturu
 
 Kavramları Kur'an'ın kendi verisinden tanımlamak için tek bir çalışma ortamı: tarama, okuma, kavram dosyası ve tez sınama. Hedef doğruyu bulmaktır. Geleneksel okumayı doğrulamak da çürütmek de hedef değildir; bulgular "lehine/aleyhine" diye çerçevelenmez.
 
-**Sûre ve pasaj meal–tefsiri özel akışı:** [06_methodology/sure_meal_tefsir_protokolu.md](06_methodology/sure_meal_tefsir_protokolu.md) uygulanır. İç işlemler tek çalışma talebinde tamamlanır; her ayet ayrı dilsel çözümlemeden geçer, ayetler arası metinsel bağlantılar sınanır, her ayet için tek doğal ana çeviri verilir, tefsirli çeviri yalnız gerçekten gerekliyse eklenir ve pasaj sonunda bütünleşik kısa tefsir yazılır. Kavram ve tez incelemelerinde aşağıdaki ana araştırma ve denetim ilkeleri aynen korunur.
+**Sûre ve pasaj meal–tefsiri özel akışı:** [06_methodology/sure_meal_tefsir_protokolu.md](06_methodology/sure_meal_tefsir_protokolu.md) uygulanır. İç işlemler tek çalışma talebinde tamamlanır; her ayet ayrı dilsel çözümlemeden geçer, ayetler arası metinsel bağlantılar sınanır, her ayet okunuş, iki bağımsız çeviri (kavram merkezli ve anlam merkezli; `06_methodology/kavramsal_ceviri_ilkesi.md` §1) ve bilimsel kontrolle verilir; iki çeviri birleştirilmez ve pasaj sonunda bütünleşik kısa tefsir yazılır. Meal ve tefsir anlam kurulurken okunmaz. Kavram ve tez incelemelerinde aşağıdaki ana araştırma ve denetim ilkeleri aynen korunur.
 
 Çalışma masası depoya **yeni bir katman** olarak eklenir, mevcut katmanlara dokunmaz:
 
@@ -54,7 +54,7 @@ Kural: `01_raw`, `02_morphology`, `03_indices`, `04_lexicons` **salt okunur**. �
 | kurumsal meal | fawazahmed0/quran-api `tur-diyanetisleri` (`python -m tezgah kur meal`) | `yerel/meal/` (depoya işlenmez) | sınanan okuma, delil değil |
 | ikinci meal | Mehmet Okuyan — telifli; açık lisanslı makinece okunur kaynağı yok (fawazahmed0'da yok; Açık Kuran robots.txt ile otomatik erişimi yasaklıyor). Kullanıcının verdiği dosyadan kurulur: `python -m tezgah kur meal-okuyan --dosya <yol>` (JSON ya da `sûre\|ayet\|metin` satırları; 6.236 ayet Tanzil kümesiyle birebir) | `yerel/meal/okuyan.json` (depoya işlenmez) | sınanan okuma, delil değil; kimliği araçla doğrulanmaz (kullanıcı beyanı), parmak izi kurulan dosyadan alınır |
 | çalışma çevirisi | kullanıcı | `kavramlar/` | kullanıcının yorumu |
-| klasik sözlükler | İbn Fâris *Mekâyîs* + Râgıb *Müfredât*, OpenITI (commit'e sabit; CC BY-NC-SA 4.0) | `yerel/klasik/` (`python -m tezgah kur klasik`; depoya işlenmez; beceride de aynı kaynaklar, `kuran-kok-analizi` §12) | hipotez — anlam önerisinde zorunlu denetim (`analiz_protokolu.md` Aşama 7a) |
+| klasik sözlükler | İbn Fâris *Mekâyîs* + Râgıb *Müfredât*, OpenITI (commit'e sabit; CC BY-NC-SA 4.0) | `yerel/klasik/` (`python -m tezgah kur klasik`; depoya işlenmez; `kuran-kok-analizi` becerisinin bu sözlükler için kendi aracı yoktur, bu aracı kullanır) | hipotez — anlam önerisinde zorunlu denetim (`analiz_protokolu.md` Aşama 7a) |
 | Lane | LexiconDatabase v1.0.9, commit `b371ab1` (`python -m tezgah kur lane`) | `yerel/lane/` (265 MB; depoya işlenmez) | hipotez |
 | İbranice | Open Scriptures Hebrew Lexicon dizini (BDB atıflı) | `04_lexicons/generated` (yerinde okunur; incelenmiş kayıtlar `04_lexicons/semitic/cognates.tsv`) | hipotez |
 | Süryanice | SEDRA 3, sedrajs commit `ba6684a` (`python -m tezgah kur sedra`) | `yerel/sedra/` (değiştirilmemiş; dağıtılamaz) | hipotez |

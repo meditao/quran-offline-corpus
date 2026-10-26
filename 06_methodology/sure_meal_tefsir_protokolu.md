@@ -1,8 +1,10 @@
-# Sûre Meal–Tefsir Bütünleşik Çalışma Protokolü — v1.1
+# Sûre Meal–Tefsir Bütünleşik Çalışma Protokolü — v1.2
 
-**Tarih:** 2026-10-09  
+**Tarih:** 2026-10-26 (v1.1: 2026-10-09)  
 **Konum:** 06_methodology/sure_meal_tefsir_protokolu.md  
-**Kapsam:** Bir sûrenin veya kendi içinde bağlantılı pasajın, tek çalışma talebiyle dilsel analizi, her ayet için tek ana çevirisi, yalnız gereken ayetlerde tefsirli çevirisi, Kur'an içi ilişkileri ve bütünleşik tefsiri.
+**Kapsam:** Bir sûrenin veya kendi içinde bağlantılı pasajın, tek çalışma talebiyle dilsel analizi, her ayet için iki bağımsız çevirisi (kavram merkezli ve anlam merkezli), her ayette bilimsel kontrolü, Kur'an içi ilişkileri ve bütünleşik tefsiri.
+
+**Sürüm notu (v1.2):** "Tek ana çeviri + gerekirse tefsirli çeviri" düzeni kaldırıldı; yerine [kavramsal_ceviri_ilkesi.md](./kavramsal_ceviri_ilkesi.md) §1'deki iki bağımsız çeviri geldi. Bilimsel kontrol isteğe bağlı olmaktan çıktı, her ayette zorunlu oldu (`analiz_protokolu.md` Aşama 8a). Meal ve tefsir anlam kurulurken okunmaz; kendi çeviri yazıldıktan sonra karşılaştırma için açılabilir (§2.6).
 
 Bu belge **uygulama protokolüdür**. Ana araştırma standardı olan [analiz_protokolu.md](./analiz_protokolu.md) ve [kavramsal_ceviri_ilkesi.md](./kavramsal_ceviri_ilkesi.md) yürürlükte kalır. Kaynak politikası, sayım birimleri, hipotez sınaması, falsifikasyon ve delil dereceleri bu belgelerden devralınır. Çatışmada kaynak/doğrulama disiplininden taviz verilmez; sûre çalışmasının **iş ritmi ve çıktı biçimi** için bu belge uygulanır.
 
@@ -21,7 +23,7 @@ Analiz edilecek kapsam ile kullanıcıya aynı mesajda sunulabilecek kapsam ayr�
 3. **Korpus içi karşılaştırma:** Aynı lemma, kalıp, sentaks, deyim, yakın/karşı kavramlar ve ilgili pasajlar araştırılır. Sayılar ancak fiilen çalıştırılmış sorgu ve sayım birimiyle verilir. Kök ≠ lemma ≠ kelime konumu ≠ segment.
 4. **Çapraz kontrol:** İkinci QAC kökenli morfoloji katmanı bağımsız doğrulama sayılmaz. Bağımsız bir kaynak yoksa yokluğu belirtilir; kaynaklar arasında ihtilaf elle değerlendirilir.
 5. **Dış dil bilgisi:** Arapça sözlük ve tarihsel kullanım, Lane, diğer Sâmî diller, gerektiğinde tarihsel bağlam, dilsel olasılıkları aydınlatan veya hipotez üreten **yardımcı** katmandır. Dinî hüküm otoritesi değildir. Sözlük yok sayılmaz; kök etimolojisi bağlamda geçerli anlam yerine konmaz.
-6. **Mealler, hadisler, mezhebî ve tefsir gelenekleri:** İlk anlamın delili veya hüküm kaynağı yapılmaz. Alternatif/geleneksel okumalar ancak Arapça dil ve metin içi verilerle karşılaştırılmak üzere, gerektiğinde ayrı değerlendirilir.
+6. **Mealler, hadisler, mezhebî ve tefsir gelenekleri:** İlk anlamın delili veya hüküm kaynağı yapılmaz. **Anlam kurulurken okunmaz;** başka bir meal (ör. karşılaştırma meali) ancak iki çeviri yazıldıktan sonra açılır ve açıldığı kayda geçer. Alternatif/geleneksel okumalar ancak Arapça dil ve metin içi verilerle karşılaştırılmak üzere, gerektiğinde ayrı değerlendirilir; kullanıcı sormadıkça "geleneksel" diye adlandırılmaz ve kaynağı yazılmaz (`analiz_protokolu.md` Aşama 6).
 
 Kaynak erişimi yoksa «tam tarama», «bağımsız doğrulandı», «korpusla kanıtlandı» gibi ifadeler kullanılmaz. Çalışma kaydı: kaynak sürümü; kullanılan ayet aralığı; sorgu/komut; sayım birimi; çalıştırıldı/önceki çıktı/çalıştırılmadı. Sayısal iddia gerekiyorsa ana protokolün kayıt ve yeniden üretim kuralları geçerlidir.
 
@@ -70,34 +72,35 @@ Bir ayetin ötekini açıklaması **kanıtlanması gereken bağlantı iddiasıd�
 - Delil yetersizse tek anlama zorlama yapılmaz. Birden fazla makul karşılık **gerçekten** kalıyorsa çeviride ikisini temsil etme (örneğin «Kur'an/okuyuş») veya kısa notla alternatif belirtme mümkündür. Buna karşılık kararı mümkün olan yerde gereksiz ikileme yapılmaz.
 - Karar kaydı: tercih edilen karşılık; elenen/rakip karşılık; hangi dilsel ve iç bağlamsal kanıt; açık karşı delil; sonucun sağlam/muhtemel/spekülatif derecesi. Açık ihtimal kesin tefsire dönüştürülmez.
 
-### E. Çeviri: zorunlu ana çeviri, gerekirse tefsirli çeviri
+### E. Çeviri: her ayette iki bağımsız çeviri
 
-**1 — Ana çeviri (her ayette; terimleri gerektiğinde koruyan)**
+Tanımlar [kavramsal_ceviri_ilkesi.md](./kavramsal_ceviri_ilkesi.md) §1'dedir. İki çeviri birleştirilmez; biri ötekinin açıklaması değildir.
 
-- Sade, açık, akıcı, **doğal Türkçe** kullanılır. Mekanik kelime sırası, Türkçede anlaşılmayan harfî deyim ve gereksiz Arapça bırakma tercih edilmez.
-- Anlamı tartışma yaratmayan kelimeler Türkçeye çevrilir. Geniş anlamlı veya tartışmalı kavram mümkünse bağlamdaki Türkçe karşılığıyla verilir; **özgün Arapça kavramın Türkçe okunuşu gerektiğinde ilgili ifadenin sonunda parantez içinde** gösterilir. Türkçede yerleşik ve anlamı zaten anlaşılır bir terim sırf Arapça olduğu için zorla değiştirilmez.
-- Bir terimi aynen korumak ancak Türkçe karşılık önemli anlam ihtimallerini yok ediyorsa tercih edilir. Bu durumda kısa gerekçe tutulur.
-- Açıklanmayan yeni olay, muhatap, kesin sonuç, tarih ve hüküm eklenmez; lafzın gerektirdiği Türkçe tamamlama ile yorum ekleme karıştırılmaz.
-- Bir ayetin şartı, olumsuzluğu, istisnası ve kapsamı çeviride mutlaka görünür kalır.
+**1 — Kavram merkezli çeviri (her ayette)**
 
-**2 — Tefsirli çeviri (yalnız ihtiyaç varsa)**
-
-- **Her ayet için ikinci çeviri zorunlu değildir.** Ana çeviri zaten açık ve doğal Türkçeyle anlamı karşılıyorsa tefsirli çeviri üretilmez. Aynı cümleyi birkaç eşanlamlı sözcükle yeniden söylemek tefsirli çeviri gerekçesi sayılmaz.
-- Ancak deyim, önemli bağlamsal gönderim, çok anlamlı terim veya açıklama gerektiren yapı sebebiyle ana çeviri tek başına yetersiz kalıyorsa, **anlamı gerçekten aydınlatan** ayrı bir tefsirli çeviri eklenebilir. Sadece dilsel alternatifleri karşılaştırmak gerekiyorsa bunlar kısa **dikkat noktasında** gösterilebilir.
-
-- Aynı Arapça cümlenin **gerekçelendirilebilen bağlamsal anlamını** doğal Türkçeyle açar; önemli terim/ifade parantezle gösterilebilir.
-- Tefsirli çeviriye açıklayıcı kelime/cümle eklenebilir; **yalnızca ilgili ayetin veya güçlü bağlantılı pasajın gerçekten anlattığı anlama dayanıyorsa**. Yazarın çıkarımı ayetin ağzından kesin bilgi diye söyletilmez.
-- Açıklama ayrı bir çıkarımsa, tefsirli ayet cümlesine gizlice sokulmaz; pasaj sonu tefsirinde delil seviyesiyle verilir.
+- Terimler Kur'an içi ilişki ağından çıkar; karşılıklar D'deki karar kaydına ve sûrenin **kavram tablosuna** dayanır (kavram · karşılık · dayanak · derece).
+- Bağlamdan gelen her ekleme **[ ]** içinde yazılır; köşeli ayraç dışındaki her kelimenin karşılığı ayette vardır. Yazarın çıkarımı ayetin ağzından kesin bilgi diye söyletilmez.
+- Geniş anlamlı veya tartışmalı kavram tablodaki karşılıkla verilir; **özgün Arapça kavramın Türkçe okunuşu gerektiğinde ilgili ifadenin sonunda parantez içinde** gösterilir. Bir terimi aynen korumak ancak Türkçe karşılık önemli anlam ihtimallerini yok ediyorsa tercih edilir; gerekçe tabloda tutulur.
 - Ayetler farklı görünse de paralel ifadelerde terim tutarlılığı denetlenir; bağlamın gerçekten gerekçelendirdiği değişken karşılıklar korunur. Tekdüzelik uğruna anlam bozulmaz.
 
-Ana çeviri her ayette **lafız ve doğallık denetiminden** geçirilir; seçmeli tefsirli çeviri varsa ayrıca ana çeviriyle karşılıklı denetlenir: atlanan, fazladan eklenen, kapsamı daraltılan veya genişletilen unsurlar gözden geçirilir.
+**2 — Anlam merkezli çeviri (her ayette)**
+
+- Birim cümle ve iletidir. Sade, açık, akıcı, **doğal Türkçe** kullanılır. Mekanik kelime sırası ve Türkçede anlaşılmayan harfî deyim kullanılmaz; deyim anlamıyla verilir.
+- Kavram tablosuna bağlı değildir; kendi ölçütüyle kurulur.
+- Açıklanmayan yeni olay, muhatap, kesin sonuç, tarih ve hüküm eklenmez. Açıklama ayrı bir çıkarımsa çeviriye gizlice sokulmaz; pasaj sonu tefsirinde delil seviyesiyle verilir.
+
+**Her iki çeviride:** bir ayetin şartı, olumsuzluğu, istisnası ve kapsamı mutlaka görünür kalır. İki çeviri her ayette yan yana denetlenir: atlanan, fazladan eklenen, kapsamı daraltılan veya genişletilen unsurlar gözden geçirilir. Anlam merkezli çevirinin kavram kararlarından ayrılması hata değildir; ayetin söylemediği bir hükmü söylemesi hatadır. Sadece dilsel alternatifleri karşılaştırmak gerekiyorsa bunlar kısa **dikkat noktasında** gösterilir.
+
+**3 — Bilimsel kontrol (her ayette)**
+
+Ayetin anlattığı olgunun bilimdeki karşılığı aranır ve ayrı satırda verilir: ilişkinin türü (çağrışım / modern paralellik / açıklama ihtimali), bilimsel tarafın derecesi (yerleşik / tartışmalı / öncü-spekülatif) ve gerçekten bulunmuş künye. Bilim kelimenin anlamını belirlemez; çevirinin içine karıştırılmaz. Çağrışım yoksa "belirgin bir bilimsel çağrışım bulunmadı" yazılır (`analiz_protokolu.md` Aşama 8a).
 
 ### F. Bağlantılı pasajın tek bütünleşik tefsiri
 
 - Ayetler arasındaki bağlam birimi tamamlanınca, **her ayetin altına dağınık yorum yazmak yerine** bir defa, kısa ve bütünleşik bir açıklama sunulur.
 - Tefsir «önceki ayet ne koydu → sonraki ayet nasıl geliştirdi/sınırladı → pasajın çıkarımı ne» ilişkisini açıkça kurar.
 - Yorumun dayanağı bağlantı fişidir. Açık ifade, güçlü çıkarım ve açık ihtimal birbirinden ayrılır.
-- Tefsirli çevirinin uzun tekrarı yapılmaz. Metinde olmayan tarihsel hikâye, zorlama sembol, psikolojik/nörobilimsel spekülasyon veya mezhebî hüküm eklenmez. Modern bilimsel paralellik ayrıca istenirse **benzetme/olasılık** diye etiketlenir.
+- Çevirilerin uzun tekrarı yapılmaz. Metinde olmayan tarihsel hikâye, zorlama sembol, psikolojik/nörobilimsel spekülasyon veya mezhebî hüküm tefsire eklenmez. Bilimsel bağlantı tefsirin içine karıştırılmaz; E.3'teki bilimsel kontrol satırında, statüsüyle durur.
 
 ### G. Çift yönlü yeniden denetim
 
@@ -112,11 +115,11 @@ Ana çeviri her ayette **lafız ve doğallık denetiminden** geçirilir; seçmel
 
 **Her doğal pasajda:**
 
-1. Ayet numaraları korunur; her ayette **tek, doğal, metne sadık ana çeviri** verilir. **Tefsirli çeviri**, yalnız anlamı açıklığa kavuşturmaya gerçekten ihtiyaç varsa ana çevirinin altında sunulur; gerekmiyorsa yazılmaz.
+1. Ayet numaraları korunur; her ayet şu sırayla verilir: **okunuş → kavram merkezli çeviri → anlam merkezli çeviri → bilimsel kontrol.** Sûrenin kavram tablosu sûre başında ya da ilk geçtiği pasajda bir kez verilir; sonraki ayetlerde yalnız değişen karar gösterilir.
 2. Pasaj sonunda yalnız bir **kısa bütünleşik tefsir** verilir. Gerçek anlam farkı yaratan tartışmalı kelime/bağlantı için ayrıca **dikkat noktası** eklenebilir.
 3. İstenmediği sürece tüm morfoloji tabloları, kök frekansları ve karar fişleri ana sunuma dökülmez. Ancak kritik çeviri tercihi kullanıcıca sorgulanınca delili ve alternatifleri denetlenebilir biçimde açıklanır.
 
-**Sûre sonunda:** Ayet atlaması, pasaj bütünlüğü ve terim uyumu kontrol edilir; sûrenin ana düşüncesi kısa ve **delil sınırını aşmayan** bir sentezle yazılır. Ana çevirilerin tamamı istenirse tek yerde toplanabilir; ihtiyaç üzerine yazılmış tefsirli çeviriler ayrı etiketlenir.
+**Sûre sonunda:** Ayet atlaması, pasaj bütünlüğü ve terim uyumu kontrol edilir; sûrenin ana düşüncesi kısa ve **delil sınırını aşmayan** bir sentezle yazılır. İstenirse iki çevirinin her biri ayrı ayrı tek yerde toplanabilir; iki çeviri o zaman da birleştirilmez.
 
 **Özel istek önceliği:** Kullanıcı yalnız çeviri, okunuş, ayrıntılı analiz veya sırf devam istediğinde görünür çıktı buna göre uyarlanır; **iç kontrol disiplini değişmez**.
 
@@ -132,10 +135,12 @@ Aşağıdaki kontrollerden biri kritik düzeyde başarısızsa ilgili ayet/pasaj
 - [ ] «Bu ayet ötekini açıklar» iddiası salt benzerlikten değil, **somut metinsel ilişkiden** mi çıktı?
 - [ ] Karşı örnek ve rakip okuma sınandı; «uyumlu» ile «kanıtlayıcı» ayrıldı mı?
 - [ ] Birden fazla ciddi anlam kalıyorsa çeviri bunları dürüstçe temsil ediyor mu?
-- [ ] Terimleri koruyan çeviride ayetin söylemediği yorum kesin söz olarak eklendi mi?
-- [ ] Tefsirli çeviri yalnız ihtiyaç duyulan ayette mi verildi; ana çeviriyi tekrar etmekten öte anlam katkısı sağlıyor mu?
-- [ ] Tefsirli çevirideki açıklamalar gerçekten lafız ve güçlü bağlama dayanıyor mu?
-- [ ] İki çeviri doğal Türkçe mi; bütün önemli ifadeler çevrilmiş ve gereksiz tekrarlar temizlenmiş mi?
+- [ ] Kavram merkezli çeviride her ekleme [ ] içinde mi; ayetin söylemediği yorum kesin söz olarak eklendi mi?
+- [ ] Kavram tablosundaki her karşılığın dayanağı ve derecesi yazıldı mı?
+- [ ] Anlam merkezli çeviri doğal Türkçe mi; ayetin söylemediği bir hüküm, olay veya muhatap ekliyor mu?
+- [ ] İki çeviri ayrı mı tutuldu, birleştirilmedi mi; bütün önemli ifadeler çevrilmiş mi?
+- [ ] Her ayette bilimsel kontrol yapıldı mı; ilişki türü, bilimsel tarafın derecesi ve künye yazıldı mı ya da "bulunmadı" denildi mi?
+- [ ] Meal veya tefsir iki çeviri yazılmadan önce açıldı mı; açıldıysa kayda geçti mi?
 - [ ] Sentezde veri, dilsel çözümleme, çıkarım ve spekülasyon karıştırıldı mı?
 - [ ] Yapılmamış sorgu, tüm korpus taraması veya bağımsız doğrulama yapılmış gibi sunuldu mu?
 - [ ] Sûrenin bütünü işlendi deniyorsa her ayet ve sûre çapında tutarlılık son kontrolden geçti mi?
@@ -150,4 +155,4 @@ Aşağıdaki kontrollerden biri kritik düzeyde başarısızsa ilgili ayet/pasaj
 
 ## 7. Kısa uygulama komutu
 
-> «[Sûre adı] sûresini bütünleşik sûre meal–tefsir protokolüyle incele. Metni ve pasaj sınırlarını önce bütün olarak değerlendir; her ayeti ayrı dilsel çözümle; gerektiğinde bütün Kur'an'daki ilgili kullanımları, alternatifleri ve karşı delilleri denetle. Bir istek içinde tüm iç aşamaları yürüt. Her ayetin tek, doğal ve metne sadık ana çevirisini ver; yalnız ana çeviri anlamı yeterince aydınlatmıyorsa gerekçeli tefsirli çeviri ekle. Tartışmalı kelimeleri gerektiğinde dikkat noktalarında delille ele al; pasaj bağlamı tamamlandığında kısa, tek bir bütünleşik tefsir yaz. Kritik belirsizlikleri gerekçelendir; yorumları lafız gibi sunma. Ulaşamadığın kaynak veya incelemediğin kapsamı açıkça belirt.»
+> «[Sûre adı] sûresini bütünleşik sûre meal–tefsir protokolüyle incele. Metni ve pasaj sınırlarını önce bütün olarak değerlendir; her ayeti ayrı dilsel çözümle; gerektiğinde bütün Kur'an'daki ilgili kullanımları, alternatifleri ve karşı delilleri denetle. Bir istek içinde tüm iç aşamaları yürüt. Her ayet için okunuşu, kavram merkezli çeviriyi (eklemeler [ ] içinde, kavram tablosuyla) ve anlam merkezli çeviriyi (doğal Türkçe, tabloya bağlı değil) ayrı ayrı ver; ikisini birleştirme. Her ayette bilimsel kontrol yap; çağrışım yoksa "bulunmadı" yaz. Meal veya tefsiri iki çeviriyi yazmadan açma. Tartışmalı kelimeleri gerektiğinde dikkat noktalarında delille ele al; pasaj bağlamı tamamlandığında kısa, tek bir bütünleşik tefsir yaz. Kritik belirsizlikleri gerekçelendir; yorumları lafız gibi sunma. Ulaşamadığın kaynak veya incelemediğin kapsamı açıkça belirt.»
